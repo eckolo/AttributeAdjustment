@@ -1,3 +1,7 @@
+using Assets.Src.Domain.Service;
+using Assets.Src.Infrastructure.Model.Entity;
+using Assets.Src.Infrastructure.Model.Value;
+using Assets.Src.Infrastructure.Service;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -16,6 +20,8 @@ namespace Assets.Src.Controller
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void StartUp()
         {
+            LogHub.TRACE.LeaveLog($"{typeof(CentralController).FullName} StartUp", new FileManager());
+            PrefabManager.SetObject<CentralController>();
         }
 
         /// <summary>
@@ -23,6 +29,7 @@ namespace Assets.Src.Controller
         /// </summary>
         void Awake()
         {
+            LogHub.TRACE.LeaveLog($"{typeof(CentralController).FullName} Awake", new FileManager());
             SetUp();
         }
 
@@ -32,9 +39,12 @@ namespace Assets.Src.Controller
         /// <returns>初期処理正常完了フラグ</returns>
         bool SetUp()
         {
-            if(mainThread == default(Coroutine)) mainThread = StartCoroutine(IntroductionMainRoutine());
+            viewRoot = viewRoot ?? PrefabManager.SetObject<ViewRoot>().SetParent(this);
+
+            if(mainThread == default) mainThread = StartCoroutine(IntroductionMainRoutine());
             return true;
         }
+        ViewRoot viewRoot = null;
 
         /// <summary>
         /// メインルーチン制御への導入
@@ -50,6 +60,7 @@ namespace Assets.Src.Controller
             }
             catch(Exception error)
             {
+                LogHub.ERROR.LeaveLog(error.ToString(), new FileManager());
                 throw error;
             }
         }
@@ -59,12 +70,17 @@ namespace Assets.Src.Controller
         /// <returns>イテレータ</returns>
         IEnumerator ExecuteMainRoutine()
         {
-            yield break;
+            var gameFoundation = GameFoundation.CreateNewState(DateTime.Now.GetHashCode());
+            while(true)
+            {
+                LogHub.DEBUG.LeaveLog($"{gameFoundation.nowState} TurnByTurn", new FileManager());
+                yield return null;
+            }
         }
 
         /// <summary>
         /// メインルーチンがのっているコルーチン保持変数
         /// </summary>
-        Coroutine mainThread = default(Coroutine);
+        Coroutine mainThread = default;
     }
 }
