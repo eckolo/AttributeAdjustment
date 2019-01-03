@@ -2,7 +2,7 @@ using Assets.Src.Domain.Service;
 using Assets.Src.Infrastructure.Service;
 using NUnit.Framework;
 using UnityEngine;
-namespace Assets.Editor.UnitTest.Infrastructure.Service
+namespace Assets.Editor.UnitTest.Domain.Service
 {
     /// <summary>
     /// メッセージ制御クラスのテストモジュール
