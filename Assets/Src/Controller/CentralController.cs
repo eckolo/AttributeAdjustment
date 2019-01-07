@@ -3,7 +3,7 @@ using Assets.Src.Infrastructure.Model.Entity;
 using Assets.Src.Infrastructure.Model.Value;
 using Assets.Src.Infrastructure.Service;
 using System;
-using System.Collections;
+using UniRx.Async;
 using UnityEngine;
 
 namespace Assets.Src.Controller
@@ -27,21 +27,21 @@ namespace Assets.Src.Controller
         /// <summary>
         /// オブジェクト生成直後に呼ばれるコールバック
         /// </summary>
-        void Awake()
+        async void Awake()
         {
             LogHub.TRACE.LeaveLog($"{typeof(CentralController).FullName} Awake", new FileManager());
-            SetUp();
+            await SetUp();
         }
 
         /// <summary>
         /// システム的な初期処理
         /// </summary>
         /// <returns>初期処理正常完了フラグ</returns>
-        bool SetUp()
+        async UniTask<bool> SetUp()
         {
             viewRoot = viewRoot ?? PrefabManager.SetObject<ViewRoot>().SetParent(this);
 
-            if(mainThread == default) mainThread = StartCoroutine(IntroductionMainRoutine());
+            await IntroductionMainRoutine();
             return true;
         }
         ViewRoot viewRoot = null;
@@ -50,37 +50,38 @@ namespace Assets.Src.Controller
         /// メインルーチン制御への導入
         /// </summary>
         /// <returns>イテレータ</returns>
-        IEnumerator IntroductionMainRoutine()
+        async UniTask IntroductionMainRoutine()
         {
             //デバッグ実行時は原因箇所追いやすくするために直接エラーを投げる
-            if(Debug.isDebugBuild) return ExecuteMainRoutine();
-            try
+            if(Debug.isDebugBuild)
             {
-                return ExecuteMainRoutine();
+                await ExecuteMainRoutine();
             }
-            catch(Exception error)
+            else
             {
-                LogHub.ERROR.LeaveLog(error.ToString(), new FileManager());
-                throw error;
+                try
+                {
+                    await ExecuteMainRoutine();
+                }
+                catch(Exception error)
+                {
+                    LogHub.ERROR.LeaveLog(error.ToString(), new FileManager());
+                    throw error;
+                }
             }
         }
         /// <summary>
         /// メインルーチン制御の実行
         /// </summary>
         /// <returns>イテレータ</returns>
-        IEnumerator ExecuteMainRoutine()
+        async UniTask ExecuteMainRoutine()
         {
             var gameFoundation = GameFoundation.CreateNewState(DateTime.Now.GetHashCode());
             while(true)
             {
                 LogHub.DEBUG.LeaveLog($"{gameFoundation.nowState} TurnByTurn", new FileManager());
-                yield return null;
+                await UniTask.DelayFrame(1);
             }
         }
-
-        /// <summary>
-        /// メインルーチンがのっているコルーチン保持変数
-        /// </summary>
-        Coroutine mainThread = default;
     }
 }
