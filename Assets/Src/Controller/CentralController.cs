@@ -39,12 +39,16 @@ namespace Assets.Src.Controller
         /// <returns>初期処理正常完了フラグ</returns>
         async UniTask<bool> SetUp()
         {
-            viewRoot = viewRoot ?? PrefabManager.SetObject<ViewRoot>().SetParent(this);
+            var viewRoot = PrefabManager.SetObject<ViewRoot>().SetParent(this);
+            var gameFoundation = GameFoundation.CreateNewState(DateTime.Now.GetHashCode(), viewRoot);
 
             await IntroductionMainRoutine();
             return true;
         }
-        ViewRoot viewRoot = null;
+        /// <summary>
+        /// ゲーム情報基盤
+        /// </summary>
+        GameFoundation gameFoundation = default;
 
         /// <summary>
         /// メインルーチン制御への導入
@@ -76,11 +80,10 @@ namespace Assets.Src.Controller
         /// <returns>イテレータ</returns>
         async UniTask ExecuteMainRoutine()
         {
-            var gameFoundation = GameFoundation.CreateNewState(DateTime.Now.GetHashCode());
             while(true)
             {
                 LogHub.DEBUG.LeaveLog($"{gameFoundation.nowState} TurnByTurn", new FileManager());
-                await Interruptor.Wait(1);
+                await Interruptor.Wait(120);
             }
         }
     }

@@ -1,6 +1,7 @@
 using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Service;
+using Assets.Src.Infrastructure.Model.Value;
 
 namespace Assets.Src.Infrastructure.Model.Entity
 {
@@ -13,7 +14,7 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// <summary>
         /// 現在有効なゲーム基盤の実体
         /// </summary>
-        static GameFoundation myself = null;
+        public static GameFoundation myself { get; private set; } = null;
 
         /// <summary>
         /// インジェクション用メソッド定義のために初回生成時のみ起動
@@ -26,9 +27,10 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// インスタンス生成用のプライベートなコンストラクタ
         /// </summary>
         /// <param name="state">初期ゲーム基盤</param>
-        GameFoundation(GameState state)
+        GameFoundation(GameState state, ViewRoot viewRoot)
         {
             nowState = state ?? nowState.Duplicate();
+            viewRoot = viewRoot ?? this.viewRoot;
         }
 
         /// <summary>
@@ -36,9 +38,9 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// </summary>
         /// <param name="state">初期状態</param>
         /// <returns>生成されたゲーム基盤</returns>
-        public static GameFoundation CreateNewState(GameState state)
+        public static GameFoundation CreateNewState(GameState state, ViewRoot viewRoot)
         {
-            if(myself == null) return myself = myself ?? new GameFoundation(state);
+            if(myself == null) return myself = myself ?? new GameFoundation(state, viewRoot);
             myself.nowState = state;
             return myself;
         }
@@ -47,12 +49,17 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// </summary>
         /// <param name="randamSeed">乱数の種</param>
         /// <returns>生成されたゲーム基盤</returns>
-        public static GameFoundation CreateNewState(int randamSeed) => CreateNewState(new GameState(randamSeed));
+        public static GameFoundation CreateNewState(int randamSeed, ViewRoot viewRoot) => CreateNewState(new GameState(randamSeed), viewRoot);
 
         /// <summary>
         /// パラメータ一括アクセス用プロパティ
         /// </summary>
         public GameState nowState { get; set; }
+
+        /// <summary>
+        /// 画面表示用オブジェクトルート
+        /// </summary>
+        public ViewRoot viewRoot { get; set; }
 
         /// <summary>
         /// シャローコピーメソッド
