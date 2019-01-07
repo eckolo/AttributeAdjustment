@@ -25,9 +25,9 @@ namespace Assets.Src.Controller
         }
 
         /// <summary>
-        /// オブジェクト生成直後に呼ばれるコールバック
+        /// シーン読み込み後に呼ばれるコールバック
         /// </summary>
-        async void Awake()
+        async void Start()
         {
             LogHub.TRACE.LeaveLog($"{typeof(CentralController).FullName} Awake", new FileManager());
             await SetUp();
@@ -80,7 +80,7 @@ namespace Assets.Src.Controller
             while(true)
             {
                 LogHub.DEBUG.LeaveLog($"{gameFoundation.nowState} TurnByTurn", new FileManager());
-                await UniTask.DelayFrame(1);
+                await Interruptor.Wait(1);
             }
         }
     }
