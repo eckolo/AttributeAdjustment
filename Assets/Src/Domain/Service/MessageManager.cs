@@ -26,5 +26,49 @@ namespace Assets.Src.Domain.Service
             fileManager.Write(path, filename, displayedSentences, true);
             return filename;
         }
+
+        /// <summary>
+        /// システムテキストへの文字設定
+        /// </summary>
+        /// <param name="setText">表示する文字列</param>
+        /// <param name="position">表示位置</param>
+        /// <param name="pivot">表示位置基準点</param>
+        /// <returns>生成された文字列オブジェクト</returns>
+        public static TextMesh SetText(
+            this string setText,
+            Vector2 position,
+            float size = 1f,
+            Color32? color = null,
+            TextAnchor pivot = TextAnchor.MiddleCenter,
+            TextAlignment alignment = TextAlignment.Center)
+        {
+            var textName = setText;
+            for(var index = 0; GameObject.Find(textName) != null; index++) textName = $"{setText}_{index}";
+
+            var textMesh = new GameObject(textName, typeof(TextMesh)).GetComponent<TextMesh>();
+
+            textMesh.text = setText;
+            textMesh.anchor = pivot;
+            textMesh.alignment = alignment;
+            textMesh.characterSize = size;
+            textMesh.color = color ?? Color.white;
+
+            var transform = textMesh.GetComponent<Transform>();
+            transform.localPosition = position;
+
+            return textMesh;
+        }
+        /// <summary>
+        /// システムテキストの削除
+        /// </summary>
+        /// <param name="textObject">対象テキストオブジェクト</param>
+        /// <returns>削除した文字列の内容</returns>
+        public static string Destroy(this TextMesh textObject)
+        {
+            if(textObject == null) return "";
+            var result = textObject?.text ?? "";
+            UnityEngine.Object.Destroy(textObject.gameObject);
+            return result;
+        }
     }
 }
