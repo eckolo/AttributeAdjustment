@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using UniRx.Async;
 using UnityEngine;
@@ -45,9 +44,16 @@ namespace Assets.Src.Domain.Service
         /// <param name="delay">待機フレーム数</param>
         /// <param name="interruptions">押下が終了条件となるキーのリスト</param>
         /// <returns>待機タスク</returns>
-        public static async UniTask Wait(int delay, List<KeyCode> interruptions)
+        public static async UniTask<IEnumerable<KeyCode>> Wait(int delay, List<KeyCode> interruptions)
         {
-            await Wait(delay, () => interruptions.Judge());
+            IEnumerable<KeyCode> keyCodes = null;
+            await Wait(delay, () => {
+                bool result;
+                (result, keyCodes) = interruptions.Judge();
+                return result;
+            });
+
+            return keyCodes;
         }
         /// <summary>
         /// 指定フレーム数の経過もしくは特定キーの押下まで待機する
@@ -66,28 +72,21 @@ namespace Assets.Src.Domain.Service
         /// <param name="receiveableKeys">押下が終了条件となるキーのリスト</param>
         /// <param name="endProcess">待機終了時処理</param>
         /// <returns>待機タスク</returns>
-        public static async UniTask Wait(List<KeyCode> receiveableKeys, Action<KeyCode?, bool> endProcess = null)
+        public static async UniTask<(IEnumerable<KeyCode> receiveKeys, bool first)> Wait(List<KeyCode> receiveableKeys)
         {
-            if(receiveableKeys.Count <= 0) return;
+            if(receiveableKeys.Count <= 0) return default;
 
-            KeyCode? receivedKey = null;
-            bool first = false;
-            do
+            while(true)
             {
                 await Wait(1);
 
-                if(receiveableKeys.Judge(KeyTiming.DOWN, keys => receivedKey = keys.FirstOrDefault()))
-                {
-                    first = true;
-                    break;
-                }
-                if(receiveableKeys.Judge(KeyTiming.ON, keys => receivedKey = keys.FirstOrDefault()))
-                {
-                    break;
-                }
-            } while(receivedKey == null);
+                var keyDown = receiveableKeys.Judge(KeyTiming.DOWN);
+                var keyOn = receiveableKeys.Judge(KeyTiming.ON);
 
-            endProcess?.Invoke(receivedKey, first);
+                if(keyDown.result) return (keyDown.keys, true);
+                else if(keyOn.result) return (keyOn.keys, false);
+            }
+
         }
         /// <summary>
         /// 特定キー押下まで待機する
@@ -95,9 +94,7 @@ namespace Assets.Src.Domain.Service
         /// <param name="receiveableKey">押下が終了条件となるキー</param>
         /// <param name="endProcess">待機終了時処理</param>
         /// <returns>待機タスク</returns>
-        public static async UniTask Wait(KeyCode receiveableKey, Action<KeyCode?, bool> endProcess = null)
-        {
-            await Wait(new List<KeyCode> { receiveableKey }, endProcess);
-        }
+        public static async UniTask<(IEnumerable<KeyCode> receiveKeys, bool first)> Wait(KeyCode receiveableKey)
+            => await Wait(new List<KeyCode> { receiveableKey });
     }
 }

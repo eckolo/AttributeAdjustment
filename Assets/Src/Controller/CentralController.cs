@@ -40,7 +40,7 @@ namespace Assets.Src.Controller
         async UniTask<bool> SetUp()
         {
             var viewRoot = PrefabManager.SetObject<ViewRoot>().SetParent(this);
-            var gameFoundation = GameFoundation.CreateNewState(DateTime.Now.GetHashCode(), viewRoot);
+            gameFoundation = GameFoundation.CreateNewState(DateTime.Now.GetHashCode(), viewRoot);
 
             await IntroductionMainRoutine();
             return true;
