@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UniRx.Async;
 using UnityEngine;
@@ -72,19 +73,24 @@ namespace Assets.Src.Domain.Service
         /// <param name="receiveableKeys">押下が終了条件となるキーのリスト</param>
         /// <param name="endProcess">待機終了時処理</param>
         /// <returns>待機タスク</returns>
-        public static async UniTask<(IEnumerable<KeyCode> receiveKeys, bool first)> Until(List<KeyCode> receiveableKeys)
+        public static async UniTask<(IEnumerable<KeyCode> receiveKeys, KeyTiming timing)> Until(List<KeyCode> receiveableKeys)
         {
-            if(receiveableKeys.Count <= 0) return default;
+            if(!receiveableKeys.Any()) return default;
 
             while(true)
             {
                 await Until(1);
 
-                var keyDown = receiveableKeys.Judge(KeyTiming.DOWN);
-                var keyOn = receiveableKeys.Judge(KeyTiming.ON);
-
-                if(keyDown.result) return (keyDown.keys, true);
-                else if(keyOn.result) return (keyOn.keys, false);
+                {
+                    var timing = KeyTiming.DOWN;
+                    var (result, keys) = receiveableKeys.Judge(timing);
+                    if(result) return (keys, timing);
+                }
+                {
+                    var timing = KeyTiming.ON;
+                    var (result, keys) = receiveableKeys.Judge(timing);
+                    if(result) return (keys, timing);
+                }
             }
 
         }
@@ -94,7 +100,7 @@ namespace Assets.Src.Domain.Service
         /// <param name="receiveableKey">押下が終了条件となるキー</param>
         /// <param name="endProcess">待機終了時処理</param>
         /// <returns>待機タスク</returns>
-        public static async UniTask<(IEnumerable<KeyCode> receiveKeys, bool first)> Until(KeyCode receiveableKey)
+        public static async UniTask<(IEnumerable<KeyCode> receiveKeys, KeyTiming timing)> Until(KeyCode receiveableKey)
             => await Until(new List<KeyCode> { receiveableKey });
     }
 }
