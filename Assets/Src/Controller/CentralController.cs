@@ -83,7 +83,7 @@ namespace Assets.Src.Controller
             while(true)
             {
                 LogHub.DEBUG.LeaveLog($"{gameFoundation.nowState} TurnByTurn", new FileManager());
-                await Interruptor.Wait(120);
+                await Wait.Until(120);
             }
         }
     }

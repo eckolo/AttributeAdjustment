@@ -7,9 +7,9 @@ using UnityEngine;
 namespace Assets.Src.Domain.Service
 {
     /// <summary>
-    /// ゲーム実行に割り込みで処理を掛けるメソッド群
+    /// ゲーム実行を待つ処理群
     /// </summary>
-    public static class Interruptor
+    public static class Wait
     {
         /// <summary>
         /// 指定条件を満たすまで待機する
@@ -17,7 +17,7 @@ namespace Assets.Src.Domain.Service
         /// <param name="endCondition">終了条件</param>
         /// <param name="token">キャンセルトークン</param>
         /// <returns>待機タスク</returns>
-        public static async UniTask Wait(Func<bool> endCondition, CancellationToken token = default)
+        public static async UniTask Until(Func<bool> endCondition, CancellationToken token = default)
         {
             await UniTask.WaitUntil(endCondition, cancellationToken: token);
         }
@@ -27,13 +27,13 @@ namespace Assets.Src.Domain.Service
         /// <param name="delay">待機フレーム数</param>
         /// <param name="endCondition">終了条件</param>
         /// <returns>待機タスク</returns>
-        public static async UniTask Wait(int delay, Func<bool> endCondition = null)
+        public static async UniTask Until(int delay, Func<bool> endCondition = null)
         {
             var cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
             var delayTask = UniTask.DelayFrame(delay, cancellationToken: token);
 
-            if(endCondition != null) await UniTask.WhenAny(delayTask, Wait(endCondition, token));
+            if(endCondition != null) await UniTask.WhenAny(delayTask, Until(endCondition, token));
             else await delayTask;
 
             cancellationTokenSource?.Cancel();
@@ -44,10 +44,10 @@ namespace Assets.Src.Domain.Service
         /// <param name="delay">待機フレーム数</param>
         /// <param name="interruptions">押下が終了条件となるキーのリスト</param>
         /// <returns>待機タスク</returns>
-        public static async UniTask<IEnumerable<KeyCode>> Wait(int delay, List<KeyCode> interruptions)
+        public static async UniTask<IEnumerable<KeyCode>> Until(int delay, List<KeyCode> interruptions)
         {
             IEnumerable<KeyCode> keyCodes = null;
-            await Wait(delay, () => {
+            await Until(delay, () => {
                 bool result;
                 (result, keyCodes) = interruptions.Judge();
                 return result;
@@ -61,10 +61,10 @@ namespace Assets.Src.Domain.Service
         /// <param name="delay">待機フレーム数</param>
         /// <param name="interruption">押下が終了条件となるキー</param>
         /// <returns>待機タスク</returns>
-        public static async UniTask Wait(int delay, KeyCode interruption)
+        public static async UniTask Until(int delay, KeyCode interruption)
         {
             var interruptions = new List<KeyCode> { interruption };
-            await Wait(delay, interruptions);
+            await Until(delay, interruptions);
         }
         /// <summary>
         /// 特定キー群いずれかの押下まで待機する
@@ -72,13 +72,13 @@ namespace Assets.Src.Domain.Service
         /// <param name="receiveableKeys">押下が終了条件となるキーのリスト</param>
         /// <param name="endProcess">待機終了時処理</param>
         /// <returns>待機タスク</returns>
-        public static async UniTask<(IEnumerable<KeyCode> receiveKeys, bool first)> Wait(List<KeyCode> receiveableKeys)
+        public static async UniTask<(IEnumerable<KeyCode> receiveKeys, bool first)> Until(List<KeyCode> receiveableKeys)
         {
             if(receiveableKeys.Count <= 0) return default;
 
             while(true)
             {
-                await Wait(1);
+                await Until(1);
 
                 var keyDown = receiveableKeys.Judge(KeyTiming.DOWN);
                 var keyOn = receiveableKeys.Judge(KeyTiming.ON);
@@ -94,7 +94,7 @@ namespace Assets.Src.Domain.Service
         /// <param name="receiveableKey">押下が終了条件となるキー</param>
         /// <param name="endProcess">待機終了時処理</param>
         /// <returns>待機タスク</returns>
-        public static async UniTask<(IEnumerable<KeyCode> receiveKeys, bool first)> Wait(KeyCode receiveableKey)
-            => await Wait(new List<KeyCode> { receiveableKey });
+        public static async UniTask<(IEnumerable<KeyCode> receiveKeys, bool first)> Until(KeyCode receiveableKey)
+            => await Until(new List<KeyCode> { receiveableKey });
     }
 }
