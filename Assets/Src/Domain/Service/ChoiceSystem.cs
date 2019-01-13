@@ -62,8 +62,6 @@ namespace Assets.Src.Domain.Service
                 var keepUpKey = inputKeys.Judge(buttom.ups).Any() && keyTiming == KeyTiming.ON;
                 var keepDownKey = inputKeys.Judge(buttom.downs).Any() && keyTiming == KeyTiming.ON;
 
-                Debug.Log($"inputDecisionKey:{inputDecisionKey},inputCancelKey:{inputCancelKey},inputUpKey:{inputUpKey},keepUpKey:{keepUpKey},inputDownKey:{inputDownKey},keepDownKey:{keepDownKey}");
-
                 keepUpTime = keepUpKey ? keepUpTime + 1 : 0;
                 keepDownTime = keepDownKey ? keepDownTime + 1 : 0;
                 if(inputUpKey || (keepUpKey && keepUpTime > 10))
