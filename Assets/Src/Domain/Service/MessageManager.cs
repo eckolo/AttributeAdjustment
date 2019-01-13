@@ -32,7 +32,10 @@ namespace Assets.Src.Domain.Service
         /// </summary>
         /// <param name="setText">表示する文字列</param>
         /// <param name="position">表示位置</param>
+        /// <param name="size">文字サイズ</param>
+        /// <param name="color">文字色</param>
         /// <param name="pivot">表示位置基準点</param>
+        /// <param name="alignment">文字の横位置</param>
         /// <returns>生成された文字列オブジェクト</returns>
         public static TextMesh SetText(
             this string setText,
@@ -45,18 +48,18 @@ namespace Assets.Src.Domain.Service
             var textName = setText;
             for(var index = 0; GameObject.Find(textName) != null; index++) textName = $"{setText}_{index}";
 
-            var textMesh = new GameObject(textName, typeof(TextMesh)).GetComponent<TextMesh>();
+            var textObject = new GameObject(textName, typeof(TextMesh)).GetComponent<TextMesh>();
 
-            textMesh.text = setText;
-            textMesh.anchor = pivot;
-            textMesh.alignment = alignment;
-            textMesh.characterSize = size;
-            textMesh.color = color ?? Color.white;
+            textObject.text = setText;
+            textObject.anchor = pivot;
+            textObject.alignment = alignment;
+            textObject.characterSize = size;
+            textObject.color = color ?? Color.white;
 
-            var transform = textMesh.GetComponent<Transform>();
+            var transform = textObject.GetComponent<Transform>();
             transform.localPosition = position;
 
-            return textMesh;
+            return textObject;
         }
         /// <summary>
         /// システムテキストの削除

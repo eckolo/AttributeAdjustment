@@ -76,23 +76,25 @@ namespace Assets.Src.Domain.Service
         public static async UniTask<(IEnumerable<KeyCode> receiveKeys, KeyTiming timing)> Until(List<KeyCode> receiveableKeys)
         {
             if(!receiveableKeys.Any()) return default;
+            (IEnumerable<KeyCode> receiveKeys, KeyTiming timing) = (default, default);
 
-            while(true)
-            {
-                await Until(1);
-
+            await Until(() => {
                 {
-                    var timing = KeyTiming.DOWN;
-                    var (result, keys) = receiveableKeys.Judge(timing);
-                    if(result) return (keys, timing);
+                    var receive = false;
+                    timing = KeyTiming.DOWN;
+                    (receive, receiveKeys) = receiveableKeys.Judge(timing);
+                    if(receive) return true;
                 }
                 {
-                    var timing = KeyTiming.ON;
-                    var (result, keys) = receiveableKeys.Judge(timing);
-                    if(result) return (keys, timing);
+                    var receive = false;
+                    timing = KeyTiming.ON;
+                    (receive, receiveKeys) = receiveableKeys.Judge(timing);
+                    if(receive) return true;
                 }
-            }
+                return false;
+            });
 
+            return (receiveKeys, timing);
         }
         /// <summary>
         /// 特定キー押下まで待機する
