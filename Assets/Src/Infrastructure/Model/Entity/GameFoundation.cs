@@ -1,7 +1,6 @@
 using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Service;
-using Assets.Src.Infrastructure.Model.Value;
 
 namespace Assets.Src.Infrastructure.Model.Entity
 {

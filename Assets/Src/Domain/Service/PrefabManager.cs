@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Src.Infrastructure.Service
+namespace Assets.Src.Domain.Service
 {
     /// <summary>
     /// プレファブなどの実体化されたオブジェクト類の管理クラス

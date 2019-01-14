@@ -1,8 +1,8 @@
-using Assets.Src.Infrastructure.Service;
+using Assets.Src.Domain.Service;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Assets.Editor.UnitTest.Infrastructure.Service
+namespace Assets.Editor.UnitTest.Domain.Service
 {
     /// <summary>
     /// プレファブなどの実体化されたオブジェクト類の管理クラスのテストモジュール

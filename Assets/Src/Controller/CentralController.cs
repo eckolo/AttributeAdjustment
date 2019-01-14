@@ -1,6 +1,6 @@
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Service;
 using Assets.Src.Infrastructure.Model.Entity;
-using Assets.Src.Infrastructure.Model.Value;
 using Assets.Src.Infrastructure.Service;
 using System;
 using UniRx.Async;

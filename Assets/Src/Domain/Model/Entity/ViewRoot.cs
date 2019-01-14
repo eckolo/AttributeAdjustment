@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Src.Infrastructure.Model.Value
+namespace Assets.Src.Domain.Model.Entity
 {
     /// <summary>
     /// ビュー類のルートになるオブジェクト
