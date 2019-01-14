@@ -6,7 +6,7 @@ namespace Assets.Src.Domain.Model.Entity
     /// ビュー類のルートになるオブジェクト
     /// それだけ
     /// </summary>
-    public class ViewRoot : MonoBehaviour
+    public class View : MonoBehaviour
     {
     }
 }

@@ -1,3 +1,4 @@
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Service;
 using NUnit.Framework;
 using UnityEngine;
@@ -17,13 +18,15 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
         }
 
+        static readonly View view = new GameObject(nameof(View), typeof(View)).GetComponent<View>();
+
         [Test]
         public static void SetObjectTest()
         {
             var name1 = "object1";
-            var object1 = name1.SetObject<TestMonoBehaviour>();
+            var object1 = view.SetPrefab<TestMonoBehaviour>(name1);
             var object2 = GameObject.Find(name1).GetComponent<TestMonoBehaviour>();
-            var object3 = PrefabManager.SetObject<TestMonoBehaviour>(null);
+            var object3 = PrefabManager.SetPrefab<TestMonoBehaviour>(null);
 
             object1.IsSameReferenceAs(object2);
             object1.name.Is(name1);
@@ -34,7 +37,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         public static void SetObjectTest2()
         {
             var name1 = "TestMonoBehaviour";
-            var object1 = PrefabManager.SetObject<TestMonoBehaviour>();
+            var object1 = view.SetPrefab<TestMonoBehaviour>();
             var object2 = GameObject.Find(name1).GetComponent<TestMonoBehaviour>();
 
             object1.IsSameReferenceAs(object2);

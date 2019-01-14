@@ -26,7 +26,7 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// インスタンス生成用のプライベートなコンストラクタ
         /// </summary>
         /// <param name="state">初期ゲーム基盤</param>
-        GameFoundation(GameState state, ViewRoot viewRoot)
+        GameFoundation(GameState state, View viewRoot)
         {
             nowState = state ?? nowState.Duplicate();
             viewRoot = viewRoot ?? this.viewRoot;
@@ -37,7 +37,7 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// </summary>
         /// <param name="state">初期状態</param>
         /// <returns>生成されたゲーム基盤</returns>
-        public static GameFoundation CreateNewState(GameState state, ViewRoot viewRoot)
+        public static GameFoundation CreateNewState(GameState state, View viewRoot)
         {
             if(myself == null) return myself = myself ?? new GameFoundation(state, viewRoot);
             myself.nowState = state;
@@ -48,7 +48,7 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// </summary>
         /// <param name="randamSeed">乱数の種</param>
         /// <returns>生成されたゲーム基盤</returns>
-        public static GameFoundation CreateNewState(int randamSeed, ViewRoot viewRoot) => CreateNewState(new GameState(randamSeed), viewRoot);
+        public static GameFoundation CreateNewState(int randamSeed, View viewRoot) => CreateNewState(new GameState(randamSeed), viewRoot);
 
         /// <summary>
         /// パラメータ一括アクセス用プロパティ
@@ -58,7 +58,7 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// <summary>
         /// 画面表示用オブジェクトルート
         /// </summary>
-        public ViewRoot viewRoot { get; set; }
+        public View viewRoot { get; set; }
 
         /// <summary>
         /// シャローコピーメソッド

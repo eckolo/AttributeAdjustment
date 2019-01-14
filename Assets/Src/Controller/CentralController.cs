@@ -21,7 +21,7 @@ namespace Assets.Src.Controller
         static void StartUp()
         {
             LogHub.TRACE.LeaveLog($"{typeof(CentralController).FullName} StartUp", new FileManager());
-            PrefabManager.SetObject<CentralController>();
+            var myself = new GameObject(nameof(CentralController), typeof(CentralController));
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Assets.Src.Controller
         /// <returns>初期処理正常完了フラグ</returns>
         async UniTask<bool> SetUp()
         {
-            var viewRoot = PrefabManager.SetObject<ViewRoot>().SetParent(this);
+            var viewRoot = new GameObject(nameof(View), typeof(View)).GetComponent<View>().SetParent(this);
             gameFoundation = GameFoundation.CreateNewState(DateTime.Now.GetHashCode(), viewRoot);
 
             await IntroductionMainRoutine();

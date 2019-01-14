@@ -1,3 +1,4 @@
+using Assets.Src.Domain.Model.Entity;
 using System.Linq;
 using UnityEngine;
 
@@ -15,19 +16,22 @@ namespace Assets.Src.Domain.Service
         /// <summary>
         /// ゲームオブジェクトの新規作成
         /// </summary>
-        /// <typeparam name="Prefab">作成されるオブジェクトに実装される型</typeparam>
+        /// <typeparam name="TPrefab">作成されるオブジェクトに実装される型</typeparam>
         /// <param name="objectName">オブジェクト名称</param>
         /// <returns>生成されたオブジェクト</returns>
-        public static Prefab SetObject<Prefab>(this string objectName) where Prefab : MonoBehaviour
-            => new GameObject(objectName ?? ANONYMOUS_NAME, typeof(Prefab)).GetComponent<Prefab>();
+        public static TPrefab SetPrefab<TPrefab>(this View view, string objectName = null)
+            where TPrefab : MonoBehaviour
+            => new GameObject(objectName ?? ANONYMOUS_NAME, typeof(TPrefab))
+            .GetComponent<TPrefab>()
+            .SetParent(view);
         /// <summary>
         /// ゲームオブジェクトの新規作成
         /// 型名をそのままオブジェクト名とする
         /// </summary>
-        /// <typeparam name="Prefab">作成されるオブジェクトに実装される型</typeparam>
+        /// <typeparam name="TPrefab">作成されるオブジェクトに実装される型</typeparam>
         /// <returns>生成されたオブジェクト</returns>
-        public static Prefab SetObject<Prefab>() where Prefab : MonoBehaviour
-            => typeof(Prefab).FullName.Split(new[] { '.', '+' }).Last().SetObject<Prefab>();
+        public static TPrefab SetPrefab<TPrefab>(this View view) where TPrefab : MonoBehaviour
+            => view.SetPrefab<TPrefab>(typeof(TPrefab).FullName.Split(new[] { '.', '+' }).Last());
 
         /// <summary>
         /// ゲームオブジェクトに親オブジェクトを設定して返す
