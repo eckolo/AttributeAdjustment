@@ -1,4 +1,5 @@
 using Assets.Src.Domain.Model.Entity;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -35,17 +36,20 @@ namespace Assets.Src.Domain.Service
 
         /// <summary>
         /// ゲームオブジェクトに親オブジェクトを設定して返す
+        /// 親オブジェクトとしてnull指定した場合は親の解除
         /// </summary>
-        /// <typeparam name="Prefab">ゲームオブジェクト型</typeparam>
-        /// <typeparam name="Parent">親のオブジェクト型</typeparam>
+        /// <typeparam name="TPrefab">ゲームオブジェクト型</typeparam>
+        /// <typeparam name="TParent">親のオブジェクト型</typeparam>
         /// <param name="prefab">ゲームオブジェクト</param>
         /// <param name="parent">親のオブジェクト</param>
         /// <returns>親の設定されたゲームオブジェクトk</returns>
-        public static Prefab SetParent<Prefab, Parent>(this Prefab prefab, Parent parent = null)
-            where Prefab : MonoBehaviour
-            where Parent : MonoBehaviour
+        public static TPrefab SetParent<TPrefab, TParent>(this TPrefab prefab, TParent parent = null)
+            where TPrefab : MonoBehaviour
+            where TParent : MonoBehaviour
         {
-            prefab.transform.SetParent(parent.transform);
+            if(prefab == null) throw new ArgumentNullException(nameof(prefab));
+
+            prefab.transform.SetParent(parent?.transform);
             return prefab;
         }
     }
