@@ -19,24 +19,34 @@ namespace Assets.Src.Domain.Service
         /// <param name="choiceList">選択肢</param>
         /// <param name="buttom">ボタン設定</param>
         /// <param name="initialChoiced">デフォルトの選択位置</param>
+        /// <param name="startProcess">開始時処理</param>
+        /// <param name="midProcess">途中処理</param>
         /// <param name="endProcess">終了時処理</param>
-        /// <returns></returns>
+        /// <returns>選択結果</returns>
         public static async UniTask<int?> Choice(
             this List<string> choiceList,
             Configs.Buttom buttom,
             int initialChoiced = 0,
-            Action<int?> endProcess = null)
+            Action<List<string>, int?> startProcess = null,
+            Action<List<string>, int?> midProcess = null,
+            Action<List<string>, int?> endProcess = null)
         {
-            if(!choiceList.Any())
-            {
-                endProcess(initialChoiced);
-                return initialChoiced;
-            }
+            var _startProcess = startProcess ?? startProcessDefault;
+            var _midProcess = midProcess ?? midProcessDefault;
+            var _endProcess = endProcess ?? endProcessDefault;
 
             int? choiced = initialChoiced;
+
+            _startProcess(choiceList, choiced);
+
+            if(!choiceList.Any())
+            {
+                _endProcess(choiceList, choiced);
+                return choiced;
+            }
+
             await Wait.Until(1);
 
-            var textObject = "".SetText(Vector2.zero, size: 0.5f, alignment: TextAlignment.Left);
             var choiceCount = choiceList.Count;
 
             int keepUpTime = 0;
@@ -46,10 +56,7 @@ namespace Assets.Src.Domain.Service
             {
                 choiced %= choiceCount;
 
-                textObject.text = choiceList
-                    .Select((choice, index) => (cursor: index == choiced ? ">" : "", choice))
-                    .Select(line => $"{line.cursor}\t{line.choice}")
-                    .Aggregate((line1, line2) => $"{line1}\r\n{line2}");
+                _midProcess(choiceList, choiced);
 
                 var ableKeyList = buttom.decide.Concat(buttom.vertical).ToList();
 
@@ -80,10 +87,26 @@ namespace Assets.Src.Domain.Service
             }
             while(!endChoice);
 
-            textObject.Destroy();
-
-            endProcess?.Invoke(choiced);
+            _endProcess(choiceList, choiced);
             return choiced;
         }
+
+        static readonly Stack<TextMesh> textMeshesStack = new Stack<TextMesh>();
+
+        static readonly Action<List<string>, int?> startProcessDefault = (choiceList, choiced) => {
+            var textMesh = "".SetText(Vector2.zero, size: 0.5f, alignment: TextAlignment.Left);
+            textMeshesStack.Push(textMesh);
+        };
+        static readonly Action<List<string>, int?> midProcessDefault = (choiceList, choiced) => {
+            var textMesh = textMeshesStack.Peek();
+            textMesh.text = choiceList
+                .Select((choice, index) => (cursor: index == choiced ? ">" : "", choice))
+                .Select(line => $"{line.cursor}\t{line.choice}")
+                .Aggregate((line1, line2) => $"{line1}\r\n{line2}");
+        };
+        static readonly Action<List<string>, int?> endProcessDefault = (choiceList, choiced) => {
+            var textMesh = textMeshesStack.Pop();
+            textMesh.Destroy();
+        };
     }
 }
