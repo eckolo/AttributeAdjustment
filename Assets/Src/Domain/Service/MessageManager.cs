@@ -70,7 +70,7 @@ namespace Assets.Src.Domain.Service
         {
             if(textObject == null) return "";
             var result = textObject?.text ?? "";
-            UnityEngine.Object.Destroy(textObject.gameObject);
+            textObject.Destroy();
             return result;
         }
     }

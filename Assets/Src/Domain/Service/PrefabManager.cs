@@ -52,5 +52,20 @@ namespace Assets.Src.Domain.Service
             prefab.transform.SetParent(parent?.transform);
             return prefab;
         }
+
+        /// <summary>
+        /// ゲームオブジェクトを削除する
+        /// </summary>
+        /// <typeparam name="TPrefab">削除対象オブジェクトの型</typeparam>
+        /// <param name="prefab">削除対象オブジェクト</param>
+        public static void Destroy<TPrefab>(this TPrefab prefab) where TPrefab : Component
+        {
+            if(prefab == null) return;
+
+            foreach(Component child in prefab.transform) if(child is Component) child.Destroy();
+
+            UnityEngine.Object.Destroy(prefab.gameObject);
+            return;
+        }
     }
 }
