@@ -21,7 +21,7 @@ namespace Assets.Src.Domain.Service
         /// <param name="objectName">オブジェクト名称</param>
         /// <returns>生成されたオブジェクト</returns>
         public static TPrefab SetPrefab<TPrefab>(this View view, string objectName = null)
-            where TPrefab : MonoBehaviour
+            where TPrefab : Component
             => new GameObject(objectName ?? ANONYMOUS_NAME, typeof(TPrefab))
             .GetComponent<TPrefab>()
             .SetParent(view);
@@ -31,7 +31,7 @@ namespace Assets.Src.Domain.Service
         /// </summary>
         /// <typeparam name="TPrefab">作成されるオブジェクトに実装される型</typeparam>
         /// <returns>生成されたオブジェクト</returns>
-        public static TPrefab SetPrefab<TPrefab>(this View view) where TPrefab : MonoBehaviour
+        public static TPrefab SetPrefab<TPrefab>(this View view) where TPrefab : Component
             => view.SetPrefab<TPrefab>(typeof(TPrefab).FullName.Split(new[] { '.', '+' }).Last());
 
         /// <summary>
@@ -44,8 +44,8 @@ namespace Assets.Src.Domain.Service
         /// <param name="parent">親のオブジェクト</param>
         /// <returns>親の設定されたゲームオブジェクトk</returns>
         public static TPrefab SetParent<TPrefab, TParent>(this TPrefab prefab, TParent parent = null)
-            where TPrefab : MonoBehaviour
-            where TParent : MonoBehaviour
+            where TPrefab : Component
+            where TParent : Component
         {
             if(prefab == null) throw new ArgumentNullException(nameof(prefab));
 

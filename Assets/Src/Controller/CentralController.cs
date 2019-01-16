@@ -1,4 +1,3 @@
-using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Service;
 using Assets.Src.Infrastructure.Model.Entity;
 using Assets.Src.Infrastructure.Service;
@@ -39,8 +38,7 @@ namespace Assets.Src.Controller
         /// <returns>初期処理正常完了フラグ</returns>
         async UniTask<bool> SetUp()
         {
-            var viewRoot = View.CleateNew(nameof(CentralController), this);
-            gameFoundation = GameFoundation.CreateNewState(DateTime.Now.GetHashCode(), viewRoot);
+            gameFoundation = GameFoundation.CreateNewState(DateTime.Now.GetHashCode());
 
             await IntroductionMainRoutine();
             return true;

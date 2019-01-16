@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,10 +92,16 @@ namespace Assets.Src.Domain.Service
             return choiced;
         }
 
+        static readonly Stack<View> viewStack = new Stack<View>();
         static readonly Stack<TextMesh> textMeshesStack = new Stack<TextMesh>();
 
         static readonly Action<List<string>, int?> startProcessDefault = (choiceList, choiced) => {
-            var textMesh = "".SetText(Vector2.zero, size: 0.5f, alignment: TextAlignment.Left);
+            var name = nameof(ChoiceSystem);
+
+            var view = View.CleateNew(name);
+            viewStack.Push(view);
+
+            var textMesh = view.SetText("", Vector2.zero, size: 0.5f, alignment: TextAlignment.Left, textName: name);
             textMeshesStack.Push(textMesh);
         };
         static readonly Action<List<string>, int?> midProcessDefault = (choiceList, choiced) => {
@@ -106,7 +113,8 @@ namespace Assets.Src.Domain.Service
         };
         static readonly Action<List<string>, int?> endProcessDefault = (choiceList, choiced) => {
             var textMesh = textMeshesStack.Pop();
-            textMesh.Destroy();
+            var view = viewStack.Pop();
+            view.Destroy();
         };
     }
 }

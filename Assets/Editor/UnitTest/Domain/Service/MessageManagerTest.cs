@@ -1,3 +1,4 @@
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Service;
 using Assets.Src.Infrastructure.Service;
 using NUnit.Framework;
@@ -10,6 +11,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
     public static class MessageManagerTest
     {
         static readonly IFileManager fileManager = new FileManager();
+
+        static readonly View view = View.CleateNew(nameof(MessageManagerTest));
 
         /// <summary>
         /// ログ残すメソッドのテスト
@@ -48,7 +51,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var pivot = TextAnchor.LowerLeft;
             var alignment = TextAlignment.Right;
 
-            var textObj = text.SetText(position, size, color, pivot, alignment);
+            var textObj = view.SetText(text, position, size, color, pivot, alignment);
 
             textObj.IsNotNull();
             textObj.gameObject.name.Is(text);
@@ -65,7 +68,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var text = nameof(SetTextTest_単一生成_最小限のパラメータのみ設定);
             var position = new Vector2(2, -4);
 
-            var textObj = text.SetText(position);
+            var textObj = view.SetText(text, position);
 
             textObj.IsNotNull();
             textObj.gameObject.name.Is(text);
@@ -82,7 +85,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var text = nameof(SetTextTest_複数生成_最小限のパラメータのみ設定);
             var position = new Vector2(2, -4);
 
-            var textObj1 = text.SetText(position);
+            var textObj1 = view.SetText(text, position);
             {
                 var textObj = textObj1;
                 textObj.IsNotNull();
@@ -95,7 +98,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 textObj.alignment.Is(TextAlignment.Center);
             }
 
-            var textObj2 = text.SetText(position);
+            var textObj2 = view.SetText(text, position);
             {
                 var textObj = textObj2;
                 textObj.IsNotNull();

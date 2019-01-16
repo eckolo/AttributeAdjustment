@@ -11,6 +11,11 @@ namespace Assets.Src.Infrastructure.Model.Entity
     public partial class GameFoundation : IDuplicatable<GameFoundation>
     {
         /// <summary>
+        /// メインUIのビューオブジェクトの名称
+        /// </summary>
+        const string MAIN_UI_NAME = "MainUI";
+
+        /// <summary>
         /// 現在有効なゲーム基盤の実体
         /// </summary>
         public static GameFoundation myself { get; private set; } = null;
@@ -37,9 +42,10 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// </summary>
         /// <param name="state">初期状態</param>
         /// <returns>生成されたゲーム基盤</returns>
-        public static GameFoundation CreateNewState(GameState state, View viewRoot)
+        public static GameFoundation CreateNewState(GameState state)
         {
-            if(myself == null) return myself = myself ?? new GameFoundation(state, viewRoot);
+            var mainUiView = View.CleateNew(MAIN_UI_NAME);
+            if(myself == null) return myself = myself ?? new GameFoundation(state, mainUiView);
             myself.nowState = state;
             return myself;
         }
@@ -48,7 +54,7 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// </summary>
         /// <param name="randamSeed">乱数の種</param>
         /// <returns>生成されたゲーム基盤</returns>
-        public static GameFoundation CreateNewState(int randamSeed, View viewRoot) => CreateNewState(new GameState(randamSeed), viewRoot);
+        public static GameFoundation CreateNewState(int randamSeed) => CreateNewState(new GameState(randamSeed));
 
         /// <summary>
         /// パラメータ一括アクセス用プロパティ
