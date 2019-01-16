@@ -39,7 +39,7 @@ namespace Assets.Src.Controller
         /// <returns>初期処理正常完了フラグ</returns>
         async UniTask<bool> SetUp()
         {
-            var viewRoot = new GameObject(nameof(View), typeof(View)).GetComponent<View>().SetParent(this);
+            var viewRoot = View.CleateNew(nameof(CentralController), this);
             gameFoundation = GameFoundation.CreateNewState(DateTime.Now.GetHashCode(), viewRoot);
 
             await IntroductionMainRoutine();
