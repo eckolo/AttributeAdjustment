@@ -1,5 +1,6 @@
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Service;
+using Assets.Src.Mock;
 using NUnit.Framework;
 using System;
 using UnityEngine;
@@ -11,23 +12,15 @@ namespace Assets.Editor.UnitTest.Domain.Service
     /// </summary>
     public static class PrefabManagerTest
     {
-        /// <summary>
-        /// ユニットテスト用MonoBehaviour
-        /// </summary>
-        public class TestMonoBehaviour : MonoBehaviour
-        {
-
-        }
-
         [Test]
         public static void SetPrefabTest()
         {
             var view = new GameObject(nameof(View), typeof(View)).GetComponent<View>();
 
             var name1 = nameof(SetPrefabTest);
-            var object1 = view.SetPrefab<TestMonoBehaviour>(name1);
-            var object2 = GameObject.Find(name1).GetComponent<TestMonoBehaviour>();
-            var object3 = view.SetPrefab<TestMonoBehaviour>(null);
+            var object1 = view.SetPrefab<MonoBehaviourMock>(name1);
+            var object2 = GameObject.Find(name1).GetComponent<MonoBehaviourMock>();
+            var object3 = view.SetPrefab<MonoBehaviourMock>(null);
 
             object1.IsSameReferenceAs(object2);
             object1.name.Is(name1);
@@ -39,20 +32,20 @@ namespace Assets.Editor.UnitTest.Domain.Service
         {
             var view = new GameObject(nameof(View), typeof(View)).GetComponent<View>();
 
-            var object1 = view.SetPrefab<TestMonoBehaviour>();
-            var object2 = GameObject.Find(nameof(TestMonoBehaviour)).GetComponent<TestMonoBehaviour>();
+            var object1 = view.SetPrefab<MonoBehaviourMock>();
+            var object2 = GameObject.Find(nameof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
 
             object1.IsSameReferenceAs(object2);
-            object1.name.Is(nameof(TestMonoBehaviour));
-            object2.name.Is(nameof(TestMonoBehaviour));
+            object1.name.Is(nameof(MonoBehaviourMock));
+            object2.name.Is(nameof(MonoBehaviourMock));
         }
         [Test]
         public static void SetParentTest_親指定()
         {
             var name1 = nameof(SetParentTest_親指定);
             var name2 = $"{nameof(SetParentTest_親指定)}_parent";
-            var object1 = new GameObject(name1, typeof(TestMonoBehaviour)).GetComponent<TestMonoBehaviour>();
-            var object2 = new GameObject(name2, typeof(TestMonoBehaviour)).GetComponent<TestMonoBehaviour>();
+            var object1 = new GameObject(name1, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
+            var object2 = new GameObject(name2, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
             var object3 = object1.SetParent(object2);
 
             object1.IsSameReferenceAs(object3);
@@ -64,11 +57,11 @@ namespace Assets.Editor.UnitTest.Domain.Service
         {
             var name1 = nameof(SetParentTest_引数がnull);
             var name2 = $"{nameof(SetParentTest_引数がnull)}_parent";
-            var object1 = new GameObject(name1, typeof(TestMonoBehaviour)).GetComponent<TestMonoBehaviour>();
-            var object2 = new GameObject(name2, typeof(TestMonoBehaviour)).GetComponent<TestMonoBehaviour>();
-            var object3 = object1.SetParent((TestMonoBehaviour)null);
+            var object1 = new GameObject(name1, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
+            var object2 = new GameObject(name2, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
+            var object3 = object1.SetParent((MonoBehaviourMock)null);
 
-            Assert.Throws<ArgumentNullException>(() => ((TestMonoBehaviour)null).SetParent(object2));
+            Assert.Throws<ArgumentNullException>(() => ((MonoBehaviourMock)null).SetParent(object2));
 
             object1.IsSameReferenceAs(object3);
             object1.transform.parent.IsNull();
