@@ -1,5 +1,6 @@
 using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
 
 namespace Assets.Src.Infrastructure.Model.Entity

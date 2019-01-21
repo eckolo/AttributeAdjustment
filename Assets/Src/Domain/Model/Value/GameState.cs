@@ -1,9 +1,8 @@
 using Assets.Src.Domain.Model.Abstract;
-using Assets.Src.Domain.Model.Value;
 using System;
 using UnityEngine;
 
-namespace Assets.Src.Domain.Model.Entity
+namespace Assets.Src.Domain.Model.Value
 {
     /// <summary>
     /// ゲーム状態クラス
