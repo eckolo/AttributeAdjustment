@@ -7,7 +7,7 @@ namespace Assets.Src.Domain.Model.Entity
     /// <summary>
     /// 動作主体
     /// </summary>
-    public class Actor : IDuplicatable<Actor>
+    public class Actor : Named, IDuplicatable<Actor>
     {
         /// <summary>
         /// 最大体力
