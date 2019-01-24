@@ -10,6 +10,21 @@ namespace Assets.Src.Domain.Model.Entity
     public class Actor : Named, IDuplicatable<Actor>
     {
         /// <summary>
+        /// 使用可能アビリティリスト
+        /// </summary>
+        public List<Ability> abilityList { get; protected set; }
+
+        /// <summary>
+        /// レベル
+        /// </summary>
+        public int level => experience + offense + defense + speed;
+
+        /// <summary>
+        /// 経験値
+        /// </summary>
+        public int experience { get; protected set; }
+
+        /// <summary>
         /// 最大体力
         /// </summary>
         public int maxVitality { get; protected set; }
