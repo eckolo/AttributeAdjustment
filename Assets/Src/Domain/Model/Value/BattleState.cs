@@ -21,6 +21,6 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 行動者毎の戦闘状態リスト情報
         /// </summary>
-        public Dictionary<BattleActor, EveryActor> battleActorList { get; set; }
+        public Dictionary<BattleActor, EveryActor> battleActorList { get; protected set; }
     }
 }

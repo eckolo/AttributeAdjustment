@@ -21,18 +21,18 @@
         /// <summary>
         /// 現在の最大体力
         /// </summary>
-        public int maxVitalityValue { get; protected set; }
+        public int maxVitalityValue { get; set; }
         /// <summary>
         /// 現在の攻撃力
         /// </summary>
-        public int offenseValue { get; protected set; }
+        public int offenseValue { get; set; }
         /// <summary>
         /// 現在の防御力
         /// </summary>
-        public int defenseValue { get; protected set; }
+        public int defenseValue { get; set; }
         /// <summary>
         /// 現在の素早さ
         /// </summary>
-        public int speedValue { get; protected set; }
+        public int speedValue { get; set; }
     }
 }
