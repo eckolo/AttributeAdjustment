@@ -1,5 +1,7 @@
-﻿using Assets.Src.Domain.Model.Entity;
+﻿using Assets.Src.Domain.Factory;
+using Assets.Src.Domain.Model.Entity;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assets.Src.Domain.Model.Value
 {
@@ -8,6 +10,26 @@ namespace Assets.Src.Domain.Model.Value
     /// </summary>
     public partial class BattleState
     {
+        /// <summary>
+        /// 戦闘状態の生成
+        /// </summary>
+        /// <param name="actiors">戦闘参加者</param>
+        /// <param name="deckStationerySet">山札の雛形</param>
+        public BattleState(IEnumerable<Actor> actiors, Dictionary<MotionTip, int> deckStationerySet)
+        {
+            //戦闘者毎の戦闘状態初期化
+            battleActorList = actiors.ToDictionary(actor => actor.ConvertForBattle(), _ => new EveryActor());
+            //山札の雛形生成
+            deckStationery = deckStationerySet
+                .SelectMany(tip => Enumerable.Range(0, tip.Value).Select(_ => tip.Key))
+                .ToList();
+        }
+
+        /// <summary>
+        /// 山札の雛形
+        /// </summary>
+        public IEnumerable<MotionTip> deckStationery { get; }
+
         /// <summary>
         /// 山札
         /// </summary>
