@@ -404,5 +404,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
             list.Pick(norm1, rate).Is(default);
             list.Pick(norm2, rate).Is(default);
         }
+
+        [Test]
+        public static void ShuffleTest_通常動作()
+        {
+            var list = Enumerable.Range(0, 100).ToList();
+
+            var result = list.Shuffle().ToList();
+
+            result.IsNotSameReferenceAs(list);
+            result.All(elem => list.Any(_elem => _elem == elem)).IsTrue();
+            list.All(elem => result.Any(_elem => _elem == elem)).IsTrue();
+        }
     }
 }

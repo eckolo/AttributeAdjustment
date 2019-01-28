@@ -1,10 +1,7 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Value;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Src.Domain.Service
@@ -134,14 +131,14 @@ namespace Assets.Src.Domain.Service
             var actualRates = rateList?.Select(rate => Mathf.Max(rate, 0)) ?? valueList.Select(_ => 1);
             var ratevalues = actualRates.Zip(valueList, (rate, value) => new { rate, value });
             var selection = ratevalues.Sum(ratevalue => ratevalue.rate) * norm;
-            if(selection < 0) return default(TValue);
+            if(selection < 0) return default;
 
             foreach(var ratevalue in ratevalues)
             {
                 selection -= ratevalue.rate;
                 if(selection < 0) return ratevalue.value;
             }
-            return default(TValue);
+            return default;
         }
         /// <summary>
         /// リストからランダムに1要素を抜き出す
@@ -152,5 +149,13 @@ namespace Assets.Src.Domain.Service
         /// <returns>選択された値</returns>
         public static TValue Pick<TValue>(this IEnumerable<TValue> valueList, List<int> rateList = null)
             => valueList.Pick((rateList?.Sum() ?? valueList.Count()).SetupRandomNorm(), rateList);
+        /// <summary>
+        /// 渡されたリストの内容の順序をシャッフルしてリストとして返す
+        /// </summary>
+        /// <typeparam name="TValue">リストの要素型</typeparam>
+        /// <param name="origin">シャッフル元のリスト</param>
+        /// <returns>シャッフルされた後のリスト</returns>
+        public static IOrderedEnumerable<TValue> Shuffle<TValue>(this IEnumerable<TValue> origin)
+            => origin.OrderBy(_ => Random.Range(int.MinValue, int.MaxValue));
     }
 }
