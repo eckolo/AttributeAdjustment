@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Factory;
 using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Service;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,21 +15,20 @@ namespace Assets.Src.Domain.Model.Value
         /// 戦闘状態の生成
         /// </summary>
         /// <param name="actiors">戦闘参加者</param>
-        /// <param name="deckStationerySet">山札の雛形</param>
-        public BattleState(IEnumerable<Actor> actiors, Dictionary<MotionTip, int> deckStationerySet)
+        /// <param name="deckStationeryMap">山札の雛形</param>
+        public BattleState(IEnumerable<Actor> actiors, Dictionary<MotionTip, int> deckStationeryMap)
         {
             //戦闘者毎の戦闘状態初期化
             battleActorList = actiors.ToDictionary(actor => actor.ConvertForBattle(), _ => new EveryActor());
             //山札の雛形生成
-            deckStationery = deckStationerySet
-                .SelectMany(tip => Enumerable.Range(0, tip.Value).Select(_ => tip.Key))
-                .ToList();
+            this.deckStationeryMap = deckStationeryMap;
         }
 
         /// <summary>
         /// 山札の雛形
+        /// チップの種別+枚数
         /// </summary>
-        public IEnumerable<MotionTip> deckStationery { get; }
+        public Dictionary<MotionTip, int> deckStationeryMap { get; protected set; }
 
         /// <summary>
         /// 山札
@@ -44,5 +44,18 @@ namespace Assets.Src.Domain.Model.Value
         /// 行動者毎の戦闘状態リスト情報
         /// </summary>
         public Dictionary<BattleActor, EveryActor> battleActorList { get; protected set; }
+
+        /// <summary>
+        /// 山札の初期化
+        /// </summary>
+        /// <returns>山札の初期化された戦闘状態</returns>
+        public BattleState SetupDeck()
+        {
+            var deckStationery = deckStationeryMap
+                .SelectMany(tip => Enumerable.Range(0, tip.Value).Select(_ => tip.Key))
+                .Shuffle();
+            deckTip = new Queue<MotionTip>(deckStationery);
+            return this;
+        }
     }
 }
