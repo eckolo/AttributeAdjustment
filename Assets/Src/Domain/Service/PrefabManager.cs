@@ -49,7 +49,10 @@ namespace Assets.Src.Domain.Service
         {
             if(prefab == null) throw new ArgumentNullException(nameof(prefab));
 
-            prefab.transform.SetParent(parent?.transform);
+            //Unityのgameobjectがnullを独自実装してるので2項演算で判定する
+            var parentTransform = parent != null ? parent?.transform : null;
+
+            prefab.transform.SetParent(parentTransform);
             return prefab;
         }
 
