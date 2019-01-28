@@ -10,10 +10,6 @@ namespace Assets.Src.Domain.Model.Value
         public class EveryActor
         {
             /// <summary>
-            /// プレイヤー操作対象であるか否かのフラグ
-            /// </summary>
-            public bool player { get; }
-            /// <summary>
             /// 懐札
             /// </summary>
             public IEnumerable<MotionTip> selfTip { get; }
