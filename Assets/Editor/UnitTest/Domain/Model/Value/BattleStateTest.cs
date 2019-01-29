@@ -7,9 +7,9 @@ using System.Linq;
 namespace Assets.Editor.UnitTest.Domain.Model.Value
 {
     /// <summary>
-    /// <see cref="BattleState"/>
+    /// <see cref="BattleState"/>のテストクラス
     /// </summary>
-    public static class BattleStateTest
+    public static partial class BattleStateTest
     {
         [Test]
         public static void SetDeckTipTest_通常処理()

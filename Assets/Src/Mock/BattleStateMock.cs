@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace Assets.Src.Mock
 {
-    public class BattleStateMock : BattleState
+    public partial class BattleStateMock : BattleState
     {
-        public BattleStateMock(Dictionary<MotionTip, int> deckStationeryMap)
-            : base(new List<Actor>(), deckStationeryMap)
+        BattleStateMock(Dictionary<MotionTip, int> deckStationeryMap)
+           : base(new List<Actor>(), deckStationeryMap)
         {
         }
-        public BattleStateMock()
-            : base(new List<Actor>(), new Dictionary<MotionTip, int>())
+        BattleStateMock()
+           : base(new List<Actor>(), new Dictionary<MotionTip, int>())
         {
         }
 
