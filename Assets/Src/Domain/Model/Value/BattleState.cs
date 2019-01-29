@@ -3,6 +3,7 @@ using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Service;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Value
 {
@@ -53,6 +54,23 @@ namespace Assets.Src.Domain.Model.Value
         {
             deckTip = deckStationery != null ? new Queue<MotionTip>(deckStationery) : null;
             return this;
+        }
+        /// <summary>
+        /// 山札の取り出し
+        /// </summary>
+        /// <param name="popTipNumber">取り出し枚数</param>
+        /// <returns>山札から取り出されたモーションチップ一覧</returns>
+        public IEnumerable<MotionTip> PopDeckTip(int popTipNumber)
+        {
+            var _popTipNumber = Mathf.Max(popTipNumber, 0);
+            var popedTips = Enumerable.Range(0, _popTipNumber)
+                .Select(_ => deckTip.Any() ? deckTip.Dequeue() : null)
+                .Where(tip => tip is MotionTip)
+                .ToList();
+
+            if(!deckTip.Any()) this.SetupDeck();
+
+            return popedTips;
         }
     }
 }
