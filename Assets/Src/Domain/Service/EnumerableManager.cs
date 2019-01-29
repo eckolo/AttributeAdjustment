@@ -64,8 +64,8 @@ namespace Assets.Src.Domain.Service
         public static TValue GetOrDefault<TKey, TValue>(
             this Dictionary<TKey, TValue> origin,
             TKey key,
-            TValue defaultValue = default(TValue))
-            => origin.ContainsKey(key) ? origin[key] : defaultValue;
+            TValue defaultValue = default)
+            => (origin?.ContainsKey(key) ?? false) ? origin[key] : defaultValue;
 
         /// <summary>
         /// 辞書型オブジェクト1要素を上書き、もしくは追加する

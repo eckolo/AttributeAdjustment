@@ -95,7 +95,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             Assert.Throws<ArgumentException>(() => list2.ToDictionary());
         }
         [Test]
-        public static void GetOrDefaultTest()
+        public static void GetOrDefaultTest_通常動作_デフォルト値未指定()
         {
             var key1 = "test1";
             var key2 = "test2";
@@ -114,10 +114,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             dictionary.GetOrDefault(key1).Is(value1);
             dictionary.GetOrDefault(key2).Is(value2);
             dictionary.GetOrDefault(key3).Is(value3);
-            dictionary.GetOrDefault(key4).Is(default(float));
+            dictionary.GetOrDefault(key4).Is(default);
         }
         [Test]
-        public static void GetOrDefaultTest2()
+        public static void GetOrDefaultTest_通常動作_デフォルト値指定()
         {
             var key1 = "test1";
             var key2 = "test2";
@@ -137,6 +137,64 @@ namespace Assets.Editor.UnitTest.Domain.Service
             dictionary.GetOrDefault(key1, valueDefault).Is(value1);
             dictionary.GetOrDefault(key2, valueDefault).Is(value2);
             dictionary.GetOrDefault(key3, valueDefault).Is(value3);
+            dictionary.GetOrDefault(key4, valueDefault).Is(valueDefault);
+        }
+        [Test]
+        public static void GetOrDefaultTest_元の辞書型が空_デフォルト値未指定()
+        {
+            var key1 = "test1";
+            var key2 = "test2";
+            var key3 = "test3";
+            var key4 = "test4";
+            var dictionary = new Dictionary<string, float>();
+
+            dictionary.GetOrDefault(key1).Is(default);
+            dictionary.GetOrDefault(key2).Is(default);
+            dictionary.GetOrDefault(key3).Is(default);
+            dictionary.GetOrDefault(key4).Is(default);
+        }
+        [Test]
+        public static void GetOrDefaultTest_元の辞書型が空_デフォルト値指定()
+        {
+            var key1 = "test1";
+            var key2 = "test2";
+            var key3 = "test3";
+            var key4 = "test4";
+            var valueDefault = 7.4f;
+            var dictionary = new Dictionary<string, float>();
+
+            dictionary.GetOrDefault(key1, valueDefault).Is(valueDefault);
+            dictionary.GetOrDefault(key2, valueDefault).Is(valueDefault);
+            dictionary.GetOrDefault(key3, valueDefault).Is(valueDefault);
+            dictionary.GetOrDefault(key4, valueDefault).Is(valueDefault);
+        }
+        [Test]
+        public static void GetOrDefaultTest_元の辞書型がNull_デフォルト値未指定()
+        {
+            var key1 = "test1";
+            var key2 = "test2";
+            var key3 = "test3";
+            var key4 = "test4";
+            var dictionary = (Dictionary<string, float>)null;
+
+            dictionary.GetOrDefault(key1).Is(default);
+            dictionary.GetOrDefault(key2).Is(default);
+            dictionary.GetOrDefault(key3).Is(default);
+            dictionary.GetOrDefault(key4).Is(default);
+        }
+        [Test]
+        public static void GetOrDefaultTest_元の辞書型がNull_デフォルト値指定()
+        {
+            var key1 = "test1";
+            var key2 = "test2";
+            var key3 = "test3";
+            var key4 = "test4";
+            var valueDefault = 7.4f;
+            var dictionary = (Dictionary<string, float>)null;
+
+            dictionary.GetOrDefault(key1, valueDefault).Is(valueDefault);
+            dictionary.GetOrDefault(key2, valueDefault).Is(valueDefault);
+            dictionary.GetOrDefault(key3, valueDefault).Is(valueDefault);
             dictionary.GetOrDefault(key4, valueDefault).Is(valueDefault);
         }
         [Test]
