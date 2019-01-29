@@ -10,8 +10,14 @@ namespace Assets.Src.Mock
             : base(new List<Actor>(), deckStationeryMap)
         {
         }
+        public BattleStateMock()
+            : base(new List<Actor>(), new Dictionary<MotionTip, int>())
+        {
+        }
 
         public static BattleStateMock Generate(Dictionary<MotionTip, int> deckStationeryMap)
             => new BattleStateMock(deckStationeryMap);
+        public static BattleStateMock Generate()
+            => new BattleStateMock();
     }
 }
