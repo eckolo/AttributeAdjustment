@@ -4,7 +4,7 @@ namespace Assets.Src.Mock
 {
     public class MotionTipMock : MotionTip
     {
-        public MotionTipMock(Energy energy, int energyValue) : base(energy, energyValue)
+        public MotionTipMock(Energy energy, int energyValue) : base(nameof(MotionTipMock), energy, energyValue)
         {
         }
 

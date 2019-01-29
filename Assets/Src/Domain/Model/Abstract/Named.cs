@@ -5,6 +5,11 @@
     /// </summary>
     public abstract class Named
     {
+        public Named(string name)
+        {
+            this.name = name;
+        }
+
         /// <summary>
         /// 名称
         /// </summary>

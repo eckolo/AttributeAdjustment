@@ -5,6 +5,10 @@
     /// </summary>
     public class BattleActor : Actor
     {
+        public BattleActor(string name) : base(name)
+        {
+        }
+
         /// <summary>
         /// 変動パラメータを全て初期化する
         /// </summary>

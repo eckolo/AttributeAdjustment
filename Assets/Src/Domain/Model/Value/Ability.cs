@@ -8,6 +8,10 @@ namespace Assets.Src.Domain.Model.Value
     /// </summary>
     public class Ability : Named
     {
+        public Ability(string name) : base(name)
+        {
+        }
+
         /// <summary>
         /// 対応モーションチップ条件
         /// </summary>

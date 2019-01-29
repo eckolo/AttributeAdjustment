@@ -7,7 +7,7 @@ namespace Assets.Src.Domain.Model.Value
     /// </summary>
     public class MotionTip : Named
     {
-        public MotionTip(Energy energy, int energyValue)
+        public MotionTip(string name, Energy energy, int energyValue) : base(name)
         {
             this.energy = energy;
             this.energyValue = energyValue;

@@ -5,6 +5,10 @@
     /// </summary>
     public class Player : Actor
     {
+        public Player(string name) : base(name)
+        {
+        }
+
         public override bool isPlayer => true;
     }
 }
