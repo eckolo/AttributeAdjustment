@@ -46,15 +46,12 @@ namespace Assets.Src.Domain.Model.Value
         public Dictionary<BattleActor, EveryActor> battleActorList { get; protected set; }
 
         /// <summary>
-        /// 山札の初期化
+        /// 山札の設定
         /// </summary>
-        /// <returns>山札の初期化された戦闘状態</returns>
-        public BattleState SetupDeck()
+        /// <returns>山札設定後の戦闘状態</returns>
+        public BattleState SetDeckTip(IEnumerable<MotionTip> deckStationery)
         {
-            var deckStationery = deckStationeryMap
-                .SelectMany(tip => Enumerable.Range(0, tip.Value).Select(_ => tip.Key))
-                .Shuffle();
-            deckTip = new Queue<MotionTip>(deckStationery);
+            deckTip = deckStationery != null ? new Queue<MotionTip>(deckStationery) : null;
             return this;
         }
     }

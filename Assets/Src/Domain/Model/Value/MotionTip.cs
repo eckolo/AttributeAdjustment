@@ -7,6 +7,12 @@ namespace Assets.Src.Domain.Model.Value
     /// </summary>
     public class MotionTip : Named
     {
+        public MotionTip(Energy energy, int energyValue)
+        {
+            this.energy = energy;
+            this.energyValue = energyValue;
+        }
+
         /// <summary>
         /// 属性種別
         /// </summary>
