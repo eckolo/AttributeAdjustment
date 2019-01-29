@@ -38,9 +38,25 @@ namespace Assets.Src.Domain.Model.Value
         }
 
         /// <summary>
+        /// 戦闘処理関連のパラメータ
+        /// </summary>
+        public static class Battle
+        {
+            /// <summary>
+            /// 手札のデフォルト初期枚数
+            /// </summary>
+            public const int DEFAULT_HAND_TIP_NUMBERS = 7;
+        }
+
+        /// <summary>
         /// フェードイン・アウトのデフォルト所要時間
         /// </summary>
         public const int DEFAULT_FADE_TIME = 108;
+
+        /// <summary>
+        /// メインUIのビューオブジェクトの名称
+        /// </summary>
+        public const string MAIN_UI_NAME = "MainUI";
 
         /// <summary>
         /// ウィンドウ系関連のパラメータ
@@ -102,6 +118,10 @@ namespace Assets.Src.Domain.Model.Value
             /// システムテキストのデフォルト行間幅
             /// </summary>
             public const float LINE_SPACE = 0.1f;
+            /// <summary>
+            /// 名無しオブジェクトにつけられる名称
+            /// </summary>
+            public const string ANONYMOUS_NAME = "NoNameObject";
         }
     }
 }

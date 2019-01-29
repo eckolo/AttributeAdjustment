@@ -1,4 +1,5 @@
 using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -11,10 +12,6 @@ namespace Assets.Src.Domain.Service
     public static class PrefabManager
     {
         /// <summary>
-        /// 名無しオブジェクトにつけられる名称
-        /// </summary>
-        public const string ANONYMOUS_NAME = "NoNameObject";
-        /// <summary>
         /// ゲームオブジェクトの新規作成
         /// </summary>
         /// <typeparam name="TPrefab">作成されるオブジェクトに実装される型</typeparam>
@@ -22,7 +19,7 @@ namespace Assets.Src.Domain.Service
         /// <returns>生成されたオブジェクト</returns>
         public static TPrefab SetPrefab<TPrefab>(this View view, string objectName = null)
             where TPrefab : Component
-            => new GameObject(objectName ?? ANONYMOUS_NAME, typeof(TPrefab))
+            => new GameObject(objectName ?? Constants.Texts.ANONYMOUS_NAME, typeof(TPrefab))
             .GetComponent<TPrefab>()
             .SetParent(view);
         /// <summary>

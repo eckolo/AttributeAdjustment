@@ -12,11 +12,6 @@ namespace Assets.Src.Infrastructure.Model.Entity
     public partial class GameFoundation : IDuplicatable<GameFoundation>
     {
         /// <summary>
-        /// メインUIのビューオブジェクトの名称
-        /// </summary>
-        const string MAIN_UI_NAME = "MainUI";
-
-        /// <summary>
         /// 現在有効なゲーム基盤の実体
         /// </summary>
         public static GameFoundation myself { get; private set; } = null;
@@ -45,7 +40,7 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// <returns>生成されたゲーム基盤</returns>
         public static GameFoundation CreateNewState(GameState state)
         {
-            var mainUiView = View.CleateNew(MAIN_UI_NAME);
+            var mainUiView = View.CleateNew(Constants.MAIN_UI_NAME);
             if(myself == null) return myself = myself ?? new GameFoundation(state, mainUiView);
             myself.nowState = state;
             return myself;

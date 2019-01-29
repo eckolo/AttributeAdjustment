@@ -1,4 +1,5 @@
 using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
 using Assets.Src.Mock;
 using NUnit.Framework;
@@ -25,7 +26,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             object1.IsSameReferenceAs(object2);
             object1.name.Is(name1);
             object2.name.Is(name1);
-            object3.name.Is(PrefabManager.ANONYMOUS_NAME);
+            object3.name.Is(Constants.Texts.ANONYMOUS_NAME);
         }
         [Test]
         public static void SetPrefabTest2()
