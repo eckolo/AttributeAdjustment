@@ -6,18 +6,15 @@ namespace Assets.Src.Mock
 {
     public partial class BattleStateMock : BattleState
     {
-        BattleStateMock(Dictionary<MotionTip, int> deckStationeryMap)
-           : base(new List<Actor>(), deckStationeryMap)
-        {
-        }
-        BattleStateMock()
-           : base(new List<Actor>(), new Dictionary<MotionTip, int>())
-        {
-        }
+        BattleStateMock(IEnumerable<Actor> actiors, Dictionary<MotionTip, int> deckStationeryMap)
+           : base(actiors, deckStationeryMap)
+        { }
 
+        public static BattleStateMock Generate(IEnumerable<Actor> actiors, Dictionary<MotionTip, int> deckStationeryMap)
+            => new BattleStateMock(actiors, deckStationeryMap);
         public static BattleStateMock Generate(Dictionary<MotionTip, int> deckStationeryMap)
-            => new BattleStateMock(deckStationeryMap);
+            => new BattleStateMock(new List<Actor>(), deckStationeryMap);
         public static BattleStateMock Generate()
-            => new BattleStateMock();
+            => new BattleStateMock(new List<Actor>(), new Dictionary<MotionTip, int>());
     }
 }
