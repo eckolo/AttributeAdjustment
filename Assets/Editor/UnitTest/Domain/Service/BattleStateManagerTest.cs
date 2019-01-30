@@ -61,7 +61,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var result = state.SetupDeck().deckTips;
 
-            result.IsNull();
+            result.IsNotNull();
+            result.Count.Is(0);
         }
 
         [Test]

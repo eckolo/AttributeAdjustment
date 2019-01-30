@@ -34,7 +34,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 山札
         /// </summary>
-        public Queue<MotionTip> deckTips { get; protected set; }
+        public Queue<MotionTip> deckTips { get; protected set; } = new Queue<MotionTip>();
 
         /// <summary>
         /// 場札
@@ -52,7 +52,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <returns>山札設定後の戦闘状態</returns>
         public BattleState SetDeckTip(IEnumerable<MotionTip> deckStationery)
         {
-            deckTips = deckStationery != null ? new Queue<MotionTip>(deckStationery) : null;
+            deckTips = deckStationery != null ? new Queue<MotionTip>(deckStationery) : new Queue<MotionTip>();
             return this;
         }
         /// <summary>

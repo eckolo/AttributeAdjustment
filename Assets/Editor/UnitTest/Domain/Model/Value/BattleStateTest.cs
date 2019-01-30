@@ -20,7 +20,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
             var state = BattleStateMock.Generate();
 
-            state.deckTips.Is(default);
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(0);
 
             var result = state.SetDeckTip(tipList).deckTips;
 
@@ -45,7 +46,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             var tipList = new List<MotionTip>();
             var state = BattleStateMock.Generate();
 
-            state.deckTips.Is(default);
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(0);
 
             var result = state.SetDeckTip(tipList).deckTips;
 
@@ -57,11 +59,13 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         {
             var state = BattleStateMock.Generate();
 
-            state.deckTips.Is(default);
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(0);
 
             var result = state.SetDeckTip(null).deckTips;
 
-            result.IsNull();
+            result.IsNotNull();
+            result.Count.Is(0);
         }
 
         [Test]
@@ -169,7 +173,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             var result = state.PopDeckTip(popTipNumber);
 
             result.IsNotNull();
-            result.Any().IsFalse();
+            result.Count().Is(0);
 
             state.deckTips.IsNotNull();
             state.deckTips.Count.Is(tipList.Count);
@@ -188,7 +192,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             var result = state.PopDeckTip(popTipNumber);
 
             result.IsNotNull();
-            result.Any().IsFalse();
+            result.Count().Is(0);
 
             state.deckTips.IsNotNull();
             state.deckTips.Count.Is(tipList.Count);
