@@ -26,7 +26,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(tipMap);
 
-            var result = state.SetupDeck().deckTip;
+            var result = state.SetupDeck().deckTips;
 
             result.IsNotNull();
             result.Count.Is(value1 + value2 + value3);
@@ -49,7 +49,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipMap = new Dictionary<MotionTip, int> { };
             var state = BattleStateMock.Generate(tipMap);
 
-            var result = state.SetupDeck().deckTip;
+            var result = state.SetupDeck().deckTips;
 
             result.IsNotNull();
             result.Count.Is(0);
@@ -59,7 +59,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         {
             var state = BattleStateMock.Generate(null);
 
-            var result = state.SetupDeck().deckTip;
+            var result = state.SetupDeck().deckTips;
 
             result.IsNull();
         }
@@ -90,8 +90,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.SetupHandTip(battleActor);
 
             result.IsNotNull();
-            result.deckTip.IsNotNull();
-            result.deckTip.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
             result.battleActorList.IsNotNull();
             result.battleActorList.ContainsKey(battleActor).IsTrue();
 
@@ -127,8 +127,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.SetupHandTip(battleActor, tipNumbers);
 
             result.IsNotNull();
-            result.deckTip.IsNotNull();
-            result.deckTip.Count.Is(value1 + value2 + value3 - tipNumbers);
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3 - tipNumbers);
             result.battleActorList.IsNotNull();
             result.battleActorList.ContainsKey(battleActor).IsTrue();
 
@@ -163,8 +163,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.SetupHandTip(battleActor);
 
             result.IsNotNull();
-            result.deckTip.IsNotNull();
-            result.deckTip.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
             result.battleActorList.IsNotNull();
             result.battleActorList.ContainsKey(battleActor).IsTrue();
 
@@ -200,8 +200,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.SetupHandTip(battleActor, tipNumbers);
 
             result.IsNotNull();
-            result.deckTip.IsNotNull();
-            result.deckTip.Count.Is(value1 + value2 + value3 - tipNumbers);
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3 - tipNumbers);
             result.battleActorList.IsNotNull();
             result.battleActorList.ContainsKey(battleActor).IsTrue();
 
@@ -236,8 +236,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.SetupHandTip(battleActor);
 
             result.IsNotNull();
-            result.deckTip.IsNotNull();
-            result.deckTip.Count.Is(value1 + value2 + value3);
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3);
             result.battleActorList.IsNotNull();
             result.battleActorList.ContainsKey(battleActor).IsTrue();
 
@@ -273,8 +273,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.SetupHandTip(battleActor, tipNumbers);
 
             result.IsNotNull();
-            result.deckTip.IsNotNull();
-            result.deckTip.Count.Is(value1 + value2 + value3);
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3);
             result.battleActorList.IsNotNull();
             result.battleActorList.ContainsKey(battleActor).IsTrue();
 
@@ -309,8 +309,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.SetupHandTip(battleActor);
 
             result.IsNotNull();
-            result.deckTip.IsNotNull();
-            result.deckTip.Count.Is(value1 + value2 + value3);
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3);
             result.battleActorList.IsNotNull();
             result.battleActorList.ContainsKey(battleActor).IsTrue();
 
@@ -346,8 +346,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.SetupHandTip(battleActor, tipNumbers);
 
             result.IsNotNull();
-            result.deckTip.IsNotNull();
-            result.deckTip.Count.Is(value1 + value2 + value3);
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3);
             result.battleActorList.IsNotNull();
             result.battleActorList.ContainsKey(battleActor).IsTrue();
 
@@ -381,8 +381,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.SetupHandTip(battleActor);
 
             result.IsNotNull();
-            result.deckTip.IsNotNull();
-            result.deckTip.Count.Is(value1 + value2 + value3);
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3);
             result.battleActorList.IsNotNull();
         }
         [Test]

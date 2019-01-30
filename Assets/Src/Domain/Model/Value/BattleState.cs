@@ -34,12 +34,12 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 山札
         /// </summary>
-        public Queue<MotionTip> deckTip { get; protected set; }
+        public Queue<MotionTip> deckTips { get; protected set; }
 
         /// <summary>
         /// 場札
         /// </summary>
-        public IEnumerable<MotionTip> boardTip { get; protected set; }
+        public IEnumerable<MotionTip> boardTips { get; protected set; }
 
         /// <summary>
         /// 行動者毎の戦闘状態リスト情報
@@ -52,7 +52,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <returns>山札設定後の戦闘状態</returns>
         public BattleState SetDeckTip(IEnumerable<MotionTip> deckStationery)
         {
-            deckTip = deckStationery != null ? new Queue<MotionTip>(deckStationery) : null;
+            deckTips = deckStationery != null ? new Queue<MotionTip>(deckStationery) : null;
             return this;
         }
         /// <summary>
@@ -64,11 +64,11 @@ namespace Assets.Src.Domain.Model.Value
         {
             var _popTipNumber = Mathf.Max(popTipNumber, 0);
             var popedTips = Enumerable.Range(0, _popTipNumber)
-                .Select(_ => deckTip.Any() ? deckTip.Dequeue() : null)
+                .Select(_ => deckTips.Any() ? deckTips.Dequeue() : null)
                 .Where(tip => tip is MotionTip)
                 .ToList();
 
-            if(!deckTip.Any()) this.SetupDeck();
+            if(!deckTips.Any()) this.SetupDeck();
 
             return popedTips;
         }

@@ -20,9 +20,9 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
             var state = BattleStateMock.Generate();
 
-            state.deckTip.Is(default);
+            state.deckTips.Is(default);
 
-            var result = state.SetDeckTip(tipList).deckTip;
+            var result = state.SetDeckTip(tipList).deckTips;
 
             result.IsNotNull();
             result.Count.Is(tipList.Count);
@@ -45,9 +45,9 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             var tipList = new List<MotionTip>();
             var state = BattleStateMock.Generate();
 
-            state.deckTip.Is(default);
+            state.deckTips.Is(default);
 
-            var result = state.SetDeckTip(tipList).deckTip;
+            var result = state.SetDeckTip(tipList).deckTips;
 
             result.IsNotNull();
             result.Count.Is(0);
@@ -57,9 +57,9 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         {
             var state = BattleStateMock.Generate();
 
-            state.deckTip.Is(default);
+            state.deckTips.Is(default);
 
-            var result = state.SetDeckTip(null).deckTip;
+            var result = state.SetDeckTip(null).deckTips;
 
             result.IsNull();
         }
@@ -80,9 +80,9 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             result.Count().Is(popTipNumber);
             result.All(elem => tipList.Contains(elem)).IsTrue();
 
-            state.deckTip.IsNotNull();
-            state.deckTip.Count.Is(tipList.Count - popTipNumber);
-            state.deckTip.All(elem => tipList.Contains(elem)).IsTrue();
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(tipList.Count - popTipNumber);
+            state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
         }
         [Test]
         public static void PopDeckTipTest_通常処理_山札数が取り出し数と等しい()
@@ -105,17 +105,17 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             result.Count().Is(popTipNumber);
             result.All(elem => tipList.Contains(elem)).IsTrue();
 
-            state.deckTip.IsNotNull();
-            state.deckTip.Count.Is(value1 + value2 + value3);
-            state.deckTip
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(value1 + value2 + value3);
+            state.deckTips
                 .Where(elem => elem.energy == tip1.energy)
                 .Count(elem => elem.energyValue == tip1.energyValue)
                 .Is(value1);
-            state.deckTip
+            state.deckTips
                 .Where(elem => elem.energy == tip2.energy)
                 .Count(elem => elem.energyValue == tip2.energyValue)
                 .Is(value2);
-            state.deckTip
+            state.deckTips
                 .Where(elem => elem.energy == tip3.energy)
                 .Count(elem => elem.energyValue == tip3.energyValue)
                 .Is(value3);
@@ -141,17 +141,17 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             result.Count().Is(tipList.Count);
             result.All(elem => tipList.Contains(elem)).IsTrue();
 
-            state.deckTip.IsNotNull();
-            state.deckTip.Count.Is(value1 + value2 + value3);
-            state.deckTip
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(value1 + value2 + value3);
+            state.deckTips
                 .Where(elem => elem.energy == tip1.energy)
                 .Count(elem => elem.energyValue == tip1.energyValue)
                 .Is(value1);
-            state.deckTip
+            state.deckTips
                 .Where(elem => elem.energy == tip2.energy)
                 .Count(elem => elem.energyValue == tip2.energyValue)
                 .Is(value2);
-            state.deckTip
+            state.deckTips
                 .Where(elem => elem.energy == tip3.energy)
                 .Count(elem => elem.energyValue == tip3.energyValue)
                 .Is(value3);
@@ -171,9 +171,9 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             result.IsNotNull();
             result.Any().IsFalse();
 
-            state.deckTip.IsNotNull();
-            state.deckTip.Count.Is(tipList.Count);
-            state.deckTip.All(elem => tipList.Contains(elem)).IsTrue();
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(tipList.Count);
+            state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
         }
         [Test]
         public static void PopDeckTipTest_取り出し数が負の値()
@@ -190,9 +190,9 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             result.IsNotNull();
             result.Any().IsFalse();
 
-            state.deckTip.IsNotNull();
-            state.deckTip.Count.Is(tipList.Count);
-            state.deckTip.All(elem => tipList.Contains(elem)).IsTrue();
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(tipList.Count);
+            state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
         }
     }
 }
