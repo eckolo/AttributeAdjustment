@@ -39,7 +39,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 場札
         /// </summary>
-        public IEnumerable<MotionTip> boardTips { get; protected set; }
+        public IEnumerable<MotionTip> boardTips { get; protected set; } = Enumerable.Empty<MotionTip>();
 
         /// <summary>
         /// 行動者毎の戦闘状態リスト情報
@@ -69,6 +69,42 @@ namespace Assets.Src.Domain.Model.Value
                 .ToList();
 
             if(!deckTips.Any()) this.SetupDeck();
+
+            return popedTips;
+        }
+        /// <summary>
+        /// 場札の設定
+        /// </summary>
+        /// <returns>場札設定後の戦闘状態</returns>
+        public BattleState SetBoardTip(IEnumerable<MotionTip> boardStationery)
+        {
+            boardTips = boardStationery?.ToList() ?? Enumerable.Empty<MotionTip>();
+            return this;
+        }
+        /// <summary>
+        /// 場札の取り出し
+        /// </summary>
+        /// <param name="popTips">取り出すモーションチップ一覧</param>
+        /// <returns>取り出しに成功したモーションチップの一覧</returns>
+        public IEnumerable<MotionTip> PopBoardTip(IEnumerable<MotionTip> popTips)
+        {
+            var popMap = popTips?.GroupBy(tip => tip).ToDictionary(tip => tip.Key, tip => tip.Count());
+            var boardTipMap = boardTips?.GroupBy(tip => tip).ToDictionary(tip => tip.Key, tip => tip.Count());
+
+            boardTips = boardTipMap?
+                .Select(tip => (tip: tip.Key, number: tip.Value - popMap.GetOrDefault(tip.Key, 0)))
+                .Where(data => data.number > 0)
+                .SelectMany(data => Enumerable.Range(0, data.number).Select(_ => data.tip))
+                .ToList();
+
+            var popedTips = popMap?
+                .Select(tip => (
+                    tip: tip.Key,
+                    number: Mathf.Min(tip.Value, boardTipMap.GetOrDefault(tip.Key, 0))))
+                .Where(data => data.number > 0)
+                .SelectMany(data => Enumerable.Range(0, data.number).Select(_ => data.tip))
+                .ToList()
+                ?? new List<MotionTip>();
 
             return popedTips;
         }

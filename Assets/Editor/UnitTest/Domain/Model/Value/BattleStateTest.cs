@@ -198,5 +198,62 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             state.deckTips.Count.Is(tipList.Count);
             state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
         }
+
+        [Test]
+        public static void SetBoardTipTest_通常処理()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
+            var state = BattleStateMock.Generate();
+
+            state.boardTips.IsNotNull();
+            state.boardTips.Count().Is(0);
+
+            var result = state.SetBoardTip(tipList).boardTips;
+
+            result.IsNotNull();
+            result.Count().Is(tipList.Count);
+            result
+                .Where(elem => elem.energy == tip1.energy)
+                .Count(elem => elem.energyValue == tip1.energyValue)
+                .Is(3);
+            result
+                .Where(elem => elem.energy == tip2.energy)
+                .Count(elem => elem.energyValue == tip2.energyValue)
+                .Is(2);
+            result
+                .Where(elem => elem.energy == tip3.energy)
+                .Count(elem => elem.energyValue == tip3.energyValue)
+                .Is(1);
+        }
+        [Test]
+        public static void SetBoardTipTest_元データが空()
+        {
+            var tipList = new List<MotionTip>();
+            var state = BattleStateMock.Generate();
+
+            state.boardTips.IsNotNull();
+            state.boardTips.Count().Is(0);
+
+            var result = state.SetBoardTip(tipList).boardTips;
+
+            result.IsNotNull();
+            result.Count().Is(0);
+        }
+        [Test]
+        public static void SetBoardTipTest_元データがNull()
+        {
+            var state = BattleStateMock.Generate();
+
+            state.boardTips.IsNotNull();
+            state.boardTips.Count().Is(0);
+
+            var result = state.SetBoardTip(null).boardTips;
+
+            result.IsNotNull();
+            result.Count().Is(0);
+        }
     }
 }
