@@ -182,7 +182,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         }
 
         [Test]
-        public static void SetupHandTipTest_通常処理_補充枚数デフォルト値_元の手札は空()
+        public static void SetupHandTipsTest_通常処理_補充枚数デフォルト値_元の手札は空()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -204,7 +204,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var battleActor = state.battleActorList.First().Key;
 
             var actorState = state.battleActorList[battleActor];
-            var result = state.SetupHandTip(battleActor);
+            var result = state.SetupHandTips(battleActor);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
@@ -218,7 +218,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
         }
         [Test]
-        public static void SetupHandTipTest_通常処理_補充枚数指定_元の手札は空()
+        public static void SetupHandTipsTest_通常処理_補充枚数指定_元の手札は空()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -241,7 +241,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var battleActor = state.battleActorList.First().Key;
 
             var actorState = state.battleActorList[battleActor];
-            var result = state.SetupHandTip(battleActor, tipNumbers);
+            var result = state.SetupHandTips(battleActor, tipNumbers);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
@@ -255,7 +255,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
         }
         [Test]
-        public static void SetupHandTipTest_通常処理_補充枚数デフォルト値_元の手札有り()
+        public static void SetupHandTipsTest_通常処理_補充枚数デフォルト値_元の手札有り()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -277,7 +277,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var battleActor = state.battleActorList.First().Key;
 
             var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
-            var result = state.SetupHandTip(battleActor);
+            var result = state.SetupHandTips(battleActor);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
@@ -291,7 +291,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
         }
         [Test]
-        public static void SetupHandTipTest_通常処理_補充枚数指定_元の手札有り()
+        public static void SetupHandTipsTest_通常処理_補充枚数指定_元の手札有り()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -314,7 +314,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var battleActor = state.battleActorList.First().Key;
 
             var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
-            var result = state.SetupHandTip(battleActor, tipNumbers);
+            var result = state.SetupHandTips(battleActor, tipNumbers);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
@@ -328,7 +328,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
         }
         [Test]
-        public static void SetupHandTipTest_通常処理_補充枚数デフォルト値_元の手札は空_山札が補充枚数以下()
+        public static void SetupHandTipsTest_通常処理_補充枚数デフォルト値_元の手札は空_山札が補充枚数以下()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -350,7 +350,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var battleActor = state.battleActorList.First().Key;
 
             var actorState = state.battleActorList[battleActor];
-            var result = state.SetupHandTip(battleActor);
+            var result = state.SetupHandTips(battleActor);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
@@ -364,7 +364,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
         }
         [Test]
-        public static void SetupHandTipTest_通常処理_補充枚数指定_元の手札は空_山札が補充枚数以下()
+        public static void SetupHandTipsTest_通常処理_補充枚数指定_元の手札は空_山札が補充枚数以下()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -387,7 +387,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var battleActor = state.battleActorList.First().Key;
 
             var actorState = state.battleActorList[battleActor];
-            var result = state.SetupHandTip(battleActor, tipNumbers);
+            var result = state.SetupHandTips(battleActor, tipNumbers);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
@@ -401,7 +401,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
         }
         [Test]
-        public static void SetupHandTipTest_通常処理_補充枚数デフォルト値_元の手札有り_山札が補充枚数以下()
+        public static void SetupHandTipsTest_通常処理_補充枚数デフォルト値_元の手札有り_山札が補充枚数以下()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -423,7 +423,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var battleActor = state.battleActorList.First().Key;
 
             var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
-            var result = state.SetupHandTip(battleActor);
+            var result = state.SetupHandTips(battleActor);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
@@ -437,7 +437,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
         }
         [Test]
-        public static void SetupHandTipTest_通常処理_補充枚数指定_元の手札有り_山札が補充枚数以下()
+        public static void SetupHandTipsTest_通常処理_補充枚数指定_元の手札有り_山札が補充枚数以下()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -460,7 +460,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var battleActor = state.battleActorList.First().Key;
 
             var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
-            var result = state.SetupHandTip(battleActor, tipNumbers);
+            var result = state.SetupHandTips(battleActor, tipNumbers);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
@@ -474,7 +474,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
         }
         [Test]
-        public static void SetupHandTipTest_該当行動主体無し()
+        public static void SetupHandTipsTest_該当行動主体無し()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -495,7 +495,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = BattleActorMock.Generate(name1);
 
-            var result = state.SetupHandTip(battleActor);
+            var result = state.SetupHandTips(battleActor);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
@@ -503,7 +503,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.battleActorList.IsNotNull();
         }
         [Test]
-        public static void SetupHandTipTest_戦闘状態がNull()
+        public static void SetupHandTipsTest_戦闘状態がNull()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -525,12 +525,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var battleActor = state.battleActorList.First().Key;
 
             var actorState = state.battleActorList[battleActor];
-            var result = BattleStateManager.SetupHandTip(null, battleActor);
+            var result = BattleStateManager.SetupHandTips(null, battleActor);
 
             result.IsNull();
         }
         [Test]
-        public static void SetupHandTipTest_行動主体がNull()
+        public static void SetupHandTipsTest_行動主体がNull()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -550,7 +550,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
 
-            var result = state.SetupHandTip(null);
+            var result = state.SetupHandTips(null);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();

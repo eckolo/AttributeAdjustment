@@ -40,7 +40,7 @@ namespace Assets.Src.Domain.Service
         /// <param name="actor">手札初期化対象の動作主体</param>
         /// <param name="tipNumbers">初期化手札枚数</param>
         /// <returns>所定の動作主体の手札が初期化された戦闘状態</returns>
-        public static BattleState SetupHandTip(
+        public static BattleState SetupHandTips(
             this BattleState state,
             BattleActor actor,
             int tipNumbers = Constants.Battle.DEFAULT_HAND_TIP_NUMBERS)
