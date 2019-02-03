@@ -42,6 +42,15 @@ namespace Assets.Src.Domain.Model.Value
                 return this;
             }
             /// <summary>
+            /// 手札の全消去
+            /// </summary>
+            /// <returns>手札の全消去された行動主体</returns>
+            public EveryActor ClearHandTips()
+            {
+                PopHandTips(handTips);
+                return this;
+            }
+            /// <summary>
             /// 手札の取り出し
             /// </summary>
             /// <param name="popTips">取り出すモーションチップ一覧</param>

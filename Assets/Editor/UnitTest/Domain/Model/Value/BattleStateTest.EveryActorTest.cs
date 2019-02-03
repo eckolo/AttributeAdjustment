@@ -391,6 +391,41 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
 
                 actorState.handTips.IsNull();
             }
+
+            [Test]
+            public static void ClearHandTipsTest_通常処理()
+            {
+                var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+                var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+                var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+                var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip2, tip3 };
+                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+
+                var result = actorState.ClearHandTips().handTips;
+
+                result.IsNotNull();
+                result.Any().IsFalse();
+            }
+            [Test]
+            public static void ClearHandTipsTest_手札が元から空()
+            {
+                var tipList = new List<MotionTip>();
+                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+
+                var result = actorState.ClearHandTips().handTips;
+
+                result.IsNotNull();
+                result.Any().IsFalse();
+            }
+            [Test]
+            public static void ClearHandTipsTest_手札がNull()
+            {
+                var actorState = BattleStateMock.EveryActorMock.Generate(null);
+
+                var result = actorState.ClearHandTips().handTips;
+
+                result.IsNull();
+            }
         }
     }
 }
