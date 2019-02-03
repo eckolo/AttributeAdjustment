@@ -14,7 +14,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         public static class EveryActorTest
         {
             [Test]
-            public static void AddHandTipTest_通常処理_元の手札無し()
+            public static void AddHandTipsTest_通常処理_元の手札無し()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -22,7 +22,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var addList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
                 var actorState = BattleStateMock.EveryActorMock.Generate();
 
-                var result = actorState.AddHandTip(addList).handTips;
+                var result = actorState.AddHandTips(addList).handTips;
 
                 result.IsNotNull();
                 result.Count().Is(addList.Count);
@@ -40,7 +40,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                     .Is(1);
             }
             [Test]
-            public static void AddHandTipTest_通常処理_元の手札有り()
+            public static void AddHandTipsTest_通常処理_元の手札有り()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -49,7 +49,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var addList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
                 var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
 
-                var result = actorState.AddHandTip(addList).handTips;
+                var result = actorState.AddHandTips(addList).handTips;
 
                 result.IsNotNull();
                 result.Count().Is(tipList.Count + addList.Count);
@@ -67,7 +67,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                     .Is(1);
             }
             [Test]
-            public static void AddHandTipTest_追加リストが空_元の手札無し()
+            public static void AddHandTipsTest_追加リストが空_元の手札無し()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -75,13 +75,13 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var addList = new List<MotionTip>();
                 var actorState = BattleStateMock.EveryActorMock.Generate();
 
-                var result = actorState.AddHandTip(addList).handTips;
+                var result = actorState.AddHandTips(addList).handTips;
 
                 result.IsNotNull();
                 result.Any().IsFalse();
             }
             [Test]
-            public static void AddHandTipTest_追加リストが空_元の手札有り()
+            public static void AddHandTipsTest_追加リストが空_元の手札有り()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -90,7 +90,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var addList = new List<MotionTip>();
                 var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
 
-                var result = actorState.AddHandTip(addList).handTips;
+                var result = actorState.AddHandTips(addList).handTips;
 
                 result.IsNotNull();
                 result.Count().Is(tipList.Count);
@@ -104,20 +104,20 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                     .Is(1);
             }
             [Test]
-            public static void AddHandTipTest_追加リストがNull_元の手札無し()
+            public static void AddHandTipsTest_追加リストがNull_元の手札無し()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var actorState = BattleStateMock.EveryActorMock.Generate();
 
-                var result = actorState.AddHandTip(null).handTips;
+                var result = actorState.AddHandTips(null).handTips;
 
                 result.IsNotNull();
                 result.Any().IsFalse();
             }
             [Test]
-            public static void AddHandTipTest_追加リストがNull_元の手札有り()
+            public static void AddHandTipsTest_追加リストがNull_元の手札有り()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -125,7 +125,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2 };
                 var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
 
-                var result = actorState.AddHandTip(null).handTips;
+                var result = actorState.AddHandTips(null).handTips;
 
                 result.IsNotNull();
                 result.Count().Is(tipList.Count);
@@ -140,7 +140,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             }
 
             [Test]
-            public static void PopHandTip_通常処理_全て取り出し成功()
+            public static void PopHandTipsTest_通常処理_全て取り出し成功()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -149,7 +149,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var popList = new List<MotionTip> { tip1, tip1, tip1, tip2 };
                 var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
 
-                var result = actorState.PopHandTip(popList);
+                var result = actorState.PopHandTips(popList);
 
                 result.IsNotNull();
                 result.Count().Is(popList.Count);
@@ -174,7 +174,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                     .Is(1);
             }
             [Test]
-            public static void PopHandTip_通常処理_一部取り出し成功()
+            public static void PopHandTipsTest_通常処理_一部取り出し成功()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -183,7 +183,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var popList = new List<MotionTip> { tip1, tip1, tip2, tip3 };
                 var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
 
-                var result = actorState.PopHandTip(popList);
+                var result = actorState.PopHandTips(popList);
 
                 result.IsNotNull();
                 result.Count().Is(2);
@@ -204,7 +204,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                     .Is(2);
             }
             [Test]
-            public static void PopHandTip_通常処理_全て取り出し失敗()
+            public static void PopHandTipsTest_通常処理_全て取り出し失敗()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -214,7 +214,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var popList = new List<MotionTip> { tip1, tip1, tip1, tip3 };
                 var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
 
-                var result = actorState.PopHandTip(popList);
+                var result = actorState.PopHandTips(popList);
 
                 result.IsNotNull();
                 result.Any().IsFalse();
@@ -231,7 +231,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                     .Is(1);
             }
             [Test]
-            public static void PopHandTip_手札が空()
+            public static void PopHandTipsTest_手札が空()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -241,7 +241,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var popList = new List<MotionTip> { tip1, tip1, tip2, tip3 };
                 var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
 
-                var result = actorState.PopHandTip(popList);
+                var result = actorState.PopHandTips(popList);
 
                 result.IsNotNull();
                 result.Any().IsFalse();
@@ -250,7 +250,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 actorState.handTips.Any().IsFalse();
             }
             [Test]
-            public static void PopHandTip_手札がNull()
+            public static void PopHandTipsTest_手札がNull()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -259,7 +259,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var popList = new List<MotionTip> { tip1, tip1, tip2, tip3 };
                 var actorState = BattleStateMock.EveryActorMock.Generate(null);
 
-                var result = actorState.PopHandTip(popList);
+                var result = actorState.PopHandTips(popList);
 
                 result.IsNotNull();
                 result.Any().IsFalse();
@@ -267,7 +267,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 actorState.handTips.IsNull();
             }
             [Test]
-            public static void PopHandTip_取り出しリストが空()
+            public static void PopHandTipsTest_取り出しリストが空()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -276,7 +276,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var popList = new List<MotionTip>();
                 var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
 
-                var result = actorState.PopHandTip(popList);
+                var result = actorState.PopHandTips(popList);
 
                 result.IsNotNull();
                 result.Any().IsFalse();
@@ -297,7 +297,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                     .Is(1);
             }
             [Test]
-            public static void PopHandTip_取り出しリストがNull()
+            public static void PopHandTipsTest_取り出しリストがNull()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -305,7 +305,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
                 var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
 
-                var result = actorState.PopHandTip(null);
+                var result = actorState.PopHandTips(null);
 
                 result.IsNotNull();
                 result.Any().IsFalse();
@@ -326,7 +326,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                     .Is(1);
             }
             [Test]
-            public static void PopHandTip_手札が空_取り出しリストが空()
+            public static void PopHandTipsTest_手札が空_取り出しリストが空()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -335,7 +335,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var popList = new List<MotionTip>();
                 var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
 
-                var result = actorState.PopHandTip(popList);
+                var result = actorState.PopHandTips(popList);
 
                 result.IsNotNull();
                 result.Any().IsFalse();
@@ -344,7 +344,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 actorState.handTips.Any().IsFalse();
             }
             [Test]
-            public static void PopHandTip_手札が空_取り出しリストがNull()
+            public static void PopHandTipsTest_手札が空_取り出しリストがNull()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -352,7 +352,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tipList = new List<MotionTip>();
                 var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
 
-                var result = actorState.PopHandTip(null);
+                var result = actorState.PopHandTips(null);
 
                 result.IsNotNull();
                 result.Any().IsFalse();
@@ -361,7 +361,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 actorState.handTips.Any().IsFalse();
             }
             [Test]
-            public static void PopHandTip_手札がNull_取り出しリストが空()
+            public static void PopHandTipsTest_手札がNull_取り出しリストが空()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -369,7 +369,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var popList = new List<MotionTip>();
                 var actorState = BattleStateMock.EveryActorMock.Generate(null);
 
-                var result = actorState.PopHandTip(popList);
+                var result = actorState.PopHandTips(popList);
 
                 result.IsNotNull();
                 result.Any().IsFalse();
@@ -377,14 +377,14 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 actorState.handTips.IsNull();
             }
             [Test]
-            public static void PopHandTip_手札がNull_取り出しリストがNull()
+            public static void PopHandTipsTest_手札がNull_取り出しリストがNull()
             {
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var actorState = BattleStateMock.EveryActorMock.Generate(null);
 
-                var result = actorState.PopHandTip(null);
+                var result = actorState.PopHandTips(null);
 
                 result.IsNotNull();
                 result.Any().IsFalse();

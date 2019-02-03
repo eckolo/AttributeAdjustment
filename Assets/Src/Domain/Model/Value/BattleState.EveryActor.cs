@@ -35,7 +35,7 @@ namespace Assets.Src.Domain.Model.Value
             /// </summary>
             /// <param name="addedTips">追加されるモーションチップ一覧</param>
             /// <returns>手札に指定したモーションチップが追加された行動主体</returns>
-            public EveryActor AddHandTip(IEnumerable<MotionTip> addedTips)
+            public EveryActor AddHandTips(IEnumerable<MotionTip> addedTips)
             {
                 var empties = Enumerable.Empty<MotionTip>();
                 handTips = (handTips ?? empties).Concat(addedTips ?? empties).ToList();
@@ -46,7 +46,7 @@ namespace Assets.Src.Domain.Model.Value
             /// </summary>
             /// <param name="popTips">取り出すモーションチップ一覧</param>
             /// <returns>取り出しに成功したモーションチップの一覧</returns>
-            public IEnumerable<MotionTip> PopHandTip(IEnumerable<MotionTip> popTips)
+            public IEnumerable<MotionTip> PopHandTips(IEnumerable<MotionTip> popTips)
             {
                 var popMap = popTips?.GroupBy(tip => tip).ToDictionary(tip => tip.Key, tip => tip.Count());
                 var handTipMap = handTips?.GroupBy(tip => tip).ToDictionary(tip => tip.Key, tip => tip.Count());

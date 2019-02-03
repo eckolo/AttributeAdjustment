@@ -20,9 +20,19 @@ namespace Assets.Src.Domain.Service
                 .SelectMany(tip => Enumerable.Range(0, tip.Value).Select(_ => tip.Key))
                 .Shuffle();
 
-            var result = state.SetDeckTip(deckStationery);
+            var result = state.SetDeckTips(deckStationery);
             return result;
         }
+        /// <summary>
+        /// 場札の初期化
+        /// </summary>
+        /// <param name="state">場札初期化対象の戦闘状態</param>
+        /// <param name="tipNumbers">初期化場札枚数</param>
+        /// <returns>場札の初期化された戦闘状態</returns>
+        public static BattleState SetupBoard(
+            this BattleState state,
+            int tipNumbers = Constants.Battle.DEFAULT_BOARD_TIP_NUMBERS)
+            => state?.SetBoardTips(state.PopDeckTips(tipNumbers));
         /// <summary>
         /// 手札の初期化
         /// </summary>
@@ -41,9 +51,9 @@ namespace Assets.Src.Domain.Service
             if(!state.battleActorList.ContainsKey(actor)) return state;
 
             var actorState = state.battleActorList[actor];
-            actorState.PopHandTip(actorState.handTips);
+            actorState.PopHandTips(actorState.handTips);
 
-            actorState.AddHandTip(state.PopDeckTip(tipNumbers));
+            actorState.AddHandTips(state.PopDeckTips(tipNumbers));
             state.battleActorList[actor] = actorState;
 
             return state;

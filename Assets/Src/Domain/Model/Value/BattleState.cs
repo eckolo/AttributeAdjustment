@@ -50,7 +50,7 @@ namespace Assets.Src.Domain.Model.Value
         /// 山札の設定
         /// </summary>
         /// <returns>山札設定後の戦闘状態</returns>
-        public BattleState SetDeckTip(IEnumerable<MotionTip> deckStationery)
+        public BattleState SetDeckTips(IEnumerable<MotionTip> deckStationery)
         {
             deckTips = deckStationery != null ? new Queue<MotionTip>(deckStationery) : new Queue<MotionTip>();
             return this;
@@ -60,7 +60,7 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         /// <param name="popTipNumber">取り出し枚数</param>
         /// <returns>山札から取り出されたモーションチップ一覧</returns>
-        public IEnumerable<MotionTip> PopDeckTip(int popTipNumber)
+        public IEnumerable<MotionTip> PopDeckTips(int popTipNumber)
         {
             var _popTipNumber = Mathf.Max(popTipNumber, 0);
             var popedTips = Enumerable.Range(0, _popTipNumber)
@@ -76,7 +76,7 @@ namespace Assets.Src.Domain.Model.Value
         /// 場札の設定
         /// </summary>
         /// <returns>場札設定後の戦闘状態</returns>
-        public BattleState SetBoardTip(IEnumerable<MotionTip> boardStationery)
+        public BattleState SetBoardTips(IEnumerable<MotionTip> boardStationery)
         {
             boardTips = boardStationery?.ToList() ?? Enumerable.Empty<MotionTip>();
             return this;
@@ -86,7 +86,7 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         /// <param name="popTips">取り出すモーションチップ一覧</param>
         /// <returns>取り出しに成功したモーションチップの一覧</returns>
-        public IEnumerable<MotionTip> PopBoardTip(IEnumerable<MotionTip> popTips)
+        public IEnumerable<MotionTip> PopBoardTips(IEnumerable<MotionTip> popTips)
         {
             var popMap = popTips?.GroupBy(tip => tip).ToDictionary(tip => tip.Key, tip => tip.Count());
             var boardTipMap = boardTips?.GroupBy(tip => tip).ToDictionary(tip => tip.Key, tip => tip.Count());
