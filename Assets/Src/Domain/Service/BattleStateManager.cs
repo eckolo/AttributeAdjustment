@@ -1,6 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
-using System;
 using System.Linq;
 
 namespace Assets.Src.Domain.Service
@@ -20,8 +19,9 @@ namespace Assets.Src.Domain.Service
             var deckStationery = state.deckStationeryMap?
                 .SelectMany(tip => Enumerable.Range(0, tip.Value).Select(_ => tip.Key))
                 .Shuffle();
-            state.SetDeckTip(deckStationery);
-            return state;
+
+            var result = state.SetDeckTip(deckStationery);
+            return result;
         }
         /// <summary>
         /// 手札の初期化
@@ -35,8 +35,8 @@ namespace Assets.Src.Domain.Service
             BattleActor actor,
             int tipNumbers = Constants.Battle.DEFAULT_HAND_TIP_NUMBERS)
         {
-            if(state is null) throw new ArgumentNullException();
-            if(actor is null) throw new ArgumentNullException();
+            if(state is null) return state;
+            if(actor is null) return state;
 
             if(!state.battleActorList.ContainsKey(actor)) return state;
 

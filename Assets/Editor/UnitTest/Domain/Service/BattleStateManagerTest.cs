@@ -2,7 +2,6 @@
 using Assets.Src.Domain.Service;
 using Assets.Src.Mock;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -409,7 +408,9 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var battleActor = state.battleActorList.First().Key;
 
             var actorState = state.battleActorList[battleActor];
-            Assert.Throws<ArgumentNullException>(() => BattleStateManager.SetupHandTip(null, battleActor));
+            var result = BattleStateManager.SetupHandTip(null, battleActor);
+
+            result.IsNull();
         }
         [Test]
         public static void SetupHandTipTest_行動主体がNull()
@@ -432,7 +433,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
 
-            Assert.Throws<ArgumentNullException>(() => state.SetupHandTip(null));
+            var result = state.SetupHandTip(null);
+
+            result.IsNotNull();
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3);
+            result.battleActorList.IsNotNull();
         }
     }
 }
