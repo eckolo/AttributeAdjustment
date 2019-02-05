@@ -68,11 +68,9 @@ namespace Assets.Src.Domain.Service
 
             if(!state.battleActorList.ContainsKey(actor)) return state;
 
-            var actorState = state.battleActorList[actor];
-            actorState.PopHandTips(actorState.handTips);
-
-            actorState.AddHandTips(state.PopDeckTips(tipNumbers));
-            state.battleActorList[actor] = actorState;
+            state.battleActorList[actor] = state.battleActorList[actor]
+                .ClearHandTips()
+                .AddHandTips(state.PopDeckTips(tipNumbers));
 
             return state;
         }
