@@ -677,5 +677,339 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.deckTips.Count.Is(value1 + value2 + value3);
             result.battleActorList.IsNotNull();
         }
+
+        [Test]
+        public static void SetupAllHandTipsTest_通常処理_補充枚数デフォルト値_元の手札は空()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 13;
+            var value2 = 6;
+            var value3 = 5;
+            var name1 = "name1";
+            var name2 = "name2";
+            var name3 = "name3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+
+            var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
+            var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
+
+            var result = state.SetupAllHandTips();
+
+            result.IsNotNull();
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActorList.Count);
+            result.battleActorList.IsNotNull();
+            result.battleActorList.Count.Is(actorList.Count);
+            {
+                var actorState = state.battleActorList.ToList()[0];
+                actorState.IsNotNull();
+                actorState.Value.handTips.IsNotNull();
+                actorState.Value.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
+                actorState.Value.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            }
+            {
+                var actorState = state.battleActorList.ToList()[0];
+                actorState.IsNotNull();
+                actorState.Value.handTips.IsNotNull();
+                actorState.Value.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
+                actorState.Value.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            }
+            {
+                var actorState = state.battleActorList.ToList()[0];
+                actorState.IsNotNull();
+                actorState.Value.handTips.IsNotNull();
+                actorState.Value.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
+                actorState.Value.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            }
+        }
+        [Test]
+        public static void SetupAllHandTipsTest_通常処理_補充枚数指定_元の手札は空()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 5;
+            var value2 = 4;
+            var value3 = 6;
+            var name1 = "name1";
+            var name2 = "name2";
+            var name3 = "name3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+            var tipNumbers = 4;
+
+            var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
+            var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
+            var battleActor = state.battleActorList.First().Key;
+
+            var actorState = state.battleActorList[battleActor];
+            var result = state.SetupAllHandTips(tipNumbers);
+
+            result.IsNotNull();
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3 - tipNumbers * state.battleActorList.Count);
+            result.battleActorList.IsNotNull();
+            result.battleActorList.ContainsKey(battleActor).IsTrue();
+
+            actorState.IsNotNull();
+            actorState.handTips.IsNotNull();
+            actorState.handTips.Count().Is(tipNumbers);
+            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+        }
+        [Test]
+        public static void SetupAllHandTipsTest_通常処理_補充枚数デフォルト値_元の手札有り()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 13;
+            var value2 = 6;
+            var value3 = 5;
+            var name1 = "name1";
+            var name2 = "name2";
+            var name3 = "name3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+
+            var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
+            var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
+            var battleActor = state.battleActorList.First().Key;
+
+            var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
+            var result = state.SetupAllHandTips();
+
+            result.IsNotNull();
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActorList.Count);
+            result.battleActorList.IsNotNull();
+            result.battleActorList.ContainsKey(battleActor).IsTrue();
+
+            actorState.IsNotNull();
+            actorState.handTips.IsNotNull();
+            actorState.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
+            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+        }
+        [Test]
+        public static void SetupAllHandTipsTest_通常処理_補充枚数指定_元の手札有り()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 5;
+            var value2 = 4;
+            var value3 = 6;
+            var name1 = "name1";
+            var name2 = "name2";
+            var name3 = "name3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+            var tipNumbers = 4;
+
+            var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
+            var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
+            var battleActor = state.battleActorList.First().Key;
+
+            var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
+            var result = state.SetupAllHandTips(tipNumbers);
+
+            result.IsNotNull();
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3 - tipNumbers * state.battleActorList.Count);
+            result.battleActorList.IsNotNull();
+            result.battleActorList.ContainsKey(battleActor).IsTrue();
+
+            actorState.IsNotNull();
+            actorState.handTips.IsNotNull();
+            actorState.handTips.Count().Is(tipNumbers);
+            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+        }
+        [Test]
+        public static void SetupAllHandTipsTest_通常処理_補充枚数デフォルト値_元の手札は空_山札が補充枚数以下()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 1;
+            var value2 = 1;
+            var value3 = 2;
+            var name1 = "name1";
+            var name2 = "name2";
+            var name3 = "name3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+
+            var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
+            var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
+            var battleActor = state.battleActorList.First().Key;
+
+            var actorState = state.battleActorList[battleActor];
+            var result = state.SetupAllHandTips();
+
+            result.IsNotNull();
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is((value1 + value2 + value3) * 6 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActorList.Count);
+            result.battleActorList.IsNotNull();
+            result.battleActorList.ContainsKey(battleActor).IsTrue();
+
+            actorState.IsNotNull();
+            actorState.handTips.IsNotNull();
+            actorState.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
+            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+        }
+        [Test]
+        public static void SetupAllHandTipsTest_通常処理_補充枚数指定_元の手札は空_山札が補充枚数以下()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 1;
+            var value2 = 1;
+            var value3 = 2;
+            var name1 = "name1";
+            var name2 = "name2";
+            var name3 = "name3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+            var tipNumbers = 12;
+
+            var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
+            var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
+            var battleActor = state.battleActorList.First().Key;
+
+            var actorState = state.battleActorList[battleActor];
+            var result = state.SetupAllHandTips(tipNumbers);
+
+            result.IsNotNull();
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is((value1 + value2 + value3) * 10 - tipNumbers * state.battleActorList.Count);
+            result.battleActorList.IsNotNull();
+            result.battleActorList.ContainsKey(battleActor).IsTrue();
+
+            actorState.IsNotNull();
+            actorState.handTips.IsNotNull();
+            actorState.handTips.Count().Is(tipNumbers);
+            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+        }
+        [Test]
+        public static void SetupAllHandTipsTest_通常処理_補充枚数デフォルト値_元の手札有り_山札が補充枚数以下()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 1;
+            var value2 = 1;
+            var value3 = 2;
+            var name1 = "name1";
+            var name2 = "name2";
+            var name3 = "name3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+
+            var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
+            var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
+            var battleActor = state.battleActorList.First().Key;
+
+            var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
+            var result = state.SetupAllHandTips();
+
+            result.IsNotNull();
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is((value1 + value2 + value3) * 6 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActorList.Count);
+            result.battleActorList.IsNotNull();
+            result.battleActorList.ContainsKey(battleActor).IsTrue();
+
+            actorState.IsNotNull();
+            actorState.handTips.IsNotNull();
+            actorState.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
+            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+        }
+        [Test]
+        public static void SetupAllHandTipsTest_通常処理_補充枚数指定_元の手札有り_山札が補充枚数以下()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 1;
+            var value2 = 1;
+            var value3 = 2;
+            var name1 = "name1";
+            var name2 = "name2";
+            var name3 = "name3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+            var tipNumbers = 12;
+
+            var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
+            var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
+            var battleActor = state.battleActorList.First().Key;
+
+            var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
+            var result = state.SetupAllHandTips(tipNumbers);
+
+            result.IsNotNull();
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is((value1 + value2 + value3) * 10 - tipNumbers * state.battleActorList.Count);
+            result.battleActorList.IsNotNull();
+            result.battleActorList.ContainsKey(battleActor).IsTrue();
+
+            actorState.IsNotNull();
+            actorState.handTips.IsNotNull();
+            actorState.handTips.Count().Is(tipNumbers);
+            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+        }
+        [Test]
+        public static void SetupAllHandTipsTest_戦闘状態がNull()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 3;
+            var value2 = 2;
+            var value3 = 4;
+            var name1 = "name1";
+            var name2 = "name2";
+            var name3 = "name3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+
+            var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
+            var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
+            var battleActor = state.battleActorList.First().Key;
+
+            var actorState = state.battleActorList[battleActor];
+            var result = BattleStateManager.SetupAllHandTips(null);
+
+            result.IsNull();
+        }
     }
 }

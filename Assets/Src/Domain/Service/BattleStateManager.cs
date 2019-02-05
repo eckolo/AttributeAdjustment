@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Assets.Src.Domain.Service
@@ -72,6 +73,27 @@ namespace Assets.Src.Domain.Service
 
             actorState.AddHandTips(state.PopDeckTips(tipNumbers));
             state.battleActorList[actor] = actorState;
+
+            return state;
+        }
+        /// <summary>
+        /// 全行動主体の手札を総初期化する
+        /// </summary>
+        /// <param name="state">手札初期化対象の戦闘状態</param>
+        /// <param name="tipNumbers">初期化手札枚数</param>
+        /// <returns></returns>
+        public static BattleState SetupAllHandTips(
+            this BattleState state,
+            int tipNumbers = Constants.Battle.DEFAULT_HAND_TIP_NUMBERS)
+        {
+            if(state is null) return state;
+
+            var setTips = state.battleActorList
+                .ToDictionary(
+                    actor => actor.Key,
+                    actor => actor.Value.ClearHandTips().AddHandTips(state.PopDeckTipsForced(tipNumbers)));
+
+            foreach(var tips in setTips) state.battleActorList[tips.Key] = tips.Value;
 
             return state;
         }
