@@ -24,6 +24,23 @@ namespace Assets.Src.Domain.Service
             return result;
         }
         /// <summary>
+        /// 山札の強制取り出し
+        /// 足りなければ補充して必要枚数取り出す
+        /// </summary>
+        /// <param name="popTipNumber">取り出し枚数</param>
+        /// <returns>山札から取り出されたモーションチップ一覧</returns>
+        public static IEnumerable<MotionTip> PopDeckTipsForced(this BattleState state, int popTipNumber)
+            => state.deckTips.Count >= popTipNumber || (state.deckStationeryMap?.Any() ?? false)
+                ? Enumerable.Empty<MotionTip>().JoinDeckTips(state, popTipNumber)
+                : Enumerable.Empty<MotionTip>();
+        static IEnumerable<MotionTip> JoinDeckTips(
+            this IEnumerable<MotionTip> tips,
+            BattleState state,
+            int popTipNumber)
+            => (tips.Count() < popTipNumber)
+                ? tips.Concat(state.PopDeckTips(popTipNumber - tips.Count())).JoinDeckTips(state, popTipNumber)
+                : tips;
+        /// <summary>
         /// 場札の初期化
         /// </summary>
         /// <param name="state">場札初期化対象の戦闘状態</param>

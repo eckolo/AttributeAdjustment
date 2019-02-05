@@ -65,6 +65,126 @@ namespace Assets.Editor.UnitTest.Domain.Service
         }
 
         [Test]
+        public static void PopDeckTipsForcedTest_通常処理_山札数が取り出し数より大きい()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
+            var state = BattleStateMock.Generate().SetDeckTips(tipList);
+            var popTipNumber = 5;
+
+            var result = state.PopDeckTipsForced(popTipNumber);
+
+            result.IsNotNull();
+            result.Count().Is(popTipNumber);
+            result.All(elem => tipList.Contains(elem)).IsTrue();
+
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(tipList.Count - popTipNumber);
+            state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
+        }
+        [Test]
+        public static void PopDeckTipsForcedTest_通常処理_山札数が取り出し数と等しい()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 3;
+            var value2 = 1;
+            var value3 = 2;
+
+            var tipList = new List<MotionTip> { tip1, tip1, tip1, tip1, tip2, tip2, tip3 };
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(tipMap).SetDeckTips(tipList);
+            var popTipNumber = tipList.Count;
+
+            var result = state.PopDeckTipsForced(popTipNumber);
+
+            result.IsNotNull();
+            result.Count().Is(popTipNumber);
+            result.All(elem => tipList.Contains(elem)).IsTrue();
+
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(value1 + value2 + value3);
+            state.deckTips
+                .Where(elem => elem.energy == tip1.energy)
+                .Count(elem => elem.energyValue == tip1.energyValue)
+                .Is(value1);
+            state.deckTips
+                .Where(elem => elem.energy == tip2.energy)
+                .Count(elem => elem.energyValue == tip2.energyValue)
+                .Is(value2);
+            state.deckTips
+                .Where(elem => elem.energy == tip3.energy)
+                .Count(elem => elem.energyValue == tip3.energyValue)
+                .Is(value3);
+        }
+        [Test]
+        public static void PopDeckTipsForcedTest_通常処理_山札数が取り出し数未満()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 3;
+            var value2 = 1;
+            var value3 = 2;
+
+            var tipList = new List<MotionTip> { tip1, tip1, tip1, tip1, tip2, tip2, tip3 };
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(tipMap).SetDeckTips(tipList);
+            var popTipNumber = 10;
+
+            var result = state.PopDeckTipsForced(popTipNumber);
+
+            result.IsNotNull();
+            result.Count().Is(popTipNumber);
+            result.All(elem => tipList.Contains(elem)).IsTrue();
+
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(tipList.Count + value1 + value2 + value3 - popTipNumber);
+            state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
+        }
+        [Test]
+        public static void PopDeckTipsForcedTest_取り出し数が0()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
+            var state = BattleStateMock.Generate().SetDeckTips(tipList);
+            var popTipNumber = 0;
+
+            var result = state.PopDeckTipsForced(popTipNumber);
+
+            result.IsNotNull();
+            result.Count().Is(0);
+
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(tipList.Count);
+            state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
+        }
+        [Test]
+        public static void PopDeckTipsForcedTest_取り出し数が負の値()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
+            var state = BattleStateMock.Generate().SetDeckTips(tipList);
+            var popTipNumber = -5;
+
+            var result = state.PopDeckTipsForced(popTipNumber);
+
+            result.IsNotNull();
+            result.Count().Is(0);
+
+            state.deckTips.IsNotNull();
+            state.deckTips.Count.Is(tipList.Count);
+            state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
+        }
+
+        [Test]
         public static void SetupBoardTest_通常処理_補充枚数デフォルト値()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
