@@ -1,4 +1,3 @@
-using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using System;
 using System.Linq;
@@ -15,21 +14,23 @@ namespace Assets.Src.Domain.Service
         /// ゲームオブジェクトの新規作成
         /// </summary>
         /// <typeparam name="TPrefab">作成されるオブジェクトに実装される型</typeparam>
+        /// <param name="parent">オブジェクトの親</param>
         /// <param name="objectName">オブジェクト名称</param>
         /// <returns>生成されたオブジェクト</returns>
-        public static TPrefab SetPrefab<TPrefab>(this View view, string objectName = null)
+        public static TPrefab SetPrefab<TPrefab>(this MonoBehaviour parent, string objectName = null)
             where TPrefab : Component
             => new GameObject(objectName ?? Constants.Texts.ANONYMOUS_NAME, typeof(TPrefab))
             .GetComponent<TPrefab>()
-            .SetParent(view);
+            .SetParent(parent);
         /// <summary>
         /// ゲームオブジェクトの新規作成
         /// 型名をそのままオブジェクト名とする
         /// </summary>
         /// <typeparam name="TPrefab">作成されるオブジェクトに実装される型</typeparam>
         /// <returns>生成されたオブジェクト</returns>
-        public static TPrefab SetPrefab<TPrefab>(this View view) where TPrefab : Component
-            => view.SetPrefab<TPrefab>(typeof(TPrefab).FullName.Split(new[] { '.', '+' }).Last());
+        public static TPrefab SetPrefab<TPrefab>(this MonoBehaviour parent)
+            where TPrefab : Component
+            => parent.SetPrefab<TPrefab>(typeof(TPrefab).FullName.Split(new[] { '.', '+' }).Last());
 
         /// <summary>
         /// ゲームオブジェクトに親オブジェクトを設定して返す
