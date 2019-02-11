@@ -54,22 +54,15 @@ namespace Assets.Src.Controller
         /// <returns>イテレータ</returns>
         async UniTask IntroductionMainRoutine()
         {
-            //デバッグ実行時は原因箇所追いやすくするために直接エラーを投げる
-            if(Debug.isDebugBuild)
+            try
             {
                 await ExecuteMainRoutine();
             }
-            else
+            //デバッグ実行時は原因箇所追いやすくするために直接エラーを投げる
+            catch(Exception error) when(!Debug.isDebugBuild)
             {
-                try
-                {
-                    await ExecuteMainRoutine();
-                }
-                catch(Exception error)
-                {
-                    LogHub.ERROR.LeaveLog(error.ToString(), new FileManager());
-                    throw error;
-                }
+                LogHub.ERROR.LeaveLog(error.ToString(), new FileManager());
+                throw error;
             }
         }
         /// <summary>
