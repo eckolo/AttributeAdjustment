@@ -59,14 +59,14 @@ namespace Assets.Src.Domain.Service
         /// </summary>
         /// <typeparam name="TPrefab">削除対象オブジェクトの型</typeparam>
         /// <param name="prefab">削除対象オブジェクト</param>
-        public static void Destroy<TPrefab>(this TPrefab prefab) where TPrefab : Component
+        public static TPrefab Destroy<TPrefab>(this TPrefab prefab) where TPrefab : Component
         {
-            if(prefab == null) return;
+            if(prefab == null) return prefab;
 
             foreach(Component child in prefab.transform) if(child is Component) child.Destroy();
 
             UnityEngine.Object.Destroy(prefab.gameObject);
-            return;
+            return prefab;
         }
     }
 }

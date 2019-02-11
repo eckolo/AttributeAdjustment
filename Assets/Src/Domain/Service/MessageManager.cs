@@ -71,12 +71,6 @@ namespace Assets.Src.Domain.Service
         /// </summary>
         /// <param name="textObject">対象テキストオブジェクト</param>
         /// <returns>削除した文字列の内容</returns>
-        public static string Destroy(this TextMesh textObject)
-        {
-            if(textObject == null) return "";
-            var result = textObject?.text ?? "";
-            textObject.Destroy();
-            return result;
-        }
+        public static TextMesh Destroy(this TextMesh textObject) => textObject?.Destroy<TextMesh>();
     }
 }
