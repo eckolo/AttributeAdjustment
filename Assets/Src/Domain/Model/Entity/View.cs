@@ -1,3 +1,4 @@
+using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Service;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Assets.Src.Domain.Model.Entity
     /// ビュー類のルートになるオブジェクト
     /// それだけ
     /// </summary>
-    public class View : MonoBehaviour
+    public class View : PrefabAbst
     {
         /// <summary>
         /// ビューの新規生成
