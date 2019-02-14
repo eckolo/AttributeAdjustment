@@ -1,4 +1,5 @@
 using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Service;
 using System;
 using UnityEngine;
 
@@ -10,10 +11,11 @@ namespace Assets.Src.Domain.Model.Value
     [Serializable]
     public partial class GameState : IDuplicatable<GameState>
     {
-        public GameState(int seedInt)
+        public GameState(int seedInt, IFileManager fileManager)
         {
             UnityEngine.Random.InitState(seedInt);
             _seed = UnityEngine.Random.state;
+            this.fileManager = fileManager;
         }
 
         /// <summary>
@@ -35,6 +37,8 @@ namespace Assets.Src.Domain.Model.Value
         /// 現在の外部入力可否
         /// </summary>
         public bool recievable { get { return _recievable; } set { _recievable = value; } }
+
+        public IFileManager fileManager { get; }
 
         /// <summary>
         /// 乱数の種

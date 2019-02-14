@@ -2,6 +2,7 @@ using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
+using Assets.Src.Infrastructure.Service;
 
 namespace Assets.Src.Infrastructure.Model.Entity
 {
@@ -50,7 +51,8 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// </summary>
         /// <param name="randamSeed">乱数の種</param>
         /// <returns>生成されたゲーム基盤</returns>
-        public static GameFoundation CreateNewState(int randamSeed) => CreateNewState(new GameState(randamSeed));
+        public static GameFoundation CreateNewState(int randamSeed)
+            => CreateNewState(new GameState(randamSeed, new FileManager()));
 
         /// <summary>
         /// パラメータ一括アクセス用プロパティ
