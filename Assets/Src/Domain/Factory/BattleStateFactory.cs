@@ -14,7 +14,7 @@ namespace Assets.Src.Domain.Factory
         {
             var actiors = enemys.Concat(new[] { state.player });
 
-            var battleState = new BattleState(actiors, topography.baseTipSet);
+            var battleState = new BattleState(actiors, topography);
 
             return battleState;
         }

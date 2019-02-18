@@ -16,20 +16,25 @@ namespace Assets.Src.Domain.Model.Value
         /// 戦闘状態の生成
         /// </summary>
         /// <param name="actiors">戦闘参加者</param>
-        /// <param name="deckStationeryMap">山札の雛形</param>
-        public BattleState(IEnumerable<Actor> actiors, Dictionary<MotionTip, int> deckStationeryMap)
+        /// <param name="topography">初期地形</param>
+        public BattleState(IEnumerable<Actor> actiors, Topography topography)
         {
             //戦闘者毎の戦闘状態初期化
             battleActorList = actiors.ToDictionary(actor => actor.ConvertForBattle(), _ => new EveryActor());
             //山札の雛形生成
-            this.deckStationeryMap = deckStationeryMap;
+            this.topography = topography;
         }
+
+        /// <summary>
+        /// 現在の地形
+        /// </summary>
+        public Topography topography { get; protected set; }
 
         /// <summary>
         /// 山札の雛形
         /// チップの種別+枚数
         /// </summary>
-        public Dictionary<MotionTip, int> deckStationeryMap { get; protected set; }
+        public Dictionary<MotionTip, int> deckStationeryMap => topography.baseTipSet;
 
         /// <summary>
         /// 山札

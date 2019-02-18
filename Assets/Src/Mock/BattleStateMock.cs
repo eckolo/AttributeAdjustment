@@ -7,7 +7,7 @@ namespace Assets.Src.Mock
     public partial class BattleStateMock : BattleState
     {
         BattleStateMock(IEnumerable<Actor> actiors, Dictionary<MotionTip, int> deckStationeryMap)
-           : base(actiors, deckStationeryMap)
+           : base(actiors, new Topography(deckStationeryMap))
         { }
 
         public static BattleStateMock Generate(IEnumerable<Actor> actiors, Dictionary<MotionTip, int> deckStationeryMap)
