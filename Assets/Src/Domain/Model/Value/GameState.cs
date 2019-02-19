@@ -27,7 +27,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// ゲーム設定
         /// </summary>
-        public Configs configs { get { return _configs; } set { _configs = value; } }
+        public Configs configs { get => _configs; set => _configs = value; }
 
         /// <summary>
         /// プレイヤー設定
@@ -47,7 +47,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 現在の外部入力可否
         /// </summary>
-        public bool recievable { get { return _recievable; } set { _recievable = value; } }
+        public bool recievable { get => _recievable; set => _recievable = value; }
 
         public IFileManager fileManager { get; }
 

@@ -12,29 +12,29 @@ namespace Assets.Src.Mock
     {
         [SerializeField]
         private string _text1 = "";
-        public string text1 { get { return _text1; } set { _text1 = value; } }
+        public string text1 { get => _text1; set => _text1 = value; }
         [SerializeField]
         private string _text2 = "";
-        public string text2 { get { return _text2; } set { _text2 = value; } }
+        public string text2 { get => _text2; set => _text2 = value; }
         [SerializeField]
         private int _number = 0;
-        public int number { get { return _number; } set { _number = value; } }
+        public int number { get => _number; set => _number = value; }
         [SerializeField]
         private InnerClassMock _innerClass = new InnerClassMock();
-        public InnerClassMock innerClass { get { return _innerClass; } set { _innerClass = value; } }
+        public InnerClassMock innerClass { get => _innerClass; set => _innerClass = value; }
 
         [Serializable]
         public class InnerClassMock
         {
             [SerializeField]
             private string _text1 = "";
-            public string text1 { get { return _text1; } set { _text1 = value; } }
+            public string text1 { get => _text1; set => _text1 = value; }
             [SerializeField]
             private string _text2 = "";
-            public string text2 { get { return _text2; } set { _text2 = value; } }
+            public string text2 { get => _text2; set => _text2 = value; }
             [SerializeField]
             private int _number = 0;
-            public int number { get { return _number; } set { _number = value; } }
+            public int number { get => _number; set => _number = value; }
         }
 
         /// <summary>
