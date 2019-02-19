@@ -26,6 +26,11 @@ namespace Assets.Src.Domain.Model.Value
         }
 
         /// <summary>
+        /// 戦闘終了フラグ
+        /// </summary>
+        public bool isEnd { get; } = false;
+
+        /// <summary>
         /// 現在の地形
         /// </summary>
         public Topography topography { get; protected set; }

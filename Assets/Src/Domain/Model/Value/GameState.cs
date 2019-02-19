@@ -1,4 +1,5 @@
 using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Service;
 using System;
 using UnityEngine;
@@ -27,6 +28,16 @@ namespace Assets.Src.Domain.Model.Value
         /// ゲーム設定
         /// </summary>
         public Configs configs { get { return _configs; } set { _configs = value; } }
+
+        /// <summary>
+        /// プレイヤー設定
+        /// </summary>
+        [SerializeField]
+        Player _player = null;
+        /// <summary>
+        /// プレイヤー設定
+        /// </summary>
+        public Player player { get => _player; set => _player = value; }
 
         /// <summary>
         /// 現在の外部入力可否
