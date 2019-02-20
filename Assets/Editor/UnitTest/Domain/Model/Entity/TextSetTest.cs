@@ -1,5 +1,5 @@
-﻿using Assets.Src.Domain.Model.Entity;
-using Assets.Src.Domain.Service;
+﻿using Assets.Src.Domain.Factory;
+using Assets.Src.Domain.Model.Entity;
 using NUnit.Framework;
 using System.Linq;
 using UnityEngine;
