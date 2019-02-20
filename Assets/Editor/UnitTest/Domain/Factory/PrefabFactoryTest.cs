@@ -1,3 +1,4 @@
+using Assets.Src.Domain.Factory;
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
@@ -6,12 +7,12 @@ using NUnit.Framework;
 using System;
 using UnityEngine;
 
-namespace Assets.Editor.UnitTest.Domain.Service
+namespace Assets.Editor.UnitTest.Domain.Factory
 {
     /// <summary>
-    /// プレファブなどの実体化されたオブジェクト類の管理クラスのテストモジュール
+    /// プレファブなどの実体化されるオブジェクト類の生成処理クラスのテストモジュール
     /// </summary>
-    public static class PrefabManagerTest
+    public static class PrefabFactoryTest
     {
         [Test]
         public static void SetPrefabTest()
