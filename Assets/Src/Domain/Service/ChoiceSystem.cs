@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Entity;
+﻿using Assets.Src.Domain.Factory;
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using System;
 using System.Collections.Generic;
