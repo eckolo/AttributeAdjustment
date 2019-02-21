@@ -1,6 +1,8 @@
 ﻿using Assets.Editor.UnitTest.Domain.Service;
 using Assets.Src.Domain.Factory;
 using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
+using Assets.Src.Mock;
 using NUnit.Framework;
 using System.Linq;
 using UnityEngine;
@@ -180,6 +182,139 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                     text.characterSize.Is(1);
                     text.color.Is(Color.white);
                     text.alignment.Is(TextAlignment.Center);
+                }
+            }
+        }
+
+        [Test]
+        public static void SetTextSetTest_単一生成_雛形から生成()
+        {
+            var texts = Enumerable.Range(1, 3)
+                .Select(index => new TextMeshStationery($"{nameof(SetTextSetTest_単一生成_雛形から生成)}_{index}", new Vector2(0, index)));
+            var position = new Vector2(2, -4);
+            var size = 0.6f;
+            var color = Color.green;
+            var alignment = TextAlignment.Right;
+            var stationery = TextSetStationeryMock.Generate(texts, size, color, alignment);
+
+            var textSet = view.SetTextSet(stationery, position);
+
+            textSet.IsNotNull();
+            textSet.gameObject.name.Is($"{nameof(SetTextSetTest_単一生成_雛形から生成)}_1 {nameof(SetTextSetTest_単一生成_雛形から生成)}_2 {nameof(SetTextSetTest_単一生成_雛形から生成)}_3");
+            textSet.transform.position.x.Is(position.x);
+            textSet.transform.position.y.Is(position.y);
+            textSet.texts.IsNotNull();
+            var textList = textSet.texts.ToList();
+            textList.IsNotNull();
+            textList.Count.Is(texts.Count());
+            {
+                var text = textList[0];
+                text.transform.localPosition.x.Is(0);
+                text.transform.localPosition.y.Is(1);
+                text.characterSize.Is(size);
+                text.color.Is(color);
+                text.alignment.Is(alignment);
+            }
+            {
+                var text = textList[1];
+                text.transform.localPosition.x.Is(0);
+                text.transform.localPosition.y.Is(2);
+                text.characterSize.Is(size);
+                text.color.Is(color);
+                text.alignment.Is(alignment);
+            }
+            {
+                var text = textList[2];
+                text.transform.localPosition.x.Is(0);
+                text.transform.localPosition.y.Is(3);
+                text.characterSize.Is(size);
+                text.color.Is(color);
+                text.alignment.Is(alignment);
+            }
+        }
+        [Test]
+        public static void SetTextSetTest_雛形から生成_複数生成_雛形から生成()
+        {
+            var texts = Enumerable.Range(1, 3)
+                .Select(index => new TextMeshStationery($"{nameof(SetTextSetTest_雛形から生成_複数生成_雛形から生成)}_{index}", new Vector2(0, index)));
+            var textSetName = $"{nameof(SetTextSetTest_雛形から生成_複数生成_雛形から生成)}_1 {nameof(SetTextSetTest_雛形から生成_複数生成_雛形から生成)}_2 {nameof(SetTextSetTest_雛形から生成_複数生成_雛形から生成)}_3";
+            var position = new Vector2(2, -4);
+            var size = 0.6f;
+            var color = Color.green;
+            var alignment = TextAlignment.Right;
+            var stationery = TextSetStationeryMock.Generate(texts, size, color, alignment);
+
+            var textSet1 = view.SetTextSet(stationery, position);
+            {
+                var textSet = textSet1;
+                textSet.IsNotNull();
+                textSet.gameObject.name.Is(textSetName);
+                textSet.transform.position.x.Is(position.x);
+                textSet.transform.position.y.Is(position.y);
+                textSet.texts.IsNotNull();
+                var textList = textSet.texts.ToList();
+                textList.IsNotNull();
+                textList.Count.Is(texts.Count());
+                {
+                    var text = textList[0];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(1);
+                    text.characterSize.Is(size);
+                    text.color.Is(color);
+                    text.alignment.Is(alignment);
+                }
+                {
+                    var text = textList[1];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(2);
+                    text.characterSize.Is(size);
+                    text.color.Is(color);
+                    text.alignment.Is(alignment);
+                }
+                {
+                    var text = textList[2];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(3);
+                    text.characterSize.Is(size);
+                    text.color.Is(color);
+                    text.alignment.Is(alignment);
+                }
+            }
+
+            var textSet2 = view.SetTextSet(stationery, position);
+            {
+                var textSet = textSet2;
+                textSet.IsNotNull();
+                textSet.gameObject.name.Is(textSetName);
+                textSet.transform.position.x.Is(position.x);
+                textSet.transform.position.y.Is(position.y);
+                textSet.texts.IsNotNull();
+                var textList = textSet.texts.ToList();
+                textList.IsNotNull();
+                textList.Count.Is(texts.Count());
+                {
+                    var text = textList[0];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(1);
+                    text.characterSize.Is(size);
+                    text.color.Is(color);
+                    text.alignment.Is(alignment);
+                }
+                {
+                    var text = textList[1];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(2);
+                    text.characterSize.Is(size);
+                    text.color.Is(color);
+                    text.alignment.Is(alignment);
+                }
+                {
+                    var text = textList[2];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(3);
+                    text.characterSize.Is(size);
+                    text.color.Is(color);
+                    text.alignment.Is(alignment);
                 }
             }
         }

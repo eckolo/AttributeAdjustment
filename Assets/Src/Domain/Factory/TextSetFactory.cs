@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -49,5 +50,19 @@ namespace Assets.Src.Domain.Factory
 
             return textSet;
         }
+        /// <summary>
+        /// システムテキストへの文字設定
+        /// </summary>
+        /// <param name="parent">描画先</param>
+        /// <param name="stationery">テキストセットの雛形</param>
+        /// <param name="position">表示位置</param>
+        /// <returns></returns>
+        public static TextSet SetTextSet(this Component parent, ITextSetStationery stationery, Vector2 position)
+            => parent.SetTextSet(
+                setTexts: stationery.texts.Select(text => (text.text, text.position)),
+                position: position,
+                size: stationery.size,
+                color: stationery.color,
+                alignment: stationery.alignment);
     }
 }
