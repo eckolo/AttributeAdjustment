@@ -24,8 +24,8 @@ namespace Assets.Src.Domain.Factory
         /// <param name="textName">描画文字列とは別の文字オブジェクト名称</param>
         /// <returns>生成された文字列オブジェクト</returns>
         public static TextSet SetTextSet(
-            this MonoBehaviour parent,
             IEnumerable<string> setTexts,
+            this Component parent,
             Vector2 position,
             float size = 1f,
             Color32? color = null,

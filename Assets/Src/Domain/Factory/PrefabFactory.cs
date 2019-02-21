@@ -17,7 +17,7 @@ namespace Assets.Src.Domain.Factory
         /// <param name="parent">オブジェクトの親</param>
         /// <param name="objectName">オブジェクト名称</param>
         /// <returns>生成されたオブジェクト</returns>
-        public static TPrefab SetPrefab<TPrefab>(this MonoBehaviour parent, string objectName = null)
+        public static TPrefab SetPrefab<TPrefab>(this Component parent, string objectName = null)
             where TPrefab : Component
             => new GameObject(objectName ?? Constants.Texts.ANONYMOUS_NAME, typeof(TPrefab))
             .GetComponent<TPrefab>()
@@ -28,7 +28,7 @@ namespace Assets.Src.Domain.Factory
         /// </summary>
         /// <typeparam name="TPrefab">作成されるオブジェクトに実装される型</typeparam>
         /// <returns>生成されたオブジェクト</returns>
-        public static TPrefab SetPrefab<TPrefab>(this MonoBehaviour parent)
+        public static TPrefab SetPrefab<TPrefab>(this Component parent)
             where TPrefab : Component
             => parent.SetPrefab<TPrefab>(typeof(TPrefab).FullName.Split(new[] { '.', '+' }).Last());
     }

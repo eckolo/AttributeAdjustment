@@ -1,10 +1,4 @@
-﻿using Assets.Src.Domain.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Src.Domain.Factory
 {
@@ -26,7 +20,7 @@ namespace Assets.Src.Domain.Factory
         /// <param name="textName">描画文字列とは別の文字オブジェクト名称</param>
         /// <returns>生成された文字列オブジェクト</returns>
         public static TextMesh SetText(
-            this MonoBehaviour parent,
+            this Component parent,
             string setText,
             Vector2 position,
             float size = 1f,
