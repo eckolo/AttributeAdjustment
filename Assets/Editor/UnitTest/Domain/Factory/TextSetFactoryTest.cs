@@ -18,7 +18,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
         public static void SetTextSetTest_単一生成_全パラメータ設定()
         {
             var texts = Enumerable.Range(1, 3)
-                .Select(index => $"{nameof(SetTextSetTest_単一生成_全パラメータ設定)}_{index}");
+                .Select(index => ($"{nameof(SetTextSetTest_単一生成_全パラメータ設定)}_{index}", new Vector2(0, index)));
             var position = new Vector2(2, -4);
             var size = 0.6f;
             var color = Color.green;
@@ -36,18 +36,24 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             textList.Count.Is(texts.Count());
             {
                 var text = textList[0];
+                text.transform.localPosition.x.Is(0);
+                text.transform.localPosition.y.Is(1);
                 text.characterSize.Is(size);
                 text.color.Is(color);
                 text.alignment.Is(alignment);
             }
             {
                 var text = textList[1];
+                text.transform.localPosition.x.Is(0);
+                text.transform.localPosition.y.Is(2);
                 text.characterSize.Is(size);
                 text.color.Is(color);
                 text.alignment.Is(alignment);
             }
             {
                 var text = textList[2];
+                text.transform.localPosition.x.Is(0);
+                text.transform.localPosition.y.Is(3);
                 text.characterSize.Is(size);
                 text.color.Is(color);
                 text.alignment.Is(alignment);
@@ -57,7 +63,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
         public static void SetTextSetTest_単一生成_最小限のパラメータのみ設定()
         {
             var texts = Enumerable.Range(1, 3)
-                .Select(index => $"{nameof(SetTextSetTest_単一生成_最小限のパラメータのみ設定)}_{index}");
+                .Select(index => ($"{nameof(SetTextSetTest_単一生成_最小限のパラメータのみ設定)}_{index}", new Vector2(0, index)));
             var position = new Vector2(2, -4);
 
             var textSet = view.SetTextSet(texts, position);
@@ -72,18 +78,24 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             textList.Count.Is(texts.Count());
             {
                 var text = textList[0];
+                text.transform.localPosition.x.Is(0);
+                text.transform.localPosition.y.Is(1);
                 text.characterSize.Is(1);
                 text.color.Is(Color.white);
                 text.alignment.Is(TextAlignment.Center);
             }
             {
                 var text = textList[1];
+                text.transform.localPosition.x.Is(0);
+                text.transform.localPosition.y.Is(2);
                 text.characterSize.Is(1);
                 text.color.Is(Color.white);
                 text.alignment.Is(TextAlignment.Center);
             }
             {
                 var text = textList[2];
+                text.transform.localPosition.x.Is(0);
+                text.transform.localPosition.y.Is(3);
                 text.characterSize.Is(1);
                 text.color.Is(Color.white);
                 text.alignment.Is(TextAlignment.Center);
@@ -93,7 +105,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
         public static void SetTextSetTest_複数生成_最小限のパラメータのみ設定()
         {
             var texts = Enumerable.Range(1, 3)
-                .Select(index => $"{nameof(SetTextSetTest_複数生成_最小限のパラメータのみ設定)}_{index}");
+                .Select(index => ($"{nameof(SetTextSetTest_複数生成_最小限のパラメータのみ設定)}_{index}", new Vector2(0, index)));
             var position = new Vector2(2, -4);
             var textSetName = $"{nameof(SetTextSetTest_複数生成_最小限のパラメータのみ設定)}_1 {nameof(SetTextSetTest_複数生成_最小限のパラメータのみ設定)}_2 {nameof(SetTextSetTest_複数生成_最小限のパラメータのみ設定)}_3";
 
@@ -110,18 +122,24 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 textList.Count.Is(texts.Count());
                 {
                     var text = textList[0];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(1);
                     text.characterSize.Is(1);
                     text.color.Is(Color.white);
                     text.alignment.Is(TextAlignment.Center);
                 }
                 {
                     var text = textList[1];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(2);
                     text.characterSize.Is(1);
                     text.color.Is(Color.white);
                     text.alignment.Is(TextAlignment.Center);
                 }
                 {
                     var text = textList[2];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(3);
                     text.characterSize.Is(1);
                     text.color.Is(Color.white);
                     text.alignment.Is(TextAlignment.Center);
@@ -141,18 +159,24 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 textList.Count.Is(texts.Count());
                 {
                     var text = textList[0];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(1);
                     text.characterSize.Is(1);
                     text.color.Is(Color.white);
                     text.alignment.Is(TextAlignment.Center);
                 }
                 {
                     var text = textList[1];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(2);
                     text.characterSize.Is(1);
                     text.color.Is(Color.white);
                     text.alignment.Is(TextAlignment.Center);
                 }
                 {
                     var text = textList[2];
+                    text.transform.localPosition.x.Is(0);
+                    text.transform.localPosition.y.Is(3);
                     text.characterSize.Is(1);
                     text.color.Is(Color.white);
                     text.alignment.Is(TextAlignment.Center);

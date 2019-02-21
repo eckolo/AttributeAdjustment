@@ -14,7 +14,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
         public static void SetterTest_color_正常系()
         {
             var texts = Enumerable.Range(1, 3)
-                .Select(index => $"{nameof(SetterTest_color_正常系)}_{index}");
+                .Select(index => ($"{nameof(SetterTest_color_正常系)}_{index}", new Vector2(0, index)));
             var position = new Vector2(2, -4);
             var color = Color.green;
 

@@ -1,5 +1,4 @@
 ﻿using Assets.Src.Domain.Model.Entity;
-using Assets.Src.Domain.Service;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -24,21 +23,21 @@ namespace Assets.Src.Domain.Factory
         /// <param name="textName">描画文字列とは別の文字オブジェクト名称</param>
         /// <returns>生成された文字列オブジェクト</returns>
         public static TextSet SetTextSet(
-            IEnumerable<string> setTexts,
             this Component parent,
+            IEnumerable<(string text, Vector2 localPosition)> setTexts,
             Vector2 position,
             float size = 1f,
             Color32? color = null,
             TextAlignment alignment = TextAlignment.Center,
             string textName = null)
         {
-            var name = setTexts.Aggregate((text1, text2) => $"{text1} {text2}");
+            var name = setTexts.Select(text => text.text).Aggregate((text1, text2) => $"{text1} {text2}");
             var textSet = parent.SetPrefab<TextSet>(name);
 
             var texts = setTexts
                 .Select(text => textSet.SetText(
-                    setText: text,
-                    position: Vector2.zero,
+                    setText: text.text,
+                    position: text.localPosition,
                     size: size,
                     color: color,
                     pivot: TextAnchor.MiddleCenter,
