@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Value
@@ -7,6 +8,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 音量関連のパラメータ
         /// </summary>
+        [Serializable]
         public class Volume
         {
             /// <summary>
