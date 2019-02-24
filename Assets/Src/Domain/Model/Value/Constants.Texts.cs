@@ -1,4 +1,6 @@
-﻿namespace Assets.Src.Domain.Model.Value
+﻿using UnityEngine;
+
+namespace Assets.Src.Domain.Model.Value
 {
     public static partial class Constants
     {
@@ -19,6 +21,10 @@
             /// 名無しオブジェクトにつけられる名称
             /// </summary>
             public const string ANONYMOUS_NAME = "NoNameObject";
+            /// <summary>
+            /// 通常の文字色
+            /// </summary>
+            public static readonly Color32 DEFAULT_COLOR = Color.black;
         }
     }
 }
