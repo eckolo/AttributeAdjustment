@@ -7,7 +7,7 @@ namespace Assets.Src.Domain.Model.Value
     /// <summary>
     /// <see cref="TextSet"/>クラスの生成元となるインターフェース
     /// </summary>
-    public partial interface ITextSetStationery
+    public partial interface ITextSetStationery : IPrefabStationery<TextSet>
     {
         /// <summary>
         /// 表示テキスト情報一覧

@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,5 +25,12 @@ namespace Assets.Src.Mock
         public TextAlignment alignment { get; }
 
         public static TextSetStationeryMock Generate(IEnumerable<TextMeshStationery> texts, float size, Color32 color, TextAlignment alignment) => new TextSetStationeryMock(texts, size, color, alignment);
+
+        public TextSet InitializeEntity(Component parent, Vector2 localPosition)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TextSet entity => throw new NotImplementedException();
     }
 }
