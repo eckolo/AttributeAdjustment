@@ -17,7 +17,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
         [Test]
         public static void SetPrefabTest()
         {
-            var view = new GameObject(nameof(SetPrefabTest), typeof(View)).GetComponent<View>();
+            var view = new GameObject(nameof(SetPrefabTest), typeof(ViewRoot)).GetComponent<ViewRoot>();
 
             var name1 = $"{nameof(MonoBehaviourMock)}_{nameof(SetPrefabTest)}";
             var object1 = view.SetPrefab<MonoBehaviourMock>(name1);
@@ -32,7 +32,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
         [Test]
         public static void SetPrefabTest2()
         {
-            var view = new GameObject(nameof(SetPrefabTest2), typeof(View)).GetComponent<View>();
+            var view = new GameObject(nameof(SetPrefabTest2), typeof(ViewRoot)).GetComponent<ViewRoot>();
 
             var object1 = view.SetPrefab<MonoBehaviourMock>();
             var object2 = GameObject.Find(nameof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();

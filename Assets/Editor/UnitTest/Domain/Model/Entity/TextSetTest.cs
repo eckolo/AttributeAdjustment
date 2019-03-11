@@ -8,7 +8,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
 {
     public class TextSetTest
     {
-        static readonly View view = View.CleateNew(nameof(TextSetTest));
+        static readonly ViewRoot view = ViewRoot.CleateNew(nameof(TextSetTest));
 
         [Test]
         public static void SetterTest_color_正常系()

@@ -1,10 +1,11 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Service;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Src.Domain.Service
+namespace Assets.Src.View.Model
 {
     /// <summary> 
     /// <see cref="PrefabAbst"/>の表示操作に関するクラス

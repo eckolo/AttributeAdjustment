@@ -14,7 +14,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
     /// </summary>
     public static class TextSetFactoryTest
     {
-        static readonly View view = View.CleateNew(nameof(MessageManagerTest));
+        static readonly ViewRoot view = ViewRoot.CleateNew(nameof(MessageManagerTest));
 
         [Test]
         public static void SetTextSetTest_単一生成_全パラメータ設定()

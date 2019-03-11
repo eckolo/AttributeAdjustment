@@ -8,7 +8,7 @@ namespace Assets.Src.Domain.Model.Entity
     /// ビュー類のルートになるオブジェクト
     /// それだけ
     /// </summary>
-    public class View : PrefabAbst
+    public class ViewRoot : PrefabAbst
     {
         /// <summary>
         /// ビューの新規生成
@@ -16,10 +16,10 @@ namespace Assets.Src.Domain.Model.Entity
         /// <param name="name">名称</param>
         /// <param name="parent">親オブジェクト</param>
         /// <returns>生成されたビュー</returns>
-        public static View CleateNew(string name, MonoBehaviour parent = null)
+        public static ViewRoot CleateNew(string name, MonoBehaviour parent = null)
         {
             var _name = name is null ? "" : $"_{name}";
-            return new GameObject($"{nameof(View)}{_name}", typeof(View)).GetComponent<View>().SetParent(parent);
+            return new GameObject($"{nameof(ViewRoot)}{_name}", typeof(ViewRoot)).GetComponent<ViewRoot>().SetParent(parent);
         }
     }
 }

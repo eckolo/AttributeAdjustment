@@ -93,13 +93,13 @@ namespace Assets.Src.Domain.Service
             return choiced;
         }
 
-        static readonly Stack<View> viewStack = new Stack<View>();
+        static readonly Stack<ViewRoot> viewStack = new Stack<ViewRoot>();
         static readonly Stack<TextMesh> textMeshesStack = new Stack<TextMesh>();
 
         static readonly Action<List<string>, int?> startProcessDefault = (choiceList, choiced) => {
             var name = nameof(ChoiceSystem);
 
-            var view = View.CleateNew(name);
+            var view = ViewRoot.CleateNew(name);
             viewStack.Push(view);
 
             var textMesh = view.SetText("", Vector2.zero, size: 0.5f, alignment: TextAlignment.Left, textName: name);
