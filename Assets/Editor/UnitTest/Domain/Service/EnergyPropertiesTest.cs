@@ -34,5 +34,30 @@ namespace Assets.Editor.UnitTest.Domain.Service
             Assert.Throws<ArgumentOutOfRangeException>(() => ((Energy)(-1)).GetName());
             Assert.Throws<ArgumentOutOfRangeException>(() => ((Energy)Enum.GetValues(typeof(Energy)).Length).GetName());
         }
+
+        [Test]
+        public static void GetColorTest_正常系()
+        {
+            Energy.FLAME.GetColor().Is(Constants.Energy.Color.FLAME);
+            Energy.ICE.GetColor().Is(Constants.Energy.Color.ICE);
+            Energy.WIND.GetColor().Is(Constants.Energy.Color.WIND);
+            Energy.GRAVITY.GetColor().Is(Constants.Energy.Color.GRAVITY);
+            Energy.LIGHT.GetColor().Is(Constants.Energy.Color.LIGHT);
+            Energy.DARKNESS.GetColor().Is(Constants.Energy.Color.DARKNESS);
+            Energy.THUNDER.GetColor().Is(Constants.Energy.Color.THUNDER);
+            Energy.EARTH.GetColor().Is(Constants.Energy.Color.EARTH);
+            Energy.LIFE.GetColor().Is(Constants.Energy.Color.LIFE);
+            Energy.POISON.GetColor().Is(Constants.Energy.Color.POISON);
+            Energy.SLASH.GetColor().Is(Constants.Energy.Color.SLASH);
+            Energy.BLOW.GetColor().Is(Constants.Energy.Color.BLOW);
+            Energy.IMPACT.GetColor().Is(Constants.Energy.Color.IMPACT);
+            Energy.PIERCING.GetColor().Is(Constants.Energy.Color.PIERCING);
+        }
+        [Test]
+        public static void GetColorTest_未定義()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => ((Energy)(-1)).GetColor());
+            Assert.Throws<ArgumentOutOfRangeException>(() => ((Energy)Enum.GetValues(typeof(Energy)).Length).GetColor());
+        }
     }
 }
