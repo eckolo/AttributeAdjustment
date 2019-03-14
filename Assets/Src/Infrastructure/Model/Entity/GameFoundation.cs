@@ -15,7 +15,7 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// <summary>
         /// 現在有効なゲーム基盤の実体
         /// </summary>
-        public static GameFoundation myself { get; private set; } = null;
+        public static GameFoundation entity { get; private set; } = null;
 
         /// <summary>
         /// インジェクション用メソッド定義のために初回生成時のみ起動
@@ -42,9 +42,9 @@ namespace Assets.Src.Infrastructure.Model.Entity
         public static GameFoundation CreateNewState(GameState state)
         {
             var mainUiView = ViewRoot.CleateNew(Constants.MAIN_UI_NAME);
-            if(myself == null) return myself = myself ?? new GameFoundation(state, mainUiView);
-            myself.nowState = state;
-            return myself;
+            if(entity == null) return entity = entity ?? new GameFoundation(state, mainUiView);
+            entity.nowState = state;
+            return entity;
         }
         /// <summary>
         /// 新規ゲーム基盤生成メソッド
