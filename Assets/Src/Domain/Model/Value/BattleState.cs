@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Domain.Factory;
+using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Service;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Assets.Src.Domain.Model.Value
     /// <summary>
     /// 戦闘の状態保持クラス
     /// </summary>
-    public partial class BattleState
+    public partial class BattleState : IViewState
     {
         /// <summary>
         /// 戦闘状態の生成
