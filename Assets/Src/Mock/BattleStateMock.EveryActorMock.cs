@@ -7,13 +7,13 @@ namespace Assets.Src.Mock
     {
         public class EveryActorMock : EveryActor
         {
-            EveryActorMock(IEnumerable<MotionTip> handTips) : base()
+            EveryActorMock(List<MotionTip> handTips) : base()
             {
                 this.handTips = handTips;
             }
             EveryActorMock() : base() { }
 
-            public static EveryActorMock Generate(IEnumerable<MotionTip> handTips) => new EveryActorMock(handTips);
+            public static EveryActorMock Generate(List<MotionTip> handTips) => new EveryActorMock(handTips);
             public static EveryActorMock Generate() => new EveryActorMock();
         }
     }

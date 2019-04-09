@@ -28,7 +28,7 @@ namespace Assets.Src.Domain.Model.Value
             /// <summary>
             /// 手札
             /// </summary>
-            public IEnumerable<MotionTip> handTips { get; protected set; }
+            public List<MotionTip> handTips { get; protected set; }
 
             /// <summary>
             /// 手札の追加
