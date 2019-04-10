@@ -44,7 +44,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 文字色
         /// </summary>
-        public Color32 color => Constants.Texts.DEFAULT_COLOR;
+        public Color32 color => energy.GetColor();
 
         /// <summary>
         /// 文字の左右詰め

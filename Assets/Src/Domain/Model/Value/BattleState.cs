@@ -79,7 +79,7 @@ namespace Assets.Src.Domain.Model.Value
                 .Where(tip => tip is MotionTip)
                 .ToList();
 
-            if(!deckTips.Any()) this.SetupDeck();
+            if (!deckTips.Any()) this.SetupDeck();
 
             return popedTips;
         }
