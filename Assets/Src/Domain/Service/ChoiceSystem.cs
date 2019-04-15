@@ -19,7 +19,7 @@ namespace Assets.Src.Domain.Service
         /// 結果の値はendProcessで返す
         /// </summary>
         /// <param name="choiceList">選択肢</param>
-        /// <param name="buttom">ボタン設定</param>
+        /// <param name="button">ボタン設定</param>
         /// <param name="initialChoiced">デフォルトの選択位置</param>
         /// <param name="startProcess">開始時処理</param>
         /// <param name="midProcess">途中処理</param>
@@ -27,7 +27,7 @@ namespace Assets.Src.Domain.Service
         /// <returns>選択結果</returns>
         public static async UniTask<int?> Choice(
             this List<string> choiceList,
-            Configs.Buttom buttom,
+            Configs.Button button,
             int initialChoiced = 0,
             Action<List<string>, int?> startProcess = null,
             Action<List<string>, int?> midProcess = null,
@@ -60,16 +60,16 @@ namespace Assets.Src.Domain.Service
 
                 _midProcess(choiceList, choiced);
 
-                var ableKeyList = buttom.decide.Concat(buttom.vertical).ToList();
+                var ableKeyList = button.decide.Concat(button.vertical).ToList();
 
                 var (inputKeys, keyTiming) = await Wait.Until(ableKeyList);
 
-                var inputDecisionKey = inputKeys.Judge(buttom.decide).Any() && keyTiming == KeyTiming.DOWN;
-                var inputCancelKey = inputKeys.Judge(buttom.cancel).Any() && keyTiming == KeyTiming.DOWN;
-                var inputUpKey = inputKeys.Judge(buttom.ups).Any() && keyTiming == KeyTiming.DOWN;
-                var inputDownKey = inputKeys.Judge(buttom.downs).Any() && keyTiming == KeyTiming.DOWN;
-                var keepUpKey = inputKeys.Judge(buttom.ups).Any() && keyTiming == KeyTiming.ON;
-                var keepDownKey = inputKeys.Judge(buttom.downs).Any() && keyTiming == KeyTiming.ON;
+                var inputDecisionKey = inputKeys.Judge(button.decide).Any() && keyTiming == KeyTiming.DOWN;
+                var inputCancelKey = inputKeys.Judge(button.cancel).Any() && keyTiming == KeyTiming.DOWN;
+                var inputUpKey = inputKeys.Judge(button.ups).Any() && keyTiming == KeyTiming.DOWN;
+                var inputDownKey = inputKeys.Judge(button.downs).Any() && keyTiming == KeyTiming.DOWN;
+                var keepUpKey = inputKeys.Judge(button.ups).Any() && keyTiming == KeyTiming.ON;
+                var keepDownKey = inputKeys.Judge(button.downs).Any() && keyTiming == KeyTiming.ON;
 
                 keepUpTime = keepUpKey ? keepUpTime + 1 : 0;
                 keepDownTime = keepDownKey ? keepDownTime + 1 : 0;

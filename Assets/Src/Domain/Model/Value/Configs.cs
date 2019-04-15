@@ -16,11 +16,11 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="buttom">キーコンフィグ対応用可変ボタンコード</param>
+        /// <param name="button">キーコンフィグ対応用可変ボタンコード</param>
         /// <param name="volume">音量関連のパラメータ</param>
-        public Configs(Buttom buttom, Volume volume)
+        public Configs(Button button, Volume volume)
         {
-            _buttom = buttom;
+            _button = button;
             _volume = volume;
         }
 
@@ -28,11 +28,11 @@ namespace Assets.Src.Domain.Model.Value
         /// キーコンフィグ対応用可変ボタンコード
         /// </summary>
         [SerializeField]
-        Buttom _buttom = new Buttom();
+        Button _button = new Button();
         /// <summary>
         /// キーコンフィグ対応用可変ボタンコード
         /// </summary>
-        public Buttom buttom => _buttom;
+        public Button button => _button;
 
         /// <summary>
         /// 音量関連のパラメータ

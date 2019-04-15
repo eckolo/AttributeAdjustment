@@ -9,12 +9,12 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// キーコンフィグ対応用可変ボタンコード
         /// </summary>
-        public class Buttom
+        public class Button
         {
-            public Buttom()
+            public Button()
             {
             }
-            public Buttom(
+            public Button(
                 KeyCode key1, KeyCode key2, KeyCode key3,
                 KeyCode sub, KeyCode sink, KeyCode menu,
                 KeyCode up, KeyCode down, KeyCode left, KeyCode right,
