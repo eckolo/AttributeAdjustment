@@ -28,10 +28,9 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// インスタンス生成用のプライベートなコンストラクタ
         /// </summary>
         /// <param name="state">初期ゲーム基盤</param>
-        GameFoundation(GameState state, ViewRoot viewRoot)
+        GameFoundation(GameState state)
         {
             nowState = state ?? nowState.Duplicate();
-            viewRoot = viewRoot ?? this.viewRoot;
         }
 
         /// <summary>
@@ -41,8 +40,7 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// <returns>生成されたゲーム基盤</returns>
         public static GameFoundation CreateNewState(GameState state)
         {
-            var mainUiView = ViewRoot.CleateNew(Constants.MAIN_UI_NAME);
-            if(entity == null) return entity = entity ?? new GameFoundation(state, mainUiView);
+            if(entity == null) return entity = entity ?? new GameFoundation(state);
             entity.nowState = state;
             return entity;
         }
@@ -58,11 +56,6 @@ namespace Assets.Src.Infrastructure.Model.Entity
         /// パラメータ一括アクセス用プロパティ
         /// </summary>
         public GameState nowState { get; set; }
-
-        /// <summary>
-        /// 画面表示用オブジェクトルート
-        /// </summary>
-        public ViewRoot viewRoot { get; set; }
 
         /// <summary>
         /// シャローコピーメソッド

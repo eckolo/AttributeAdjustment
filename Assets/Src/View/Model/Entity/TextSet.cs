@@ -1,8 +1,8 @@
-﻿using Assets.Src.Domain.Model.Abstract;
+﻿using Assets.Src.View.Model.Abstract;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Src.Domain.Model.Entity
+namespace Assets.Src.View.Model.Entity
 {
     /// <summary>
     /// 複数テキスト一括制御+テキスト背景画像

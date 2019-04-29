@@ -3,7 +3,7 @@ using Assets.Src.Domain.Service;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Src.Domain.Factory
+namespace Assets.Src.View.Factory
 {
     /// <summary>
     /// プレファブなどの実体化されるオブジェクト類の生成処理クラス

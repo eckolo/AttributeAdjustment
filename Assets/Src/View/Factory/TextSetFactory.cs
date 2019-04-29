@@ -1,10 +1,11 @@
 ﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
+using Assets.Src.View.Model.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Src.Domain.Factory
+namespace Assets.Src.View.Factory
 {
     /// <summary>
     /// <see cref="TextSet"/>の生成処理

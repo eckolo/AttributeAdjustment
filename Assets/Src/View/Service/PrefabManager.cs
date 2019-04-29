@@ -1,16 +1,17 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Service;
+using Assets.Src.View.Model.Abstract;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Src.View.Model
+namespace Assets.Src.View.Service
 {
     /// <summary> 
     /// <see cref="PrefabAbst"/>の表示操作に関するクラス
     /// </summary>
-    public static class PrefabViewer
+    public static class PrefabManager
     {
         public static async Task<List<Vector2>> Move<TPrefab>(
             this TPrefab prefab,

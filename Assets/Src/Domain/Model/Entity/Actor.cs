@@ -7,7 +7,7 @@ namespace Assets.Src.Domain.Model.Entity
     /// <summary>
     /// 動作主体
     /// </summary>
-    public class Actor : Named, IDuplicatable<Actor>
+    public class Actor : Named, IViewAbst, IDuplicatable<Actor>
     {
         public Actor(string name) : base(name)
         {

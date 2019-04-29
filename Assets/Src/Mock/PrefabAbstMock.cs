@@ -1,5 +1,5 @@
-﻿using Assets.Src.Domain.Model.Abstract;
-using Assets.Src.Domain.Service;
+﻿using Assets.Src.Domain.Service;
+using Assets.Src.View.Model.Abstract;
 using UnityEngine;
 
 namespace Assets.Src.Mock

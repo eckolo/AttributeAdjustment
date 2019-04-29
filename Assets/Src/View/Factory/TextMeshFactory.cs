@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Src.Domain.Factory
+namespace Assets.Src.View.Factory
 {
     /// <summary>
     /// <see cref="TextMesh"/>の生成処理

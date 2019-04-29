@@ -1,15 +1,12 @@
-﻿using System;
+﻿using Assets.Src.Domain.Model.Value;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Src.Domain.Model.Abstract
 {
     /// <summary>
-    /// ビューに渡すべきモデルクラス
+    /// Viewに渡されることで画面描画処理の起点となる状態オブジェクト
     /// </summary>
-    public interface IViewState
+    public interface IViewState : IViewAbst
     {
     }
 }

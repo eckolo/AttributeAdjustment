@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Mock;
+using Assets.Src.View.Model.Entity;
 using NUnit.Framework;
 using UnityEngine;
 

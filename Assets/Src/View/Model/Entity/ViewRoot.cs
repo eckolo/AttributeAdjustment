@@ -1,8 +1,8 @@
-using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Service;
+using Assets.Src.View.Model.Abstract;
 using UnityEngine;
 
-namespace Assets.Src.Domain.Model.Entity
+namespace Assets.Src.View.Model.Entity
 {
     /// <summary>
     /// ビュー類のルートになるオブジェクト

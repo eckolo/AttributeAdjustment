@@ -1,5 +1,5 @@
-﻿using Assets.Src.Domain.Model.Entity;
-using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Value;
+using Assets.Src.View.Model.Entity;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
