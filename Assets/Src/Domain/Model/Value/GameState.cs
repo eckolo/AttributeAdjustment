@@ -10,7 +10,7 @@ namespace Assets.Src.Domain.Model.Value
     /// ゲーム状態クラス
     /// </summary>
     [Serializable]
-    public partial class GameState : IDuplicatable<GameState>, IViewState
+    public partial class GameState : IDuplicatable<GameState>, ViewStateAbst
     {
         public GameState(int seedInt, IFileManager fileManager)
         {

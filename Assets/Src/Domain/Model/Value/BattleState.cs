@@ -11,7 +11,7 @@ namespace Assets.Src.Domain.Model.Value
     /// <summary>
     /// 戦闘の状態保持クラス
     /// </summary>
-    public partial class BattleState : IViewState
+    public partial class BattleState : ViewStateAbst
     {
         /// <summary>
         /// 戦闘状態の生成

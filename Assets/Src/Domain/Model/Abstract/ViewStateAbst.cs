@@ -6,7 +6,7 @@ namespace Assets.Src.Domain.Model.Abstract
     /// <summary>
     /// Viewに渡されることで画面描画処理の起点となる状態オブジェクト
     /// </summary>
-    public interface IViewState : IViewAbst
+    public abstract class ViewStateAbst : IViewAbst
     {
     }
 }
