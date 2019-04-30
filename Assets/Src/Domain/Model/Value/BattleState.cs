@@ -77,9 +77,13 @@ namespace Assets.Src.Domain.Model.Value
             var popedTips = Enumerable.Range(0, _popTipNumber)
                 .Select(_ => deckTips.Any() ? deckTips.Dequeue() : null)
                 .Where(tip => tip is MotionTip)
+                .Select(tip => tip.Duplicate())
                 .ToList();
 
-            if (!deckTips.Any()) this.SetupDeck();
+            this.SetNewView(popedTips);
+
+            if(!deckTips.Any())
+                this.SetupDeck();
 
             return popedTips;
         }

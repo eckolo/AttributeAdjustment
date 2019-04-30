@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Value
@@ -10,18 +11,8 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public class Generate : ViewAction
         {
-            public Generate(
-                IViewAbst targetObject,
-                TextAnchor targetObjectAnchor,
-                IViewAbst pivotObject,
-                TextAnchor pivotObjectAnchor,
-                bool displayed)
-                : base(targetObject, targetObjectAnchor, pivotObject, pivotObjectAnchor)
-            {
-                this.displayed = displayed;
-            }
-
-            public bool displayed { get; }
+            public Generate(IEnumerable<IViewAbst> actors) : base(ActionType.GENERATE, actors)
+            { }
         }
     }
 }

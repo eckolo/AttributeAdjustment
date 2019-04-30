@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,32 +14,32 @@ namespace Assets.Src.Domain.Model.Value
     /// </summary>
     public abstract partial class ViewAction
     {
-        protected ViewAction(
-            IViewAbst targetObject,
-            TextAnchor? targetObjectAnchor,
-            IViewAbst pivotObject,
-            TextAnchor? pivotObjectAnchor)
+        protected ViewAction(ActionType actionType, IEnumerable<IViewAbst> actors)
         {
-            this.targetObject = targetObject ?? this.targetObject;
-            this.targetObjectAnchor = targetObjectAnchor ?? this.targetObjectAnchor;
-            this.pivotObject = pivotObject ?? this.pivotObject;
-            this.pivotObjectAnchor = pivotObjectAnchor ?? this.pivotObjectAnchor;
+            this.actionType = actionType;
+            this.actors = actors ?? this.actors;
         }
+        protected ViewAction(ActionType actionType, IEnumerable<IViewAbst> actors, IViewAbst target, Easing easing)
+            : this(actionType, actors)
+        {
+            this.target = target;
+            this.easing = easing;
+        }
+        /// <summary>
+        /// 動作種別
+        /// </summary>
+        public ActionType actionType { get; }
         /// <summary>
         /// 動作対象オブジェクト
         /// </summary>
-        public IViewAbst targetObject { get; }
+        public IEnumerable<IViewAbst> actors { get; }
         /// <summary>
-        /// 動作対象オブジェクトの座標軸
+        /// 動作起点オブジェクト
         /// </summary>
-        public TextAnchor targetObjectAnchor { get; }
+        public IViewAbst target { get; }
         /// <summary>
-        /// 動作基準座標オブジェクト
+        /// 動作処理のイージング
         /// </summary>
-        public IViewAbst pivotObject { get; }
-        /// <summary>
-        /// 動作基準座標オブジェクトの座標軸
-        /// </summary>
-        public TextAnchor pivotObjectAnchor { get; }
+        public Easing easing { get; }
     }
 }

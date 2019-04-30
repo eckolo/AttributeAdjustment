@@ -10,7 +10,7 @@ namespace Assets.Src.Domain.Model.Value
     /// <summary>
     /// 部分動作を表すモーション
     /// </summary>
-    public class MotionTip : Named, ITextSetStationery
+    public class MotionTip : Named, ITextSetStationery, IDuplicatable<MotionTip>
     {
         public MotionTip(string name, Energy energy, int energyValue) : base(name)
         {
@@ -50,5 +50,7 @@ namespace Assets.Src.Domain.Model.Value
         /// 文字の左右詰め
         /// </summary>
         public TextAlignment alignment => TextAlignment.Center;
+
+        public MotionTip MemberwiseClonePublic() => (MotionTip)MemberwiseClone();
     }
 }

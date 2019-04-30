@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Repository;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Value
@@ -11,17 +12,9 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public class Move : ViewAction
         {
-            public Move(
-                IViewAbst targetObject,
-                TextAnchor targetObjectAnchor,
-                IViewAbst pivotObject,
-                TextAnchor pivotObjectAnchor,
-                Easing easing)
-                : base(targetObject, targetObjectAnchor, pivotObject, pivotObjectAnchor)
-            {
-                this.easing = easing;
-            }
-            public Easing easing { get; }
+            public Move(IEnumerable<IViewAbst> actors, IViewAbst target, Easing easing)
+                : base(ActionType.MOVE, actors)
+            { }
         }
     }
 }

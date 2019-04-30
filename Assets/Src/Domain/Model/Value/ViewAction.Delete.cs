@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Value
@@ -10,12 +11,7 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public class Delete : ViewAction
         {
-            public Delete(
-                IViewAbst targetObject,
-                TextAnchor targetObjectAnchor,
-                IViewAbst pivotObject,
-                TextAnchor pivotObjectAnchor)
-                : base(targetObject, targetObjectAnchor, pivotObject, pivotObjectAnchor)
+            public Delete(IEnumerable<IViewAbst> actors) : base(ActionType.DELETE, actors)
             { }
         }
     }
