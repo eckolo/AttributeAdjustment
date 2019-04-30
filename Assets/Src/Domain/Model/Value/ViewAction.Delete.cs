@@ -11,7 +11,7 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public class Delete : ViewAction
         {
-            public Delete(IEnumerable<IViewAbst> actors) : base(ActionType.DELETE, actors)
+            public Delete(IEnumerable<IViewValue> actors) : base(ActionType.DELETE, actors)
             { }
         }
     }

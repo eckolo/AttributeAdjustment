@@ -14,12 +14,12 @@ namespace Assets.Src.Domain.Model.Value
     /// </summary>
     public abstract partial class ViewAction
     {
-        protected ViewAction(ActionType actionType, IEnumerable<IViewAbst> actors)
+        protected ViewAction(ActionType actionType, IEnumerable<IViewValue> actors)
         {
             this.actionType = actionType;
             this.actors = actors ?? this.actors;
         }
-        protected ViewAction(ActionType actionType, IEnumerable<IViewAbst> actors, IViewAbst target, Easing easing)
+        protected ViewAction(ActionType actionType, IEnumerable<IViewValue> actors, IViewValue target, Easing easing)
             : this(actionType, actors)
         {
             this.target = target;
@@ -32,11 +32,11 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 動作対象オブジェクト
         /// </summary>
-        public IEnumerable<IViewAbst> actors { get; }
+        public IEnumerable<IViewValue> actors { get; }
         /// <summary>
         /// 動作起点オブジェクト
         /// </summary>
-        public IViewAbst target { get; }
+        public IViewValue target { get; }
         /// <summary>
         /// 動作処理のイージング
         /// </summary>

@@ -11,7 +11,7 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public class Generate : ViewAction
         {
-            public Generate(IEnumerable<IViewAbst> actors) : base(ActionType.GENERATE, actors)
+            public Generate(IEnumerable<IViewValue> actors) : base(ActionType.GENERATE, actors)
             { }
         }
     }

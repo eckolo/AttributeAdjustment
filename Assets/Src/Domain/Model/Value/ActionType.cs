@@ -2,7 +2,7 @@
 
 namespace Assets.Src.Domain.Model.Value
 {
-    public abstract partial class ViewAction<TView> where TView : IViewAbst
+    public abstract partial class ViewAction<TView> where TView : IViewValue
     {
         /// <summary>
         /// 動作タイプ

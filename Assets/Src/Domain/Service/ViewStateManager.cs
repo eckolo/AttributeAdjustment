@@ -14,20 +14,20 @@ namespace Assets.Src.Domain.Service
             this TViewState state,
             TView origin)
             where TViewState : ViewStateAbst
-            where TView : IViewAbst
+            where TView : IViewValue
             => state.SetNewView(new[] { origin });
         public static TViewState SetNewView<TViewState, TView>(
             this TViewState state,
             IEnumerable<TView> origins)
             where TViewState : ViewStateAbst
-            where TView : IViewAbst
+            where TView : IViewValue
         {
             foreach(var view in origins)
             {
                 state.viewList.Add(view);
             }
 
-            var action = new ViewAction.Generate(origins.Select(view => (IViewAbst)view));
+            var action = new ViewAction.Generate(origins.Select(view => (IViewValue)view));
             state.viewActionQueue.Enqueue(action);
 
             return state;
