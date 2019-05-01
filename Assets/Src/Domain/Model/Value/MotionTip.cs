@@ -11,7 +11,7 @@ namespace Assets.Src.Domain.Model.Value
     /// <summary>
     /// 部分動作を表すモーション
     /// </summary>
-    public class MotionTip : Named, ITextSetStationery, IDuplicatable<MotionTip>, IEquatable<MotionTip>
+    public class MotionTip : Named, ITextSetStationeryValue, IDuplicatable<MotionTip>, IEquatable<MotionTip>
     {
         public MotionTip(string name, Energy energy, int energyValue) : base(name)
         {
@@ -31,10 +31,10 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 表示テキスト情報一覧
         /// </summary>
-        public IEnumerable<TextMeshStationery> texts => new[]
+        public IEnumerable<TextMeshStationeryValue> texts => new[]
         {
-            new TextMeshStationery(energy.GetName(), new Vector2(0, -0.2f)),
-            new TextMeshStationery(energyValue.ToString(), new Vector2(0, 0.2f)),
+            new TextMeshStationeryValue(energy.GetName(), new Vector2(0, -0.2f)),
+            new TextMeshStationeryValue(energyValue.ToString(), new Vector2(0, 0.2f)),
         };
 
         /// <summary>

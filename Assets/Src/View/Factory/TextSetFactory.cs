@@ -58,7 +58,7 @@ namespace Assets.Src.View.Factory
         /// <param name="stationery">テキストセットの雛形</param>
         /// <param name="position">表示位置</param>
         /// <returns></returns>
-        public static TextSet SetTextSet(this Component parent, ITextSetStationery stationery, Vector2 position)
+        public static TextSet SetTextSet(this Component parent, ITextSetStationeryValue stationery, Vector2 position)
             => parent.SetTextSet(
                 setTexts: stationery.texts.Select(text => (text.text, text.position)),
                 position: position,

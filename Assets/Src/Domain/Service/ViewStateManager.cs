@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using System;
 using System.Collections.Generic;
@@ -10,24 +11,22 @@ namespace Assets.Src.Domain.Service
 {
     public static class ViewStateManager
     {
-        public static TViewState SetNewView<TViewState, TView>(
+        public static TViewState SetNewView<TViewState, TViewValue>(
             this TViewState state,
-            TView origin)
+            TViewValue value)
             where TViewState : ViewStateAbst
-            where TView : IViewValue
-            => state.SetNewView(new[] { origin });
-        public static TViewState SetNewView<TViewState, TView>(
+            where TViewValue : IViewValue
+            => state.SetNewView(new[] { value });
+        public static TViewState SetNewView<TViewState, TViewValue>(
             this TViewState state,
-            IEnumerable<TView> origins)
+            IEnumerable<TViewValue> values)
             where TViewState : ViewStateAbst
-            where TView : IViewValue
+            where TViewValue : IViewValue
         {
-            foreach(var view in origins)
-            {
-                state.viewList.Add(view);
-            }
+            var viewStationerys = values.Select(value => new ViewStationery(value));
+            state.AddViewStationerys(viewStationerys);
 
-            var action = new ViewAction.Generate(origins.Select(view => (IViewValue)view));
+            var action = new ViewAction.Generate(viewStationerys);
             state.viewActionQueue.Enqueue(action);
 
             return state;

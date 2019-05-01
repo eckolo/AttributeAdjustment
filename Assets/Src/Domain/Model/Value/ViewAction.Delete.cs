@@ -1,6 +1,5 @@
-﻿using Assets.Src.Domain.Model.Abstract;
+﻿using Assets.Src.Domain.Model.Entity;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Value
 {
@@ -11,7 +10,7 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public class Delete : ViewAction
         {
-            public Delete(IEnumerable<IViewValue> actors) : base(ActionType.DELETE, actors)
+            public Delete(IEnumerable<ViewStationery> actors) : base(ActionType.DELETE, actors)
             { }
         }
     }

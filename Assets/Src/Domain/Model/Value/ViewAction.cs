@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Repository;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,16 @@ namespace Assets.Src.Domain.Model.Value
     /// </summary>
     public abstract partial class ViewAction
     {
-        protected ViewAction(ActionType actionType, IEnumerable<IViewValue> actors)
+        protected ViewAction(ActionType actionType, IEnumerable<ViewStationery> actors)
         {
             this.actionType = actionType;
             this.actors = actors ?? this.actors;
         }
-        protected ViewAction(ActionType actionType, IEnumerable<IViewValue> actors, IViewValue target, Easing easing)
+        protected ViewAction(
+            ActionType actionType,
+            IEnumerable<ViewStationery> actors,
+            ViewStationery target,
+            Easing easing)
             : this(actionType, actors)
         {
             this.target = target;
@@ -32,11 +37,11 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 動作対象オブジェクト
         /// </summary>
-        public IEnumerable<IViewValue> actors { get; }
+        public IEnumerable<ViewStationery> actors { get; }
         /// <summary>
         /// 動作起点オブジェクト
         /// </summary>
-        public IViewValue target { get; }
+        public ViewStationery target { get; }
         /// <summary>
         /// 動作処理のイージング
         /// </summary>

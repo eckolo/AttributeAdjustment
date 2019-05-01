@@ -1,7 +1,7 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Repository;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Value
 {
@@ -12,8 +12,8 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public class Move : ViewAction
         {
-            public Move(IEnumerable<IViewValue> actors, IViewValue target, Easing easing)
-                : base(ActionType.MOVE, actors)
+            public Move(IEnumerable<ViewStationery> actors, ViewStationery target, Easing easing)
+                : base(ActionType.MOVE, actors, target, easing)
             { }
         }
     }
