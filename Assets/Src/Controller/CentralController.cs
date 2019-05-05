@@ -70,6 +70,8 @@ namespace Assets.Src.Controller
         /// </summary>
         /// <returns>イテレータ</returns>
         async UniTask ExecuteMainRoutine()
+        //TODO ビュー（ビューコントローラ）呼び出し処理実装
+        //TODO 戦闘処理の呼び出しとか普段のゲームルーチン設計
         {
             while(true)
             {

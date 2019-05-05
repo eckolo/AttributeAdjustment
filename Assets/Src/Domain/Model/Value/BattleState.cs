@@ -80,6 +80,7 @@ namespace Assets.Src.Domain.Model.Value
                 .ToList();
 
             this.SetNewView(popedTips);
+            //TODO 一通りビュー関連処理書いてみるトライアル
 
             if(!deckTips.Any())
                 this.SetupDeck();

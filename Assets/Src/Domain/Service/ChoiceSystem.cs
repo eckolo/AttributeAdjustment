@@ -34,6 +34,7 @@ namespace Assets.Src.Domain.Service
             Action<List<string>, int?> startProcess = null,
             Action<List<string>, int?> midProcess = null,
             Action<List<string>, int?> endProcess = null)
+        //TODO ビューとの連携処理の設計する
         {
             var _startProcess = startProcess ?? startProcessDefault;
             var _midProcess = midProcess ?? midProcessDefault;

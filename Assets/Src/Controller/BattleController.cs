@@ -23,6 +23,7 @@ namespace Assets.Src.Controller
             this GameState state,
             IEnumerable<Actor> enemys,
             Topography topography)
+        //TODO ビュー（ビューコントローラ）呼び出し処理実装
         {
             var battleState = state
                 .ToBattleState(enemys, topography)
@@ -30,11 +31,13 @@ namespace Assets.Src.Controller
                 .SetupBoard()
                 .SetupAllHandTips();
 
-            while (!battleState.isEnd)
+            while(!battleState.isEnd)
             {
+                //TODO 戦闘中のターン毎処理の実装
                 battleState = battleState.SetupDeck().SetupBoard().SetupAllHandTips();
             }
 
+            //TODO 戦闘終了処理の実装
             battleState = battleState.SetupDeck().SetupBoard().SetupAllHandTips();
 
             LogHub.DEBUG.LeaveLog($"{state} TurnByTurn", state.fileManager);

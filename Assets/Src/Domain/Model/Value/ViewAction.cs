@@ -46,5 +46,6 @@ namespace Assets.Src.Domain.Model.Value
         /// 動作処理のイージング
         /// </summary>
         public Easing easing { get; }
+        //TODO 次のアクションを待つか否か的なフラグ値実装
     }
 }

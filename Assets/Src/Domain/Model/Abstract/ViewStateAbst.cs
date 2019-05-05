@@ -16,8 +16,8 @@ namespace Assets.Src.Domain.Model.Abstract
 
         public IEnumerable<ViewStationery> AddViewStationerys(IEnumerable<ViewStationery> addeds)
         {
-            var addedList = addeds ?? new List<ViewStationery>();
-            return views = views?.Concat(addedList) ?? addedList;
+            var addedsNoNull = addeds ?? Enumerable.Empty<ViewStationery>();
+            return views = views?.Concat(addedsNoNull) ?? addedsNoNull;
         }
     }
 }
