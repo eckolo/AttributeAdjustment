@@ -46,6 +46,33 @@ namespace Assets.Src.Domain.Model.Value
         /// 動作処理のイージング
         /// </summary>
         public Easing easing { get; }
-        //TODO 次のアクションを待つか否か的なフラグ値実装
+        /// <summary>
+        /// 後続の画面表示処理
+        /// </summary>
+        public ViewAction nextAction { get; private set; } = null;
+        /// <summary>
+        /// 後続処理追加時の無限ループを回避するための内部フラグ
+        /// 1度の再起ループで<see cref="AddNextAction"/>が複数回呼ばれてないか判別する
+        /// </summary>
+        bool alreadyAddAction { get; set; } = false;
+
+        /// <summary>
+        /// 後続の画面表示処理を追加する
+        /// </summary>
+        /// <param name="nextAction">追加される処理</param>
+        /// <returns>後続処理を追加された先頭の処理</returns>
+        public TViewAction AddNextAction<TViewAction>(ViewAction nextAction)
+            where TViewAction : ViewAction
+        {
+            //この後続処理追加処理は1回目？
+            if(!alreadyAddAction)
+            {
+                alreadyAddAction = true;
+                this.nextAction = this.nextAction?.AddNextAction<TViewAction>(nextAction) ?? nextAction;
+            }
+
+            alreadyAddAction = false;
+            return (TViewAction)this;
+        }
     }
 }
