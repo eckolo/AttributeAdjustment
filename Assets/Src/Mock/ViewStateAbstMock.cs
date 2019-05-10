@@ -2,6 +2,7 @@
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assets.Src.Mock
 {
@@ -10,8 +11,10 @@ namespace Assets.Src.Mock
         ViewStateAbstMock(IEnumerable<ViewStationery> views, ViewAction[] viewActionQueue)
         {
             this.views = views;
-            if(viewActionQueue != null)
-                this.viewActionQueue.CopyTo(viewActionQueue, 0);
+            foreach(var action in viewActionQueue ?? new ViewAction[] { })
+            {
+                this.viewActionQueue.Enqueue(action);
+            }
         }
 
         public static ViewStateAbstMock Generate(

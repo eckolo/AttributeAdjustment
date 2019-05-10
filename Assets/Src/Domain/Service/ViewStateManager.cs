@@ -24,10 +24,11 @@ namespace Assets.Src.Domain.Service
         /// <returns>追加された後の状態オブジェクト</returns>
         public static TViewState SetNewView<TViewState, TViewValue>(
             this TViewState state,
-            TViewValue value)
+            TViewValue value,
+            out IEnumerable<ViewStationery> viewStationeries)
             where TViewState : ViewStateAbst
             where TViewValue : IViewValue
-            => state.SetNewView(new[] { value });
+            => state.SetNewView(new[] { value }, out viewStationeries);
         /// <summary>
         /// 新たな画面表示パーツ群を追加する
         /// </summary>
@@ -38,14 +39,15 @@ namespace Assets.Src.Domain.Service
         /// <returns>追加された後の状態オブジェクト</returns>
         public static TViewState SetNewView<TViewState, TViewValue>(
             this TViewState state,
-            IEnumerable<TViewValue> values)
+            IEnumerable<TViewValue> values,
+            out IEnumerable<ViewStationery> viewStationeries)
             where TViewState : ViewStateAbst
             where TViewValue : IViewValue
         {
-            var viewStationerys = values.Select(value => new ViewStationery(value));
-            state.AddViewStationerys(viewStationerys);
+            viewStationeries = values.Select(value => new ViewStationery(value)).ToArray();
+            state.AddViewStationerys(viewStationeries);
 
-            var action = new ViewAction.Generate(viewStationerys);
+            var action = new ViewAction.Generate(viewStationeries);
             state.viewActionQueue.Enqueue(action);
 
             return state;

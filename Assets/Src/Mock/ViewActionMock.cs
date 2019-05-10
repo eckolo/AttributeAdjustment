@@ -19,8 +19,8 @@ namespace Assets.Src.Mock
         { }
 
         public static ViewActionMock GenerateMock(
-           ActionType actionType,
-           IEnumerable<ViewStationery> actors,
+           ActionType actionType = default,
+           IEnumerable<ViewStationery> actors = null,
            ViewStationery target = null,
            Easing easing = null,
            ViewAction nextAction = null)
