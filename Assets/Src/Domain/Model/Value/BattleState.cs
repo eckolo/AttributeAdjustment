@@ -79,7 +79,7 @@ namespace Assets.Src.Domain.Model.Value
                 .Where(tip => tip is MotionTip)
                 .ToList();
 
-            this.SetNewView(popedTips, out _);
+            this.SetNewView(popedTips);
             //TODO 一通りビュー関連処理書いてみるトライアル
 
             if(!deckTips.Any())
