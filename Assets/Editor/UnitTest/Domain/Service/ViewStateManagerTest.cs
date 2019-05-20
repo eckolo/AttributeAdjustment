@@ -18,14 +18,16 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var state = ViewStateAbstMock.Generate();
             var values = new[] { ViewValueMock.Generate(1), ViewValueMock.Generate(2) };
 
-            var resultState = state.SetNewView(values, out var resultViews);
+            var resultState = state.SetNewView(values);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
             resultState.views.IsNotNull();
             resultState.views.Count().Is(values.Length);
-            resultState.views.ToArray()[0].Is(resultViews.ToArray()[0]);
-            resultState.views.ToArray()[1].Is(resultViews.ToArray()[1]);
+            resultState.views.ToArray()[0].IsNotNull();
+            resultState.views.ToArray()[0].value.Is(values[0]);
+            resultState.views.ToArray()[1].IsNotNull();
+            resultState.views.ToArray()[1].value.Is(values[1]);
             resultState.viewActionQueue.IsNotNull();
             resultState.viewActionQueue.Count.Is(1);
             {
@@ -34,21 +36,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultAction.actionType.Is(ViewAction.ActionType.GENERATE);
                 resultAction.actors.IsNotNull();
                 resultAction.actors.Count().Is(values.Length);
-                resultAction.actors.ToArray()[0].Is(resultViews.ToArray()[0]);
-                resultAction.actors.ToArray()[1].Is(resultViews.ToArray()[1]);
-            }
-
-            resultViews.IsNotNull();
-            resultViews.Count().Is(values.Length);
-            {
-                var resultView = resultViews.ToArray()[0];
-                resultView.IsNotNull();
-                resultView.value.IsSameReferenceAs(values[0]);
-            }
-            {
-                var resultView = resultViews.ToArray()[1];
-                resultView.IsNotNull();
-                resultView.value.IsSameReferenceAs(values[1]);
+                resultAction.actors.ToArray()[0].value.Is(values[0]);
+                resultAction.actors.ToArray()[1].value.Is(values[1]);
             }
         }
         [Test]
@@ -58,14 +47,16 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var state = ViewStateAbstMock.Generate(null, new[] { actionOrigin });
             var values = new[] { ViewValueMock.Generate(1), ViewValueMock.Generate(2) };
 
-            var resultState = state.SetNewView(values, out var resultViews);
+            var resultState = state.SetNewView(values);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
             resultState.views.IsNotNull();
             resultState.views.Count().Is(values.Length);
-            resultState.views.ToArray()[0].Is(resultViews.ToArray()[0]);
-            resultState.views.ToArray()[1].Is(resultViews.ToArray()[1]);
+            resultState.views.ToArray()[0].IsNotNull();
+            resultState.views.ToArray()[0].value.Is(values[0]);
+            resultState.views.ToArray()[1].IsNotNull();
+            resultState.views.ToArray()[1].value.Is(values[1]);
             resultState.viewActionQueue.IsNotNull();
             resultState.viewActionQueue.Count.Is(2);
             {
@@ -80,21 +71,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultAction.actionType.Is(ViewAction.ActionType.GENERATE);
                 resultAction.actors.IsNotNull();
                 resultAction.actors.Count().Is(values.Length);
-                resultAction.actors.ToArray()[0].Is(resultViews.ToArray()[0]);
-                resultAction.actors.ToArray()[1].Is(resultViews.ToArray()[1]);
-            }
-
-            resultViews.IsNotNull();
-            resultViews.Count().Is(values.Length);
-            {
-                var resultView = resultViews.ToArray()[0];
-                resultView.IsNotNull();
-                resultView.value.IsSameReferenceAs(values[0]);
-            }
-            {
-                var resultView = resultViews.ToArray()[1];
-                resultView.IsNotNull();
-                resultView.value.IsSameReferenceAs(values[1]);
+                resultAction.actors.ToArray()[0].value.Is(values[0]);
+                resultAction.actors.ToArray()[1].value.Is(values[1]);
             }
         }
         [Test]
@@ -104,15 +82,18 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var state = ViewStateAbstMock.Generate(new[] { viewOrigin });
             var values = new[] { ViewValueMock.Generate(1), ViewValueMock.Generate(2) };
 
-            var resultState = state.SetNewView(values, out var resultViews);
+            var resultState = state.SetNewView(values);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
             resultState.views.IsNotNull();
             resultState.views.Count().Is(1 + values.Length);
+            resultState.views.ToArray()[0].IsNotNull();
             resultState.views.ToArray()[0].Is(viewOrigin);
-            resultState.views.ToArray()[1].Is(resultViews.ToArray()[0]);
-            resultState.views.ToArray()[2].Is(resultViews.ToArray()[1]);
+            resultState.views.ToArray()[1].IsNotNull();
+            resultState.views.ToArray()[1].value.Is(values[0]);
+            resultState.views.ToArray()[2].IsNotNull();
+            resultState.views.ToArray()[2].value.Is(values[1]);
             resultState.viewActionQueue.IsNotNull();
             resultState.viewActionQueue.Count.Is(1);
             {
@@ -121,21 +102,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultAction.actionType.Is(ViewAction.ActionType.GENERATE);
                 resultAction.actors.IsNotNull();
                 resultAction.actors.Count().Is(values.Length);
-                resultAction.actors.ToArray()[0].Is(resultViews.ToArray()[0]);
-                resultAction.actors.ToArray()[1].Is(resultViews.ToArray()[1]);
-            }
-
-            resultViews.IsNotNull();
-            resultViews.Count().Is(values.Length);
-            {
-                var resultView = resultViews.ToArray()[0];
-                resultView.IsNotNull();
-                resultView.value.IsSameReferenceAs(values[0]);
-            }
-            {
-                var resultView = resultViews.ToArray()[1];
-                resultView.IsNotNull();
-                resultView.value.IsSameReferenceAs(values[1]);
+                resultAction.actors.ToArray()[0].value.Is(values[0]);
+                resultAction.actors.ToArray()[1].value.Is(values[1]);
             }
         }
         [Test]
@@ -146,15 +114,18 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var state = ViewStateAbstMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { ViewValueMock.Generate(1), ViewValueMock.Generate(2) };
 
-            var resultState = state.SetNewView(values, out var resultViews);
+            var resultState = state.SetNewView(values);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
             resultState.views.IsNotNull();
             resultState.views.Count().Is(1 + values.Length);
+            resultState.views.ToArray()[0].IsNotNull();
             resultState.views.ToArray()[0].Is(viewOrigin);
-            resultState.views.ToArray()[1].Is(resultViews.ToArray()[0]);
-            resultState.views.ToArray()[2].Is(resultViews.ToArray()[1]);
+            resultState.views.ToArray()[1].IsNotNull();
+            resultState.views.ToArray()[1].value.Is(values[0]);
+            resultState.views.ToArray()[2].IsNotNull();
+            resultState.views.ToArray()[2].value.Is(values[1]);
             resultState.viewActionQueue.IsNotNull();
             resultState.viewActionQueue.Count.Is(2);
             {
@@ -169,21 +140,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultAction.actionType.Is(ViewAction.ActionType.GENERATE);
                 resultAction.actors.IsNotNull();
                 resultAction.actors.Count().Is(values.Length);
-                resultAction.actors.ToArray()[0].Is(resultViews.ToArray()[0]);
-                resultAction.actors.ToArray()[1].Is(resultViews.ToArray()[1]);
-            }
-
-            resultViews.IsNotNull();
-            resultViews.Count().Is(values.Length);
-            {
-                var resultView = resultViews.ToArray()[0];
-                resultView.IsNotNull();
-                resultView.value.IsSameReferenceAs(values[0]);
-            }
-            {
-                var resultView = resultViews.ToArray()[1];
-                resultView.IsNotNull();
-                resultView.value.IsSameReferenceAs(values[1]);
+                resultAction.actors.ToArray()[0].value.Is(values[0]);
+                resultAction.actors.ToArray()[1].value.Is(values[1]);
             }
         }
     }
