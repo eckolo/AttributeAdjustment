@@ -10,7 +10,7 @@ namespace Assets.Src.Domain.Model.Entity
     /// <summary>
     /// 画面表示されるオブジェクト類の雛形クラス
     /// </summary>
-    public class ViewStationery
+    public class ViewStationery : IViewRoot
     {
         public ViewStationery(IViewValue value)
         {

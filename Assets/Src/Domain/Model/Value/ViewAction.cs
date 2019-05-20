@@ -23,7 +23,7 @@ namespace Assets.Src.Domain.Model.Value
         protected ViewAction(
             ActionType actionType,
             IEnumerable<ViewStationery> actors,
-            ViewStationery target,
+            IViewRoot target,
             Easing easing)
             : this(actionType, actors)
         {
@@ -41,7 +41,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 動作起点オブジェクト
         /// </summary>
-        public ViewStationery target { get; }
+        public IViewRoot target { get; }
         /// <summary>
         /// 動作処理のイージング
         /// </summary>

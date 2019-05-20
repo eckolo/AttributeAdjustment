@@ -12,7 +12,7 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public class Move : ViewAction
         {
-            public Move(IEnumerable<ViewStationery> actors, ViewStationery target, Easing easing)
+            public Move(IEnumerable<ViewStationery> actors, IViewRoot target, Easing easing)
                 : base(ActionType.MOVE, actors, target, easing)
             { }
         }
