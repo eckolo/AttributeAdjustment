@@ -18,5 +18,13 @@ namespace Assets.Src.Domain.Model.Entity
         }
 
         public IViewValue value { get; }
+
+        public IViewRoot parent { get; protected set; }
+
+        public ViewStationery SetParent(IViewRoot parent)
+        {
+            this.parent = parent ?? this.parent;
+            return this;
+        }
     }
 }

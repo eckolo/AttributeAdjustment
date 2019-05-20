@@ -42,7 +42,7 @@ namespace Assets.Src.Domain.Service
             where TViewState : ViewStateAbst
             where TViewValue : IViewValue
         {
-            var viewStationeries = values.Select(value => new ViewStationery(value)).ToArray();
+            var viewStationeries = values.Select(value => new ViewStationery(value).SetParent(state)).ToArray();
             state.AddViewStationerys(viewStationeries);
 
             var action = new ViewAction.Generate(viewStationeries);
