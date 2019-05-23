@@ -13,14 +13,27 @@ namespace Assets.Src.Domain.Service
         /// <param name="dividend">被除数</param>
         /// <param name="divisor">除数</param>
         /// <returns>被除数を除数で割った結果と同値の分数型の値</returns>
-        public static Fraction DividedBy(this int dividend, int divisor) => new Fraction(dividend) / divisor;
+        public static Fraction DividedBy(this int dividend, float divisor) => ((float)dividend).DividedBy(divisor);
+        /// <summary>
+        /// 割り算形式での分数型生成メソッド
+        /// </summary>
+        /// <param name="dividend">被除数</param>
+        /// <param name="divisor">除数</param>
+        /// <returns>被除数を除数で割った結果と同値の分数型の値</returns>
+        public static Fraction DividedBy(this float dividend, float divisor) => new Fraction(dividend) / divisor;
 
         /// <summary>
         /// 分数型の整数を生成する
         /// </summary>
         /// <param name="origin">元となる整数</param>
         /// <returns>元となる整数と同値の分数型の値</returns>
-        public static Fraction ToFraction(this int origin) => new Fraction(origin);
+        public static Fraction ToFraction(this int origin) => ((float)origin).ToFraction();
+        /// <summary>
+        /// 分数型の整数を生成する
+        /// </summary>
+        /// <param name="origin">元となる整数</param>
+        /// <returns>元となる整数と同値の分数型の値</returns>
+        public static Fraction ToFraction(this float origin) => new Fraction(origin);
 
         /// <summary>
         /// 上限値をかける

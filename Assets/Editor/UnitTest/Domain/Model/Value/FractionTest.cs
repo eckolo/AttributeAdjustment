@@ -35,12 +35,29 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             fraction1.value.Is(fraction2.value);
         }
         [Test]
-        public static void NewFractionTest()
+        public static void NewFractionTest_int()
         {
             var fraction1 = 3.ToFraction();
             var fraction2 = 3.DividedBy(1);
             var fraction3 = 6.DividedBy(2);
             var fraction4 = 9.DividedBy(-3);
+
+            fraction1.numer.Is(fraction2.numer);
+            fraction1.denom.Is(fraction2.denom);
+            fraction3.numer.Is(fraction2.numer);
+            fraction3.denom.Is(fraction2.denom);
+            fraction1.value.Is(3);
+            fraction2.value.Is(3);
+            fraction3.value.Is(3);
+            fraction4.value.Is(-3);
+        }
+        [Test]
+        public static void NewFractionTest_float()
+        {
+            var fraction1 = 3f.ToFraction();
+            var fraction2 = 3f.DividedBy(1);
+            var fraction3 = 6.DividedBy(2f);
+            var fraction4 = 9f.DividedBy(-3f);
 
             fraction1.numer.Is(fraction2.numer);
             fraction1.denom.Is(fraction2.denom);
@@ -241,5 +258,12 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             result5.denom.Is(1);
             result5.value.Is(-15);
         }
+        [Test]
+        public static void ImplicitTest()
+        {
+            var floatNum = 7f;
+            FractionFunction(floatNum.ToFraction()).Is(FractionFunction(floatNum));
+        }
+        static float FractionFunction(Fraction fraction) => fraction.value;
     }
 }

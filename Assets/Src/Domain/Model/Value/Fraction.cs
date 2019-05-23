@@ -17,32 +17,45 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         /// <param name="numer">分子</param>
         /// <param name="denom">分母</param>
-        Fraction(int numer, int denom)
+        Fraction(float numer, float denom)
         {
-            if(denom == 0) throw new DivideByZeroException();
-            var gcd = (denom < 0 ? -1 : 1) * numer.Euclidean(denom);
-            this.numer = numer / gcd;
-            this.denom = denom / gcd;
+            if(denom == 0)
+                throw new DivideByZeroException();
+
+            var sign = (denom < 0 ? -1 : 1);
+            var numerInt = (int)numer;
+            var denomInt = (int)denom;
+            if(numer == numerInt && denom == denomInt)
+            {
+                var gcd = sign * numerInt.Euclidean(denomInt);
+                this.numer = numerInt / gcd;
+                this.denom = denomInt / gcd;
+            }
+            else
+            {
+                this.numer = numer * sign;
+                this.denom = denom * sign;
+            }
         }
 
         /// <summary>
         /// 分数の初期化
         /// </summary>
         /// <param name="numer">分子</param>
-        public Fraction(int numer) : this(numer, 1) { }
+        public Fraction(float numer) : this(numer, 1) { }
 
         /// <summary>
         /// 分子
         /// </summary>
-        public virtual int numer { get; }
+        public virtual float numer { get; }
         /// <summary>
         /// 分母
         /// </summary>
-        public virtual int denom { get; }
+        public virtual float denom { get; }
         /// <summary>
         /// 実数値
         /// </summary>
-        public float value => numer / (float)denom;
+        public float value => numer / denom;
 
         /// <summary>
         /// ０と同値の分数型
@@ -62,14 +75,14 @@ namespace Assets.Src.Domain.Model.Value
         public static Fraction operator /(Fraction x, Fraction y)
             => new Fraction(x.numer * y.denom, x.denom * y.numer);
         public static Fraction operator -(Fraction x) => x * -1;
-        public static Fraction operator +(int x, Fraction y) => new Fraction(x) + y;
-        public static Fraction operator +(Fraction x, int y) => x + new Fraction(y);
-        public static Fraction operator -(int x, Fraction y) => new Fraction(x) - y;
-        public static Fraction operator -(Fraction x, int y) => x - new Fraction(y);
-        public static Fraction operator *(int x, Fraction y) => new Fraction(x) * y;
-        public static Fraction operator *(Fraction x, int y) => x * new Fraction(y);
-        public static Fraction operator /(int x, Fraction y) => new Fraction(x) / y;
-        public static Fraction operator /(Fraction x, int y) => x / new Fraction(y);
+        public static Fraction operator +(float x, Fraction y) => new Fraction(x) + y;
+        public static Fraction operator +(Fraction x, float y) => x + new Fraction(y);
+        public static Fraction operator -(float x, Fraction y) => new Fraction(x) - y;
+        public static Fraction operator -(Fraction x, float y) => x - new Fraction(y);
+        public static Fraction operator *(float x, Fraction y) => new Fraction(x) * y;
+        public static Fraction operator *(Fraction x, float y) => x * new Fraction(y);
+        public static Fraction operator /(float x, Fraction y) => new Fraction(x) / y;
+        public static Fraction operator /(Fraction x, float y) => x / new Fraction(y);
 
         public static bool operator ==(Fraction x, Fraction y) => x.CompareTo(y) == 0;
         public static bool operator !=(Fraction x, Fraction y) => x.CompareTo(y) != 0;
@@ -104,17 +117,23 @@ namespace Assets.Src.Domain.Model.Value
         public static bool operator <=(int x, Fraction y) => x.CompareTo(y) <= 0;
         public static bool operator >=(int x, Fraction y) => x.CompareTo(y) >= 0;
 
+        public static implicit operator Fraction(float num) => new Fraction(num);
+
         public int CompareTo(Fraction other)
         {
-            if(numer * other.denom > other.numer * denom) return 1;
-            if(numer * other.denom < other.numer * denom) return -1;
+            if(numer * other.denom > other.numer * denom)
+                return 1;
+            if(numer * other.denom < other.numer * denom)
+                return -1;
             return 0;
         }
         public int CompareTo(int other) => CompareTo(new Fraction(other));
         public int CompareTo(float other)
         {
-            if(numer > other * denom) return 1;
-            if(numer < other * denom) return -1;
+            if(numer > other * denom)
+                return 1;
+            if(numer < other * denom)
+                return -1;
             return 0;
         }
 
