@@ -1,6 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
-using Assets.Src.Domain.Repository;
 using System.Collections.Generic;
 
 namespace Assets.Src.Mock
@@ -22,12 +21,12 @@ namespace Assets.Src.Mock
            ActionType actionType = default,
            IEnumerable<ViewStationery> actors = null,
            ViewStationery target = null,
-           Easing easing = null,
+           Easing? easing = null,
            ViewAction nextAction = null)
         {
             var mock = target is null && easing is null
                 ? new ViewActionMock(actionType, actors)
-                : new ViewActionMock(actionType, actors, target, easing);
+                : new ViewActionMock(actionType, actors, target, easing ?? Easing.Linear);
             return mock.AddNextAction<ViewActionMock>(nextAction);
         }
     }

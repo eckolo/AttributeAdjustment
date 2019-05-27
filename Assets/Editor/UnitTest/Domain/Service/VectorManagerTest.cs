@@ -343,8 +343,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
         public static void EasingElliptical()
         {
             var destination = new Vector2(6, 9);
-            var now = 60f;
-            var max = 90f;
+            var now = 60;
+            var max = 90;
 
             VectorManager.EasingV.Elliptical(destination, now, max, true).y.Is(4.5f * Mathf.Sqrt(3));
             VectorManager.EasingV.Elliptical(destination, now, max, false).x.Is(3 * Mathf.Sqrt(3));
@@ -354,8 +354,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
         {
             var start = new Vector2(-2, -3);
             var destination = new Vector2(4, 6);
-            var now = 60f;
-            var max = 90f;
+            var now = 60;
+            var max = 90;
 
             VectorManager.EasingV.Elliptical(start, destination, now, max, true).y.Is(4.5f * Mathf.Sqrt(3) - 3);
             VectorManager.EasingV.Elliptical(start, destination, now, max, false).x.Is(3 * Mathf.Sqrt(3) - 2);

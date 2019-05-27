@@ -1,6 +1,4 @@
-﻿using Assets.Src.Domain.Repository;
-using System;
-using System.Collections.Generic;
+﻿using Assets.Src.Domain.Model.Value;
 using UnityEngine;
 
 namespace Assets.Src.Domain.Service
@@ -224,21 +222,22 @@ namespace Assets.Src.Domain.Service
             /// <summary>
             /// 始点から終点まで円軌道を描く
             /// </summary>
-            public static Vector2 Elliptical(Vector2 end, float time, float limit, bool clockwise)
+            public static Vector2 Elliptical(Vector2 end, int time, int limit, bool clockwise)
             {
                 bool verticalIn = clockwise ^ (end.x * end.y > 0);
-                float right = verticalIn
-                    ? Easing.sinusoidal.Out(end.x, time, limit)
-                    : Easing.sinusoidal.In(end.x, time, limit);
-                float up = verticalIn
-                    ? Easing.sinusoidal.In(end.y, time, limit)
-                    : Easing.sinusoidal.Out(end.y, time, limit);
-                return new Vector2(right, up);
+                var right = verticalIn
+                    ? Easing.Sinusoidal.Out(time, limit, end.x)
+                    : Easing.Sinusoidal.In(time, limit, end.x);
+                var up = verticalIn
+                    ? Easing.Sinusoidal.In(time, limit, end.y)
+                    : Easing.Sinusoidal.Out(time, limit, end.y);
+                return new Vector2(right.value, up.value);
             }
             /// <summary>
             /// 始点から終点まで円軌道を描く
             /// </summary>
-            public static Vector2 Elliptical(Vector2 start, Vector2 end, float time, float limit, bool clockwise) => start + Elliptical(end - start, time, limit, clockwise);
+            public static Vector2 Elliptical(Vector2 start, Vector2 end, int time, int limit, bool clockwise)
+                => start + Elliptical(end - start, time, limit, clockwise);
         }
     }
 }
