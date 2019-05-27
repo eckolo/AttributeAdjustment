@@ -30,12 +30,11 @@ namespace Assets.Src.Domain.Model.Value
                 var gcd = sign * numerInt.Euclidean(denomInt);
                 this.numer = numerInt / gcd;
                 this.denom = denomInt / gcd;
+                return;
             }
-            else
-            {
-                this.numer = numer * sign;
-                this.denom = denom * sign;
-            }
+
+            this.numer = numer * sign;
+            this.denom = denom * sign;
         }
 
         /// <summary>

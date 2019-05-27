@@ -17,12 +17,18 @@ namespace Assets.Src.Domain.Service
         /// <returns>２引数の最大公約数</returns>
         public static int Euclidean(this int x, int y)
         {
-            if(x == 0) return 1;
-            if(y == 0) return 1;
+            if(x == 0)
+                return y;
+            if(y == 0)
+                return x;
+
             var absX = Mathf.Abs(x);
             var absY = Mathf.Abs(y);
-            if(absY > absX) return Euclidean(absY, absX);
-            if(absX % absY == 0) return y;
+            if(absY > absX)
+                return Euclidean(absY, absX);
+            if(absX % absY == 0)
+                return y;
+
             return Euclidean(absY, absX % y);
         }
         /// <summary>
@@ -79,8 +85,10 @@ namespace Assets.Src.Domain.Service
         /// </summary>
         public static int ToSign(this float value)
         {
-            if(value > 0) return 1;
-            if(value < 0) return -1;
+            if(value > 0)
+                return 1;
+            if(value < 0)
+                return -1;
             return 0;
         }
 
@@ -102,7 +110,8 @@ namespace Assets.Src.Domain.Service
             foreach(var ratedata in ratedatas)
             {
                 selection -= ratedata.Value;
-                if(selection <= 0) return ratedata.Key;
+                if(selection <= 0)
+                    return ratedata.Key;
             }
             return ratedatas.Select(ratedata => ratedata.Key).First();
         }
@@ -145,7 +154,8 @@ namespace Assets.Src.Domain.Service
         public static float ToMildRandom(this float range, float center = 0, int centering = 5)
         {
             float sum = 0;
-            for(int count = 0; count < centering; count++) sum += Random.Range(-range, range);
+            for(int count = 0; count < centering; count++)
+                sum += Random.Range(-range, range);
             return center + sum;
         }
     }

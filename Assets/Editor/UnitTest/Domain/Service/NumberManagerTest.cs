@@ -24,17 +24,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
             value1.Euclidean(value2).Is(4);
             value1.Euclidean(value3).Is(33);
             value1.Euclidean(value4).Is(1);
-            value1.Euclidean(value5).Is(1);
+            value1.Euclidean(value5).Is(value1);
             value2.Euclidean(value2).Is(value2);
             value2.Euclidean(value3).Is(5);
             value2.Euclidean(value4).Is(1);
-            value2.Euclidean(value5).Is(1);
+            value2.Euclidean(value5).Is(value2);
             value3.Euclidean(value3).Is(value3);
             value3.Euclidean(value4).Is(1);
-            value3.Euclidean(value5).Is(1);
+            value3.Euclidean(value5).Is(value3);
             value4.Euclidean(value4).Is(value4);
-            value4.Euclidean(value5).Is(1);
-            value5.Euclidean(value5).Is(1);
+            value4.Euclidean(value5).Is(value4);
+            value5.Euclidean(value5).Is(value5);
         }
         [Test]
         public static void CorrectTest()
