@@ -11,6 +11,7 @@ namespace Assets.Src.Domain.Model.Value
         /// 行動者毎の戦闘状態
         /// </summary>
         public class EveryActor
+        //TODO ビューオブジェクトの移動点をビューのルートで定義する
         {
             /// <summary>
             /// 戦闘者毎の戦闘状態生成

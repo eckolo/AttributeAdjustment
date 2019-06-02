@@ -12,6 +12,7 @@ namespace Assets.Src.Domain.Model.Value
     /// 戦闘の状態保持クラス
     /// </summary>
     public partial class BattleState : ViewStateAbst
+    //TODO ビューオブジェクトの移動点をビューのルートで定義する
     {
         /// <summary>
         /// 戦闘状態の生成
@@ -80,7 +81,6 @@ namespace Assets.Src.Domain.Model.Value
                 .ToList();
 
             this.SetNewView(popedTips);
-            //TODO 一通りビュー関連処理書いてみるトライアル
 
             if(!deckTips.Any())
                 this.SetupDeck();
