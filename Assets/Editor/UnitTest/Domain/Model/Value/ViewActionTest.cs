@@ -12,7 +12,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
     /// </summary>
     public static class ViewActionTest
     {
-        static readonly IEnumerable<ViewStationery> actors = Enumerable.Empty<ViewStationery>();
+        static readonly IEnumerable<ViewEntity> actors = Enumerable.Empty<ViewEntity>();
 
         [Test]
         public static void AddNextActionTest_正常系_単一処理追加()

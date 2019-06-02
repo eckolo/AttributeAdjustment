@@ -10,7 +10,7 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public class Generate : ViewAction
         {
-            public Generate(IEnumerable<ViewStationery> actors) : base(ActionType.GENERATE, actors)
+            public Generate(IEnumerable<ViewEntity> actors) : base(ActionType.GENERATE, actors)
             { }
         }
     }

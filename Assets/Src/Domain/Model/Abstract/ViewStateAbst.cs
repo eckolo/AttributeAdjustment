@@ -10,13 +10,13 @@ namespace Assets.Src.Domain.Model.Abstract
     /// </summary>
     public abstract class ViewStateAbst : IViewRoot
     {
-        public IEnumerable<ViewStationery> views { get; protected set; }
+        public IEnumerable<ViewEntity> views { get; protected set; }
 
         public Queue<ViewAction> viewActionQueue { get; } = new Queue<ViewAction>();
 
-        public IEnumerable<ViewStationery> AddViewStationerys(IEnumerable<ViewStationery> addeds)
+        public IEnumerable<ViewEntity> AddViewStationerys(IEnumerable<ViewEntity> addeds)
         {
-            var addedsNoNull = addeds ?? Enumerable.Empty<ViewStationery>();
+            var addedsNoNull = addeds ?? Enumerable.Empty<ViewEntity>();
             return views = views?.Concat(addedsNoNull) ?? addedsNoNull;
         }
     }

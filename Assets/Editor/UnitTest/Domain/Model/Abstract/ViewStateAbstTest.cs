@@ -12,8 +12,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Abstract
         public static void AddViewStationerysTest_正常系_元のリストが空()
         {
             var viewState = ViewStateAbstMock.Generate();
-            var viewStationery1 = new ViewStationery(ViewValueMock.Generate(1));
-            var viewStationery2 = new ViewStationery(ViewValueMock.Generate(2));
+            var viewStationery1 = new ViewEntity(ViewValueMock.Generate(1));
+            var viewStationery2 = new ViewEntity(ViewValueMock.Generate(2));
 
             var result = viewState.AddViewStationerys(new[] { viewStationery1, viewStationery2 });
 
@@ -25,12 +25,12 @@ namespace Assets.Editor.UnitTest.Domain.Model.Abstract
         [Test]
         public static void AddViewStationerysTest_正常系_元のリストが空ではない()
         {
-            var viewStationery1 = new ViewStationery(ViewValueMock.Generate(1));
-            var viewStationery2 = new ViewStationery(ViewValueMock.Generate(2));
+            var viewStationery1 = new ViewEntity(ViewValueMock.Generate(1));
+            var viewStationery2 = new ViewEntity(ViewValueMock.Generate(2));
             var viewState = ViewStateAbstMock.Generate(new[] { viewStationery1, viewStationery2 });
 
-            var viewStationery3 = new ViewStationery(ViewValueMock.Generate(3));
-            var viewStationery4 = new ViewStationery(ViewValueMock.Generate(4));
+            var viewStationery3 = new ViewEntity(ViewValueMock.Generate(3));
+            var viewStationery4 = new ViewEntity(ViewValueMock.Generate(4));
 
             var result = viewState.AddViewStationerys(new[] { viewStationery3, viewStationery4 });
 
@@ -46,7 +46,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Abstract
         {
             var viewState = ViewStateAbstMock.Generate();
 
-            var result = viewState.AddViewStationerys(new ViewStationery[] { });
+            var result = viewState.AddViewStationerys(new ViewEntity[] { });
 
             result.IsNotNull();
             result.Count().Is(0);
@@ -54,11 +54,11 @@ namespace Assets.Editor.UnitTest.Domain.Model.Abstract
         [Test]
         public static void AddViewStationerysTest_正常系_元のリストが空ではない_加えるリストが空()
         {
-            var viewStationery1 = new ViewStationery(ViewValueMock.Generate(1));
-            var viewStationery2 = new ViewStationery(ViewValueMock.Generate(2));
+            var viewStationery1 = new ViewEntity(ViewValueMock.Generate(1));
+            var viewStationery2 = new ViewEntity(ViewValueMock.Generate(2));
             var viewState = ViewStateAbstMock.Generate(new[] { viewStationery1, viewStationery2 });
 
-            var result = viewState.AddViewStationerys(new ViewStationery[] { });
+            var result = viewState.AddViewStationerys(new ViewEntity[] { });
 
             result.IsNotNull();
             result.Count().Is(2);
@@ -78,8 +78,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Abstract
         [Test]
         public static void AddViewStationerysTest_正常系_元のリストが空ではない_加えるリストがNull()
         {
-            var viewStationery1 = new ViewStationery(ViewValueMock.Generate(1));
-            var viewStationery2 = new ViewStationery(ViewValueMock.Generate(2));
+            var viewStationery1 = new ViewEntity(ViewValueMock.Generate(1));
+            var viewStationery2 = new ViewEntity(ViewValueMock.Generate(2));
             var viewState = ViewStateAbstMock.Generate(new[] { viewStationery1, viewStationery2 });
 
             var result = viewState.AddViewStationerys(null);

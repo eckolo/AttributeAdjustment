@@ -72,7 +72,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SetNewViewTest_正常系_単数追加_既存の表示部品有り_既存の表示処理無し()
         {
-            var viewOrigin = new ViewStationery(ViewValueMock.Generate(0));
+            var viewOrigin = new ViewEntity(ViewValueMock.Generate(0));
             var state = ViewStateAbstMock.Generate(new[] { viewOrigin });
             var value = ViewValueMock.Generate(1);
 
@@ -101,7 +101,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         public static void SetNewViewTest_正常系_単数追加_既存の表示部品有り_既存の表示処理有り()
         {
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.ActionType.MOVE);
-            var viewOrigin = new ViewStationery(ViewValueMock.Generate(0));
+            var viewOrigin = new ViewEntity(ViewValueMock.Generate(0));
             var state = ViewStateAbstMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var value = ViewValueMock.Generate(1);
 
@@ -198,7 +198,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SetNewViewTest_正常系_複数追加_既存の表示部品有り_既存の表示処理無し()
         {
-            var viewOrigin = new ViewStationery(ViewValueMock.Generate(0));
+            var viewOrigin = new ViewEntity(ViewValueMock.Generate(0));
             var state = ViewStateAbstMock.Generate(new[] { viewOrigin });
             var values = new[] { ViewValueMock.Generate(1), ViewValueMock.Generate(2) };
 
@@ -230,7 +230,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         public static void SetNewViewTest_正常系_複数追加_既存の表示部品有り_既存の表示処理有り()
         {
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.ActionType.MOVE);
-            var viewOrigin = new ViewStationery(ViewValueMock.Generate(0));
+            var viewOrigin = new ViewEntity(ViewValueMock.Generate(0));
             var state = ViewStateAbstMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { ViewValueMock.Generate(1), ViewValueMock.Generate(2) };
 

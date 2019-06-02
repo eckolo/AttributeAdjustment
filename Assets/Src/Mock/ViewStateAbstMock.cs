@@ -8,7 +8,7 @@ namespace Assets.Src.Mock
 {
     public class ViewStateAbstMock : ViewStateAbst
     {
-        ViewStateAbstMock(IEnumerable<ViewStationery> views, ViewAction[] viewActionQueue)
+        ViewStateAbstMock(IEnumerable<ViewEntity> views, ViewAction[] viewActionQueue)
         {
             this.views = views;
             foreach(var action in viewActionQueue ?? new ViewAction[] { })
@@ -18,7 +18,7 @@ namespace Assets.Src.Mock
         }
 
         public static ViewStateAbstMock Generate(
-            IEnumerable<ViewStationery> views = null,
+            IEnumerable<ViewEntity> views = null,
             ViewAction[] viewActionQueue = null)
             => new ViewStateAbstMock(views, viewActionQueue);
     }

@@ -10,9 +10,9 @@ namespace Assets.Src.Domain.Model.Entity
     /// <summary>
     /// 画面表示されるオブジェクト類の雛形クラス
     /// </summary>
-    public class ViewStationery : IViewRoot
+    public class ViewEntity : IViewRoot
     {
-        public ViewStationery(IViewValue value)
+        public ViewEntity(IViewValue value)
         {
             this.value = value ?? throw new ArgumentNullException(nameof(value));
         }
@@ -21,7 +21,7 @@ namespace Assets.Src.Domain.Model.Entity
 
         public IViewRoot parent { get; protected set; }
 
-        public ViewStationery SetParent(IViewRoot parent)
+        public ViewEntity SetParent(IViewRoot parent)
         {
             this.parent = parent ?? this.parent;
             return this;
