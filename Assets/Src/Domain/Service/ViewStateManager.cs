@@ -4,8 +4,6 @@ using Assets.Src.Domain.Model.Value;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Src.Domain.Service
 {
@@ -50,18 +48,44 @@ namespace Assets.Src.Domain.Service
 
             return state;
         }
-        public static TView Move<TViewState, TView, TFromView, TToView>(
+        /// <summary>
+        /// 画面表示パーツ群を移動する
+        /// </summary>
+        /// <typeparam name="TViewState">対象の画面表示状態型</typeparam>
+        /// <typeparam name="TViewValue">配置されるパーツのパラメータ型</typeparam>
+        /// <param name="state">移動対象状態オブジェクト</param>
+        /// <param name="values">移動するパーツ群のパラメータリスト</param>
+        /// <param name="toView"></param>
+        /// <param name="fromView"></param>
+        /// <returns></returns>
+        public static TViewState MoveView<TViewState, TViewValue>(
             this TViewState state,
-            TView value,
-            TFromView fromView,
-            TToView toView)
+            IEnumerable<TViewValue> values,
+            IViewRoot toView,
+            IViewRoot fromView = default)
             where TViewState : ViewStateAbst
-            where TView : IViewValue
-            where TFromView : IViewValue
-            where TToView : IViewValue
+            where TViewValue : IViewValue, IEquatable<TViewValue>
         {
-            //TODO ビューの移動処理メソッド実装
-            throw new NotImplementedException(nameof(Move));
+            var parentView = fromView != default ? fromView : state;
+
+            var targetEntityList = values
+                .GroupBy(value => value)
+                .Select(group => (value: group.Key, count: group.Count()))
+                .SelectMany(pair => state.views
+                    .Where(view => view.parent == parentView)
+                    .Where(view => view.value is TViewValue)
+                    .Where(view => view.value.Equals(pair.value))
+                    .Take(pair.count))
+                .ToList();
+
+            var movedEntityList = targetEntityList
+                .Select(stat => stat.SetParent(toView))
+                .ToList();
+
+            var action = new ViewAction.Move(movedEntityList, toView, Easing.Quadratic);
+            state.viewActionQueue.Enqueue(action);
+
+            return state;
         }
     }
 }
