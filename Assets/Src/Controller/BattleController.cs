@@ -26,7 +26,7 @@ namespace Assets.Src.Controller
         //TODO ビュー（ビューコントローラ）呼び出し処理実装
         {
             var battleState = state
-                .ToBattleState(enemys, topography)
+                .SetupBattleState(enemys, topography)
                 .SetupDeck()
                 .SetupBoard()
                 .SetupAllHandTips();

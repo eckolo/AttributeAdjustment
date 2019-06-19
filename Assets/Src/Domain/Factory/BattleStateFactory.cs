@@ -7,7 +7,7 @@ namespace Assets.Src.Domain.Factory
 {
     public static class BattleStateFactory
     {
-        public static BattleState ToBattleState(
+        public static BattleState SetupBattleState(
             this GameState state,
             IEnumerable<Actor> enemys,
             Topography topography)
