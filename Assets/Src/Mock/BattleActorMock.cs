@@ -2,7 +2,7 @@
 
 namespace Assets.Src.Mock
 {
-    public class BattleActorMock : BattleActor
+    public partial class BattleActorMock : BattleActor
     {
         BattleActorMock(string name) : base(name) { }
 

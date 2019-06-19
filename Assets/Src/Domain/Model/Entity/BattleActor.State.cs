@@ -1,22 +1,23 @@
-﻿using Assets.Src.Domain.Service;
+﻿using Assets.Src.Domain.Model.Value;
+using Assets.Src.Domain.Service;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Src.Domain.Model.Value
+namespace Assets.Src.Domain.Model.Entity
 {
-    public partial class BattleState
+    public partial class BattleActor
     {
         /// <summary>
         /// 行動者毎の戦闘状態
         /// </summary>
-        public class EveryActor
+        public class State
         //TODO ビューオブジェクトの移動点をビューのルートで定義する
         {
             /// <summary>
             /// 戦闘者毎の戦闘状態生成
             /// </summary>
-            public EveryActor()
+            public State()
             {
                 selfTips = new List<MotionTip>();
                 handTips = new List<MotionTip>();
@@ -36,7 +37,7 @@ namespace Assets.Src.Domain.Model.Value
             /// </summary>
             /// <param name="addedTips">追加されるモーションチップ一覧</param>
             /// <returns>手札に指定したモーションチップが追加された行動主体</returns>
-            public EveryActor AddHandTips(IEnumerable<MotionTip> addedTips)
+            public State AddHandTips(IEnumerable<MotionTip> addedTips)
             {
                 var empties = Enumerable.Empty<MotionTip>();
                 handTips = (handTips ?? empties).Concat(addedTips ?? empties).ToList();
@@ -46,7 +47,7 @@ namespace Assets.Src.Domain.Model.Value
             /// 手札の全消去
             /// </summary>
             /// <returns>手札の全消去された行動主体</returns>
-            public EveryActor ClearHandTips()
+            public State ClearHandTips()
             {
                 PopHandTips(handTips);
                 return this;

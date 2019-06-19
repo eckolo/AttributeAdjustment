@@ -9,7 +9,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
     /// <summary>
     /// <see cref="BattleState"/>のテストクラス
     /// </summary>
-    public static partial class BattleStateTest
+    public static class BattleStateTest
     {
         [Test]
         public static void SetDeckTipsTest_通常処理()

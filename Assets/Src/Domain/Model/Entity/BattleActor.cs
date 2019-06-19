@@ -3,7 +3,7 @@
     /// <summary>
     /// 戦闘処理時の行動主体
     /// </summary>
-    public class BattleActor : Actor
+    public partial class BattleActor : Actor
     {
         public BattleActor(string name) : base(name)
         {

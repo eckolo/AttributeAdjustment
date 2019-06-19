@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Mock;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -6,12 +7,12 @@ using System.Linq;
 
 namespace Assets.Editor.UnitTest.Domain.Model.Value
 {
-    public static partial class BattleStateTest
+    public static class BattleActorTest
     {
         /// <summary>
-        /// <see cref="BattleState.EveryActor"/>のテストクラス
+        /// <see cref="BattleActor.State"/>のテストクラス
         /// </summary>
-        public static class EveryActorTest
+        public static class StateTest
         {
             [Test]
             public static void AddHandTipsTest_通常処理_元の手札無し()
@@ -20,7 +21,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var addList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
-                var actorState = BattleStateMock.EveryActorMock.Generate();
+                var actorState = BattleActorMock.StateMock.Generate();
 
                 var result = actorState.AddHandTips(addList).handTips;
 
@@ -47,7 +48,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2 };
                 var addList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.AddHandTips(addList).handTips;
 
@@ -73,7 +74,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var addList = new List<MotionTip>();
-                var actorState = BattleStateMock.EveryActorMock.Generate();
+                var actorState = BattleActorMock.StateMock.Generate();
 
                 var result = actorState.AddHandTips(addList).handTips;
 
@@ -88,7 +89,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2 };
                 var addList = new List<MotionTip>();
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.AddHandTips(addList).handTips;
 
@@ -109,7 +110,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
-                var actorState = BattleStateMock.EveryActorMock.Generate();
+                var actorState = BattleActorMock.StateMock.Generate();
 
                 var result = actorState.AddHandTips(null).handTips;
 
@@ -123,7 +124,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2 };
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.AddHandTips(null).handTips;
 
@@ -147,7 +148,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip2, tip3 };
                 var popList = new List<MotionTip> { tip1, tip1, tip1, tip2 };
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.PopHandTips(popList);
 
@@ -181,7 +182,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var tipList = new List<MotionTip> { tip1, tip2, tip2, tip2 };
                 var popList = new List<MotionTip> { tip1, tip1, tip2, tip3 };
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.PopHandTips(popList);
 
@@ -212,7 +213,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip4 = MotionTipMock.Generate(Energy.FLAME, 60);
                 var tipList = new List<MotionTip> { tip2, tip2, tip4 };
                 var popList = new List<MotionTip> { tip1, tip1, tip1, tip3 };
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.PopHandTips(popList);
 
@@ -239,7 +240,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip4 = MotionTipMock.Generate(Energy.FLAME, 60);
                 var tipList = new List<MotionTip>();
                 var popList = new List<MotionTip> { tip1, tip1, tip2, tip3 };
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.PopHandTips(popList);
 
@@ -257,7 +258,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var tip4 = MotionTipMock.Generate(Energy.FLAME, 60);
                 var popList = new List<MotionTip> { tip1, tip1, tip2, tip3 };
-                var actorState = BattleStateMock.EveryActorMock.Generate(null);
+                var actorState = BattleActorMock.StateMock.Generate(null);
 
                 var result = actorState.PopHandTips(popList);
 
@@ -274,7 +275,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
                 var popList = new List<MotionTip>();
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.PopHandTips(popList);
 
@@ -303,7 +304,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.PopHandTips(null);
 
@@ -333,7 +334,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var tipList = new List<MotionTip>();
                 var popList = new List<MotionTip>();
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.PopHandTips(popList);
 
@@ -350,7 +351,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var tipList = new List<MotionTip>();
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.PopHandTips(null);
 
@@ -367,7 +368,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var popList = new List<MotionTip>();
-                var actorState = BattleStateMock.EveryActorMock.Generate(null);
+                var actorState = BattleActorMock.StateMock.Generate(null);
 
                 var result = actorState.PopHandTips(popList);
 
@@ -382,7 +383,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
-                var actorState = BattleStateMock.EveryActorMock.Generate(null);
+                var actorState = BattleActorMock.StateMock.Generate(null);
 
                 var result = actorState.PopHandTips(null);
 
@@ -399,7 +400,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
                 var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
                 var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
                 var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip2, tip3 };
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.ClearHandTips().handTips;
 
@@ -410,7 +411,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             public static void ClearHandTipsTest_手札が元から空()
             {
                 var tipList = new List<MotionTip>();
-                var actorState = BattleStateMock.EveryActorMock.Generate(tipList);
+                var actorState = BattleActorMock.StateMock.Generate(tipList);
 
                 var result = actorState.ClearHandTips().handTips;
 
@@ -420,7 +421,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             [Test]
             public static void ClearHandTipsTest_手札がNull()
             {
-                var actorState = BattleStateMock.EveryActorMock.Generate(null);
+                var actorState = BattleActorMock.StateMock.Generate(null);
 
                 var result = actorState.ClearHandTips().handTips;
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Assets.Src.Mock
 {
-    public partial class BattleStateMock : BattleState
+    public class BattleStateMock : BattleState
     {
         BattleStateMock(IEnumerable<Actor> actiors, Dictionary<MotionTip, int> deckStationeryMap)
            : base(actiors, new Topography(deckStationeryMap))
