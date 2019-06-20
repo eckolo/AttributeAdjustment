@@ -22,7 +22,7 @@ namespace Assets.Src.Domain.Model.Value
         public BattleState(IEnumerable<Actor> actiors, Topography topography)
         {
             //戦闘者毎の戦闘状態初期化
-            battleActorList = actiors.ToDictionary(actor => actor.ConvertForBattle(), _ => new BattleActor.State());
+            battleActors = actiors.Select(actor => actor.ToBattleActor()).ToArray();
             //山札の雛形生成
             this.topography = topography;
         }
@@ -56,7 +56,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 行動者毎の戦闘状態リスト情報
         /// </summary>
-        public Dictionary<BattleActor, BattleActor.State> battleActorList { get; protected set; }
+        public IEnumerable<BattleActor> battleActors { get; protected set; }
 
         /// <summary>
         /// 山札の設定

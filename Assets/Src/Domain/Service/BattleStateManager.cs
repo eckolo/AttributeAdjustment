@@ -60,14 +60,11 @@ namespace Assets.Src.Domain.Service
             this BattleState state,
             int tipNumbers = Constants.Battle.DEFAULT_HAND_TIP_NUMBERS)
         {
-            if(state is null) return state;
+            if(state is null)
+                return state;
 
-            var setTips = state.battleActorList
-                .ToDictionary(
-                    actor => actor.Key,
-                    actor => actor.Value.ClearHandTips().AddHandTips(state.PopDeckTipsForced(tipNumbers)));
-
-            foreach(var tips in setTips) state.battleActorList[tips.Key] = tips.Value;
+            foreach(var actor in state.battleActors)
+                actor.state = actor.state.ClearHandTips().AddHandTips(state.PopDeckTipsForced(tipNumbers));
 
             return state;
         }

@@ -326,29 +326,29 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
-            result.deckTips.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActorList.Count);
-            result.battleActorList.IsNotNull();
-            result.battleActorList.Count.Is(actorList.Count);
+            result.deckTips.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActors.Count());
+            result.battleActors.IsNotNull();
+            result.battleActors.Count().Is(actorList.Count);
             {
-                var actorState = state.battleActorList.ToList()[0];
+                var actorState = state.battleActors.ToList()[0];
                 actorState.IsNotNull();
-                actorState.Value.handTips.IsNotNull();
-                actorState.Value.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-                actorState.Value.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+                actorState.state.handTips.IsNotNull();
+                actorState.state.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
+                actorState.state.handTips.All(tip => tipList.Contains(tip)).IsTrue();
             }
             {
-                var actorState = state.battleActorList.ToList()[0];
+                var actorState = state.battleActors.ToList()[0];
                 actorState.IsNotNull();
-                actorState.Value.handTips.IsNotNull();
-                actorState.Value.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-                actorState.Value.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+                actorState.state.handTips.IsNotNull();
+                actorState.state.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
+                actorState.state.handTips.All(tip => tipList.Contains(tip)).IsTrue();
             }
             {
-                var actorState = state.battleActorList.ToList()[0];
+                var actorState = state.battleActors.ToList()[0];
                 actorState.IsNotNull();
-                actorState.Value.handTips.IsNotNull();
-                actorState.Value.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-                actorState.Value.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+                actorState.state.handTips.IsNotNull();
+                actorState.state.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
+                actorState.state.handTips.All(tip => tipList.Contains(tip)).IsTrue();
             }
         }
         [Test]
@@ -372,16 +372,16 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
-            var battleActor = state.battleActorList.First().Key;
+            var battleActor = state.battleActors.First();
 
-            var actorState = state.battleActorList[battleActor];
+            var actorState = battleActor.state;
             var result = state.SetupAllHandTips(tipNumbers);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
-            result.deckTips.Count.Is(value1 + value2 + value3 - tipNumbers * state.battleActorList.Count);
-            result.battleActorList.IsNotNull();
-            result.battleActorList.ContainsKey(battleActor).IsTrue();
+            result.deckTips.Count.Is(value1 + value2 + value3 - tipNumbers * state.battleActors.Count());
+            result.battleActors.IsNotNull();
+            result.battleActors.Contains(battleActor).IsTrue();
 
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
@@ -408,16 +408,16 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
-            var battleActor = state.battleActorList.First().Key;
+            var battleActor = state.battleActors.First();
 
-            var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
+            var actorState = battleActor.state.AddHandTips(tipList);
             var result = state.SetupAllHandTips();
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
-            result.deckTips.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActorList.Count);
-            result.battleActorList.IsNotNull();
-            result.battleActorList.ContainsKey(battleActor).IsTrue();
+            result.deckTips.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActors.Count());
+            result.battleActors.IsNotNull();
+            result.battleActors.Contains(battleActor).IsTrue();
 
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
@@ -445,16 +445,16 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
-            var battleActor = state.battleActorList.First().Key;
+            var battleActor = state.battleActors.First();
 
-            var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
+            var actorState = battleActor.state.AddHandTips(tipList);
             var result = state.SetupAllHandTips(tipNumbers);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
-            result.deckTips.Count.Is(value1 + value2 + value3 - tipNumbers * state.battleActorList.Count);
-            result.battleActorList.IsNotNull();
-            result.battleActorList.ContainsKey(battleActor).IsTrue();
+            result.deckTips.Count.Is(value1 + value2 + value3 - tipNumbers * state.battleActors.Count());
+            result.battleActors.IsNotNull();
+            result.battleActors.Contains(battleActor).IsTrue();
 
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
@@ -481,16 +481,16 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
-            var battleActor = state.battleActorList.First().Key;
+            var battleActor = state.battleActors.First();
 
-            var actorState = state.battleActorList[battleActor];
+            var actorState = battleActor.state;
             var result = state.SetupAllHandTips();
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
-            result.deckTips.Count.Is((value1 + value2 + value3) * 6 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActorList.Count);
-            result.battleActorList.IsNotNull();
-            result.battleActorList.ContainsKey(battleActor).IsTrue();
+            result.deckTips.Count.Is((value1 + value2 + value3) * 6 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActors.Count());
+            result.battleActors.IsNotNull();
+            result.battleActors.Contains(battleActor).IsTrue();
 
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
@@ -518,16 +518,16 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
-            var battleActor = state.battleActorList.First().Key;
+            var battleActor = state.battleActors.First();
 
-            var actorState = state.battleActorList[battleActor];
+            var actorState = battleActor.state;
             var result = state.SetupAllHandTips(tipNumbers);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
-            result.deckTips.Count.Is((value1 + value2 + value3) * 10 - tipNumbers * state.battleActorList.Count);
-            result.battleActorList.IsNotNull();
-            result.battleActorList.ContainsKey(battleActor).IsTrue();
+            result.deckTips.Count.Is((value1 + value2 + value3) * 10 - tipNumbers * state.battleActors.Count());
+            result.battleActors.IsNotNull();
+            result.battleActors.Contains(battleActor).IsTrue();
 
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
@@ -554,16 +554,16 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
-            var battleActor = state.battleActorList.First().Key;
+            var battleActor = state.battleActors.First();
 
-            var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
+            var actorState = battleActor.state.AddHandTips(tipList);
             var result = state.SetupAllHandTips();
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
-            result.deckTips.Count.Is((value1 + value2 + value3) * 6 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActorList.Count);
-            result.battleActorList.IsNotNull();
-            result.battleActorList.ContainsKey(battleActor).IsTrue();
+            result.deckTips.Count.Is((value1 + value2 + value3) * 6 - Constants.Battle.DEFAULT_HAND_TIP_NUMBERS * state.battleActors.Count());
+            result.battleActors.IsNotNull();
+            result.battleActors.Contains(battleActor).IsTrue();
 
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
@@ -591,16 +591,16 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
-            var battleActor = state.battleActorList.First().Key;
+            var battleActor = state.battleActors.First();
 
-            var actorState = state.battleActorList[battleActor].AddHandTips(tipList);
+            var actorState = battleActor.state.AddHandTips(tipList);
             var result = state.SetupAllHandTips(tipNumbers);
 
             result.IsNotNull();
             result.deckTips.IsNotNull();
-            result.deckTips.Count.Is((value1 + value2 + value3) * 10 - tipNumbers * state.battleActorList.Count);
-            result.battleActorList.IsNotNull();
-            result.battleActorList.ContainsKey(battleActor).IsTrue();
+            result.deckTips.Count.Is((value1 + value2 + value3) * 10 - tipNumbers * state.battleActors.Count());
+            result.battleActors.IsNotNull();
+            result.battleActors.Contains(battleActor).IsTrue();
 
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
@@ -627,9 +627,9 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
-            var battleActor = state.battleActorList.First().Key;
+            var battleActor = state.battleActors.First();
 
-            var actorState = state.battleActorList[battleActor];
+            var actorState = battleActor.state;
             var result = BattleStateManager.SetupAllHandTips(null);
 
             result.IsNull();

@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
+using System.Linq;
 
 namespace Assets.Src.Domain.Service
 {
@@ -20,12 +21,15 @@ namespace Assets.Src.Domain.Service
             BattleActor actor,
             int tipNumbers = Constants.Battle.DEFAULT_HAND_TIP_NUMBERS)
         {
-            if(state is null) return state;
-            if(actor is null) return state;
+            if(state is null)
+                return state;
+            if(actor is null)
+                return state;
 
-            if(!state.battleActorList.ContainsKey(actor)) return state;
+            if(!state.battleActors.Contains(actor))
+                return state;
 
-            state.battleActorList[actor] = state.battleActorList[actor]
+            actor.state = actor.state
                 .ClearHandTips()
                 .AddHandTips(state.PopDeckTips(tipNumbers));
 

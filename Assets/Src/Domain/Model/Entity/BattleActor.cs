@@ -18,6 +18,7 @@
             offenseValue = offense;
             defenseValue = defense;
             speedValue = speed;
+            state = new State();
 
             return this;
         }
@@ -38,5 +39,10 @@
         /// 現在の素早さ
         /// </summary>
         public int speedValue { get; set; }
+
+        /// <summary>
+        /// 現在の戦闘状態
+        /// </summary>
+        public State state { get; set; }
     }
 }
