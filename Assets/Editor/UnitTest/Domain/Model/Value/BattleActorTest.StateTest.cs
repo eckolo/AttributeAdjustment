@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Assets.Editor.UnitTest.Domain.Model.Value
 {
-    public static class BattleActorTest
+    public static partial class BattleActorTest
     {
         /// <summary>
         /// <see cref="BattleActor.State"/>のテストクラス

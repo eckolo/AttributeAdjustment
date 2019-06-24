@@ -14,6 +14,6 @@ namespace Assets.Src.Domain.Factory
         /// <param name="stationery">雛形となる行動主体オブジェクト</param>
         /// <returns></returns>
         public static BattleActor ToBattleActor(this Actor stationery)
-            => ((BattleActor)stationery.Duplicate()).Initialize();
+            => new BattleActor(stationery);
     }
 }

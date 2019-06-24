@@ -10,8 +10,7 @@ namespace Assets.Src.Domain.Model.Entity
     public class Actor : Named, IViewValue, IDuplicatable<Actor>
     {
         public Actor(string name) : base(name)
-        {
-        }
+        { }
 
         /// <summary>
         /// 使用可能アビリティリスト

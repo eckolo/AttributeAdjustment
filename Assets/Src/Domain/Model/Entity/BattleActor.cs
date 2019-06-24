@@ -6,7 +6,19 @@
     public partial class BattleActor : Actor
     {
         public BattleActor(string name) : base(name)
+        { }
+        public BattleActor(Actor origin) : base(origin.name)
         {
+            abilityList = origin.abilityList;
+            experience = origin.experience;
+
+            base.maxVitality = origin.maxVitality;
+            base.vitality = origin.vitality;
+            base.offense = origin.offense;
+            base.defense = origin.defense;
+            base.speed = origin.speed;
+
+            _isPlayer = origin.isPlayer;
         }
 
         /// <summary>
@@ -39,6 +51,15 @@
         /// 現在の素早さ
         /// </summary>
         public int speedValue { get; set; }
+
+        /// <summary>
+        /// プレイヤー操作対象であるか否かのフラグ
+        /// </summary>
+        public override bool isPlayer => _isPlayer;
+        /// <summary>
+        /// プレイヤー操作対象であるか否かのフラグ
+        /// </summary>
+        readonly bool _isPlayer;
 
         /// <summary>
         /// 現在の戦闘状態
