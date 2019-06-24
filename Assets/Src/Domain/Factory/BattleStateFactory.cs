@@ -12,7 +12,7 @@ namespace Assets.Src.Domain.Factory
             IEnumerable<Actor> enemys,
             Topography topography)
         {
-            var actiors = enemys.Concat(new[] { state.player });
+            var actiors = enemys.Concat(new[] { state.player }).Select(actor => actor.ToBattleActor()).ToArray();
 
             var battleState = new BattleState(actiors, topography);
 

@@ -17,12 +17,12 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 戦闘状態の生成
         /// </summary>
-        /// <param name="actiors">戦闘参加者</param>
+        /// <param name="battleActors">戦闘参加者</param>
         /// <param name="topography">初期地形</param>
-        public BattleState(IEnumerable<Actor> actiors, Topography topography)
+        public BattleState(IEnumerable<BattleActor> battleActors, Topography topography)
         {
             //戦闘者毎の戦闘状態初期化
-            battleActors = actiors.Select(actor => actor.ToBattleActor()).ToArray();
+            this.battleActors = battleActors;
             //山札の雛形生成
             this.topography = topography;
         }
