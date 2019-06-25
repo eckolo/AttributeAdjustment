@@ -91,5 +91,110 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             result.speed = speed;
             result.isPlayer.Is(true);
         }
+
+        [Test]
+        public static void MaxVitalityTest()
+        {
+            const string MEMBER_NAME = "_maxVitalityAdjust";
+            var maxVitality = 2;
+            var battleActor = BattleActorMock.Generate(new Actor(nameof(MaxVitalityTest))
+            {
+                maxVitality = maxVitality
+            });
+
+            var bindingFlags = BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance;
+            var fieldInfo = typeof(BattleActor).GetField(MEMBER_NAME, bindingFlags);
+
+            battleActor.maxVitality.Is(maxVitality);
+            fieldInfo.GetValue(battleActor).Is(0);
+
+            battleActor.maxVitality += 10;
+
+            battleActor.maxVitality.Is(maxVitality + 10);
+            fieldInfo.GetValue(battleActor).Is(0 + 10);
+
+            battleActor.maxVitality -= 100;
+
+            battleActor.maxVitality.Is(maxVitality + 10 - 100);
+            fieldInfo.GetValue(battleActor).Is(0 + 10 - 100);
+        }
+        [Test]
+        public static void OffenseTest()
+        {
+            const string MEMBER_NAME = "_offenseAdjust";
+            var offense = 2;
+            var battleActor = BattleActorMock.Generate(new Actor(nameof(OffenseTest))
+            {
+                offense = offense
+            });
+
+            var bindingFlags = BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance;
+            var fieldInfo = typeof(BattleActor).GetField(MEMBER_NAME, bindingFlags);
+
+            battleActor.offense.Is(offense);
+            fieldInfo.GetValue(battleActor).Is(0);
+
+            battleActor.offense += 10;
+
+            battleActor.offense.Is(offense + 10);
+            fieldInfo.GetValue(battleActor).Is(0 + 10);
+
+            battleActor.offense -= 100;
+
+            battleActor.offense.Is(offense + 10 - 100);
+            fieldInfo.GetValue(battleActor).Is(0 + 10 - 100);
+        }
+        [Test]
+        public static void DefenseTest()
+        {
+            const string MEMBER_NAME = "_defenseAdjust";
+            var defense = 2;
+            var battleActor = BattleActorMock.Generate(new Actor(nameof(DefenseTest))
+            {
+                defense = defense
+            });
+
+            var bindingFlags = BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance;
+            var fieldInfo = typeof(BattleActor).GetField(MEMBER_NAME, bindingFlags);
+
+            battleActor.defense.Is(defense);
+            fieldInfo.GetValue(battleActor).Is(0);
+
+            battleActor.defense += 10;
+
+            battleActor.defense.Is(defense + 10);
+            fieldInfo.GetValue(battleActor).Is(0 + 10);
+
+            battleActor.defense -= 100;
+
+            battleActor.defense.Is(defense + 10 - 100);
+            fieldInfo.GetValue(battleActor).Is(0 + 10 - 100);
+        }
+        [Test]
+        public static void SpeedTest()
+        {
+            const string MEMBER_NAME = "_speedAdjust";
+            var speed = 2;
+            var battleActor = BattleActorMock.Generate(new Actor(nameof(SpeedTest))
+            {
+                speed = speed
+            });
+
+            var bindingFlags = BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance;
+            var fieldInfo = typeof(BattleActor).GetField(MEMBER_NAME, bindingFlags);
+
+            battleActor.speed.Is(speed);
+            fieldInfo.GetValue(battleActor).Is(0);
+
+            battleActor.speed += 10;
+
+            battleActor.speed.Is(speed + 10);
+            fieldInfo.GetValue(battleActor).Is(0 + 10);
+
+            battleActor.speed -= 100;
+
+            battleActor.speed.Is(speed + 10 - 100);
+            fieldInfo.GetValue(battleActor).Is(0 + 10 - 100);
+        }
     }
 }

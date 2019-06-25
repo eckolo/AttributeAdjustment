@@ -30,23 +30,23 @@ namespace Assets.Src.Domain.Model.Entity
         /// <summary>
         /// 最大体力
         /// </summary>
-        public int maxVitality { get; set; }
+        public virtual int maxVitality { get; set; }
         /// <summary>
         /// 現在の体力
         /// </summary>
-        public int vitality { get; set; }
+        public virtual int vitality { get; set; }
         /// <summary>
         /// 攻撃力
         /// </summary>
-        public int offense { get; set; }
+        public virtual int offense { get; set; }
         /// <summary>
         /// 防御力
         /// </summary>
-        public int defense { get; set; }
+        public virtual int defense { get; set; }
         /// <summary>
         /// 素早さ
         /// </summary>
-        public int speed { get; set; }
+        public virtual int speed { get; set; }
 
         /// <summary>
         /// プレイヤー操作対象であるか否かのフラグ
