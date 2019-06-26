@@ -15,6 +15,10 @@
             /// 場札のデフォルト初期枚数
             /// </summary>
             public const int DEFAULT_BOARD_TIP_NUMBERS = 7;
+            /// <summary>
+            /// 行動力の基準値
+            /// </summary>
+            public const int ENERGY_NORM = 100;
         }
     }
 }

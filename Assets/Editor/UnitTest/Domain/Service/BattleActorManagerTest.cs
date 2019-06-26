@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
 using Assets.Src.Mock;
 using NUnit.Framework;
@@ -387,6 +388,24 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.deckTips.IsNotNull();
             result.deckTips.Count.Is(value1 + value2 + value3);
             result.battleActors.IsNotNull();
+        }
+
+        [Test]
+        public static void GetEnergyIncrease()
+        {
+            var actor = BattleActorMock.Generate(new Actor($"{nameof(Actor)}_{nameof(GetEnergyIncrease)}")
+            {
+                speed = 12
+            });
+            var tips = new[] {
+                MotionTipMock.Generate(Energy.DARKNESS, 1),
+                MotionTipMock.Generate(Energy.BLOW, 2),
+            };
+            actor.state = BattleActorMock.StateMock.Generate(new List<MotionTip>(), tips);
+
+            var result = actor.GetEnergyIncrease();
+
+            result.Is(Constants.Battle.ENERGY_NORM + 12 - 2);
         }
     }
 }
