@@ -23,6 +23,7 @@ namespace Assets.Src.Domain.Model.Entity
                 handTips = new List<MotionTip>();
             }
 
+            //TODO 懐札補充メソッドの実装
             /// <summary>
             /// 懐札
             /// </summary>
