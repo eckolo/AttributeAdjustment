@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
 using Assets.Src.Mock;
 using NUnit.Framework;
@@ -56,7 +57,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SetupDeckTest_元データがNull()
         {
-            var state = BattleStateMock.Generate(null);
+            var state = BattleStateMock.Generate((Dictionary<MotionTip, int>)null);
 
             var result = state.SetupDeck().deckTips;
 
@@ -631,6 +632,137 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorState = battleActor.state;
             var result = BattleStateManager.SetupAllHandTips(null);
+
+            result.IsNull();
+        }
+
+        [Test]
+        public static void UpdateEnergyTest_正常動作_行動力0()
+        {
+            var name1 = $"{nameof(UpdateEnergyTest_正常動作_行動力0)}_1";
+            var name2 = $"{nameof(UpdateEnergyTest_正常動作_行動力0)}_2";
+            var name3 = $"{nameof(UpdateEnergyTest_正常動作_行動力0)}_3";
+            var actor1 = BattleActorMock.Generate(new Actor(name1)
+            {
+                speed = 3
+            });
+            var actor2 = BattleActorMock.Generate(new Actor(name2)
+            {
+                speed = 12
+            });
+            var actor3 = BattleActorMock.Generate(new Actor(name3)
+            {
+                speed = 1
+            });
+
+            var actorList = new[] { actor1, actor2, actor3 };
+            var state = BattleStateMock.Generate(actorList);
+
+            var result = state.UpdateEnergy();
+            result.IsNotNull();
+
+            var resultActors = result.battleActors;
+            resultActors.IsNotNull();
+            resultActors.Count().Is(actorList.Length);
+            resultActors.Single(actor => actor.name == name1).energy.Is(Constants.Battle.ENERGY_NORM + 3);
+            resultActors.Single(actor => actor.name == name2).energy.Is(Constants.Battle.ENERGY_NORM + 12);
+            resultActors.Single(actor => actor.name == name3).energy.Is(Constants.Battle.ENERGY_NORM + 1);
+        }
+        [Test]
+        public static void UpdateEnergyTest_正常動作_行動力有_正()
+        {
+            var name1 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_正)}_1";
+            var name2 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_正)}_2";
+            var name3 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_正)}_3";
+            var actor1 = BattleActorMock.Generate(new Actor(name1)
+            {
+                speed = 3
+            });
+            var actor2 = BattleActorMock.Generate(new Actor(name2)
+            {
+                speed = 12
+            });
+            var actor3 = BattleActorMock.Generate(new Actor(name3)
+            {
+                speed = 1
+            });
+            actor1.energy = 24;
+            actor2.energy = 108;
+            actor3.energy = 6;
+
+            var actorList = new[] { actor1, actor2, actor3 };
+            var state = BattleStateMock.Generate(actorList);
+
+            var result = state.UpdateEnergy();
+            result.IsNotNull();
+
+            var resultActors = result.battleActors;
+            resultActors.IsNotNull();
+            resultActors.Count().Is(actorList.Length);
+            resultActors.Single(actor => actor.name == name1).energy.Is(Constants.Battle.ENERGY_NORM + 24 - 6 + 3);
+            resultActors.Single(actor => actor.name == name2).energy.Is(Constants.Battle.ENERGY_NORM + 108 - 6 + 12);
+            resultActors.Single(actor => actor.name == name3).energy.Is(Constants.Battle.ENERGY_NORM + 6 - 6 + 1);
+        }
+        [Test]
+        public static void UpdateEnergyTest_正常動作_行動力有_負()
+        {
+            var name1 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_負)}_1";
+            var name2 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_負)}_2";
+            var name3 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_負)}_3";
+            var actor1 = BattleActorMock.Generate(new Actor(name1)
+            {
+                speed = 3
+            });
+            var actor2 = BattleActorMock.Generate(new Actor(name2)
+            {
+                speed = 12
+            });
+            var actor3 = BattleActorMock.Generate(new Actor(name3)
+            {
+                speed = 1
+            });
+            actor1.energy = -24;
+            actor2.energy = 108;
+            actor3.energy = 6;
+
+            var actorList = new[] { actor1, actor2, actor3 };
+            var state = BattleStateMock.Generate(actorList);
+
+            var result = state.UpdateEnergy();
+            result.IsNotNull();
+
+            var resultActors = result.battleActors;
+            resultActors.IsNotNull();
+            resultActors.Count().Is(actorList.Length);
+            resultActors.Single(actor => actor.name == name1).energy.Is(Constants.Battle.ENERGY_NORM + -24 + 24 + 3);
+            resultActors.Single(actor => actor.name == name2).energy.Is(Constants.Battle.ENERGY_NORM + 108 + 24 + 12);
+            resultActors.Single(actor => actor.name == name3).energy.Is(Constants.Battle.ENERGY_NORM + 6 + 24 + 1);
+        }
+        [Test]
+        public static void UpdateEnergyTest_行動者無し()
+        {
+            var state = BattleStateMock.Generate(new BattleActor[] { });
+
+            var result = state.UpdateEnergy();
+
+            result.IsNotNull();
+            result.battleActors.IsNotNull();
+            result.battleActors.Count().Is(0);
+        }
+        [Test]
+        public static void UpdateEnergyTest_行動者Null()
+        {
+            var state = BattleStateMock.Generate((List<BattleActor>)null);
+
+            var result = state.UpdateEnergy();
+
+            result.IsNotNull();
+            result.battleActors.IsNull();
+        }
+        [Test]
+        public static void UpdateEnergyTest_状態Null()
+        {
+            var result = BattleStateManager.UpdateEnergy(null);
 
             result.IsNull();
         }

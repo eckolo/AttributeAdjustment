@@ -14,11 +14,13 @@ namespace Assets.Src.Mock
 
         public static BattleStateMock Generate(IEnumerable<Actor> actiors, Dictionary<MotionTip, int> deckStationeryMap)
         {
-            var battleActors = actiors.Select(actor => actor.ToBattleActor()).ToArray();
+            var battleActors = actiors?.Select(actor => actor.ToBattleActor()).ToArray();
             var topography = new Topography(deckStationeryMap);
 
             return new BattleStateMock(battleActors, topography);
         }
+        public static BattleStateMock Generate(IEnumerable<BattleActor> battleActors)
+            => new BattleStateMock(battleActors, null);
         public static BattleStateMock Generate(Dictionary<MotionTip, int> deckStationeryMap)
             => Generate(new List<Actor>(), deckStationeryMap);
         public static BattleStateMock Generate()

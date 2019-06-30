@@ -34,7 +34,7 @@ namespace Assets.Src.Controller
             while(!battleState.isEnd)
             {
                 //TODO 戦闘中のターン毎処理の実装
-                battleState = battleState.SetupDeck().SetupBoard().SetupAllHandTips();
+                battleState = battleState.UpdateEnergy();
             }
 
             //TODO 戦闘終了処理の実装

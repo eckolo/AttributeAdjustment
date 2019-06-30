@@ -74,6 +74,11 @@
         int _speedAdjust = 0;
 
         /// <summary>
+        /// 行動力
+        /// </summary>
+        public int energy { get; set; } = 0;
+
+        /// <summary>
         /// プレイヤー操作対象であるか否かのフラグ
         /// </summary>
         public override bool isPlayer => _isPlayer;

@@ -68,5 +68,20 @@ namespace Assets.Src.Domain.Service
 
             return state;
         }
+        public static BattleState UpdateEnergy(this BattleState state)
+        {
+            if(state is null)
+                return state;
+            var actors = state.battleActors;
+            if(!(actors?.Any() ?? false))
+                return state;
+
+            var baseEnergy = actors.Min(actor => actor.energy);
+
+            foreach(var actor in actors)
+                actor.energy += actor.GetEnergyIncrease() - baseEnergy;
+
+            return state;
+        }
     }
 }
