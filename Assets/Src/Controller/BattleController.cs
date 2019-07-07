@@ -34,7 +34,7 @@ namespace Assets.Src.Controller
             while(!battleState.isEnd)
             {
                 //TODO 戦闘中のターン毎処理の実装
-                battleState = battleState.UpdateEnergy();
+                battleState = battleState.UpdateEnergy().SetNextActor();
             }
 
             //TODO 戦闘終了処理の実装

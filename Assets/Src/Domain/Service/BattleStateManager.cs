@@ -83,5 +83,7 @@ namespace Assets.Src.Domain.Service
 
             return state;
         }
+        public static BattleState SetNextActor(this BattleState state)
+            => state?.SetThisTimeActor(state.battleActors?.MaxKeys(actor => actor.energy).FirstOrDefault());
     }
 }

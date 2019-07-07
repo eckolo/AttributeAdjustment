@@ -766,5 +766,75 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             result.IsNull();
         }
+
+        [Test]
+        public static void SetNextActorTest_正常動作_行動者未設定()
+        {
+            var name1 = $"{nameof(SetNextActorTest_正常動作_行動者未設定)}_1";
+            var name2 = $"{nameof(SetNextActorTest_正常動作_行動者未設定)}_2";
+            var name3 = $"{nameof(SetNextActorTest_正常動作_行動者未設定)}_3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+            actor1.energy = -24;
+            actor2.energy = 108;
+            actor3.energy = 6;
+
+            var actorList = new[] { actor1, actor2, actor3 };
+            var state = BattleStateMock.Generate(actorList);
+
+            var result = state.SetNextActor();
+
+            result.IsNotNull();
+            result.thisTimeActor.IsSameReferenceAs(actor2);
+        }
+        [Test]
+        public static void SetNextActorTest_正常動作_行動者設定済()
+        {
+            var name1 = $"{nameof(SetNextActorTest_正常動作_行動者設定済)}_1";
+            var name2 = $"{nameof(SetNextActorTest_正常動作_行動者設定済)}_2";
+            var name3 = $"{nameof(SetNextActorTest_正常動作_行動者設定済)}_3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+            actor1.energy = -24;
+            actor2.energy = 108;
+            actor3.energy = 6;
+
+            var actorList = new[] { actor1, actor2, actor3 };
+            var state = BattleStateMock.Generate(actorList).SetThisTimeActor(actor3);
+
+            var result = state.SetNextActor();
+
+            result.IsNotNull();
+            result.thisTimeActor.IsSameReferenceAs(actor2);
+        }
+        [Test]
+        public static void SetNextActorTest_行動者無し()
+        {
+            var state = BattleStateMock.Generate(new BattleActor[] { });
+
+            var result = state.SetNextActor();
+
+            result.IsNotNull();
+            result.thisTimeActor.IsNull();
+        }
+        [Test]
+        public static void SetNextActorTest_行動者Null()
+        {
+            var state = BattleStateMock.Generate((List<BattleActor>)null);
+
+            var result = state.SetNextActor();
+
+            result.IsNotNull();
+            result.thisTimeActor.IsNull();
+        }
+        [Test]
+        public static void SetNextActorTest_状態Null()
+        {
+            var result = BattleStateManager.SetNextActor(null);
+
+            result.IsNull();
+        }
     }
 }

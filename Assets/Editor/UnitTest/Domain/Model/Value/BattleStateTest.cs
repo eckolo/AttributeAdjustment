@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Mock;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -254,6 +255,71 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
 
             result.IsNotNull();
             result.Count().Is(0);
+        }
+
+        [Test]
+        public static void SetThisTimeActorTest_正常動作_行動者が状態に含まれる()
+        {
+            var name1 = $"{nameof(SetThisTimeActorTest_正常動作_行動者が状態に含まれる)}_1";
+            var name2 = $"{nameof(SetThisTimeActorTest_正常動作_行動者が状態に含まれる)}_2";
+            var name3 = $"{nameof(SetThisTimeActorTest_正常動作_行動者が状態に含まれる)}_3";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+
+            var actorList = new[] { actor1, actor2, actor3 };
+            var state = BattleStateMock.Generate(actorList);
+
+            var result = state.SetThisTimeActor(actor2);
+
+            result.IsNotNull();
+            result.thisTimeActor.IsSameReferenceAs(actor2);
+        }
+        [Test]
+        public static void SetThisTimeActorTest_正常動作_行動者が状態に含まれない()
+        {
+            var name1 = $"{nameof(SetThisTimeActorTest_正常動作_行動者が状態に含まれない)}_1";
+            var name2 = $"{nameof(SetThisTimeActorTest_正常動作_行動者が状態に含まれない)}_2";
+            var name3 = $"{nameof(SetThisTimeActorTest_正常動作_行動者が状態に含まれない)}_3";
+            var name4 = $"{nameof(SetThisTimeActorTest_正常動作_行動者が状態に含まれない)}_4";
+            var actor1 = BattleActorMock.Generate(name1);
+            var actor2 = BattleActorMock.Generate(name2);
+            var actor3 = BattleActorMock.Generate(name3);
+            var actor4 = BattleActorMock.Generate(name4);
+
+            var actorList = new[] { actor1, actor2, actor3 };
+            var state = BattleStateMock.Generate(actorList);
+
+            var result = state.SetThisTimeActor(actor4);
+
+            result.IsNotNull();
+            result.thisTimeActor.IsNull();
+        }
+        [Test]
+        public static void SetThisTimeActorTest_行動者無し()
+        {
+            var name = $"{nameof(SetThisTimeActorTest_正常動作_行動者が状態に含まれる)}_1";
+            var actor = BattleActorMock.Generate(name);
+
+            var state = BattleStateMock.Generate(new BattleActor[] { });
+
+            var result = state.SetThisTimeActor(actor);
+
+            result.IsNotNull();
+            result.thisTimeActor.IsNull();
+        }
+        [Test]
+        public static void SetThisTimeActorTest_行動者Null()
+        {
+            var name = $"{nameof(SetThisTimeActorTest_正常動作_行動者が状態に含まれる)}_1";
+            var actor = BattleActorMock.Generate(name);
+
+            var state = BattleStateMock.Generate((List<BattleActor>)null);
+
+            var result = state.SetThisTimeActor(actor);
+
+            result.IsNotNull();
+            result.thisTimeActor.IsNull();
         }
     }
 }

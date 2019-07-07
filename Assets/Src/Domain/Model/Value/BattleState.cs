@@ -58,6 +58,8 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public IEnumerable<BattleActor> battleActors { get; protected set; }
 
+        public BattleActor thisTimeActor { get; protected set; }
+
         /// <summary>
         /// 山札の設定
         /// </summary>
@@ -122,6 +124,16 @@ namespace Assets.Src.Domain.Model.Value
                 ?? new List<MotionTip>();
 
             return popedTips;
+        }
+        /// <summary>
+        /// 現在行動者の設定
+        /// </summary>
+        /// <param name="nextActor">次の行動者</param>
+        /// <returns>行動者の設定された戦闘状態</returns>
+        public BattleState SetThisTimeActor(BattleActor nextActor)
+        {
+            thisTimeActor = (battleActors?.Contains(nextActor) ?? false) ? nextActor : default;
+            return this;
         }
     }
 }
