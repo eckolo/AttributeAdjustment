@@ -68,6 +68,11 @@ namespace Assets.Src.Domain.Service
 
             return state;
         }
+        /// <summary>
+        /// 戦闘状態内の全行動主体の行動力を一斉更新する
+        /// </summary>
+        /// <param name="state">対象の戦闘状態</param>
+        /// <returns>行動力更新後の戦闘状態</returns>
         public static BattleState UpdateEnergy(this BattleState state)
         {
             if(state is null)
@@ -83,6 +88,11 @@ namespace Assets.Src.Domain.Service
 
             return state;
         }
+        /// <summary>
+        /// 戦闘状態に次の行動者を設定する
+        /// </summary>
+        /// <param name="state">対象の戦闘状態</param>
+        /// <returns>行動力更新後の戦闘状態</returns>
         public static BattleState SetNextActor(this BattleState state)
             => state?.SetThisTimeActor(state.battleActors?.MaxKeys(actor => actor.energy).FirstOrDefault());
     }
