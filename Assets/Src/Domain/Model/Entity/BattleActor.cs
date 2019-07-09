@@ -12,66 +12,17 @@
             abilityList = origin.abilityList;
             experience = origin.experience;
 
-            base.maxVitality = origin.maxVitality;
-            vitality = origin.vitality;
-            base.offense = origin.offense;
-            base.defense = origin.defense;
-            base.speed = origin.speed;
+            base.parameter = origin.parameter;
 
             _isPlayer = origin.isPlayer;
         }
 
-        /// <summary>
-        /// 現在の最大体力
-        /// </summary>
-        public override int maxVitality
+        public override Parameter parameter
         {
-            get => base.maxVitality + _maxVitalityAdjust;
-            set => _maxVitalityAdjust = value - base.maxVitality;
+            get => base.parameter + _parameterAdjust;
+            set => _parameterAdjust = value - base.parameter;
         }
-        /// <summary>
-        /// 現在の最大体力補正値
-        /// </summary>
-        int _maxVitalityAdjust = 0;
-
-        /// <summary>
-        /// 現在の攻撃力
-        /// </summary>
-        public override int offense
-        {
-            get => base.offense + _offenseAdjust;
-            set => _offenseAdjust = value - base.offense;
-        }
-        /// <summary>
-        /// 現在の攻撃力補正値
-        /// </summary>
-        int _offenseAdjust = 0;
-
-        /// <summary>
-        /// 現在の防御力
-        /// </summary>
-        public override int defense
-        {
-            get => base.defense + _defenseAdjust;
-            set => _defenseAdjust = value - base.defense;
-        }
-        /// <summary>
-        /// 現在の防御力補正値
-        /// </summary>
-        int _defenseAdjust = 0;
-
-        /// <summary>
-        /// 現在の素早さ
-        /// </summary>
-        public override int speed
-        {
-            get => base.speed + _speedAdjust;
-            set => _speedAdjust = value - base.speed;
-        }
-        /// <summary>
-        /// 現在の素早さ補正値
-        /// </summary>
-        int _speedAdjust = 0;
+        Parameter _parameterAdjust = new Parameter();
 
         /// <summary>
         /// 行動力

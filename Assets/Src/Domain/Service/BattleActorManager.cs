@@ -42,6 +42,6 @@ namespace Assets.Src.Domain.Service
         /// <param name="actor">計算対象行動主体</param>
         /// <returns>行動力の増加量</returns>
         public static int GetEnergyIncrease(this BattleActor actor)
-            => Constants.Battle.ENERGY_NORM + actor.speed - actor.state.selfTips.Count();
+            => Constants.Battle.ENERGY_NORM + actor.parameter.speed - actor.state.selfTips.Count();
     }
 }

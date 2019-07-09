@@ -28,11 +28,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             {
                 abilityList = abilityList,
                 experience = experience,
-                maxVitality = maxVitality,
-                vitality = vitality,
-                offense = offense,
-                defense = defense,
-                speed = speed,
+                parameter = new Actor.Parameter(maxVitality, vitality, offense, defense, speed),
             };
 
             var result = new BattleActor(actor);
@@ -42,12 +38,12 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             result.abilityList.Count.Is(abilityList.Count);
             result.abilityList[0].IsSameReferenceAs(abilityList[0]);
             result.abilityList[1].IsSameReferenceAs(abilityList[1]);
-            result.experience = experience;
-            result.maxVitality = maxVitality;
-            result.vitality = vitality;
-            result.offense = offense;
-            result.defense = defense;
-            result.speed = speed;
+            result.experience.Is(experience);
+            result.parameter.maxVitality.Is(maxVitality);
+            result.parameter.vitality.Is(vitality);
+            result.parameter.offense.Is(offense);
+            result.parameter.defense.Is(defense);
+            result.parameter.speed.Is(speed);
             result.isPlayer.Is(false);
         }
         [Test]
@@ -69,11 +65,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             {
                 abilityList = abilityList,
                 experience = experience,
-                maxVitality = maxVitality,
-                vitality = vitality,
-                offense = offense,
-                defense = defense,
-                speed = speed,
+                parameter = new Actor.Parameter(maxVitality, vitality, offense, defense, speed),
             };
 
             var result = new BattleActor(actor);
@@ -83,118 +75,118 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
             result.abilityList.Count.Is(abilityList.Count);
             result.abilityList[0].IsSameReferenceAs(abilityList[0]);
             result.abilityList[1].IsSameReferenceAs(abilityList[1]);
-            result.experience = experience;
-            result.maxVitality = maxVitality;
-            result.vitality = vitality;
-            result.offense = offense;
-            result.defense = defense;
-            result.speed = speed;
+            result.experience.Is(experience);
+            result.parameter.maxVitality.Is(maxVitality);
+            result.parameter.vitality.Is(vitality);
+            result.parameter.offense.Is(offense);
+            result.parameter.defense.Is(defense);
+            result.parameter.speed.Is(speed);
             result.isPlayer.Is(true);
         }
 
         [Test]
         public static void MaxVitalityTest()
         {
-            const string MEMBER_NAME = "_maxVitalityAdjust";
+            const string MEMBER_NAME = "_parameterAdjust";
             var maxVitality = 2;
             var battleActor = BattleActorMock.Generate(new Actor(nameof(MaxVitalityTest))
             {
-                maxVitality = maxVitality
+                parameter = new Actor.Parameter(maxVitality, 0, 0, 0, 0),
             });
 
             var bindingFlags = BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance;
             var fieldInfo = typeof(BattleActor).GetField(MEMBER_NAME, bindingFlags);
 
-            battleActor.maxVitality.Is(maxVitality);
-            fieldInfo.GetValue(battleActor).Is(0);
+            battleActor.parameter.maxVitality.Is(maxVitality);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).maxVitality.Is(0);
 
-            battleActor.maxVitality += 10;
+            battleActor.parameter += new Actor.Parameter(maxVitality: 10, 0, 0, 0, 0);
 
-            battleActor.maxVitality.Is(maxVitality + 10);
-            fieldInfo.GetValue(battleActor).Is(0 + 10);
+            battleActor.parameter.maxVitality.Is(maxVitality + 10);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).maxVitality.Is(0 + 10);
 
-            battleActor.maxVitality -= 100;
+            battleActor.parameter -= new Actor.Parameter(maxVitality: 100, 0, 0, 0, 0);
 
-            battleActor.maxVitality.Is(maxVitality + 10 - 100);
-            fieldInfo.GetValue(battleActor).Is(0 + 10 - 100);
+            battleActor.parameter.maxVitality.Is(maxVitality + 10 - 100);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).maxVitality.Is(0 + 10 - 100);
         }
         [Test]
         public static void OffenseTest()
         {
-            const string MEMBER_NAME = "_offenseAdjust";
+            const string MEMBER_NAME = "_parameterAdjust";
             var offense = 2;
             var battleActor = BattleActorMock.Generate(new Actor(nameof(OffenseTest))
             {
-                offense = offense
+                parameter = new Actor.Parameter(0, 0, offense, 0, 0),
             });
 
             var bindingFlags = BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance;
             var fieldInfo = typeof(BattleActor).GetField(MEMBER_NAME, bindingFlags);
 
-            battleActor.offense.Is(offense);
-            fieldInfo.GetValue(battleActor).Is(0);
+            battleActor.parameter.offense.Is(offense);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).offense.Is(0);
 
-            battleActor.offense += 10;
+            battleActor.parameter += new Actor.Parameter(0, 0, offense: 10, 0, 0);
 
-            battleActor.offense.Is(offense + 10);
-            fieldInfo.GetValue(battleActor).Is(0 + 10);
+            battleActor.parameter.offense.Is(offense + 10);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).offense.Is(0 + 10);
 
-            battleActor.offense -= 100;
+            battleActor.parameter -= new Actor.Parameter(0, 0, offense: 100, 0, 0);
 
-            battleActor.offense.Is(offense + 10 - 100);
-            fieldInfo.GetValue(battleActor).Is(0 + 10 - 100);
+            battleActor.parameter.offense.Is(offense + 10 - 100);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).offense.Is(0 + 10 - 100);
         }
         [Test]
         public static void DefenseTest()
         {
-            const string MEMBER_NAME = "_defenseAdjust";
+            const string MEMBER_NAME = "_parameterAdjust";
             var defense = 2;
             var battleActor = BattleActorMock.Generate(new Actor(nameof(DefenseTest))
             {
-                defense = defense
+                parameter = new Actor.Parameter(0, 0, 0, defense, 0),
             });
 
             var bindingFlags = BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance;
             var fieldInfo = typeof(BattleActor).GetField(MEMBER_NAME, bindingFlags);
 
-            battleActor.defense.Is(defense);
-            fieldInfo.GetValue(battleActor).Is(0);
+            battleActor.parameter.defense.Is(defense);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).defense.Is(0);
 
-            battleActor.defense += 10;
+            battleActor.parameter += new Actor.Parameter(0, 0, 0, defense: 10, 0);
 
-            battleActor.defense.Is(defense + 10);
-            fieldInfo.GetValue(battleActor).Is(0 + 10);
+            battleActor.parameter.defense.Is(defense + 10);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).defense.Is(0 + 10);
 
-            battleActor.defense -= 100;
+            battleActor.parameter -= new Actor.Parameter(0, 0, 0, defense: 100, 0);
 
-            battleActor.defense.Is(defense + 10 - 100);
-            fieldInfo.GetValue(battleActor).Is(0 + 10 - 100);
+            battleActor.parameter.defense.Is(defense + 10 - 100);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).defense.Is(0 + 10 - 100);
         }
         [Test]
         public static void SpeedTest()
         {
-            const string MEMBER_NAME = "_speedAdjust";
+            const string MEMBER_NAME = "_parameterAdjust";
             var speed = 2;
             var battleActor = BattleActorMock.Generate(new Actor(nameof(SpeedTest))
             {
-                speed = speed
+                parameter = new Actor.Parameter(0, 0, 0, 0, speed),
             });
 
             var bindingFlags = BindingFlags.InvokeMethod | BindingFlags.NonPublic | BindingFlags.Instance;
             var fieldInfo = typeof(BattleActor).GetField(MEMBER_NAME, bindingFlags);
 
-            battleActor.speed.Is(speed);
-            fieldInfo.GetValue(battleActor).Is(0);
+            battleActor.parameter.speed.Is(speed);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).speed.Is(0);
 
-            battleActor.speed += 10;
+            battleActor.parameter += new Actor.Parameter(0, 0, 0, 0, speed: 10);
 
-            battleActor.speed.Is(speed + 10);
-            fieldInfo.GetValue(battleActor).Is(0 + 10);
+            battleActor.parameter.speed.Is(speed + 10);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).speed.Is(0 + 10);
 
-            battleActor.speed -= 100;
+            battleActor.parameter -= new Actor.Parameter(0, 0, 0, 0, speed: 100);
 
-            battleActor.speed.Is(speed + 10 - 100);
-            fieldInfo.GetValue(battleActor).Is(0 + 10 - 100);
+            battleActor.parameter.speed.Is(speed + 10 - 100);
+            ((Actor.Parameter)fieldInfo.GetValue(battleActor)).speed.Is(0 + 10 - 100);
         }
     }
 }

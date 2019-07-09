@@ -7,7 +7,7 @@ namespace Assets.Src.Domain.Model.Entity
     /// <summary>
     /// 動作主体
     /// </summary>
-    public class Actor : Named, IViewValue, IDuplicatable<Actor>
+    public partial class Actor : Named, IViewValue, IDuplicatable<Actor>
     {
         public Actor(string name) : base(name)
         { }
@@ -20,7 +20,7 @@ namespace Assets.Src.Domain.Model.Entity
         /// <summary>
         /// レベル
         /// </summary>
-        public int level => experience + offense + defense + speed;
+        public int level => experience + parameter.offense + parameter.defense + parameter.speed;
 
         /// <summary>
         /// 経験値
@@ -28,25 +28,9 @@ namespace Assets.Src.Domain.Model.Entity
         public int experience { get; set; }
 
         /// <summary>
-        /// 最大体力
+        /// 現在のパラメータ
         /// </summary>
-        public virtual int maxVitality { get; set; }
-        /// <summary>
-        /// 現在の体力
-        /// </summary>
-        public virtual int vitality { get; set; }
-        /// <summary>
-        /// 攻撃力
-        /// </summary>
-        public virtual int offense { get; set; }
-        /// <summary>
-        /// 防御力
-        /// </summary>
-        public virtual int defense { get; set; }
-        /// <summary>
-        /// 素早さ
-        /// </summary>
-        public virtual int speed { get; set; }
+        public virtual Parameter parameter { get; set; }
 
         /// <summary>
         /// プレイヤー操作対象であるか否かのフラグ

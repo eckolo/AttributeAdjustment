@@ -644,15 +644,15 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var name3 = $"{nameof(UpdateEnergyTest_正常動作_行動力0)}_3";
             var actor1 = BattleActorMock.Generate(new Actor(name1)
             {
-                speed = 3
+                parameter = new Actor.Parameter(0, 0, 0, 0, speed: 3)
             });
             var actor2 = BattleActorMock.Generate(new Actor(name2)
             {
-                speed = 12
+                parameter = new Actor.Parameter(0, 0, 0, 0, speed: 12)
             });
             var actor3 = BattleActorMock.Generate(new Actor(name3)
             {
-                speed = 1
+                parameter = new Actor.Parameter(0, 0, 0, 0, speed: 1)
             });
 
             var actorList = new[] { actor1, actor2, actor3 };
@@ -676,15 +676,15 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var name3 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_正)}_3";
             var actor1 = BattleActorMock.Generate(new Actor(name1)
             {
-                speed = 3
+                parameter = new Actor.Parameter(0, 0, 0, 0, speed: 3)
             });
             var actor2 = BattleActorMock.Generate(new Actor(name2)
             {
-                speed = 12
+                parameter = new Actor.Parameter(0, 0, 0, 0, speed: 12)
             });
             var actor3 = BattleActorMock.Generate(new Actor(name3)
             {
-                speed = 1
+                parameter = new Actor.Parameter(0, 0, 0, 0, speed: 1)
             });
             actor1.energy = 24;
             actor2.energy = 108;
@@ -711,15 +711,15 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var name3 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_負)}_3";
             var actor1 = BattleActorMock.Generate(new Actor(name1)
             {
-                speed = 3
+                parameter = new Actor.Parameter(0, 0, 0, 0, speed: 3)
             });
             var actor2 = BattleActorMock.Generate(new Actor(name2)
             {
-                speed = 12
+                parameter = new Actor.Parameter(0, 0, 0, 0, speed: 12)
             });
             var actor3 = BattleActorMock.Generate(new Actor(name3)
             {
-                speed = 1
+                parameter = new Actor.Parameter(0, 0, 0, 0, speed: 1)
             });
             actor1.energy = -24;
             actor2.energy = 108;

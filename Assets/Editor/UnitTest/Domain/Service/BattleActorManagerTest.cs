@@ -391,11 +391,11 @@ namespace Assets.Editor.UnitTest.Domain.Service
         }
 
         [Test]
-        public static void GetEnergyIncrease()
+        public static void GetEnergyIncreaseTest()
         {
-            var actor = BattleActorMock.Generate(new Actor($"{nameof(Actor)}_{nameof(GetEnergyIncrease)}")
+            var actor = BattleActorMock.Generate(new Actor($"{nameof(Actor)}_{nameof(GetEnergyIncreaseTest)}")
             {
-                speed = 12
+                parameter = new Actor.Parameter(0, 0, 0, 0, speed: 12)
             });
             var tips = new[] {
                 MotionTipMock.Generate(Energy.DARKNESS, 1),
