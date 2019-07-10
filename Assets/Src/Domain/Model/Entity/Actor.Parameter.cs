@@ -9,10 +9,9 @@
         {
             public Parameter()
             { }
-            public Parameter(int maxVitality, int vitality, int offense, int defense, int speed)
+            public Parameter(int maxVitality, int offense, int defense, int speed)
             {
                 this.maxVitality = maxVitality;
-                this.vitality = vitality;
                 this.offense = offense;
                 this.defense = defense;
                 this.speed = speed;
@@ -22,10 +21,6 @@
             /// 最大体力
             /// </summary>
             public int maxVitality { get; } = 0;
-            /// <summary>
-            /// 現在の体力
-            /// </summary>
-            public int vitality { get; } = 0;
             /// <summary>
             /// 攻撃力
             /// </summary>
@@ -43,7 +38,6 @@
                 => x != null || y != null
                 ? new Parameter(
                     maxVitality: (x?.maxVitality ?? 0) + (y?.maxVitality ?? 0),
-                    vitality: (x?.vitality ?? 0) + (y?.vitality ?? 0),
                     offense: (x?.offense ?? 0) + (y?.offense ?? 0),
                     defense: (x?.defense ?? 0) + (y?.defense ?? 0),
                     speed: (x?.speed ?? 0) + (y?.speed ?? 0))
@@ -52,7 +46,6 @@
                 => x != null || y != null
                 ? new Parameter(
                     maxVitality: (x?.maxVitality ?? 0) - (y?.maxVitality ?? 0),
-                    vitality: (x?.vitality ?? 0) - (y?.vitality ?? 0),
                     offense: (x?.offense ?? 0) - (y?.offense ?? 0),
                     defense: (x?.defense ?? 0) - (y?.defense ?? 0),
                     speed: (x?.speed ?? 0) - (y?.speed ?? 0))
@@ -61,7 +54,6 @@
                 => x is Parameter xNotNull
                 ? new Parameter(
                     maxVitality: -xNotNull.maxVitality,
-                    vitality: -xNotNull.vitality,
                     offense: -xNotNull.offense,
                     defense: -xNotNull.defense,
                     speed: -xNotNull.speed)

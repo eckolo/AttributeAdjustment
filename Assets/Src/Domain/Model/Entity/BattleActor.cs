@@ -11,6 +11,7 @@
         {
             abilityList = origin.abilityList;
             experience = origin.experience;
+            vitality = origin.vitality;
 
             base.parameter = origin.parameter;
 

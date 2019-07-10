@@ -28,6 +28,11 @@ namespace Assets.Src.Domain.Model.Entity
         public int experience { get; set; }
 
         /// <summary>
+        /// 現在の体力値
+        /// </summary>
+        public int vitality { get; set; }
+
+        /// <summary>
         /// 現在のパラメータ
         /// </summary>
         public virtual Parameter parameter { get; set; }
