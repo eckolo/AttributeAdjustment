@@ -10,13 +10,14 @@ namespace Assets.Src.Domain.Service
     public static class BattleActorManager
     {
         /// <summary>
-        /// 手札の初期化
+        /// 手札の補充
+        /// 所定の枚数以上になるまで補充する
         /// </summary>
-        /// <param name="state">手札初期化対象の戦闘状態</param>
-        /// <param name="actor">手札初期化対象の動作主体</param>
-        /// <param name="tipNumbers">初期化手札枚数</param>
+        /// <param name="state">手札補充対象の戦闘状態</param>
+        /// <param name="actor">手札補充元の動作主体</param>
+        /// <param name="tipNumbers">補充後の手札枚数</param>
         /// <returns>所定の動作主体の手札が初期化された戦闘状態</returns>
-        public static BattleState SetupHandTips(
+        public static BattleState ReloadHandTips(
             this BattleState state,
             BattleActor actor,
             int tipNumbers = Constants.Battle.DEFAULT_HAND_TIP_NUMBERS)
@@ -29,9 +30,11 @@ namespace Assets.Src.Domain.Service
             if(!state.battleActors.Contains(actor))
                 return state;
 
-            actor.state = actor.state
-                .ClearHandTips()
-                .AddHandTips(state.PopDeckTips(tipNumbers));
+            var replenishment = tipNumbers - actor.state.handTips.Count;
+            if(replenishment <= 0)
+                return state;
+
+            actor.state = actor.state.AddHandTips(state.PopDeckTipsForced(replenishment));
 
             return state;
         }
