@@ -24,7 +24,7 @@ namespace Assets.Src.Domain.Service
             this TViewState state,
             TViewValue value)
             where TViewState : ViewStateAbst
-            where TViewValue : IViewValue
+            where TViewValue : IViewKey
             => state.SetNewView(new[] { value });
         /// <summary>
         /// 新たな画面表示パーツ群を追加する
@@ -38,13 +38,12 @@ namespace Assets.Src.Domain.Service
             this TViewState state,
             IEnumerable<TViewValue> values)
             where TViewState : ViewStateAbst
-            where TViewValue : IViewValue
+            where TViewValue : IViewKey
         {
-            var viewStationeries = values.Select(value => new ViewEntity(value).SetParent(state)).ToArray();
-            state.AddViewStationerys(viewStationeries);
-
-            var action = new ViewAction.Generate(viewStationeries);
-            state.viewActionQueue.Enqueue(action);
+            values
+               .Select(value => new ViewAction(ViewAction.Pattern.GENERATE, value))
+               .ToList()
+               .ForEach(action => state.viewActionQueue.Enqueue(action));
 
             return state;
         }
@@ -52,38 +51,32 @@ namespace Assets.Src.Domain.Service
         /// 画面表示パーツ群を移動する
         /// </summary>
         /// <typeparam name="TViewState">対象の画面表示状態型</typeparam>
-        /// <typeparam name="TViewValue">配置されるパーツのパラメータ型</typeparam>
+        /// <typeparam name="TViewKey">配置されるパーツのパラメータ型</typeparam>
         /// <param name="state">移動対象状態オブジェクト</param>
         /// <param name="values">移動するパーツ群のパラメータリスト</param>
         /// <param name="toView"></param>
         /// <param name="fromView"></param>
         /// <returns></returns>
-        public static TViewState MoveView<TViewState, TViewValue>(
+        public static TViewState MoveView<TViewState, TViewKey>(
             this TViewState state,
-            IEnumerable<TViewValue> values,
-            IViewRoot toView,
-            IViewRoot fromView = default)
+            IEnumerable<TViewKey> values,
+            IViewKey toView,
+            IViewKey fromView = default)
             where TViewState : ViewStateAbst
-            where TViewValue : IViewValue, IEquatable<TViewValue>
+            where TViewKey : IViewKey, IEquatable<TViewKey>
         {
             var parentView = fromView != default ? fromView : state;
 
-            var targetEntityList = values
-                .GroupBy(value => value)
-                .Select(group => (value: group.Key, count: group.Count()))
-                .SelectMany(pair => state.views
-                    .Where(view => view.parent == parentView)
-                    .Where(view => view.value is TViewValue)
-                    .Where(view => view.value.Equals(pair.value))
-                    .Take(pair.count))
-                .ToList();
+            if(fromView != default)
+                values
+                    .Select(value => new ViewAction(ViewAction.Pattern.UPDATE, value, fromView, Easing.Quadratic))
+                    .ToList()
+                    .ForEach(action => state.viewActionQueue.Enqueue(action));
 
-            var movedEntityList = targetEntityList
-                .Select(stat => stat.SetParent(toView))
-                .ToList();
-
-            var action = new ViewAction.Move(movedEntityList, toView, Easing.Quadratic);
-            state.viewActionQueue.Enqueue(action);
+            values
+               .Select(value => new ViewAction(ViewAction.Pattern.UPDATE, value, toView, Easing.Quadratic))
+               .ToList()
+               .ForEach(action => state.viewActionQueue.Enqueue(action));
 
             return state;
         }

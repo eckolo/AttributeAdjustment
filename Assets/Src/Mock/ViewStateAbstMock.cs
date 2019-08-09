@@ -10,7 +10,6 @@ namespace Assets.Src.Mock
     {
         ViewStateAbstMock(IEnumerable<ViewEntity> views, ViewAction[] viewActionQueue)
         {
-            this.views = views?.Select(view => view?.SetParent(this)).ToArray();
             foreach(var action in viewActionQueue ?? new ViewAction[] { })
             {
                 this.viewActionQueue.Enqueue(action);

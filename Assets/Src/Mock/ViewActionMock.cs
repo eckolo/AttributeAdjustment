@@ -6,27 +6,27 @@ namespace Assets.Src.Mock
 {
     public class ViewActionMock : ViewAction
     {
-        ViewActionMock(ActionType actionType, IEnumerable<ViewEntity> actors)
-            : base(actionType, actors)
+        ViewActionMock(Pattern actionType, ViewEntity actor)
+            : base(actionType, actor)
         { }
         ViewActionMock(
-           ActionType actionType,
-           IEnumerable<ViewEntity> actors,
+           Pattern actionType,
+           ViewEntity actor,
            ViewEntity target,
            Easing easing)
-            : base(actionType, actors, target, easing)
+            : base(actionType, actor, target, easing)
         { }
 
         public static ViewActionMock GenerateMock(
-           ActionType actionType = default,
-           IEnumerable<ViewEntity> actors = null,
+           Pattern actionType = default,
+           ViewEntity actor = null,
            ViewEntity target = null,
            Easing? easing = null,
            ViewAction nextAction = null)
         {
             var mock = target is null && easing is null
-                ? new ViewActionMock(actionType, actors)
-                : new ViewActionMock(actionType, actors, target, easing ?? Easing.Linear);
+                ? new ViewActionMock(actionType, actor)
+                : new ViewActionMock(actionType, actor, target, easing ?? Easing.Linear);
             return mock.AddNextAction<ViewActionMock>(nextAction);
         }
     }

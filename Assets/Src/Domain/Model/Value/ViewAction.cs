@@ -12,19 +12,19 @@ namespace Assets.Src.Domain.Model.Value
     /// <summary>
     /// ビューの動作定義雛形オブジェクト
     /// </summary>
-    public abstract partial class ViewAction
+    public partial class ViewAction
     {
-        protected ViewAction(ActionType actionType, IEnumerable<ViewEntity> actors)
+        public ViewAction(Pattern actionType, IViewKey actor)
         {
             this.actionType = actionType;
-            this.actors = actors ?? this.actors;
+            this.actor = actor ?? this.actor;
         }
-        protected ViewAction(
-            ActionType actionType,
-            IEnumerable<ViewEntity> actors,
-            IViewRoot target,
+        public ViewAction(
+            Pattern actionType,
+            IViewKey actor,
+            IViewKey target,
             Easing easing)
-            : this(actionType, actors)
+            : this(actionType, actor)
         {
             this.target = target;
             this.easing = easing;
@@ -32,15 +32,15 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 動作種別
         /// </summary>
-        public ActionType actionType { get; }
+        public Pattern actionType { get; }
         /// <summary>
         /// 動作対象オブジェクト
         /// </summary>
-        public IEnumerable<ViewEntity> actors { get; }
+        public IViewKey actor { get; }
         /// <summary>
         /// 動作起点オブジェクト
         /// </summary>
-        public IViewRoot target { get; }
+        public IViewKey target { get; }
         /// <summary>
         /// 動作処理のイージング
         /// </summary>

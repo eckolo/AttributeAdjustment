@@ -10,18 +10,18 @@ namespace Assets.Src.Domain.Model.Entity
     /// <summary>
     /// 画面表示されるオブジェクト類の雛形クラス
     /// </summary>
-    public class ViewEntity : IViewRoot
+    public class ViewEntity : IViewKey
     {
-        public ViewEntity(IViewValue value)
+        public ViewEntity(IViewKey value)
         {
             this.value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public IViewValue value { get; }
+        public IViewKey value { get; }
 
-        public IViewRoot parent { get; protected set; }
+        public IViewKey parent { get; protected set; }
 
-        public ViewEntity SetParent(IViewRoot parent)
+        public ViewEntity SetParent(IViewKey parent)
         {
             this.parent = parent ?? this.parent;
             return this;

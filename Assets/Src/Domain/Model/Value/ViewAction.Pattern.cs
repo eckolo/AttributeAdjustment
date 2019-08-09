@@ -1,22 +1,20 @@
-﻿using Assets.Src.Domain.Model.Abstract;
-
-namespace Assets.Src.Domain.Model.Value
+﻿namespace Assets.Src.Domain.Model.Value
 {
-    public abstract partial class ViewAction
+    public partial class ViewAction
     {
         /// <summary>
         /// 動作タイプ
         /// </summary>
-        public enum ActionType
+        public enum Pattern
         {
             /// <summary>
             /// 生成処理
             /// </summary>
             GENERATE,
             /// <summary>
-            /// ターゲット指定移動処理
+            /// ターゲット指定更新処理
             /// </summary>
-            MOVE,
+            UPDATE,
             /// <summary>
             /// 削除処理
             /// </summary>

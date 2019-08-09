@@ -9,7 +9,7 @@ namespace Assets.Src.Domain.Model.Abstract
     /// <summary>
     /// ビューオブジェクトが紐づくルート
     /// </summary>
-    public interface IViewRoot
+    public interface IViewKey
     {
     }
 }

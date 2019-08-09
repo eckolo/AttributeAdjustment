@@ -12,13 +12,11 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
     /// </summary>
     public static class ViewActionTest
     {
-        static readonly IEnumerable<ViewEntity> actors = Enumerable.Empty<ViewEntity>();
-
         [Test]
         public static void AddNextActionTest_正常系_単一処理追加()
         {
-            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.ActionType.GENERATE, actors);
-            var actionAdded = ViewActionMock.GenerateMock(ViewAction.ActionType.MOVE, actors);
+            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.GENERATE, default);
+            var actionAdded = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE, default);
 
             var result = actionOrigin.AddNextAction<ViewActionMock>(actionAdded);
 
@@ -31,9 +29,9 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         [Test]
         public static void AddNextActionTest_正常系_複数処理追加_連続()
         {
-            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.ActionType.DELETE, actors);
-            var actionAdded1 = ViewActionMock.GenerateMock(ViewAction.ActionType.MOVE, actors);
-            var actionAdded2 = ViewActionMock.GenerateMock(ViewAction.ActionType.GENERATE, actors);
+            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.DELETE, default);
+            var actionAdded1 = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE, default);
+            var actionAdded2 = ViewActionMock.GenerateMock(ViewAction.Pattern.GENERATE, default);
 
             var result = actionOrigin
                 .AddNextAction<ViewActionMock>(actionAdded1)
@@ -50,9 +48,9 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         [Test]
         public static void AddNextActionTest_正常系_複数処理追加_断続()
         {
-            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.ActionType.DELETE, actors);
-            var actionAdded1 = ViewActionMock.GenerateMock(ViewAction.ActionType.GENERATE, actors);
-            var actionAdded2 = ViewActionMock.GenerateMock(ViewAction.ActionType.MOVE, actors);
+            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.DELETE, default);
+            var actionAdded1 = ViewActionMock.GenerateMock(ViewAction.Pattern.GENERATE, default);
+            var actionAdded2 = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE, default);
 
             var actionOriginAdded = actionOrigin.AddNextAction<ViewActionMock>(actionAdded1);
             var result = actionOriginAdded.AddNextAction<ViewActionMock>(actionAdded2);
@@ -69,9 +67,9 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         [Test]
         public static void AddNextActionTest_正常系_複数処理追加_入れ子()
         {
-            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.ActionType.DELETE, actors);
-            var actionAdded1 = ViewActionMock.GenerateMock(ViewAction.ActionType.GENERATE, actors);
-            var actionAdded2 = ViewActionMock.GenerateMock(ViewAction.ActionType.MOVE, actors);
+            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.DELETE, default);
+            var actionAdded1 = ViewActionMock.GenerateMock(ViewAction.Pattern.GENERATE, default);
+            var actionAdded2 = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE, default);
 
             var actionAddedAdded = actionAdded1.AddNextAction<ViewActionMock>(actionAdded2);
             var result = actionOrigin.AddNextAction<ViewActionMock>(actionAddedAdded);
@@ -89,7 +87,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         [Test]
         public static void AddNextActionTest_異常系_追加される処理がNull_単一処理追加()
         {
-            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.ActionType.GENERATE, actors);
+            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.GENERATE, default);
             var actionNull = (ViewActionMock)null;
 
             var result = actionOrigin.AddNextAction<ViewActionMock>(actionNull);
@@ -101,8 +99,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         [Test]
         public static void AddNextActionTest_異常系_追加される処理がNull_複数処理追加_連続()
         {
-            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.ActionType.DELETE, actors);
-            var actionAdded = ViewActionMock.GenerateMock(ViewAction.ActionType.MOVE, actors);
+            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.DELETE, default);
+            var actionAdded = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE, default);
             var actionNull = (ViewActionMock)null;
 
             var result = actionOrigin
@@ -118,8 +116,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         [Test]
         public static void AddNextActionTest_異常系_追加される処理がNull_複数処理追加_断続()
         {
-            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.ActionType.DELETE, actors);
-            var actionAdded = ViewActionMock.GenerateMock(ViewAction.ActionType.GENERATE, actors);
+            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.DELETE, default);
+            var actionAdded = ViewActionMock.GenerateMock(ViewAction.Pattern.GENERATE, default);
             var actionNull = (ViewActionMock)null;
 
             var actionOriginAdded = actionOrigin.AddNextAction<ViewActionMock>(actionAdded);
@@ -135,8 +133,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         [Test]
         public static void AddNextActionTest_異常系_追加される処理がNull_複数処理追加_入れ子()
         {
-            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.ActionType.DELETE, actors);
-            var actionAdded1 = ViewActionMock.GenerateMock(ViewAction.ActionType.GENERATE, actors);
+            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.DELETE, default);
+            var actionAdded1 = ViewActionMock.GenerateMock(ViewAction.Pattern.GENERATE, default);
             var actionNull = (ViewActionMock)null;
 
             var actionAddedAdded = actionAdded1.AddNextAction<ViewActionMock>(actionNull);
@@ -153,8 +151,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         [Test]
         public static void AddNextActionTest_異常系_参照ループ()
         {
-            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.ActionType.DELETE, actors);
-            var actionAdded = ViewActionMock.GenerateMock(ViewAction.ActionType.MOVE, actors);
+            var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.DELETE, default);
+            var actionAdded = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE, default);
 
             var result = actionOrigin
                 .AddNextAction<ViewActionMock>(actionAdded)
