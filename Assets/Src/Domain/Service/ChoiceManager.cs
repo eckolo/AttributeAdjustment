@@ -14,7 +14,7 @@ namespace Assets.Src.Domain.Service
     /// <summary>
     /// 選択肢システム
     /// </summary>
-    public static class ChoiceSystem
+    public static class ChoiceManager
     {
         /// <summary>
         /// 選択肢関数
@@ -100,7 +100,7 @@ namespace Assets.Src.Domain.Service
         static readonly Stack<TextMesh> textMeshesStack = new Stack<TextMesh>();
 
         static readonly Action<List<string>, int?> startProcessDefault = (choiceList, choiced) => {
-            var name = nameof(ChoiceSystem);
+            var name = nameof(ChoiceManager);
 
             var view = ViewRoot.CleateNew(name);
             viewStack.Push(view);
