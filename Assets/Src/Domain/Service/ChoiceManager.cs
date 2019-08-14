@@ -21,24 +21,24 @@ namespace Assets.Src.Domain.Service
         /// 選択肢生成メソッド
         /// </summary>
         /// <param name="choiceList">選択肢</param>
-        /// <param name="button">ボタン設定</param>
+        /// <param name="keyConfigs">ボタン設定</param>
         /// <param name="initialChoiced">デフォルトの選択位置</param>
         /// <returns>生成された選択肢情報</returns>
         public static ChoiceState Update(
             this ChoiceState state,
-            ConfigsRepository.Button button,
+            KeyConfigs keyConfigs,
             IEnumerable<KeyCode> inputKeys,
             KeyTiming keyTiming)
         {
             var choiceCount = state.choiceList.Count;
             state.choiced %= choiceCount;
 
-            var inputDecisionKey = inputKeys.Judge(button.decide).Any() && keyTiming == KeyTiming.DOWN;
-            var inputCancelKey = inputKeys.Judge(button.cancel).Any() && keyTiming == KeyTiming.DOWN;
-            var inputUpKey = inputKeys.Judge(button.ups).Any() && keyTiming == KeyTiming.DOWN;
-            var inputDownKey = inputKeys.Judge(button.downs).Any() && keyTiming == KeyTiming.DOWN;
-            var keepUpKey = inputKeys.Judge(button.ups).Any() && keyTiming == KeyTiming.ON;
-            var keepDownKey = inputKeys.Judge(button.downs).Any() && keyTiming == KeyTiming.ON;
+            var inputDecisionKey = inputKeys.Judge(keyConfigs.decide).Any() && keyTiming == KeyTiming.DOWN;
+            var inputCancelKey = inputKeys.Judge(keyConfigs.cancel).Any() && keyTiming == KeyTiming.DOWN;
+            var inputUpKey = inputKeys.Judge(keyConfigs.ups).Any() && keyTiming == KeyTiming.DOWN;
+            var inputDownKey = inputKeys.Judge(keyConfigs.downs).Any() && keyTiming == KeyTiming.DOWN;
+            var keepUpKey = inputKeys.Judge(keyConfigs.ups).Any() && keyTiming == KeyTiming.ON;
+            var keepDownKey = inputKeys.Judge(keyConfigs.downs).Any() && keyTiming == KeyTiming.ON;
 
             state.keepUpTime = keepUpKey ? state.keepUpTime + 1 : 0;
             state.keepDownTime = keepDownKey ? state.keepDownTime + 1 : 0;

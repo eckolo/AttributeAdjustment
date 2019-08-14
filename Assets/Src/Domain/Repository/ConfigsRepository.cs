@@ -1,3 +1,4 @@
+using Assets.Src.Domain.Model.Value;
 using System;
 using UnityEngine;
 
@@ -16,11 +17,11 @@ namespace Assets.Src.Domain.Repository
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="button">キーコンフィグ対応用可変ボタンコード</param>
+        /// <param name="key">キーコンフィグ対応用可変ボタンコード</param>
         /// <param name="volume">音量関連のパラメータ</param>
-        public ConfigsRepository(Button button, Volume volume)
+        public ConfigsRepository(KeyConfigs key, VolumeConfigs volume)
         {
-            _button = button;
+            _key = key;
             _volume = volume;
         }
 
@@ -28,20 +29,20 @@ namespace Assets.Src.Domain.Repository
         /// キーコンフィグ対応用可変ボタンコード
         /// </summary>
         [SerializeField]
-        Button _button = new Button();
+        KeyConfigs _key = new KeyConfigs();
         /// <summary>
         /// キーコンフィグ対応用可変ボタンコード
         /// </summary>
-        public Button button => _button;
+        public KeyConfigs key => _key;
 
         /// <summary>
         /// 音量関連のパラメータ
         /// </summary>
         [SerializeField]
-        Volume _volume = new Volume();
+        VolumeConfigs _volume = new VolumeConfigs();
         /// <summary>
         /// 音量関連のパラメータ
         /// </summary>
-        public Volume volume => _volume;
+        public VolumeConfigs volume => _volume;
     }
 }

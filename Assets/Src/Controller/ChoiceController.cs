@@ -34,19 +34,19 @@ namespace Assets.Src.Controller
         /// 選択肢の選択操作メソッド
         /// </summary>
         /// <param name="state">操作対象の選択肢状態オブジェクト</param>
-        /// <param name="button">現在のボタン設定</param>
+        /// <param name="keyConfigs">現在のボタン設定</param>
         /// <returns>操作完了後の選択肢状態オブジェクト</returns>
         public static async UniTask<ChoiceState> Choice(
             this ChoiceState state,
-            ConfigsRepository.Button button)
+            KeyConfigs keyConfigs)
         {
-            var ableKeyList = button.decide.Concat(button.vertical).ToList();
+            var ableKeyList = keyConfigs.decide.Concat(keyConfigs.vertical).ToList();
             var (inputKeys, keyTiming) = await Wait.Until(ableKeyList);
 
             while(!state.isFinish)
             {
                 state = await state
-                    .Update(button, inputKeys, keyTiming)
+                    .Update(keyConfigs, inputKeys, keyTiming)
                     .ToView();
                 await Wait.Until(1);
             }
