@@ -16,11 +16,32 @@ namespace Assets.Src.Domain.Model.Entity
             this.choiced = choiced;
         }
 
+        /// <summary>
+        /// 選択肢リスト
+        /// </summary>
         public List<string> choiceList { get; }
-        public int? choiced { get; set; }
+        /// <summary>
+        /// 現在選択中のインデックス
+        /// nullであればキャンセル
+        /// </summary>
+        public int? choiced { get; set; } = 0;
+        /// <summary>
+        /// ↑キー押下状態継続時間
+        /// </summary>
         public int keepUpTime { get; set; } = 0;
+        /// <summary>
+        /// ↓キー押下状態継続時間
+        /// </summary>
         public int keepDownTime { get; set; } = 0;
-        public bool isFinish { get; set; } = false;
+        /// <summary>
+        /// 選択処理完了フラグ
+        /// </summary>
+        public bool isFinished
+        {
+            get => _isFinished || choiceList is null || !choiceList.Any();
+            set => _isFinished = value;
+        }
+        bool _isFinished = false;
 
         public async void Dispose() => await this.End();
     }

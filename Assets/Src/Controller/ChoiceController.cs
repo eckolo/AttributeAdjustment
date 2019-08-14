@@ -43,7 +43,7 @@ namespace Assets.Src.Controller
             var ableKeyList = keyConfigs.decide.Concat(keyConfigs.vertical).ToList();
             var (inputKeys, keyTiming) = await Wait.Until(ableKeyList);
 
-            while(!state.isFinish)
+            while(!state.isFinished)
             {
                 state = await state
                     .Update(keyConfigs, inputKeys, keyTiming)

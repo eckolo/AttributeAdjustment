@@ -56,7 +56,7 @@ namespace Assets.Src.Domain.Service
             if(inputCancelKey)
                 state.choiced = null;
 
-            state.isFinish = inputDecisionKey || inputCancelKey;
+            state.isFinished = inputDecisionKey || inputCancelKey;
             state.viewActionQueue.Enqueue(state.ToViewAction(ViewAction.Pattern.UPDATE));
 
             return state;

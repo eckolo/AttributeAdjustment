@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
+using Assets.Src.Domain.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,12 @@ namespace Assets.Src.Domain.Factory
     {
         public static ChoiceState ToChoiceState(this List<string> choiceList, int initialChoiced = 0)
         {
+            if(choiceList is null)
+                throw new ArgumentNullException(nameof(choiceList));
+
+            if(!choiceList.ContainsIndex(initialChoiced))
+                initialChoiced = 0;
+
             return new ChoiceState(choiceList, initialChoiced);
         }
     }
