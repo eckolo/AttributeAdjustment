@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Src.Domain.Model.Value
+namespace Assets.Src.Domain.Repository
 {
     /// <summary>
     /// システム設定値

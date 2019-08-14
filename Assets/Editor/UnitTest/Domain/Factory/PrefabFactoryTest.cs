@@ -1,6 +1,7 @@
 using Assets.Src.Domain.Factory;
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
+using Assets.Src.Domain.Repository;
 using Assets.Src.Domain.Service;
 using Assets.Src.Mock;
 using Assets.Src.View.Factory;

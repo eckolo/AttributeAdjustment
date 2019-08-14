@@ -1,0 +1,13 @@
+﻿namespace Assets.Src.Domain.Repository
+{
+    public static partial class Constants
+    {
+        /// <summary>
+        /// <see cref="Value.MotionTip"/>関連の固定値
+        /// </summary>
+        public static partial class MotionTip
+        {
+            public const float CHAR_SIZE = 0.8f;
+        }
+    }
+}
