@@ -19,7 +19,7 @@ namespace Assets.Src.Controller
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void StartUp()
         {
-            LogHub.TRACE.LeaveLog($"{typeof(CentralController).FullName} StartUp", new FileManager());
+            LogHub.TRACE.LeaveLog($"{typeof(CentralController).FullName} {nameof(SetUp)}", new FileManager());
             var myself = new GameObject(nameof(CentralController), typeof(CentralController));
         }
 
@@ -28,7 +28,7 @@ namespace Assets.Src.Controller
         /// </summary>
         async void Start()
         {
-            LogHub.TRACE.LeaveLog($"{typeof(CentralController).FullName} Awake", new FileManager());
+            LogHub.TRACE.LeaveLog($"{typeof(CentralController).FullName} {nameof(Start)}", new FileManager());
             await SetUp();
         }
 
