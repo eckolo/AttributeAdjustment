@@ -26,7 +26,7 @@ namespace Assets.Src.Domain.Service
         /// <returns>生成された選択肢情報</returns>
         public static ChoiceState Update(
             this ChoiceState state,
-            Configs.Button button,
+            ConfigsRepository.Button button,
             IEnumerable<KeyCode> inputKeys,
             KeyTiming keyTiming)
         {

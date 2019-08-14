@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Src.Domain.Repository
 {
-    public partial class Configs
+    public partial class ConfigsRepository
     {
         /// <summary>
         /// 音量関連のパラメータ

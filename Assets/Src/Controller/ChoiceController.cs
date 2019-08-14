@@ -38,7 +38,7 @@ namespace Assets.Src.Controller
         /// <returns>操作完了後の選択肢状態オブジェクト</returns>
         public static async UniTask<ChoiceState> Choice(
             this ChoiceState state,
-            Configs.Button button)
+            ConfigsRepository.Button button)
         {
             var ableKeyList = button.decide.Concat(button.vertical).ToList();
             var (inputKeys, keyTiming) = await Wait.Until(ableKeyList);

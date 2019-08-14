@@ -1,10 +1,10 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Assets.Src.Domain.Repository
 {
-    public partial class Configs
+    public partial class ConfigsRepository
     {
         /// <summary>
         /// キーコンフィグ対応用可変ボタンコード

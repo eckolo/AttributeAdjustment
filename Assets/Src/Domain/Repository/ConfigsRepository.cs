@@ -4,21 +4,21 @@ using UnityEngine;
 namespace Assets.Src.Domain.Repository
 {
     /// <summary>
-    /// システム設定値
+    /// システム設定値リポジトリ
     /// </summary>
     [Serializable]
-    public partial class Configs
+    public partial class ConfigsRepository
     {
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public Configs() { }
+        public ConfigsRepository() { }
         /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="button">キーコンフィグ対応用可変ボタンコード</param>
         /// <param name="volume">音量関連のパラメータ</param>
-        public Configs(Button button, Volume volume)
+        public ConfigsRepository(Button button, Volume volume)
         {
             _button = button;
             _volume = volume;

@@ -24,11 +24,15 @@ namespace Assets.Src.Domain.Model.Value
         /// ゲーム設定
         /// </summary>
         [SerializeField]
-        Configs _configs = new Configs();
+        ConfigsRepository _configsRepository = new ConfigsRepository();
         /// <summary>
         /// ゲーム設定
         /// </summary>
-        public Configs configs { get => _configs; set => _configs = value; }
+        public ConfigsRepository configsRepository
+        {
+            get => _configsRepository;
+            set => _configsRepository = value;
+        }
 
         /// <summary>
         /// プレイヤー設定
