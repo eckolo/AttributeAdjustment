@@ -18,12 +18,13 @@ namespace Assets.Src.Domain.Service
     public static class ChoiceManager
     {
         /// <summary>
-        /// 選択肢生成メソッド
+        /// 選択肢状態更新メソッド
         /// </summary>
-        /// <param name="choiceList">選択肢</param>
+        /// <param name="state">更新対象の選択状態オブジェクト</param>
         /// <param name="keyConfigs">ボタン設定</param>
-        /// <param name="initialChoiced">デフォルトの選択位置</param>
-        /// <returns>生成された選択肢情報</returns>
+        /// <param name="inputKeys">入力キー一覧</param>
+        /// <param name="keyTiming">キーの入力タイミング</param>
+        /// <returns>更新された選択肢状態オブジェクト</returns>
         public static ChoiceState Update(
             this ChoiceState state,
             KeyConfigs keyConfigs,
@@ -60,6 +61,11 @@ namespace Assets.Src.Domain.Service
 
             return state;
         }
+        /// <summary>
+        /// 選択肢終了処理メソッド
+        /// </summary>
+        /// <param name="state">終了処理対象の選択肢状態オブジェクト</param>
+        /// <returns>終了処理のなされた選択肢状態オブジェクト</returns>
         public static ChoiceState Finalize(this ChoiceState state)
         {
             state.viewActionQueue.Enqueue(state.ToViewAction(ViewAction.Pattern.DELETE));
