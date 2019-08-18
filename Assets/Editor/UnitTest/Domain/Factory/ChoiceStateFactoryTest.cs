@@ -107,7 +107,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.IsNotNull();
             result.choiceList.IsNotNull();
             result.choiceList.Count.Is(choiceList.Count);
-            result.choiced.Is(0);
+            result.choiced.Is(null);
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();

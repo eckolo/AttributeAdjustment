@@ -31,9 +31,6 @@ namespace Assets.Src.Domain.Service
             IEnumerable<KeyCode> inputKeys,
             KeyTiming keyTiming)
         {
-            var choiceCount = state.choiceList.Count;
-            state.choiced %= choiceCount;
-
             var inputDecisionKey = inputKeys.Judge(keyConfigs.decide).Any() && keyTiming == KeyTiming.DOWN;
             var inputCancelKey = inputKeys.Judge(keyConfigs.cancel).Any() && keyTiming == KeyTiming.DOWN;
             var inputUpKey = inputKeys.Judge(keyConfigs.ups).Any() && keyTiming == KeyTiming.DOWN;
@@ -48,7 +45,7 @@ namespace Assets.Src.Domain.Service
                 state.keepUpTime = !inputUpKey
                     ? Constants.Choice.KEEP_VERTICAL_LIMIT - Constants.Choice.KEEP_VERTICAL_INTERVAL
                     : 0;
-                state.choiced += choiceCount - 1;
+                state.choiced -= 1;
             }
             if(inputDownKey || (keepDownKey && state.keepDownTime > Constants.Choice.KEEP_VERTICAL_LIMIT))
             {
@@ -57,7 +54,6 @@ namespace Assets.Src.Domain.Service
                     : 0;
                 state.choiced += 1;
             }
-            state.choiced %= state.choiceList.Count;
             if(inputCancelKey)
                 state.choiced = null;
 

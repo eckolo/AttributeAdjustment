@@ -24,7 +24,23 @@ namespace Assets.Src.Domain.Model.Entity
         /// 現在選択中のインデックス
         /// nullであればキャンセル
         /// </summary>
-        public int? choiced { get; set; } = 0;
+        public int? choiced
+        {
+            get => _choiced;
+            set {
+                if(value is int valueInt && (choiceList?.Any() ?? false))
+                {
+                    while(valueInt < 0)
+                        valueInt += choiceList.Count;
+                    _choiced = valueInt % choiceList.Count;
+                }
+                else
+                {
+                    _choiced = null;
+                }
+            }
+        }
+        int? _choiced = 0;
         /// <summary>
         /// ↑キー押下状態継続時間
         /// </summary>
