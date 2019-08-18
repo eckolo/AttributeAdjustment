@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Entity;
+﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using System.Collections.Generic;
 
@@ -6,21 +7,21 @@ namespace Assets.Src.Mock
 {
     public class ViewActionMock : ViewAction
     {
-        ViewActionMock(Pattern actionType, ViewEntity actor)
+        ViewActionMock(Pattern actionType, IViewKey actor)
             : base(actionType, actor)
         { }
         ViewActionMock(
            Pattern actionType,
-           ViewEntity actor,
-           ViewEntity target,
+           IViewKey actor,
+           IViewKey target,
            Easing easing)
             : base(actionType, actor, target, easing)
         { }
 
         public static ViewActionMock GenerateMock(
            Pattern actionType = default,
-           ViewEntity actor = null,
-           ViewEntity target = null,
+           IViewKey actor = null,
+           IViewKey target = null,
            Easing? easing = null,
            ViewAction nextAction = null)
         {

@@ -5,7 +5,7 @@ namespace Assets.Src.Mock
 {
     public class IViewKeyMock : IViewKey, IEquatable<IViewKeyMock>
     {
-        public IViewKeyMock(int value)
+        protected IViewKeyMock(int value)
         {
             this.value = value;
         }

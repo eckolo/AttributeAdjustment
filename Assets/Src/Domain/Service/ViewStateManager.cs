@@ -47,38 +47,5 @@ namespace Assets.Src.Domain.Service
 
             return state;
         }
-        /// <summary>
-        /// 画面表示パーツ群を移動する
-        /// </summary>
-        /// <typeparam name="TViewState">対象の画面表示状態型</typeparam>
-        /// <typeparam name="TViewKey">配置されるパーツのパラメータ型</typeparam>
-        /// <param name="state">移動対象状態オブジェクト</param>
-        /// <param name="values">移動するパーツ群のパラメータリスト</param>
-        /// <param name="toView"></param>
-        /// <param name="fromView"></param>
-        /// <returns></returns>
-        public static TViewState MoveView<TViewState, TViewKey>(
-            this TViewState state,
-            IEnumerable<TViewKey> values,
-            IViewKey toView,
-            IViewKey fromView = default)
-            where TViewState : ViewStateAbst
-            where TViewKey : IViewKey, IEquatable<TViewKey>
-        {
-            var parentView = fromView != default ? fromView : state;
-
-            if(fromView != default)
-                values
-                    .Select(value => new ViewAction(ViewAction.Pattern.UPDATE, value, fromView, Easing.Quadratic))
-                    .ToList()
-                    .ForEach(action => state.viewActionQueue.Enqueue(action));
-
-            values
-               .Select(value => new ViewAction(ViewAction.Pattern.UPDATE, value, toView, Easing.Quadratic))
-               .ToList()
-               .ForEach(action => state.viewActionQueue.Enqueue(action));
-
-            return state;
-        }
     }
 }
