@@ -43,16 +43,21 @@ namespace Assets.Src.Domain.Service
 
             state.keepUpTime = keepUpKey ? state.keepUpTime + 1 : 0;
             state.keepDownTime = keepDownKey ? state.keepDownTime + 1 : 0;
-            if(inputUpKey || (keepUpKey && state.keepUpTime > 10))
+            if(inputUpKey || (keepUpKey && state.keepUpTime > Constants.Choice.KEEP_VERTICAL_LIMIT))
             {
-                state.keepUpTime = 0;
+                state.keepUpTime = !inputUpKey
+                    ? Constants.Choice.KEEP_VERTICAL_LIMIT - Constants.Choice.KEEP_VERTICAL_INTERVAL
+                    : 0;
                 state.choiced += choiceCount - 1;
             }
-            if(inputDownKey || (keepDownKey && state.keepDownTime > 10))
+            if(inputDownKey || (keepDownKey && state.keepDownTime > Constants.Choice.KEEP_VERTICAL_LIMIT))
             {
-                state.keepDownTime = 0;
+                state.keepDownTime = !inputDownKey
+                    ? Constants.Choice.KEEP_VERTICAL_LIMIT - Constants.Choice.KEEP_VERTICAL_INTERVAL
+                    : 0;
                 state.choiced += 1;
             }
+            state.choiced %= state.choiceList.Count;
             if(inputCancelKey)
                 state.choiced = null;
 
