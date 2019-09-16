@@ -12,7 +12,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
     public static class EnergyPropertiesTest
     {
         [Test]
-        public static void GetNameTest_正常系()
+        public static void GetNameTest_正常系_値が正常()
         {
             Energy.FLAME.GetName().Is("炎");
             Energy.ICE.GetName().Is("氷");
@@ -30,6 +30,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
             Energy.PIERCING.GetName().Is("突");
         }
         [Test]
+        public static void GetNameTest_正常系_範囲が正常()
+        {
+            foreach(Energy energy in Enum.GetValues(typeof(Energy)))
+                energy.GetName().IsInstanceOf<string>();
+        }
+        [Test]
         public static void GetNameTest_未定義()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => ((Energy)(-1)).GetName());
@@ -37,7 +43,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         }
 
         [Test]
-        public static void GetColorTest_正常系()
+        public static void GetColorTest_正常系_値が正常()
         {
             Energy.FLAME.GetColor().Is(new Color32(r: 255, g: 000, b: 000, a: 255));
             Energy.ICE.GetColor().Is(new Color32(r: 000, g: 000, b: 255, a: 255));
@@ -53,6 +59,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
             Energy.BLOW.GetColor().Is(new Color32(r: 120, g: 120, b: 000, a: 255));
             Energy.IMPACT.GetColor().Is(new Color32(r: 000, g: 120, b: 120, a: 255));
             Energy.PIERCING.GetColor().Is(new Color32(r: 000, g: 000, b: 120, a: 255));
+        }
+        [Test]
+        public static void GetColorTest_正常系_範囲が正常()
+        {
+            foreach(Energy energy in Enum.GetValues(typeof(Energy)))
+                energy.GetColor().IsInstanceOf<Color32>();
         }
         [Test]
         public static void GetColorTest_未定義()

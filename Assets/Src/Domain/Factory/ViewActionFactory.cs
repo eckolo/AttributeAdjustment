@@ -22,6 +22,17 @@ namespace Assets.Src.Domain.Factory
         public static ViewAction ToViewAction(this IViewKey view, ViewAction.Pattern pattern)
             => new ViewAction(pattern, view);
         /// <summary>
+        /// 複数ビューオブジェクトに対するアクションの作成
+        /// </summary>
+        /// <param name="views">アクション対象のビューオブジェクト群</param>
+        /// <param name="pattern">アクション種別</param>
+        /// <returns>生成されたビューアクション</returns>
+        public static ViewAction ToViewAction<TViewKey>(this IEnumerable<TViewKey> views, ViewAction.Pattern pattern)
+            where TViewKey : IViewKey
+            => views
+                .Select(view => view.ToViewAction(pattern))
+                .Aggregate((action1, action2) => action1.AddNextAction<ViewAction>(action2));
+        /// <summary>
         /// 新たな画面表示パーツを追加する
         /// </summary>
         /// <typeparam name="TViewState">対象の画面表示状態型</typeparam>
