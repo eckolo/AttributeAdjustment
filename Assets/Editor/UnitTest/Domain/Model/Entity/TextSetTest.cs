@@ -10,7 +10,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
 {
     public class TextSetTest
     {
-        static readonly ViewRoot view = ViewRoot.CleateNew(nameof(TextSetTest));
+        static readonly ViewState view = nameof(TextSetTest).ToViewState();
 
         [Test]
         public static void SetterTest_color_正常系()

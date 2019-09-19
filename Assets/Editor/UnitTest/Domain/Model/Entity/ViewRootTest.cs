@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Mock;
+using Assets.Src.View.Factory;
 using Assets.Src.View.Model.Entity;
 using NUnit.Framework;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             var name1 = nameof(CleateNewTest_正常系_親有);
             var name2 = $"{nameof(CleateNewTest_正常系_親有)}_parent";
             var parent = new GameObject(name2, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
-            var view = ViewRoot.CleateNew(name1, parent);
+            var view = name1.ToViewState(parent);
 
             view.IsNotNull();
             view.name.Is($"ViewRoot_{name1}");
@@ -24,7 +25,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
         public static void CleateNewTest_正常系_親無()
         {
             var name1 = nameof(CleateNewTest_正常系_親無);
-            var view = ViewRoot.CleateNew(name1);
+            var view = name1.ToViewState();
 
             view.IsNotNull();
             view.name.Is($"ViewRoot_{name1}");
@@ -36,7 +37,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             var name1 = (string)null;
             var name2 = $"{nameof(CleateNewTest_正常系_親有)}_parent";
             var parent = new GameObject(name2, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
-            var view = ViewRoot.CleateNew(name1, parent);
+            var view = name1.ToViewState(parent);
 
             view.IsNotNull();
             view.name.Is($"ViewRoot");
@@ -46,7 +47,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
         public static void CleateNewTest_正常系_親無_名前がNull()
         {
             var name1 = (string)null;
-            var view = ViewRoot.CleateNew(name1);
+            var view = name1.ToViewState();
 
             view.IsNotNull();
             view.name.Is($"ViewRoot");
