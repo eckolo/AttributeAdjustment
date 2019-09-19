@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using UniRx.Async;
 
-namespace Assets.Src.View.Factory
+namespace Assets.Src.View.Service
 {
-    public static class ChoiceViewFactory
+    public static class ChoiceViewManager
     {
-        public static async UniTask<ChoiceState> ToView(this ChoiceState stat)
+        public static async UniTask<ChoiceState> Indicate(this ChoiceState state)
         {
-            throw new NotImplementedException(nameof(ToView));
+            throw new NotImplementedException(nameof(Indicate));
         }
     }
 }
