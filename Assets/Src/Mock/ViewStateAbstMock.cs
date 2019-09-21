@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Assets.Src.Mock
 {
-    public class ViewStateAbstMock : ViewStateAbst
+    public class ViewStateAbstMock : ViewStateKey
     {
         ViewStateAbstMock(IEnumerable<IViewKey> views, ViewAction[] viewActionQueue)
         {

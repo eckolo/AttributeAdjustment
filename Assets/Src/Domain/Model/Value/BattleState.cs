@@ -11,7 +11,7 @@ namespace Assets.Src.Domain.Model.Value
     /// <summary>
     /// 戦闘の状態保持クラス
     /// </summary>
-    public class BattleState : ViewStateAbst
+    public class BattleState : ViewStateKey
     //TODO ビューオブジェクトの移動点をビューのルートで定義する
     {
         /// <summary>

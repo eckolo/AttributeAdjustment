@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Src.Domain.Model.Entity
 {
-    public class ChoiceState : ViewStateAbst, IViewKey, IDisposable
+    public class ChoiceState : ViewStateKey, IViewKey, IDisposable
     {
         public ChoiceState(List<string> choiceList, int? choiced)
         {

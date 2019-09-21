@@ -43,7 +43,7 @@ namespace Assets.Src.Domain.Factory
         public static TViewState SetNewView<TViewState, TViewValue>(
             this TViewState state,
             TViewValue value)
-            where TViewState : ViewStateAbst
+            where TViewState : ViewStateKey
             where TViewValue : IViewKey
             => state.SetNewView(new[] { value });
         /// <summary>
@@ -57,7 +57,7 @@ namespace Assets.Src.Domain.Factory
         public static TViewState SetNewView<TViewState, TViewValue>(
             this TViewState state,
             IEnumerable<TViewValue> values)
-            where TViewState : ViewStateAbst
+            where TViewState : ViewStateKey
             where TViewValue : IViewKey
         {
             values
