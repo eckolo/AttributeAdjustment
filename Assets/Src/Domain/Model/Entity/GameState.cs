@@ -5,7 +5,7 @@ using Assets.Src.Domain.Service;
 using System;
 using UnityEngine;
 
-namespace Assets.Src.Domain.Model.Value
+namespace Assets.Src.Domain.Model.Entity
 {
     /// <summary>
     /// ゲーム状態クラス
