@@ -10,6 +10,9 @@ namespace Assets.Src.Domain.Model.Abstract
     /// </summary>
     public abstract class ViewStateKey : IViewKey
     {
+        /// <summary>
+        /// ビューの更新内容キュー
+        /// </summary>
         public Queue<ViewAction> viewActionQueue { get; } = new Queue<ViewAction>();
     }
 }

@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace Assets.Src.Mock
 {
-    public class ViewStateAbstMock : ViewStateKey
+    public class ViewStateKeyMock : ViewStateKey
     {
-        ViewStateAbstMock(IEnumerable<IViewKey> views, ViewAction[] viewActionQueue)
+        ViewStateKeyMock(IEnumerable<IViewKey> views, ViewAction[] viewActionQueue)
         {
             foreach(var action in viewActionQueue ?? new ViewAction[] { })
             {
@@ -16,9 +16,9 @@ namespace Assets.Src.Mock
             }
         }
 
-        public static ViewStateAbstMock Generate(
+        public static ViewStateKeyMock Generate(
             IEnumerable<IViewKey> views = null,
             ViewAction[] viewActionQueue = null)
-            => new ViewStateAbstMock(views, viewActionQueue);
+            => new ViewStateKeyMock(views, viewActionQueue);
     }
 }

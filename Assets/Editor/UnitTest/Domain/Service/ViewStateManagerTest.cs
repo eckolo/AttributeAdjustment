@@ -15,7 +15,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SetNewViewTest_正常系_単数追加_既存の表示部品無し_既存の表示処理無し()
         {
-            var state = ViewStateAbstMock.Generate();
+            var state = ViewStateKeyMock.Generate();
             var value = IViewKeyMock.Generate(1);
 
             var resultState = state.SetNewView(value);
@@ -36,7 +36,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         public static void SetNewViewTest_正常系_単数追加_既存の表示部品無し_既存の表示処理有り()
         {
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
-            var state = ViewStateAbstMock.Generate(null, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var value = IViewKeyMock.Generate(1);
 
             var resultState = state.SetNewView(value);
@@ -63,7 +63,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         public static void SetNewViewTest_正常系_単数追加_既存の表示部品有り_既存の表示処理無し()
         {
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = ViewStateAbstMock.Generate(new[] { viewOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var value = IViewKeyMock.Generate(1);
 
             var resultState = state.SetNewView(value);
@@ -85,7 +85,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         {
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = ViewStateAbstMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var value = IViewKeyMock.Generate(1);
 
             var resultState = state.SetNewView(value);
@@ -111,7 +111,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SetNewViewTest_正常系_複数追加_既存の表示部品無し_既存の表示処理無し()
         {
-            var state = ViewStateAbstMock.Generate();
+            var state = ViewStateKeyMock.Generate();
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
             var resultState = state.SetNewView(values);
@@ -139,7 +139,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         public static void SetNewViewTest_正常系_複数追加_既存の表示部品無し_既存の表示処理有り()
         {
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
-            var state = ViewStateAbstMock.Generate(null, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
             var resultState = state.SetNewView(values);
@@ -173,7 +173,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         public static void SetNewViewTest_正常系_複数追加_既存の表示部品有り_既存の表示処理無し()
         {
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = ViewStateAbstMock.Generate(new[] { viewOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
             var resultState = state.SetNewView(values);
@@ -202,7 +202,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         {
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = ViewStateAbstMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
             var resultState = state.SetNewView(values);
