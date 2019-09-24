@@ -16,7 +16,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
     /// </summary>
     public static class TextSetFactoryTest
     {
-        static readonly ViewState view = nameof(MessageManagerTest).ToViewState();
+        static readonly ViewState view = ViewStateMock.Generate(nameof(MessageManagerTest));
 
         [Test]
         public static void SetTextSetTest_単一生成_全パラメータ設定()

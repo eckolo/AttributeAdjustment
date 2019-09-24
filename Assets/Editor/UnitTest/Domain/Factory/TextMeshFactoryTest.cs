@@ -1,6 +1,7 @@
 ﻿using Assets.Editor.UnitTest.Domain.Service;
 using Assets.Src.Domain.Factory;
 using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Mock;
 using Assets.Src.View.Factory;
 using Assets.Src.View.Model.Entity;
 using NUnit.Framework;
@@ -13,7 +14,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
     /// </summary>
     public static class TextMeshFactoryTest
     {
-        static readonly ViewState view = nameof(MessageManagerTest).ToViewState();
+        static readonly ViewState view = ViewStateMock.Generate(nameof(MessageManagerTest));
         [Test]
         public static void SetTextTest_単一生成_全パラメータ設定()
         {

@@ -17,7 +17,7 @@ namespace Assets.Editor.UnitTest.View.Repository
     /// </summary>
     public static class ViewStateRepositoryTest
     {
-        static readonly ViewStateKeyMock[] keys = new[]
+        static readonly ViewStateKey[] keys = new[]
         {
             ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) }),
             ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(1) }),
@@ -27,9 +27,9 @@ namespace Assets.Editor.UnitTest.View.Repository
         };
         static readonly ViewState[] states = new[]
         {
-            $"{nameof(ViewStateRepositoryTest)}_0".ToViewState(),
-            $"{nameof(ViewStateRepositoryTest)}_1".ToViewState(),
-            $"{nameof(ViewStateRepositoryTest)}_2".ToViewState(),
+            ViewStateMock.Generate($"{nameof(ViewStateRepositoryTest)}_0"),
+            ViewStateMock.Generate($"{nameof(ViewStateRepositoryTest)}_1"),
+            ViewStateMock.Generate($"{nameof(ViewStateRepositoryTest)}_2"),
         };
         static readonly ViewRoot viewRoot = new ViewRoot
         {

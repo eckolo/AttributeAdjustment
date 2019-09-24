@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Factory;
 using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Mock;
 using Assets.Src.View.Factory;
 using Assets.Src.View.Model.Entity;
 using NUnit.Framework;
@@ -10,7 +11,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
 {
     public class TextSetTest
     {
-        static readonly ViewState view = nameof(TextSetTest).ToViewState();
+        static readonly ViewState view = ViewStateMock.Generate(nameof(TextSetTest));
 
         [Test]
         public static void SetterTest_color_正常系()

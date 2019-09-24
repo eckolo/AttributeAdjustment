@@ -15,20 +15,20 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             var name1 = nameof(CleateNewTest_正常系_親有);
             var name2 = $"{nameof(CleateNewTest_正常系_親有)}_parent";
             var parent = new GameObject(name2, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
-            var view = name1.ToViewState(parent);
+            var view = ViewStateMock.Generate(name1, parent);
 
             view.IsNotNull();
-            view.name.Is($"{nameof(ViewState)}_{name1}");
+            view.name.Is($"{nameof(ViewStateMock)}_{name1}");
             view.transform.parent.IsSameReferenceAs(parent.transform);
         }
         [Test]
         public static void CleateNewTest_正常系_親無()
         {
             var name1 = nameof(CleateNewTest_正常系_親無);
-            var view = name1.ToViewState();
+            var view = ViewStateMock.Generate(name1);
 
             view.IsNotNull();
-            view.name.Is($"{nameof(ViewState)}_{name1}");
+            view.name.Is($"{nameof(ViewStateMock)}_{name1}");
             view.transform.parent.IsNull();
         }
         [Test]
@@ -37,20 +37,20 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             var name1 = (string)null;
             var name2 = $"{nameof(CleateNewTest_正常系_親有)}_parent";
             var parent = new GameObject(name2, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
-            var view = name1.ToViewState(parent);
+            var view = ViewStateMock.Generate(name1, parent);
 
             view.IsNotNull();
-            view.name.Is($"{nameof(ViewState)}");
+            view.name.Is($"{nameof(ViewStateMock)}");
             view.transform.parent.IsSameReferenceAs(parent.transform);
         }
         [Test]
         public static void CleateNewTest_正常系_親無_名前がNull()
         {
             var name1 = (string)null;
-            var view = name1.ToViewState();
+            var view = ViewStateMock.Generate(name1);
 
             view.IsNotNull();
-            view.name.Is($"{nameof(ViewState)}");
+            view.name.Is($"{nameof(ViewStateMock)}");
             view.transform.parent.IsNull();
         }
     }
