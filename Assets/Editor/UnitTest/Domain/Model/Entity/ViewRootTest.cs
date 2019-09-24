@@ -18,7 +18,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             var view = name1.ToViewState(parent);
 
             view.IsNotNull();
-            view.name.Is($"ViewRoot_{name1}");
+            view.name.Is($"{nameof(ViewState)}_{name1}");
             view.transform.parent.IsSameReferenceAs(parent.transform);
         }
         [Test]
@@ -28,7 +28,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             var view = name1.ToViewState();
 
             view.IsNotNull();
-            view.name.Is($"ViewRoot_{name1}");
+            view.name.Is($"{nameof(ViewState)}_{name1}");
             view.transform.parent.IsNull();
         }
         [Test]
@@ -40,7 +40,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             var view = name1.ToViewState(parent);
 
             view.IsNotNull();
-            view.name.Is($"ViewRoot");
+            view.name.Is($"{nameof(ViewState)}");
             view.transform.parent.IsSameReferenceAs(parent.transform);
         }
         [Test]
@@ -50,7 +50,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             var view = name1.ToViewState();
 
             view.IsNotNull();
-            view.name.Is($"ViewRoot");
+            view.name.Is($"{nameof(ViewState)}");
             view.transform.parent.IsNull();
         }
     }
