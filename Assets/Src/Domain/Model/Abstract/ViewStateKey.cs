@@ -14,5 +14,9 @@ namespace Assets.Src.Domain.Model.Abstract
         /// ビューの更新内容キュー
         /// </summary>
         public Queue<ViewAction> viewActionQueue { get; } = new Queue<ViewAction>();
+        /// <summary>
+        /// 生成直後フラグ
+        /// </summary>
+        public bool isGenerated { get; set; } = false;
     }
 }

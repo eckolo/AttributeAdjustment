@@ -16,73 +16,136 @@ namespace Assets.Editor.UnitTest.View.Factory
     /// </summary>
     public static class ViewStateFactoryTest
     {
-        static readonly ViewStateKey[] keys = new[]
-        {
-            ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) }),
-            ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(1) }),
-        };
-        static readonly ViewState[] states = new[]
-        {
-            ViewStateMock.Generate($"{nameof(ViewStateFactoryTest)}_1"),
-        };
         [Test]
-        public static void GenerateViewStateTest_正常系_新規生成_既存無()
+        public static void GenerateViewStateTest_正常系_新規生成_既存無_未生成()
         {
+            var key = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) });
             var viewRoot = new ViewRoot
             {
                 viewStateMap = new Dictionary<ViewStateKey, ViewState>(),
             };
 
-            var result = viewRoot.GenerateViewState(keys[0]);
+            var result = viewRoot.GenerateViewState(key);
 
             result.IsNotNull();
+            key.isGenerated.IsTrue();
             viewRoot.viewStateMap.Count.Is(1);
-            viewRoot.viewStateMap.ContainsKey(keys[0]).IsTrue();
-            viewRoot.viewStateMap[keys[0]].IsSameReferenceAs(result);
+            viewRoot.viewStateMap.ContainsKey(key).IsTrue();
+            viewRoot.viewStateMap[key].IsSameReferenceAs(result);
         }
         [Test]
-        public static void GenerateViewStateTest_正常系_新規生成_既存有()
+        public static void GenerateViewStateTest_正常系_新規生成_既存有_未生成()
         {
+            var key = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) });
+            var keyOrigin = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(1) });
+            var stateOrigin = ViewStateMock.Generate(nameof(GenerateViewStateTest_正常系_新規生成_既存有_未生成));
             var viewRoot = new ViewRoot
             {
                 viewStateMap = new Dictionary<ViewStateKey, ViewState>
                 {
-                    { keys[1], states[0] },
+                    { keyOrigin, stateOrigin },
                 },
             };
 
-            var result = viewRoot.GenerateViewState(keys[0]);
+            var result = viewRoot.GenerateViewState(key);
 
             result.IsNotNull();
+            key.isGenerated.IsTrue();
+            keyOrigin.isGenerated.IsFalse();
             viewRoot.viewStateMap.Count.Is(2);
-            viewRoot.viewStateMap.ContainsKey(keys[0]).IsTrue();
-            viewRoot.viewStateMap[keys[0]].IsSameReferenceAs(result);
+            viewRoot.viewStateMap.ContainsKey(key).IsTrue();
+            viewRoot.viewStateMap[key].IsSameReferenceAs(result);
+            viewRoot.viewStateMap.ContainsKey(keyOrigin).IsTrue();
+            viewRoot.viewStateMap[keyOrigin].IsSameReferenceAs(stateOrigin);
         }
         [Test]
-        public static void GenerateViewStateTest_正常系_既存取得()
+        public static void GenerateViewStateTest_正常系_既存取得_未生成()
         {
+            var keyOrigin = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(1) });
+            var stateOrigin = ViewStateMock.Generate(nameof(GenerateViewStateTest_正常系_既存取得_未生成));
             var viewRoot = new ViewRoot
             {
                 viewStateMap = new Dictionary<ViewStateKey, ViewState>
                 {
-                    { keys[1], states[0] },
+                    { keyOrigin, stateOrigin },
                 },
             };
 
-            var result = viewRoot.GenerateViewState(keys[1]);
+            var result = viewRoot.GenerateViewState(keyOrigin);
 
             result.IsNotNull();
-            result.Is(states[0]);
+            result.IsSameReferenceAs(stateOrigin);
+            keyOrigin.isGenerated.IsFalse();
             viewRoot.viewStateMap.Count.Is(1);
-            viewRoot.viewStateMap.ContainsKey(keys[1]).IsTrue();
-            viewRoot.viewStateMap[keys[1]].IsSameReferenceAs(result);
+            viewRoot.viewStateMap.ContainsKey(keyOrigin).IsTrue();
+            viewRoot.viewStateMap[keyOrigin].IsSameReferenceAs(result);
+        }
+        [Test]
+        public static void GenerateViewStateTest_正常系_新規生成_既存無_生成済()
+        {
+            var key = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) }, isGenerated: true);
+            var viewRoot = new ViewRoot
+            {
+                viewStateMap = new Dictionary<ViewStateKey, ViewState>(),
+            };
+
+            var result = viewRoot.GenerateViewState(key);
+
+            result.IsNull();
+            key.isGenerated.IsTrue();
+            viewRoot.viewStateMap.Count.Is(0);
+        }
+        [Test]
+        public static void GenerateViewStateTest_正常系_新規生成_既存有_生成済()
+        {
+            var key = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) }, isGenerated: true);
+            var keyOrigin = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(1) }, isGenerated: true);
+            var stateOrigin = ViewStateMock.Generate(nameof(GenerateViewStateTest_正常系_新規生成_既存有_生成済));
+            var viewRoot = new ViewRoot
+            {
+                viewStateMap = new Dictionary<ViewStateKey, ViewState>
+                {
+                    { keyOrigin, stateOrigin },
+                },
+            };
+
+            var result = viewRoot.GenerateViewState(key);
+
+            result.IsNull();
+            key.isGenerated.IsTrue();
+            keyOrigin.isGenerated.IsTrue();
+            viewRoot.viewStateMap.Count.Is(1);
+            viewRoot.viewStateMap.ContainsKey(keyOrigin).IsTrue();
+            viewRoot.viewStateMap[keyOrigin].IsSameReferenceAs(stateOrigin);
+        }
+        [Test]
+        public static void GenerateViewStateTest_正常系_既存取得_生成済()
+        {
+            var keyOrigin = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(1) }, isGenerated: true);
+            var stateOrigin = ViewStateMock.Generate(nameof(GenerateViewStateTest_正常系_既存取得_生成済));
+            var viewRoot = new ViewRoot
+            {
+                viewStateMap = new Dictionary<ViewStateKey, ViewState>
+                {
+                    { keyOrigin, stateOrigin },
+                },
+            };
+
+            var result = viewRoot.GenerateViewState(keyOrigin);
+
+            result.IsNotNull();
+            result.IsSameReferenceAs(stateOrigin);
+            keyOrigin.isGenerated.IsTrue();
+            viewRoot.viewStateMap.Count.Is(1);
+            viewRoot.viewStateMap.ContainsKey(keyOrigin).IsTrue();
+            viewRoot.viewStateMap[keyOrigin].IsSameReferenceAs(result);
         }
         [Test]
         public static void GenerateViewStateTest_異常系_RootがNull()
         {
             var viewRoot = (ViewRoot)null;
 
-            Assert.Throws<ArgumentNullException>(() => viewRoot.GenerateViewState(keys[0]));
+            Assert.Throws<ArgumentNullException>(() => viewRoot.GenerateViewState(ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) })));
         }
         [Test]
         public static void GenerateViewStateTest_異常系_検索キーがNull()
@@ -103,7 +166,7 @@ namespace Assets.Editor.UnitTest.View.Factory
                 viewStateMap = null,
             };
 
-            Assert.Throws<ArgumentNullException>(() => viewRoot.GenerateViewState(keys[0]));
+            Assert.Throws<ArgumentNullException>(() => viewRoot.GenerateViewState(ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) })));
         }
     }
 }

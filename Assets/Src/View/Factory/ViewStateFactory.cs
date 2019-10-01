@@ -33,12 +33,16 @@ namespace Assets.Src.View.Factory
             if(stateMap is null)
                 throw new ArgumentNullException(nameof(viewRoot.viewStateMap));
 
+            if(key.isGenerated)
+                return stateMap.GetOrDefault(key);
+
             lock(stateMap)
             {
                 if(!stateMap.ContainsKey(key))
                 {
                     var state = new GameObject(name, typeof(ViewState)).AddComponent<ViewState>();
                     stateMap.Add(key, state);
+                    key.isGenerated = true;
                 }
             }
 
