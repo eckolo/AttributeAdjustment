@@ -31,33 +31,32 @@ namespace Assets.Editor.UnitTest.View.Repository
             ViewStateMock.Generate($"{nameof(ViewStateRepositoryTest)}_1"),
             ViewStateMock.Generate($"{nameof(ViewStateRepositoryTest)}_2"),
         };
-        static readonly ViewRoot viewRoot = new ViewRoot
-        {
-            viewStateMap = new Dictionary<ViewStateKey, ViewState>
+        static readonly Dictionary<ViewStateKey, ViewState> viewStateMap
+            = new Dictionary<ViewStateKey, ViewState>
             {
                 { keys[0], states[0] },
                 { keys[1], states[1] },
                 { keys[2], states[2] },
-            }
-        };
+            };
+        static readonly ViewStateRepository viewStateRepository = new ViewStateRepository(viewStateMap);
 
         [Test]
         public static void SearchViewStateTest_正常系_該当有()
         {
-            viewRoot.SearchViewState(keys[0]).Is(states[0]);
-            viewRoot.SearchViewState(keys[1]).Is(states[1]);
-            viewRoot.SearchViewState(keys[2]).Is(states[2]);
+            viewStateRepository.SearchViewState(keys[0]).Is(states[0]);
+            viewStateRepository.SearchViewState(keys[1]).Is(states[1]);
+            viewStateRepository.SearchViewState(keys[2]).Is(states[2]);
         }
         [Test]
         public static void SearchViewStateTest_正常系_該当無()
         {
-            viewRoot.SearchViewState(keys[3]).IsNull();
+            viewStateRepository.SearchViewState(keys[3]).IsNull();
         }
         [Test]
         public static void SearchViewStateTest_正常系_Null検索()
         {
             var nullKey = (ViewStateKey)null;
-            viewRoot.SearchViewState(nullKey).IsNull();
+            viewStateRepository.SearchViewState(nullKey).IsNull();
         }
     }
 }

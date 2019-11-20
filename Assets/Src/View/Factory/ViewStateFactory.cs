@@ -20,33 +20,27 @@ namespace Assets.Src.View.Factory
         /// <typeparam name="TKey">生成元のキーの型</typeparam>
         /// <param name="key">生成元のキー</param>
         /// <returns>生成された<see cref="ViewState"/></returns>
-        public static ViewState GenerateViewState<TKey>(this ViewRoot viewRoot, TKey key) where TKey : ViewStateKey
+        public static ViewState GenerateViewState<TKey>(this ViewStateRepository repository, TKey key) where TKey : ViewStateKey
         {
-            if(viewRoot is null)
-                throw new ArgumentNullException(nameof(viewRoot));
+            if(repository is null)
+                throw new ArgumentNullException(nameof(repository));
             if(key is null)
                 throw new ArgumentNullException(nameof(key));
 
-            var stateMap = viewRoot.viewStateMap;
             var name = $"{nameof(ViewState)}_{key.GetType().FullName}";
-
-            if(stateMap is null)
-                throw new ArgumentNullException(nameof(viewRoot.viewStateMap));
+            var stateExisting = repository.SearchViewState(key);
 
             if(key.isGenerated)
-                return stateMap.GetOrDefault(key);
+                return stateExisting;
 
-            lock(stateMap)
-            {
-                if(!stateMap.ContainsKey(key))
-                {
-                    var state = new GameObject(name, typeof(ViewState)).AddComponent<ViewState>();
-                    stateMap.Add(key, state);
-                    key.isGenerated = true;
-                }
-            }
+            if(!(stateExisting is null))
+                return stateExisting;
 
-            return stateMap.GetOrDefault(key);
+            var stateNew = new GameObject(name, typeof(ViewState)).AddComponent<ViewState>();
+            repository.SaveViewState(key, stateNew);
+            key.isGenerated = true;
+
+            return stateNew;
         }
     }
 }

@@ -10,17 +10,33 @@ using UnityEngine;
 
 namespace Assets.Src.View.Repository
 {
-    public static class ViewStateRepository
+    public class ViewStateRepository
     {
+        public ViewStateRepository(Dictionary<ViewStateKey, ViewState> viewStateMap = null)
+        {
+            _viewStateMap = viewStateMap ?? _viewStateMap;
+        }
+
+        readonly Dictionary<ViewStateKey, ViewState> _viewStateMap = new Dictionary<ViewStateKey, ViewState>();
+
         /// <summary>
         /// <see cref="ViewState"/>の検索
         /// </summary>
         /// <typeparam name="TKey">検索キーの型</typeparam>
         /// <param name="key">検索キー</param>
         /// <returns>検索結果</returns>
-        public static ViewState SearchViewState<TKey>(this ViewRoot viewRoot, TKey key) where TKey : ViewStateKey
+        public ViewState SearchViewState<TKey>(TKey key) where TKey : ViewStateKey
             => key is TKey
-                ? viewRoot.viewStateMap.GetOrDefault(key)
+                ? _viewStateMap.GetOrDefault(key)
                 : default;
+
+        public ViewState SaveViewState<TKey>(TKey key, ViewState state) where TKey : ViewStateKey
+        {
+            if(_viewStateMap.ContainsKey(key))
+                return state;
+
+            _viewStateMap.Add(key, state);
+            return state;
+        }
     }
 }
