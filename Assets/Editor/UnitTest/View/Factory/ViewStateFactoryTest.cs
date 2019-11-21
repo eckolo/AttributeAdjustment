@@ -22,7 +22,7 @@ namespace Assets.Editor.UnitTest.View.Factory
         {
             var key = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) });
             var viewStateMap = new Dictionary<ViewStateKey, ViewState>();
-            var repository = new ViewStateRepository(viewStateMap);
+            var repository = new ViewStateRepositoryMock(viewStateMap);
 
             var result = repository.GenerateViewState(key);
 
@@ -42,7 +42,7 @@ namespace Assets.Editor.UnitTest.View.Factory
                 {
                     { keyOrigin, stateOrigin },
                 };
-            var repository = new ViewStateRepository(viewStateMap);
+            var repository = new ViewStateRepositoryMock(viewStateMap);
 
             var result = repository.GenerateViewState(key);
 
@@ -64,7 +64,7 @@ namespace Assets.Editor.UnitTest.View.Factory
                 {
                     { keyOrigin, stateOrigin },
                 };
-            var repository = new ViewStateRepository(viewStateMap);
+            var repository = new ViewStateRepositoryMock(viewStateMap);
 
             var result = repository.GenerateViewState(keyOrigin);
 
@@ -80,7 +80,7 @@ namespace Assets.Editor.UnitTest.View.Factory
         {
             var key = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) }, isGenerated: true);
             var viewStateMap = new Dictionary<ViewStateKey, ViewState>();
-            var repository = new ViewStateRepository(viewStateMap);
+            var repository = new ViewStateRepositoryMock(viewStateMap);
 
             var result = repository.GenerateViewState(key);
 
@@ -98,7 +98,7 @@ namespace Assets.Editor.UnitTest.View.Factory
                 {
                     { keyOrigin, stateOrigin },
                 };
-            var repository = new ViewStateRepository(viewStateMap);
+            var repository = new ViewStateRepositoryMock(viewStateMap);
 
             var result = repository.GenerateViewState(key);
 
@@ -118,7 +118,7 @@ namespace Assets.Editor.UnitTest.View.Factory
                 {
                     { keyOrigin, stateOrigin },
                 };
-            var repository = new ViewStateRepository(viewStateMap);
+            var repository = new ViewStateRepositoryMock(viewStateMap);
 
             var result = repository.GenerateViewState(keyOrigin);
 
@@ -140,7 +140,7 @@ namespace Assets.Editor.UnitTest.View.Factory
         public static void GenerateViewStateTest_異常系_検索キーがNull()
         {
             var viewStateMap = new Dictionary<ViewStateKey, ViewState>();
-            var repository = new ViewStateRepository(viewStateMap);
+            var repository = new ViewStateRepositoryMock(viewStateMap);
             var nullKey = (ViewStateKey)null;
 
             Assert.Throws<ArgumentNullException>(() => repository.GenerateViewState(nullKey));

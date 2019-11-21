@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Assets.Src.View.Repository
 {
-    public class ViewStateRepository
+    public class ViewStateRepository : IViewStateRepository
     {
         public ViewStateRepository(Dictionary<ViewStateKey, ViewState> viewStateMap = null)
         {

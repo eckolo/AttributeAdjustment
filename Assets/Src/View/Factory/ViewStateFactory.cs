@@ -20,7 +20,8 @@ namespace Assets.Src.View.Factory
         /// <typeparam name="TKey">生成元のキーの型</typeparam>
         /// <param name="key">生成元のキー</param>
         /// <returns>生成された<see cref="ViewState"/></returns>
-        public static ViewState GenerateViewState<TKey>(this ViewStateRepository repository, TKey key) where TKey : ViewStateKey
+        public static ViewState GenerateViewState<TKey>(this IViewStateRepository repository, TKey key)
+            where TKey : ViewStateKey
         {
             if(repository is null)
                 throw new ArgumentNullException(nameof(repository));
