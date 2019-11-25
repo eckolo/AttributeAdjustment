@@ -323,10 +323,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void Log1()
         {
-            var vector1 = Vector2.one.normalized * (Mathf.Exp(11.3f) - 1);
+            var vector1 = Vector2.one.normalized * (Mathf.Exp(32) - 1);
             var vector2 = new Vector2(-Mathf.Exp(26.43f) + 1, 0);
 
-            vector1.Log().magnitude.Is(11.3f);
+            vector1.Log().magnitude.Is(32);
             vector1.Log().normalized.Is(Vector2.one.normalized);
             vector2.Log().Is(new Vector2(-26.43f, 0));
         }
