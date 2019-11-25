@@ -11,10 +11,10 @@ namespace Assets.Src.Domain.Model.Value
     [Serializable]
     public class TextMeshStationeryValue : IViewKey
     {
-        public TextMeshStationeryValue(string text, Vector2 position)
+        public TextMeshStationeryValue(string text, Vector2? position = null)
         {
             _text = text ?? throw new ArgumentNullException(nameof(text));
-            _position = position;
+            _position = position ?? _position;
         }
 
         /// <summary>

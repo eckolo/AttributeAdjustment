@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Src.Domain.Model.Value;
+using Assets.Src.View.Model.Entity;
+using UnityEngine;
 
 namespace Assets.Src.View.Factory
 {
@@ -7,6 +9,23 @@ namespace Assets.Src.View.Factory
     /// </summary>
     public static class TextMeshFactory
     {
+        public static ViewState SetText(this ViewState state, TextMeshStationeryValue stationery)
+        {
+            var nameModel = stationery.text;
+            var _textName = nameModel;
+            for(var index = 0; GameObject.Find(_textName) != null; index++)
+                _textName = $"{nameModel}_{index}";
+
+            var textObject = state.SetPrefab<TextMesh>(_textName);
+            state.SaveView(stationery, textObject);
+
+            textObject.text = stationery.text;
+
+            var transform = textObject.GetComponent<Transform>();
+            transform.localPosition = stationery.position;
+
+            return state;
+        }
         /// <summary>
         /// システムテキストへの文字設定
         /// </summary>
@@ -31,7 +50,8 @@ namespace Assets.Src.View.Factory
         {
             var nameModel = textName ?? setText;
             var _textName = nameModel;
-            for(var index = 0; GameObject.Find(_textName) != null; index++) _textName = $"{nameModel}_{index}";
+            for(var index = 0; GameObject.Find(_textName) != null; index++)
+                _textName = $"{nameModel}_{index}";
 
             var textObject = parent.SetPrefab<TextMesh>(_textName);
 
