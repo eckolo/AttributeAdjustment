@@ -23,7 +23,7 @@ namespace Assets.Src.View.Factory
                 _textName = $"{nameModel}_{index}";
 
             var textObject = state.SetPrefab<TextMesh>(_textName);
-            state.SaveView(stationery, textObject);
+            state.Save(stationery, textObject);
 
             textObject.text = stationery.text;
 

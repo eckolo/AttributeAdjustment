@@ -25,13 +25,18 @@ namespace Assets.Src.View.Repository
         /// <typeparam name="TKey">検索キーの型</typeparam>
         /// <param name="key">検索キー</param>
         /// <returns>検索結果</returns>
-        public ViewState SearchViewState<TKey>(TKey key) where TKey : ViewStateKey
+        public ViewState Search<TKey>(TKey key) where TKey : ViewStateKey
             => key is TKey
                 ? _viewStateMap.GetOrDefault(key)
                 : default;
 
-        public ViewState SaveViewState<TKey>(TKey key, ViewState state) where TKey : ViewStateKey
+        public ViewState Save<TKey, TViewState>(TKey key, TViewState state)
+            where TKey : ViewStateKey
+            where TViewState : ViewState
         {
+            if(key is null)
+                throw new ArgumentNullException(nameof(key));
+
             if(_viewStateMap.ContainsKey(key))
                 return state;
 

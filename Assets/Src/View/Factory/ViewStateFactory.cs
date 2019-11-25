@@ -29,7 +29,7 @@ namespace Assets.Src.View.Factory
                 throw new ArgumentNullException(nameof(key));
 
             var name = $"{nameof(ViewState)}_{key.GetType().FullName}";
-            var stateExisting = repository.SearchViewState(key);
+            var stateExisting = repository.Search(key);
 
             if(key.isGenerated)
                 return stateExisting;
@@ -38,7 +38,7 @@ namespace Assets.Src.View.Factory
                 return stateExisting;
 
             var stateNew = new GameObject(name, typeof(ViewState)).AddComponent<ViewState>();
-            repository.SaveViewState(key, stateNew);
+            repository.Save(key, stateNew);
             key.isGenerated = true;
 
             return stateNew;

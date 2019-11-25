@@ -19,12 +19,14 @@ namespace Assets.Src.Mock
 
         readonly Dictionary<ViewStateKey, ViewState> viewStateMap = new Dictionary<ViewStateKey, ViewState>();
 
-        public ViewState SearchViewState<TKey>(TKey key) where TKey : ViewStateKey
+        public ViewState Search<TKey>(TKey key) where TKey : ViewStateKey
             => key is TKey
                 ? viewStateMap.GetOrDefault(key)
                 : default;
 
-        public ViewState SaveViewState<TKey>(TKey key, ViewState state) where TKey : ViewStateKey
+        public ViewState Save<TKey, TViewState>(TKey key, TViewState state)
+            where TKey : ViewStateKey
+            where TViewState : ViewState
         {
             if(viewStateMap.ContainsKey(key))
                 return state;

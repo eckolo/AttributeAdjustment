@@ -8,10 +8,6 @@ using UnityEngine;
 
 namespace Assets.Src.View.Repository
 {
-    public interface IComponentRepository
-    {
-        Component SearchView<TKey>(TKey key) where TKey : IViewKey;
-
-        Component SaveView<TKey>(TKey key, Component state) where TKey : IViewKey;
-    }
+    public interface IComponentRepository : IViewRepository<IViewKey, Component>
+    { }
 }

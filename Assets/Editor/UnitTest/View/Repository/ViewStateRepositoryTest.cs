@@ -43,20 +43,20 @@ namespace Assets.Editor.UnitTest.View.Repository
         [Test]
         public static void SearchViewStateTest_正常系_該当有()
         {
-            viewStateRepository.SearchViewState(keys[0]).Is(states[0]);
-            viewStateRepository.SearchViewState(keys[1]).Is(states[1]);
-            viewStateRepository.SearchViewState(keys[2]).Is(states[2]);
+            viewStateRepository.Search(keys[0]).Is(states[0]);
+            viewStateRepository.Search(keys[1]).Is(states[1]);
+            viewStateRepository.Search(keys[2]).Is(states[2]);
         }
         [Test]
         public static void SearchViewStateTest_正常系_該当無()
         {
-            viewStateRepository.SearchViewState(keys[3]).IsNull();
+            viewStateRepository.Search(keys[3]).IsNull();
         }
         [Test]
         public static void SearchViewStateTest_正常系_Null検索()
         {
             var nullKey = (ViewStateKey)null;
-            viewStateRepository.SearchViewState(nullKey).IsNull();
+            viewStateRepository.Search(nullKey).IsNull();
         }
     }
 }

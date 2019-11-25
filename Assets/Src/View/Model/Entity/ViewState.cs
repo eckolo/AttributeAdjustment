@@ -16,11 +16,13 @@ namespace Assets.Src.View.Model.Entity
     {
         readonly Dictionary<IViewKey, Component> _viewMap = new Dictionary<IViewKey, Component>();
 
-        public Component SearchView<TKey>(TKey key) where TKey : IViewKey
+        public Component Search<TKey>(TKey key) where TKey : IViewKey
             => key is TKey
                 ? _viewMap.GetOrDefault(key)
                 : default;
-        public Component SaveView<TKey>(TKey key, Component component) where TKey : IViewKey
+        public Component Save<TKey, TComponent>(TKey key, TComponent component)
+            where TKey : IViewKey
+            where TComponent : Component
         {
             if(_viewMap.ContainsKey(key))
                 return component;
