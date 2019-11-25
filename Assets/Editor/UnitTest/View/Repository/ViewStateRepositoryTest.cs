@@ -41,19 +41,97 @@ namespace Assets.Editor.UnitTest.View.Repository
         static readonly ViewStateRepository viewStateRepository = new ViewStateRepository(viewStateMap);
 
         [Test]
-        public static void SearchViewStateTest_正常系_該当有()
+        public static void SaveTest_正常系_既存無し()
+        {
+            var addKey = keys[1];
+            var addState = states[2];
+            var map = new Dictionary<ViewStateKey, ViewState>
+            {
+                { keys[0], states[0] },
+            };
+            var repository = new ViewStateRepository(map);
+
+            var result = repository.Save(addKey, addState);
+
+            result.IsNotNull();
+            result.IsSameReferenceAs(addState);
+
+            repository.Search(addKey).IsNotNull();
+            repository.Search(addKey).IsSameReferenceAs(addState);
+        }
+        [Test]
+        public static void SaveTest_正常系_既存有り_既存と同一()
+        {
+            var addKey = keys[1];
+            var addState = states[2];
+            var map = new Dictionary<ViewStateKey, ViewState>
+            {
+                { keys[0], states[0] },
+                { addKey, addState },
+            };
+            var repository = new ViewStateRepository(map);
+
+            var result = repository.Save(addKey, addState);
+
+            result.IsNotNull();
+            result.IsSameReferenceAs(addState);
+
+            repository.Search(addKey).IsNotNull();
+            repository.Search(addKey).IsSameReferenceAs(addState);
+
+            addState.isDestroied.IsFalse();
+        }
+        [Test]
+        public static void SaveTest_正常系_既存有り_既存と同一ではない()
+        {
+            var addKey = keys[1];
+            var addState = states[2];
+            var existingState = states[1];
+            var map = new Dictionary<ViewStateKey, ViewState>
+            {
+                { keys[0], states[0] },
+                { addKey, existingState },
+            };
+            var repository = new ViewStateRepository(map);
+
+            var result = repository.Save(addKey, addState);
+
+            result.IsNotNull();
+            result.IsSameReferenceAs(addState);
+
+            repository.Search(addKey).IsNotNull();
+            repository.Search(addKey).IsSameReferenceAs(addState);
+
+            existingState.isDestroied.IsTrue();
+        }
+        [Test]
+        public static void SaveTest_異常系_キーがNull()
+        {
+            ViewStateKey addKey = null;
+            var addState = states[2];
+            var map = new Dictionary<ViewStateKey, ViewState>
+            {
+                { keys[0], states[0] },
+            };
+            var repository = new ViewStateRepository(map);
+
+            Assert.Throws<ArgumentNullException>(() => repository.Save(addKey, addState));
+        }
+
+        [Test]
+        public static void SearchTest_正常系_該当有()
         {
             viewStateRepository.Search(keys[0]).Is(states[0]);
             viewStateRepository.Search(keys[1]).Is(states[1]);
             viewStateRepository.Search(keys[2]).Is(states[2]);
         }
         [Test]
-        public static void SearchViewStateTest_正常系_該当無()
+        public static void SearchTest_正常系_該当無()
         {
             viewStateRepository.Search(keys[3]).IsNull();
         }
         [Test]
-        public static void SearchViewStateTest_正常系_Null検索()
+        public static void SearchTest_正常系_Null検索()
         {
             var nullKey = (ViewStateKey)null;
             viewStateRepository.Search(nullKey).IsNull();

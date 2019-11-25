@@ -34,5 +34,12 @@ namespace Assets.Src.View.Model.Entity
             _viewMap = _viewMap.UpdateOrInsert(key, component);
             return _viewMap[key];
         }
+
+        public bool isDestroied { get; private set; } = false;
+        public ViewState Destroy()
+        {
+            isDestroied = true;
+            return this;
+        }
     }
 }
