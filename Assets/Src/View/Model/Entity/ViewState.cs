@@ -14,7 +14,7 @@ namespace Assets.Src.View.Model.Entity
     /// </summary>
     public class ViewState : PrefabAbst, IComponentRepository
     {
-        readonly Dictionary<IViewKey, Component> _viewMap = new Dictionary<IViewKey, Component>();
+        Dictionary<IViewKey, Component> _viewMap = new Dictionary<IViewKey, Component>();
 
         public Component Search<TKey>(TKey key) where TKey : IViewKey
             => key is TKey
@@ -31,9 +31,8 @@ namespace Assets.Src.View.Model.Entity
             if(_viewMap.ContainsKey(key) && _viewMap[key] != component)
                 _viewMap[key].Destroy();
 
-            _viewMap.UpdateOrInsert(key, component);
-
-            return component;
+            _viewMap = _viewMap.UpdateOrInsert(key, component);
+            return _viewMap[key];
         }
     }
 }

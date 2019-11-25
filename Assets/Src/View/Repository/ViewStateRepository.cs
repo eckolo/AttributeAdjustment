@@ -17,7 +17,7 @@ namespace Assets.Src.View.Repository
             _viewStateMap = viewStateMap ?? _viewStateMap;
         }
 
-        readonly Dictionary<ViewStateKey, ViewState> _viewStateMap = new Dictionary<ViewStateKey, ViewState>();
+        Dictionary<ViewStateKey, ViewState> _viewStateMap = new Dictionary<ViewStateKey, ViewState>();
 
         /// <summary>
         /// <see cref="ViewState"/>の検索
@@ -40,10 +40,8 @@ namespace Assets.Src.View.Repository
             if(_viewStateMap.ContainsKey(key) && _viewStateMap[key] != state)
                 _viewStateMap[key].Destroy();
 
-            _viewStateMap.UpdateOrInsert(key, state);
-
-            _viewStateMap.Add(key, state);
-            return state;
+            _viewStateMap = _viewStateMap.UpdateOrInsert(key, state);
+            return _viewStateMap[key];
         }
     }
 }
