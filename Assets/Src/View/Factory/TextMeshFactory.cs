@@ -9,6 +9,12 @@ namespace Assets.Src.View.Factory
     /// </summary>
     public static class TextMeshFactory
     {
+        /// <summary>
+        /// システムテキストへの文字設定
+        /// </summary>
+        /// <param name="state">設定先のビュールート</param>
+        /// <param name="stationery">テキスト情報</param>
+        /// <returns>設定されたビュールート</returns>
         public static ViewState SetText(this ViewState state, TextMeshStationeryValue stationery)
         {
             var nameModel = stationery.text;

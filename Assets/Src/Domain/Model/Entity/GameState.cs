@@ -54,6 +54,9 @@ namespace Assets.Src.Domain.Model.Entity
         /// </summary>
         public bool recievable { get => _recievable; set => _recievable = value; }
 
+        /// <summary>
+        /// ファイル操作サービス
+        /// </summary>
         public IFileManager fileManager { get; }
 
         /// <summary>

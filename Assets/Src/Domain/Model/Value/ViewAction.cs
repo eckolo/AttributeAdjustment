@@ -38,7 +38,7 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public IViewKey actor { get; }
         /// <summary>
-        /// 動作起点オブジェクト
+        /// 動作結果オブジェクト状態
         /// </summary>
         public IViewKey target { get; }
         /// <summary>
