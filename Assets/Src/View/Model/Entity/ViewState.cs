@@ -24,10 +24,11 @@ namespace Assets.Src.View.Model.Entity
             where TKey : IViewKey
             where TComponent : Component
         {
-            if(_viewMap.ContainsKey(key))
-                return component;
+            if(_viewMap.ContainsKey(key) && _viewMap[key] != component)
+                _viewMap[key].Destroy();
 
-            _viewMap.Add(key, component);
+            _viewMap.UpdateOrInsert(key, component);
+
             return component;
         }
     }

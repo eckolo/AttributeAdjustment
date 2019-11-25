@@ -37,8 +37,10 @@ namespace Assets.Src.View.Repository
             if(key is null)
                 throw new ArgumentNullException(nameof(key));
 
-            if(_viewStateMap.ContainsKey(key))
-                return state;
+            if(_viewStateMap.ContainsKey(key) && _viewStateMap[key] != state)
+                _viewStateMap[key].Destroy();
+
+            _viewStateMap.UpdateOrInsert(key, state);
 
             _viewStateMap.Add(key, state);
             return state;
