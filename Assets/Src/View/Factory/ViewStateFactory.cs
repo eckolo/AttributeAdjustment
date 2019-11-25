@@ -37,7 +37,7 @@ namespace Assets.Src.View.Factory
             if(!(stateExisting is null))
                 return stateExisting;
 
-            var stateNew = new GameObject(name, typeof(ViewState)).AddComponent<ViewState>();
+            var stateNew = name.SetPrefab<ViewState>();
             repository.Save(key, stateNew);
             key.isGenerated = true;
 

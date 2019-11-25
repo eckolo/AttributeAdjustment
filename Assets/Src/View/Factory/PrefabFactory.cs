@@ -15,6 +15,16 @@ namespace Assets.Src.View.Factory
         /// ゲームオブジェクトの新規作成
         /// </summary>
         /// <typeparam name="TPrefab">作成されるオブジェクトに実装される型</typeparam>
+        /// <param name="objectName">オブジェクト名称</param>
+        /// <returns>生成されたオブジェクト</returns>
+        public static TPrefab SetPrefab<TPrefab>(this string objectName)
+            where TPrefab : Component
+            => new GameObject(objectName ?? Constants.Texts.ANONYMOUS_NAME, typeof(TPrefab))
+            .GetComponent<TPrefab>();
+        /// <summary>
+        /// ゲームオブジェクトの新規作成
+        /// </summary>
+        /// <typeparam name="TPrefab">作成されるオブジェクトに実装される型</typeparam>
         /// <param name="parent">オブジェクトの親</param>
         /// <param name="objectName">オブジェクト名称</param>
         /// <returns>生成されたオブジェクト</returns>
