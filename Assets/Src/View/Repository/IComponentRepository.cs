@@ -9,5 +9,9 @@ using UnityEngine;
 namespace Assets.Src.View.Repository
 {
     public interface IComponentRepository : IViewRepository<IViewKey, Component>
-    { }
+    {
+        TComponent Search<TKey, TComponent>(TKey key)
+            where TKey : IViewKey
+            where TComponent : Component;
+    }
 }

@@ -20,6 +20,10 @@ namespace Assets.Src.View.Model.Entity
             => key is TKey
                 ? _viewMap.GetOrDefault(key)
                 : default;
+        public TComponent Search<TKey, TComponent>(TKey key)
+            where TKey : IViewKey
+            where TComponent : Component
+            => Search(key)?.GetComponent<TComponent>();
         public Component Save<TKey, TComponent>(TKey key, TComponent component)
             where TKey : IViewKey
             where TComponent : Component
