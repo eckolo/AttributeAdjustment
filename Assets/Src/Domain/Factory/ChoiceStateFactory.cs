@@ -19,7 +19,22 @@ namespace Assets.Src.Domain.Factory
             if(!choiceList.ContainsIndex(initialChoiced))
                 initialChoiced = 0;
 
-            return new ChoiceState(choiceList, initialChoiced);
+            var state = new ChoiceState(choiceList, initialChoiced)
+                .SetNewView(choiceList.ToChoiceText(initialChoiced));
+
+            return state;
+        }
+        static TextMeshStationeryValue ToChoiceText(this List<string> choiceList, int? choiced)
+        {
+            var text = choiceList.Any()
+                ? choiceList
+                .Select((choice, index) => (cursor: index == choiced ? ">" : "", choice))
+                .Select(line => $"{line.cursor}\t{line.choice}")
+                .Aggregate((line1, line2) => $"{line1}\r\n{line2}")
+                : string.Empty;
+            var textMesh = new TextMeshStationeryValue(text);
+
+            return textMesh;
         }
     }
 }

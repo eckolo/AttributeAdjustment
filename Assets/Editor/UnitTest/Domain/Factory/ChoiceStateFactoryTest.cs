@@ -1,7 +1,9 @@
 ﻿using Assets.Src.Domain.Factory;
+using Assets.Src.Domain.Model.Value;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Editor.UnitTest.Domain.Factory
 {
@@ -30,6 +32,21 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
+            result.viewActionQueue.IsNotNull();
+            result.viewActionQueue.Count.Is(1);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                if(resultAction.actor is TextMeshStationeryValue resultText)
+                {
+                    resultText.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultText.position.x.Is(Vector2.zero.x);
+                    resultText.position.y.Is(Vector2.zero.y);
+                }
+            }
         }
         [Test]
         public static void ToChoiceStateTest_正常系_初期値指定有り_選択肢範囲内()
@@ -52,6 +69,21 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
+            result.viewActionQueue.IsNotNull();
+            result.viewActionQueue.Count.Is(1);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                if(resultAction.actor is TextMeshStationeryValue resultText)
+                {
+                    resultText.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultText.position.x.Is(Vector2.zero.x);
+                    resultText.position.y.Is(Vector2.zero.y);
+                }
+            }
         }
         [Test]
         public static void ToChoiceStateTest_正常系_初期値指定有り_選択肢範囲外_超過()
@@ -74,6 +106,21 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
+            result.viewActionQueue.IsNotNull();
+            result.viewActionQueue.Count.Is(1);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                if(resultAction.actor is TextMeshStationeryValue resultText)
+                {
+                    resultText.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultText.position.x.Is(Vector2.zero.x);
+                    resultText.position.y.Is(Vector2.zero.y);
+                }
+            }
         }
         [Test]
         public static void ToChoiceStateTest_正常系_初期値指定有り_選択肢範囲外_負の値()
@@ -96,6 +143,21 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
+            result.viewActionQueue.IsNotNull();
+            result.viewActionQueue.Count.Is(1);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                if(resultAction.actor is TextMeshStationeryValue resultText)
+                {
+                    resultText.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultText.position.x.Is(Vector2.zero.x);
+                    resultText.position.y.Is(Vector2.zero.y);
+                }
+            }
         }
         [Test]
         public static void ToChoiceStateTest_正常系_選択肢リストが空()
@@ -111,6 +173,21 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
+            result.viewActionQueue.IsNotNull();
+            result.viewActionQueue.Count.Is(1);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                if(resultAction.actor is TextMeshStationeryValue resultText)
+                {
+                    resultText.text.Is($"");
+                    resultText.position.x.Is(Vector2.zero.x);
+                    resultText.position.y.Is(Vector2.zero.y);
+                }
+            }
         }
         [Test]
         public static void ToChoiceStateTest_異常系_選択肢リストがNull()
