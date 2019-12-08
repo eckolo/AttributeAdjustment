@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UniRx.Async;
+using UnityEngine;
 
 namespace Assets.Src.View.Service
 {
@@ -25,7 +26,7 @@ namespace Assets.Src.View.Service
                 case ViewAction.Pattern.GENERATE:
                     return await state.Generate(action);
                 case ViewAction.Pattern.UPDATE:
-                    throw new NotImplementedException(nameof(ViewAction.Pattern.UPDATE));
+                    return await state.Update(action);
                 case ViewAction.Pattern.DELETE:
                     throw new NotImplementedException(nameof(ViewAction.Pattern.DELETE));
                 default:
@@ -39,6 +40,23 @@ namespace Assets.Src.View.Service
             {
                 case TextMeshStationeryValue textMeshStationery:
                     return state.SetText(textMeshStationery);
+                default:
+                    throw new ArgumentOutOfRangeException(action.actor.GetType().ToString());
+            }
+        }
+
+        static async UniTask<ViewState> Update(this ViewState state, ViewAction action)
+        {
+            switch(action.actor)
+            {
+                case TextMeshStationeryValue actor:
+                    switch(action.target)
+                    {
+                        case TextMeshStationeryValue target:
+                            return state.UpdateText(actor, target.text, target.position);
+                        default:
+                            throw new ArgumentOutOfRangeException(action.target.GetType().ToString());
+                    }
                 default:
                     throw new ArgumentOutOfRangeException(action.actor.GetType().ToString());
             }
