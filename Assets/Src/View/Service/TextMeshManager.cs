@@ -59,5 +59,19 @@ namespace Assets.Src.View.Service
             origin.text = text;
             return origin;
         }
+
+        public static ViewState DestroyText(this ViewState state, TextMeshStationeryValue key)
+        {
+            if(state is null)
+                throw new ArgumentNullException(nameof(state));
+
+            var target = state.Search<TextMeshStationeryValue, TextMesh>(key);
+            if(target is null)
+                return state;
+
+            target.Destroy();
+
+            return state;
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace Assets.Src.View.Service
                 case ViewAction.Pattern.UPDATE:
                     return await state.Update(action);
                 case ViewAction.Pattern.DELETE:
-                    throw new NotImplementedException(nameof(ViewAction.Pattern.DELETE));
+                    return await state.Delete(action);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(action.actionType));
             }
@@ -57,6 +57,17 @@ namespace Assets.Src.View.Service
                         default:
                             throw new ArgumentOutOfRangeException(action.target.GetType().ToString());
                     }
+                default:
+                    throw new ArgumentOutOfRangeException(action.actor.GetType().ToString());
+            }
+        }
+
+        static async UniTask<ViewState> Delete(this ViewState state, ViewAction action)
+        {
+            switch(action.actor)
+            {
+                case TextMeshStationeryValue textMeshStationery:
+                    return state.DestroyText(textMeshStationery);
                 default:
                     throw new ArgumentOutOfRangeException(action.actor.GetType().ToString());
             }
