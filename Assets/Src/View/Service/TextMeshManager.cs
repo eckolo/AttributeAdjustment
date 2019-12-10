@@ -15,11 +15,12 @@ namespace Assets.Src.View.Service
     /// </summary>
     public static class TextMeshManager
     {
-        public static ViewState UpdateText(
-            this ViewState state,
+        public static TViewState UpdateText<TViewState>(
+            this TViewState state,
             TextMeshStationeryValue key,
             string text,
             Vector2? position = null)
+            where TViewState : ViewState
         {
             if(state is null)
                 throw new ArgumentNullException(nameof(state));
@@ -34,10 +35,11 @@ namespace Assets.Src.View.Service
                 origin.SetPosition(positionNonNull);
             return state;
         }
-        public static ViewState UpdateText(
-            this ViewState state,
+        public static TViewState UpdateText<TViewState>(
+            this TViewState state,
             TextMeshStationeryValue key,
             Vector2 position)
+            where TViewState : ViewState
             => state.UpdateText(key, null, position);
         static TextMesh SetPosition(
            this TextMesh origin,
@@ -60,7 +62,8 @@ namespace Assets.Src.View.Service
             return origin;
         }
 
-        public static ViewState DestroyText(this ViewState state, TextMeshStationeryValue key)
+        public static TViewState DestroyText<TViewState>(this TViewState state, TextMeshStationeryValue key)
+            where TViewState : ViewState
         {
             if(state is null)
                 throw new ArgumentNullException(nameof(state));

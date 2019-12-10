@@ -17,9 +17,10 @@ namespace Assets.Src.View.Service
     /// </summary>
     public static class ViewActionPractitioner
     {
-        public static async UniTask<ViewState> IndicateViewAction(
-            this ViewState state,
+        public static async UniTask<TViewState> IndicateViewAction<TViewState>(
+            this TViewState state,
             ViewAction action)
+            where TViewState : ViewState
         {
             switch(action.actionType)
             {
@@ -34,7 +35,8 @@ namespace Assets.Src.View.Service
             }
         }
 
-        static async UniTask<ViewState> Generate(this ViewState state, ViewAction action)
+        static async UniTask<TViewState> Generate<TViewState>(this TViewState state, ViewAction action)
+            where TViewState : ViewState
         {
             switch(action.actor)
             {
@@ -45,7 +47,8 @@ namespace Assets.Src.View.Service
             }
         }
 
-        static async UniTask<ViewState> Update(this ViewState state, ViewAction action)
+        static async UniTask<TViewState> Update<TViewState>(this TViewState state, ViewAction action)
+            where TViewState : ViewState
         {
             switch(action.actor)
             {
@@ -62,7 +65,8 @@ namespace Assets.Src.View.Service
             }
         }
 
-        static async UniTask<ViewState> Delete(this ViewState state, ViewAction action)
+        static async UniTask<TViewState> Delete<TViewState>(this TViewState state, ViewAction action)
+            where TViewState : ViewState
         {
             switch(action.actor)
             {
