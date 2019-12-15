@@ -72,5 +72,20 @@ namespace Assets.Src.Domain.Service
             state.viewActionQueue.Enqueue(state.ToViewAction(ViewAction.Pattern.DELETE));
             return state;
         }
+
+        public static TextMeshStationeryValue ToChoiceText(this ChoiceState state)
+            => state?.choiceList.ToChoiceText(state.choiced) ?? throw new ArgumentNullException(nameof(state));
+        public static TextMeshStationeryValue ToChoiceText(this IList<string> choiceList, int? choiced)
+        {
+            var text = (choiceList?.Any() ?? false)
+                ? choiceList
+                .Select((choice, index) => (cursor: index == choiced ? ">" : "", choice))
+                .Select(line => $"{line.cursor}\t{line.choice}")
+                .Aggregate((line1, line2) => $"{line1}\r\n{line2}")
+                : string.Empty;
+            var textMesh = new TextMeshStationeryValue(text);
+
+            return textMesh;
+        }
     }
 }

@@ -3,6 +3,7 @@ using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Repository;
 using Assets.Src.Domain.Service;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -727,6 +728,358 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.viewActionQueue.ToArray()[0].IsNotNull();
             result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
             result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+        }
+
+        [Test]
+        public static void ToChoiceTextTest_単数_選択肢が0()
+        {
+            var text1 = "text1";
+            var choiceList = new List<string> { text1 };
+            var choiced = 0;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is($">\t{text1}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_単数_選択肢が負の値()
+        {
+            var text1 = "text1";
+            var choiceList = new List<string> { text1 };
+            var choiced = -1;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is($"\t{text1}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_単数_選択肢が上限超過()
+        {
+            var text1 = "text1";
+            var choiceList = new List<string> { text1 };
+            var choiced = choiceList.Count;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is($"\t{text1}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_単数_選択肢がNull()
+        {
+            var text1 = "text1";
+            var choiceList = new List<string> { text1 };
+            var choiced = (int?)null;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is($"\t{text1}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_複数_選択肢が0()
+        {
+            var text1 = "text1";
+            var text2 = "text2";
+            var text3 = "text3";
+            var choiceList = new List<string> { text1, text2, text3 };
+            var choiced = 0;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_複数_選択肢が上限()
+        {
+            var text1 = "text1";
+            var text2 = "text2";
+            var text3 = "text3";
+            var choiceList = new List<string> { text1, text2, text3 };
+            var choiced = choiceList.Count - 1;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_複数_選択肢が負の値()
+        {
+            var text1 = "text1";
+            var text2 = "text2";
+            var text3 = "text3";
+            var choiceList = new List<string> { text1, text2, text3 };
+            var choiced = -1;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_複数_選択肢が上限超過()
+        {
+            var text1 = "text1";
+            var text2 = "text2";
+            var text3 = "text3";
+            var choiceList = new List<string> { text1, text2, text3 };
+            var choiced = choiceList.Count;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_複数_選択肢がNull()
+        {
+            var text1 = "text1";
+            var text2 = "text2";
+            var text3 = "text3";
+            var choiceList = new List<string> { text1, text2, text3 };
+            var choiced = (int?)null;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_複数Null含み_選択肢が0()
+        {
+            var textNull = (string)null;
+            var text1 = "text2";
+            var text2 = "text3";
+            var choiceList = new List<string> { textNull, text1, text2 };
+            var choiced = 0;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is($">\t{textNull}\r\n\t{text1}\r\n\t{text2}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_空リスト()
+        {
+            var choiceList = new List<string>();
+            var choiced = 0;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is(string.Empty);
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_Nullリスト()
+        {
+            var choiceList = (List<string>)null;
+            var choiced = 0;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is(string.Empty);
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_単数_選択肢が0()
+        {
+            var text1 = "text1";
+            var choiceList = new List<string> { text1 };
+            var choiced = 0;
+
+            var result = choiceList.ToChoiceText(choiced);
+            result.IsNotNull();
+            result.text.Is($">\t{text1}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_単数_選択肢が負の値()
+        {
+            var text1 = "text1";
+            var choiceList = new List<string> { text1 };
+            var choiced = -1;
+            var state = new ChoiceState(choiceList, choiced);
+
+            var result = state.ToChoiceText();
+            result.IsNotNull();
+            result.text.Is($">\t{text1}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_単数_選択肢が上限超過()
+        {
+            var text1 = "text1";
+            var choiceList = new List<string> { text1 };
+            var choiced = choiceList.Count;
+            var state = new ChoiceState(choiceList, choiced);
+
+            var result = state.ToChoiceText();
+            result.IsNotNull();
+            result.text.Is($">\t{text1}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_単数_選択肢がNull()
+        {
+            var text1 = "text1";
+            var choiceList = new List<string> { text1 };
+            var choiced = (int?)null;
+            var state = new ChoiceState(choiceList, choiced);
+
+            var result = state.ToChoiceText();
+            result.IsNotNull();
+            result.text.Is($"\t{text1}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_複数_選択肢が0()
+        {
+            var text1 = "text1";
+            var text2 = "text2";
+            var text3 = "text3";
+            var choiceList = new List<string> { text1, text2, text3 };
+            var choiced = 0;
+            var state = new ChoiceState(choiceList, choiced);
+
+            var result = state.ToChoiceText();
+            result.IsNotNull();
+            result.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_複数_選択肢が上限()
+        {
+            var text1 = "text1";
+            var text2 = "text2";
+            var text3 = "text3";
+            var choiceList = new List<string> { text1, text2, text3 };
+            var choiced = choiceList.Count - 1;
+            var state = new ChoiceState(choiceList, choiced);
+
+            var result = state.ToChoiceText();
+            result.IsNotNull();
+            result.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_複数_選択肢が負の値()
+        {
+            var text1 = "text1";
+            var text2 = "text2";
+            var text3 = "text3";
+            var choiceList = new List<string> { text1, text2, text3 };
+            var choiced = -1;
+            var state = new ChoiceState(choiceList, choiced);
+
+            var result = state.ToChoiceText();
+            result.IsNotNull();
+            result.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_複数_選択肢が上限超過()
+        {
+            var text1 = "text1";
+            var text2 = "text2";
+            var text3 = "text3";
+            var choiceList = new List<string> { text1, text2, text3 };
+            var choiced = choiceList.Count;
+            var state = new ChoiceState(choiceList, choiced);
+
+            var result = state.ToChoiceText();
+            result.IsNotNull();
+            result.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_複数_選択肢がNull()
+        {
+            var text1 = "text1";
+            var text2 = "text2";
+            var text3 = "text3";
+            var choiceList = new List<string> { text1, text2, text3 };
+            var choiced = (int?)null;
+            var state = new ChoiceState(choiceList, choiced);
+
+            var result = state.ToChoiceText();
+            result.IsNotNull();
+            result.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_複数Null含み_選択肢が0()
+        {
+            var textNull = (string)null;
+            var text1 = "text2";
+            var text2 = "text3";
+            var choiceList = new List<string> { textNull, text1, text2 };
+            var choiced = 0;
+            var state = new ChoiceState(choiceList, choiced);
+
+            var result = state.ToChoiceText();
+            result.IsNotNull();
+            result.text.Is($">\t{textNull}\r\n\t{text1}\r\n\t{text2}");
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_空リスト()
+        {
+            var choiceList = new List<string>();
+            var choiced = 0;
+            var state = new ChoiceState(choiceList, choiced);
+
+            var result = state.ToChoiceText();
+            result.IsNotNull();
+            result.text.Is(string.Empty);
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクト_Nullリスト()
+        {
+            var choiceList = (List<string>)null;
+            var choiced = 0;
+            var state = new ChoiceState(choiceList, choiced);
+
+            var result = state.ToChoiceText();
+            result.IsNotNull();
+            result.text.Is(string.Empty);
+            result.position.x.Is(0);
+            result.position.y.Is(0);
+        }
+        [Test]
+        public static void ToChoiceTextTest_状態オブジェクトがNull()
+        {
+            var state = (ChoiceState)null;
+
+            Assert.Throws<ArgumentNullException>(() => state.ToChoiceText());
         }
     }
 }

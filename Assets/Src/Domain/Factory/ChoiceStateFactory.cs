@@ -24,17 +24,5 @@ namespace Assets.Src.Domain.Factory
 
             return state;
         }
-        static TextMeshStationeryValue ToChoiceText(this List<string> choiceList, int? choiced)
-        {
-            var text = choiceList.Any()
-                ? choiceList
-                .Select((choice, index) => (cursor: index == choiced ? ">" : "", choice))
-                .Select(line => $"{line.cursor}\t{line.choice}")
-                .Aggregate((line1, line2) => $"{line1}\r\n{line2}")
-                : string.Empty;
-            var textMesh = new TextMeshStationeryValue(text);
-
-            return textMesh;
-        }
     }
 }
