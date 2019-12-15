@@ -58,7 +58,9 @@ namespace Assets.Src.Domain.Service
                 state.choiced = null;
 
             state.isFinished = inputDecisionKey || inputCancelKey;
-            state.viewActionQueue.Enqueue(state.ToViewAction(ViewAction.Pattern.UPDATE));
+
+            var updateAction = state.choiceText.ToViewAction(ViewAction.Pattern.UPDATE, state.ToChoiceText());
+            state.viewActionQueue.Enqueue(updateAction);
 
             return state;
         }

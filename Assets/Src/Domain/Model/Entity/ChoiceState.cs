@@ -1,5 +1,8 @@
 ﻿using Assets.Src.Controller;
+using Assets.Src.Domain.Factory;
 using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Value;
+using Assets.Src.Domain.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +13,19 @@ namespace Assets.Src.Domain.Model.Entity
 {
     public class ChoiceState : ViewStateKey, IViewKey, IDisposable
     {
-        public ChoiceState(List<string> choiceList, int? choiced)
+        public ChoiceState(IList<string> choiceList, int? choiced)
         {
             this.choiceList = choiceList;
             this.choiced = choiced;
+
+            choiceText = choiceList.ToChoiceText(choiced);
+            this.SetNewView(choiceText);
         }
 
         /// <summary>
         /// 選択肢リスト
         /// </summary>
-        public List<string> choiceList { get; }
+        public IList<string> choiceList { get; }
         /// <summary>
         /// 現在選択中のインデックス
         /// nullであればキャンセル
@@ -58,6 +64,8 @@ namespace Assets.Src.Domain.Model.Entity
             set => _isFinished = value;
         }
         bool _isFinished = false;
+
+        public TextMeshStationeryValue choiceText { get; set; } = new TextMeshStationeryValue(string.Empty);
 
         public async void Dispose() => await this.End();
     }

@@ -19,8 +19,7 @@ namespace Assets.Src.Domain.Factory
             if(!choiceList.ContainsIndex(initialChoiced))
                 initialChoiced = 0;
 
-            var state = new ChoiceState(choiceList, initialChoiced)
-                .SetNewView(choiceList.ToChoiceText(initialChoiced));
+            var state = new ChoiceState(choiceList, initialChoiced);
 
             return state;
         }

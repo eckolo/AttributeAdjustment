@@ -42,10 +42,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_上限_キャンセル()
@@ -73,10 +105,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_上限_上押下_継続0()
@@ -104,10 +168,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_上限_上押下_継続有り()
@@ -137,10 +233,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_上限_上押続け_継続規定値未満()
@@ -170,10 +298,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_上限_上押続け_継続規定値以上()
@@ -203,10 +363,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_上限_下押下_継続0()
@@ -234,10 +426,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_上限_下押下_継続有り()
@@ -267,10 +491,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_上限_下押続け_継続規定値未満()
@@ -300,10 +556,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(keepDownTime + 1);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_上限_下押続け_継続規定値以上()
@@ -333,10 +621,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(Constants.Choice.KEEP_VERTICAL_LIMIT - Constants.Choice.KEEP_VERTICAL_INTERVAL);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_上限_同時押し()
@@ -345,7 +665,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var text2 = "text2";
             var text3 = "text3";
             var choiceList = new List<string> { text1, text2, text3 };
-            var choiced = choiceList.Count - 1;
+            var choiced = 0;
             var state = new ChoiceState(choiceList, choiced);
 
             var inputKeys = keyConfigs.decide
@@ -367,10 +687,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
 
         [Test]
@@ -399,10 +751,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_下限_キャンセル()
@@ -430,10 +814,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_下限_上押下_継続0()
@@ -461,10 +877,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_下限_上押下_継続有り()
@@ -494,10 +942,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_下限_上押続け_継続規定値未満()
@@ -527,10 +1007,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_下限_上押続け_継続規定値以上()
@@ -560,10 +1072,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_下限_下押下_継続0()
@@ -591,10 +1135,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_下限_下押下_継続有り()
@@ -624,10 +1200,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_下限_下押続け_継続規定値未満()
@@ -657,10 +1265,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(keepDownTime + 1);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_下限_下押続け_継続規定値以上()
@@ -690,10 +1330,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(Constants.Choice.KEEP_VERTICAL_LIMIT - Constants.Choice.KEEP_VERTICAL_INTERVAL);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
         [Test]
         public static void UpdateTest_正常系_下限_同時押し()
@@ -724,10 +1396,42 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
-            result.viewActionQueue.ToArray()[0].IsNotNull();
-            result.viewActionQueue.ToArray()[0].actor.IsSameReferenceAs(state);
-            result.viewActionQueue.ToArray()[0].actionType.Is(ViewAction.Pattern.UPDATE);
+            result.viewActionQueue.ToArray().Length.Is(2);
+            {
+                var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
+                resultAction.IsNotNull();
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
+                    resultActor.position.x.Is(0);
+                    resultActor.position.y.Is(0);
+                }
+                resultAction.target.IsNotNull();
+                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                {
+                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
+                    resultTarget.position.x.Is(0);
+                    resultTarget.position.y.Is(0);
+                }
+                resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+            }
         }
 
         [Test]
