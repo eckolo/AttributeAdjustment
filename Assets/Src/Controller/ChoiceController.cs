@@ -44,16 +44,15 @@ namespace Assets.Src.Controller
             KeyConfigs keyConfigs)
         {
             var ableKeyList = keyConfigs.decide.Concat(keyConfigs.vertical).ToList();
-            var (inputKeys, keyTiming) = await Wait.Until(ableKeyList);
-
             while(!state.isFinished)
             {
+                var (inputKeys, keyTiming) = await Wait.Until(ableKeyList);
                 state = await state
                     .Update(keyConfigs, inputKeys, keyTiming)
                     .Indicate(viewStateRepository);
-                await Wait.Until(1);
             }
 
+            await Wait.Until(1);
             return await state.Indicate(viewStateRepository);
         }
         /// <summary>
