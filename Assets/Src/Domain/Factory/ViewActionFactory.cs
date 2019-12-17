@@ -33,6 +33,20 @@ namespace Assets.Src.Domain.Factory
                 .Select(view => view.ToViewAction(pattern))
                 .Aggregate((action1, action2) => action1.AddNextAction<ViewAction>(action2));
         /// <summary>
+        /// 単一ビューオブジェクトに対する対象有りアクションの作成
+        /// </summary>
+        /// <param name="view">アクション対象のビューオブジェクト</param>
+        /// <param name="pattern">アクション種別</param>
+        /// <param name="target">アクション内容を表すビューオブジェクト</param>
+        /// <param name="easing">アクション実行イージング</param>
+        /// <returns>生成されたビューアクション</returns>
+        public static ViewAction ToViewAction(
+            this IViewKey view,
+            ViewAction.Pattern pattern,
+            IViewKey target,
+            Easing easing = Easing.Linear)
+            => new ViewAction(pattern, view, target, easing);
+        /// <summary>
         /// 新たな画面表示パーツを追加する
         /// </summary>
         /// <typeparam name="TViewState">対象の画面表示状態型</typeparam>
