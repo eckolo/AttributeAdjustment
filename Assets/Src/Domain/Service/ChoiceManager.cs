@@ -62,6 +62,12 @@ namespace Assets.Src.Domain.Service
             var updateAction = state.choiceText.ToViewAction(ViewAction.Pattern.UPDATE, state.ToChoiceText());
             state.viewActionQueue.Enqueue(updateAction);
 
+            if(state.isFinished)
+            {
+                var deleteAction = state.choiceText.ToViewAction(ViewAction.Pattern.DELETE);
+                state.viewActionQueue.Enqueue(deleteAction);
+            }
+
             return state;
         }
         /// <summary>
