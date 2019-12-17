@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Service;
+using Assets.Src.View.Factory;
 using Assets.Src.View.Model.Entity;
 using Assets.Src.View.Repository;
 using System;
@@ -23,6 +24,9 @@ namespace Assets.Src.Mock
             => key is TKey
                 ? viewStateMap.GetOrDefault(key)
                 : default;
+
+        public ViewState SearchOrGenerate<TKey>(TKey key) where TKey : ViewStateKey
+            => Search(key) ?? this.GenerateViewState(key);
 
         public ViewState Save<TKey, TViewState>(TKey key, TViewState state)
             where TKey : ViewStateKey

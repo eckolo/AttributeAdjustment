@@ -3,6 +3,7 @@ using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Repository;
 using Assets.Src.Domain.Service;
+using Assets.Src.View.Repository;
 using Assets.Src.View.Service;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace Assets.Src.Controller
 {
     public static class ChoiceController
     {
+        readonly static ViewStateRepository viewStateRepository = new ViewStateRepository();
+
         /// <summary>
         /// 選択肢生成メソッド
         /// </summary>
@@ -28,7 +31,7 @@ namespace Assets.Src.Controller
             var state = choiceList.ToChoiceState(initialChoiced);
             await Wait.Until(1);
 
-            return await state.Indicate();
+            return await state.Indicate(viewStateRepository);
         }
         /// <summary>
         /// 選択肢の選択操作メソッド
@@ -47,11 +50,11 @@ namespace Assets.Src.Controller
             {
                 state = await state
                     .Update(keyConfigs, inputKeys, keyTiming)
-                    .Indicate();
+                    .Indicate(viewStateRepository);
                 await Wait.Until(1);
             }
 
-            return await state.Indicate();
+            return await state.Indicate(viewStateRepository);
         }
         /// <summary>
         /// 選択肢終了メソッド
@@ -64,7 +67,7 @@ namespace Assets.Src.Controller
             state = state.Finalize();
             await Wait.Until(1);
 
-            return await state.Indicate();
+            return await state.Indicate(viewStateRepository);
         }
     }
 }

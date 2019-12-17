@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Service;
+using Assets.Src.View.Factory;
 using Assets.Src.View.Model.Entity;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,9 @@ namespace Assets.Src.View.Repository
             => key is TKey
                 ? _viewStateMap.GetOrDefault(key)
                 : default;
+
+        public ViewState SearchOrGenerate<TKey>(TKey key) where TKey : ViewStateKey
+            => Search(key) ?? this.GenerateViewState(key);
 
         public ViewState Save<TKey, TViewState>(TKey key, TViewState state)
             where TKey : ViewStateKey
