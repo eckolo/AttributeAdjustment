@@ -62,12 +62,6 @@ namespace Assets.Src.Domain.Service
             var updateAction = state.choiceText.ToViewAction(ViewAction.Pattern.UPDATE, state.ToChoiceText());
             state.viewActionQueue.Enqueue(updateAction);
 
-            if(state.isFinished)
-            {
-                var deleteAction = state.choiceText.ToViewAction(ViewAction.Pattern.DELETE);
-                state.viewActionQueue.Enqueue(deleteAction);
-            }
-
             return state;
         }
         /// <summary>
@@ -77,6 +71,8 @@ namespace Assets.Src.Domain.Service
         /// <returns>終了処理のなされた選択肢状態オブジェクト</returns>
         public static ChoiceState Finalize(this ChoiceState state)
         {
+            var deleteAction = state.choiceText.ToViewAction(ViewAction.Pattern.DELETE);
+            state.viewActionQueue.Enqueue(deleteAction);
             state.viewActionQueue.Enqueue(state.ToViewAction(ViewAction.Pattern.DELETE));
             return state;
         }

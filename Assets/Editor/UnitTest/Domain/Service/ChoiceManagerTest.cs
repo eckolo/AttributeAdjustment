@@ -42,7 +42,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(2);
+            result.viewActionQueue.ToArray().Length.Is(1);
             {
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
@@ -63,20 +63,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                     resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-            }
-            {
-                var resultAction = result.viewActionQueue.ToArray()[1];
-                resultAction.IsNotNull();
-                resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
-                {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
-                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
-                }
-                resultAction.target.IsNull();
-                resultAction.actionType.Is(ViewAction.Pattern.DELETE);
             }
         }
         [Test]
@@ -105,7 +91,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(2);
+            result.viewActionQueue.ToArray().Length.Is(1);
             {
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
@@ -126,20 +112,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                     resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-            }
-            {
-                var resultAction = result.viewActionQueue.ToArray()[1];
-                resultAction.IsNotNull();
-                resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
-                {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
-                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
-                }
-                resultAction.target.IsNull();
-                resultAction.actionType.Is(ViewAction.Pattern.DELETE);
             }
         }
         [Test]
@@ -575,7 +547,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(2);
+            result.viewActionQueue.ToArray().Length.Is(1);
             {
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
@@ -596,20 +568,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                     resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-            }
-            {
-                var resultAction = result.viewActionQueue.ToArray()[1];
-                resultAction.IsNotNull();
-                resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
-                {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
-                    resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
-                }
-                resultAction.target.IsNull();
-                resultAction.actionType.Is(ViewAction.Pattern.DELETE);
             }
         }
 
@@ -639,7 +597,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(2);
+            result.viewActionQueue.ToArray().Length.Is(1);
             {
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
@@ -660,20 +618,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                     resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-            }
-            {
-                var resultAction = result.viewActionQueue.ToArray()[1];
-                resultAction.IsNotNull();
-                resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
-                {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
-                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
-                }
-                resultAction.target.IsNull();
-                resultAction.actionType.Is(ViewAction.Pattern.DELETE);
             }
         }
         [Test]
@@ -702,7 +646,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(2);
+            result.viewActionQueue.ToArray().Length.Is(1);
             {
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
@@ -723,20 +667,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                     resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-            }
-            {
-                var resultAction = result.viewActionQueue.ToArray()[1];
-                resultAction.IsNotNull();
-                resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
-                {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
-                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
-                }
-                resultAction.target.IsNull();
-                resultAction.actionType.Is(ViewAction.Pattern.DELETE);
             }
         }
         [Test]
@@ -1172,7 +1102,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(2);
+            result.viewActionQueue.ToArray().Length.Is(1);
             {
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
@@ -1193,20 +1123,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                     resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-            }
-            {
-                var resultAction = result.viewActionQueue.ToArray()[1];
-                resultAction.IsNotNull();
-                resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
-                {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
-                    resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
-                }
-                resultAction.target.IsNull();
-                resultAction.actionType.Is(ViewAction.Pattern.DELETE);
             }
         }
 
