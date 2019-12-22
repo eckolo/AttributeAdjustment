@@ -19,7 +19,6 @@ namespace Assets.Src.Domain.Model.Entity
             this.choiced = choiced;
 
             choiceText = choiceList.ToChoiceText(choiced);
-            this.SetNewView(choiceText);
         }
 
         /// <summary>
@@ -65,7 +64,7 @@ namespace Assets.Src.Domain.Model.Entity
         }
         bool _isFinished = false;
 
-        public TextMeshStationeryValue choiceText { get; set; } = new TextMeshStationeryValue(string.Empty);
+        public TextMeshStationeryValue choiceText { get; set; }
 
         public async void Dispose() => await this.End();
     }

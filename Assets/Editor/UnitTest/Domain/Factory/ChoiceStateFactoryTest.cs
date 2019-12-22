@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Domain.Factory;
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using NUnit.Framework;
 using System;
@@ -33,9 +34,17 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.Count.Is(1);
+            result.viewActionQueue.Count.Is(2);
             {
                 var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<ChoiceState>();
+                resultAction.actor.IsSameReferenceAs(result);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -70,9 +79,17 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.Count.Is(1);
+            result.viewActionQueue.Count.Is(2);
             {
                 var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<ChoiceState>();
+                resultAction.actor.IsSameReferenceAs(result);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -107,9 +124,17 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.Count.Is(1);
+            result.viewActionQueue.Count.Is(2);
             {
                 var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<ChoiceState>();
+                resultAction.actor.IsSameReferenceAs(result);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -144,9 +169,17 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.Count.Is(1);
+            result.viewActionQueue.Count.Is(2);
             {
                 var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<ChoiceState>();
+                resultAction.actor.IsSameReferenceAs(result);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -174,9 +207,17 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
             result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.Count.Is(1);
+            result.viewActionQueue.Count.Is(2);
             {
                 var resultAction = result.viewActionQueue.ToArray()[0];
+                resultAction.IsNotNull();
+                resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actor.IsNotNull();
+                resultAction.actor.IsInstanceOf<ChoiceState>();
+                resultAction.actor.IsSameReferenceAs(result);
+            }
+            {
+                var resultAction = result.viewActionQueue.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();

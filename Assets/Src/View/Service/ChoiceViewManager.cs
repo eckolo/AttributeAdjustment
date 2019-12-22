@@ -17,11 +17,10 @@ namespace Assets.Src.View.Service
             this ChoiceState state,
             IViewStateRepository repository)
         {
-            var viewState = repository.SearchOrGenerate(state);
             while(state.viewActionQueue.Any())
             {
                 var action = state.viewActionQueue.Dequeue();
-                viewState = await viewState.IndicateViewAction(action);
+                state = await state.IndicateViewAction(action, repository);
             }
             return state;
         }

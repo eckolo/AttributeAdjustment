@@ -2,6 +2,7 @@
 using Assets.Src.Domain.Model.Value;
 using Assets.Src.View.Factory;
 using Assets.Src.View.Model.Entity;
+using Assets.Src.View.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,38 +18,49 @@ namespace Assets.Src.View.Service
     /// </summary>
     public static class ViewActionPractitioner
     {
-        public static async UniTask<TViewState> IndicateViewAction<TViewState>(
-            this TViewState state,
-            ViewAction action)
-            where TViewState : ViewState
+        public static async UniTask<TViewStateKey> IndicateViewAction<TViewStateKey>(
+            this TViewStateKey stateKey,
+            ViewAction action,
+            IViewStateRepository repository)
+            where TViewStateKey : ViewStateKey
         {
             switch(action.actionType)
             {
                 case ViewAction.Pattern.GENERATE:
-                    return await state.Generate(action);
+                    return await stateKey.Generate(action, repository);
                 case ViewAction.Pattern.UPDATE:
-                    return await state.Update(action);
+                    return await stateKey.Update(action, repository);
                 case ViewAction.Pattern.DELETE:
-                    return await state.Delete(action);
+                    return await stateKey.Delete(action, repository);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(action.actionType));
             }
         }
 
-        static async UniTask<TViewState> Generate<TViewState>(this TViewState state, ViewAction action)
-            where TViewState : ViewState
+        static async UniTask<TViewStateKey> Generate<TViewStateKey>(
+            this TViewStateKey stateKey,
+            ViewAction action,
+            IViewStateRepository repository)
+            where TViewStateKey : ViewStateKey
         {
             switch(action.actor)
             {
+                case TViewStateKey viewStateKey:
+                    repository.GenerateViewState(viewStateKey);
+                    return stateKey;
                 case TextMeshStationeryValue textMeshStationery:
-                    return state.SetText(textMeshStationery);
+                    repository.Search(stateKey).SetText(textMeshStationery);
+                    return stateKey;
                 default:
                     throw new ArgumentOutOfRangeException(action.actor.GetType().ToString());
             }
         }
 
-        static async UniTask<TViewState> Update<TViewState>(this TViewState state, ViewAction action)
-            where TViewState : ViewState
+        static async UniTask<TViewStateKey> Update<TViewStateKey>(
+            this TViewStateKey stateKey,
+            ViewAction action,
+            IViewStateRepository repository)
+            where TViewStateKey : ViewStateKey
         {
             switch(action.actor)
             {
@@ -56,7 +68,8 @@ namespace Assets.Src.View.Service
                     switch(action.target)
                     {
                         case TextMeshStationeryValue target:
-                            return state.UpdateText(actor, target.text, target.position);
+                            repository.Search(stateKey).UpdateText(actor, target.text, target.position);
+                            return stateKey;
                         default:
                             throw new ArgumentOutOfRangeException(action.target.GetType().ToString());
                     }
@@ -65,13 +78,20 @@ namespace Assets.Src.View.Service
             }
         }
 
-        static async UniTask<TViewState> Delete<TViewState>(this TViewState state, ViewAction action)
-            where TViewState : ViewState
+        static async UniTask<TViewStateKey> Delete<TViewStateKey>(
+            this TViewStateKey stateKey,
+            ViewAction action,
+            IViewStateRepository repository)
+            where TViewStateKey : ViewStateKey
         {
             switch(action.actor)
             {
+                case TViewStateKey viewStateKey:
+                    repository.Search(stateKey).Destroy();
+                    return stateKey;
                 case TextMeshStationeryValue textMeshStationery:
-                    return state.DestroyText(textMeshStationery);
+                    repository.Search(stateKey).DestroyText(textMeshStationery);
+                    return stateKey;
                 default:
                     throw new ArgumentOutOfRangeException(action.actor.GetType().ToString());
             }
