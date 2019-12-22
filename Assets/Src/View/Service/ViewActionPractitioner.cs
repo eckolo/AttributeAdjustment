@@ -18,6 +18,21 @@ namespace Assets.Src.View.Service
     /// </summary>
     public static class ViewActionPractitioner
     {
+        public static TViewStateKey Indicate<TViewStateKey>(
+            this TViewStateKey state,
+            IViewStateRepository repository)
+            where TViewStateKey : ViewStateKey
+        {
+            var actionList = state.viewActionQueue.ToList();
+
+            if(actionList.Any())
+                _ = actionList
+                   .Select(action => state.IndicateViewAction(action, repository))
+                   .Aggregate((task1, task2) => task1.ContinueWith(_ => task2));
+
+            state.viewActionQueue.Clear();
+            return state;
+        }
         public static async UniTask<TViewStateKey> IndicateViewAction<TViewStateKey>(
             this TViewStateKey stateKey,
             ViewAction action,

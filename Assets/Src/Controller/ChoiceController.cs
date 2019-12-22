@@ -31,7 +31,7 @@ namespace Assets.Src.Controller
             var state = choiceList.ToChoiceState(initialChoiced);
             await Wait.Until(1);
 
-            return await state.Indicate(viewStateRepository);
+            return state.Indicate(viewStateRepository);
         }
         /// <summary>
         /// 選択肢の選択操作メソッド
@@ -47,13 +47,13 @@ namespace Assets.Src.Controller
             while(!state.isFinished)
             {
                 var (inputKeys, keyTiming) = await Wait.Until(ableKeyList);
-                state = await state
+                state = state
                     .Update(keyConfigs, inputKeys, keyTiming)
                     .Indicate(viewStateRepository);
             }
 
             await Wait.Until(1);
-            return await state.Indicate(viewStateRepository);
+            return state.Indicate(viewStateRepository);
         }
         /// <summary>
         /// 選択肢終了メソッド
@@ -66,7 +66,7 @@ namespace Assets.Src.Controller
             state = state.Finalize();
             await Wait.Until(1);
 
-            return await state.Indicate(viewStateRepository);
+            return state.Indicate(viewStateRepository);
         }
     }
 }
