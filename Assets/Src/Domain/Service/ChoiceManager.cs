@@ -60,7 +60,7 @@ namespace Assets.Src.Domain.Service
             state.isFinished = inputDecisionKey || inputCancelKey;
 
             var updateAction = state.choiceText.ToViewAction(ViewAction.Pattern.UPDATE, state.ToChoiceText());
-            state.viewActionQueue.Enqueue(updateAction);
+            state.viewActionList.Add(updateAction);
 
             return state;
         }
@@ -72,8 +72,8 @@ namespace Assets.Src.Domain.Service
         public static ChoiceState Finalize(this ChoiceState state)
         {
             var deleteAction = state.choiceText.ToViewAction(ViewAction.Pattern.DELETE);
-            state.viewActionQueue.Enqueue(deleteAction);
-            state.viewActionQueue.Enqueue(state.ToViewAction(ViewAction.Pattern.DELETE));
+            state.viewActionList.Add(deleteAction);
+            state.viewActionList.Add(state.ToViewAction(ViewAction.Pattern.DELETE));
             return state;
         }
 

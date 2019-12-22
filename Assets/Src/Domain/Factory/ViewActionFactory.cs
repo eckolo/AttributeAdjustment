@@ -74,10 +74,10 @@ namespace Assets.Src.Domain.Factory
             where TViewState : ViewStateKey
             where TViewValue : IViewKey
         {
-            values
-               .Select(value => new ViewAction(ViewAction.Pattern.GENERATE, value))
-               .ToList()
-               .ForEach(action => state.viewActionQueue.Enqueue(action));
+            var addedActionList = values
+                .Select(value => new ViewAction(ViewAction.Pattern.GENERATE, value))
+                .ToList();
+            state.viewActionList.AddRange(addedActionList);
 
             return state;
         }

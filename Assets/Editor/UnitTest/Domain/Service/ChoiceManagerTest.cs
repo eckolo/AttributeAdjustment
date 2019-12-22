@@ -41,10 +41,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -90,10 +90,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -139,10 +139,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -190,10 +190,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -241,10 +241,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(keepUpTime + 1);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -292,10 +292,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(Constants.Choice.KEEP_VERTICAL_LIMIT - Constants.Choice.KEEP_VERTICAL_INTERVAL);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -341,10 +341,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -392,10 +392,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -443,10 +443,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(keepDownTime + 1);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -494,10 +494,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(Constants.Choice.KEEP_VERTICAL_LIMIT - Constants.Choice.KEEP_VERTICAL_INTERVAL);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -546,10 +546,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -596,10 +596,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -645,10 +645,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -694,10 +694,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -745,10 +745,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -796,10 +796,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(keepUpTime + 1);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -847,10 +847,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(Constants.Choice.KEEP_VERTICAL_LIMIT - Constants.Choice.KEEP_VERTICAL_INTERVAL);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -896,10 +896,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -947,10 +947,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -998,10 +998,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(keepDownTime + 1);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -1049,10 +1049,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(Constants.Choice.KEEP_VERTICAL_LIMIT - Constants.Choice.KEEP_VERTICAL_INTERVAL);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();
@@ -1101,10 +1101,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.ToArray().Length.Is(1);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.ToArray().Length.Is(1);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
                 resultAction.actor.IsInstanceOf<TextMeshKey>();

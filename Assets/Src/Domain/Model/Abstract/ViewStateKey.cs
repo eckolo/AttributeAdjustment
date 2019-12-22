@@ -13,7 +13,7 @@ namespace Assets.Src.Domain.Model.Abstract
         /// <summary>
         /// ビューの更新内容キュー
         /// </summary>
-        public Queue<ViewAction> viewActionQueue { get; } = new Queue<ViewAction>();
+        public List<ViewAction> viewActionList { get; } = new List<ViewAction>();
         /// <summary>
         /// 生成直後フラグ
         /// </summary>

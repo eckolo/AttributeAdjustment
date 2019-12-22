@@ -23,14 +23,12 @@ namespace Assets.Src.View.Service
             IViewStateRepository repository)
             where TViewStateKey : ViewStateKey
         {
-            var actionList = state.viewActionQueue.ToList();
-
-            if(actionList.Any())
-                _ = actionList
+            if(state.viewActionList.Any())
+                _ = state.viewActionList
                    .Select(action => state.IndicateViewAction(action, repository))
                    .Aggregate((task1, task2) => task1.ContinueWith(_ => task2));
 
-            state.viewActionQueue.Clear();
+            state.viewActionList.Clear();
             return state;
         }
         public static async UniTask<TViewStateKey> IndicateViewAction<TViewStateKey>(

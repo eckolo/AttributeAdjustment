@@ -21,7 +21,7 @@ namespace Assets.Src.Domain.Factory
 
             var state = new ChoiceState(choiceList, initialChoiced);
 
-            state.viewActionQueue.Enqueue(state.ToViewAction(ViewAction.Pattern.GENERATE));
+            state.viewActionList.Add(state.ToViewAction(ViewAction.Pattern.GENERATE));
             state.SetNewView(state.choiceText);
 
             return state;

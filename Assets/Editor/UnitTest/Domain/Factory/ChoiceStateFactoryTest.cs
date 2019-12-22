@@ -33,10 +33,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.Count.Is(2);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.Count.Is(2);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -44,7 +44,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.actor.IsSameReferenceAs(result);
             }
             {
-                var resultAction = result.viewActionQueue.ToArray()[1];
+                var resultAction = result.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -78,10 +78,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.Count.Is(2);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.Count.Is(2);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -89,7 +89,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.actor.IsSameReferenceAs(result);
             }
             {
-                var resultAction = result.viewActionQueue.ToArray()[1];
+                var resultAction = result.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -123,10 +123,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.Count.Is(2);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.Count.Is(2);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -134,7 +134,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.actor.IsSameReferenceAs(result);
             }
             {
-                var resultAction = result.viewActionQueue.ToArray()[1];
+                var resultAction = result.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -168,10 +168,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsFalse();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.Count.Is(2);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.Count.Is(2);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -179,7 +179,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.actor.IsSameReferenceAs(result);
             }
             {
-                var resultAction = result.viewActionQueue.ToArray()[1];
+                var resultAction = result.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -206,10 +206,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             result.keepUpTime.Is(0);
             result.keepDownTime.Is(0);
             result.isFinished.IsTrue();
-            result.viewActionQueue.IsNotNull();
-            result.viewActionQueue.Count.Is(2);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.Count.Is(2);
             {
-                var resultAction = result.viewActionQueue.ToArray()[0];
+                var resultAction = result.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -217,7 +217,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.actor.IsSameReferenceAs(result);
             }
             {
-                var resultAction = result.viewActionQueue.ToArray()[1];
+                var resultAction = result.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();

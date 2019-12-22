@@ -13,7 +13,7 @@ namespace Assets.Src.Mock
             this.isGenerated = isGenerated ?? this.isGenerated;
             foreach(var action in viewActionQueue ?? new ViewAction[] { })
             {
-                this.viewActionQueue.Enqueue(action);
+                viewActionList.Add(action);
             }
         }
 

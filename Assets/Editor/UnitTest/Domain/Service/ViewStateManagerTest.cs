@@ -22,10 +22,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
-            resultState.viewActionQueue.IsNotNull();
-            resultState.viewActionQueue.Count.Is(1);
+            resultState.viewActionList.IsNotNull();
+            resultState.viewActionList.Count.Is(1);
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[0];
+                var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -43,16 +43,16 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
-            resultState.viewActionQueue.IsNotNull();
-            resultState.viewActionQueue.Count.Is(2);
+            resultState.viewActionList.IsNotNull();
+            resultState.viewActionList.Count.Is(2);
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[0];
+                var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNull();
             }
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[1];
+                var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -70,10 +70,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
-            resultState.viewActionQueue.IsNotNull();
-            resultState.viewActionQueue.Count.Is(1);
+            resultState.viewActionList.IsNotNull();
+            resultState.viewActionList.Count.Is(1);
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[0];
+                var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -92,16 +92,16 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
-            resultState.viewActionQueue.IsNotNull();
-            resultState.viewActionQueue.Count.Is(2);
+            resultState.viewActionList.IsNotNull();
+            resultState.viewActionList.Count.Is(2);
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[0];
+                var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNull();
             }
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[1];
+                var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -118,17 +118,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
-            resultState.viewActionQueue.IsNotNull();
-            resultState.viewActionQueue.Count.Is(values.Length);
+            resultState.viewActionList.IsNotNull();
+            resultState.viewActionList.Count.Is(values.Length);
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[0];
+                var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[1];
+                var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -146,23 +146,23 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
-            resultState.viewActionQueue.IsNotNull();
-            resultState.viewActionQueue.Count.Is(values.Length + 1);
+            resultState.viewActionList.IsNotNull();
+            resultState.viewActionList.Count.Is(values.Length + 1);
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[0];
+                var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNull();
             }
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[1];
+                var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[2];
+                var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -180,17 +180,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
-            resultState.viewActionQueue.IsNotNull();
-            resultState.viewActionQueue.Count.Is(values.Length);
+            resultState.viewActionList.IsNotNull();
+            resultState.viewActionList.Count.Is(values.Length);
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[0];
+                var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[1];
+                var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
@@ -209,23 +209,23 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
-            resultState.viewActionQueue.IsNotNull();
-            resultState.viewActionQueue.Count.Is(values.Length + 1);
+            resultState.viewActionList.IsNotNull();
+            resultState.viewActionList.Count.Is(values.Length + 1);
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[0];
+                var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNull();
             }
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[1];
+                var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
             {
-                var resultAction = resultState.viewActionQueue.ToArray()[2];
+                var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
