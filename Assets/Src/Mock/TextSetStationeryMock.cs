@@ -8,7 +8,7 @@ namespace Assets.Src.Mock
 {
     public class TextSetStationeryMock : ITextSetStationeryValue
     {
-        TextSetStationeryMock(IEnumerable<TextMeshStationeryValue> texts, float size, Color32 color, TextAlignment alignment)
+        TextSetStationeryMock(IEnumerable<TextMeshKey> texts, float size, Color32 color, TextAlignment alignment)
         {
             this.texts = texts ?? throw new ArgumentNullException(nameof(texts));
             this.size = size;
@@ -16,7 +16,7 @@ namespace Assets.Src.Mock
             this.alignment = alignment;
         }
 
-        public IEnumerable<TextMeshStationeryValue> texts { get; }
+        public IEnumerable<TextMeshKey> texts { get; }
 
         public float size { get; }
 
@@ -24,7 +24,7 @@ namespace Assets.Src.Mock
 
         public TextAlignment alignment { get; }
 
-        public static TextSetStationeryMock Generate(IEnumerable<TextMeshStationeryValue> texts, float size, Color32 color, TextAlignment alignment) => new TextSetStationeryMock(texts, size, color, alignment);
+        public static TextSetStationeryMock Generate(IEnumerable<TextMeshKey> texts, float size, Color32 color, TextAlignment alignment) => new TextSetStationeryMock(texts, size, color, alignment);
 
         public TextSet InitializeEntity(Component parent, Vector2 localPosition)
         {

@@ -47,17 +47,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -96,17 +96,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -145,17 +145,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -196,17 +196,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -247,17 +247,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -298,17 +298,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -347,17 +347,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -398,17 +398,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -449,17 +449,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -500,17 +500,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -552,17 +552,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -602,17 +602,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -651,17 +651,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -700,17 +700,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -751,17 +751,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -802,17 +802,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -853,17 +853,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -902,17 +902,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -953,17 +953,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -1004,17 +1004,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -1055,17 +1055,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);
@@ -1107,17 +1107,17 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultAction = result.viewActionQueue.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultActor = (TextMeshStationeryValue)resultAction.actor;
+                    var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultActor.position.x.Is(0);
                     resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
-                resultAction.target.IsInstanceOf<TextMeshStationeryValue>();
+                resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
-                    var resultTarget = (TextMeshStationeryValue)resultAction.target;
+                    var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultTarget.position.x.Is(0);
                     resultTarget.position.y.Is(0);

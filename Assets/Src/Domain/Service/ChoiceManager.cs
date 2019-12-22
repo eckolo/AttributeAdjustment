@@ -77,9 +77,9 @@ namespace Assets.Src.Domain.Service
             return state;
         }
 
-        public static TextMeshStationeryValue ToChoiceText(this ChoiceState state)
+        public static TextMeshKey ToChoiceText(this ChoiceState state)
             => state?.choiceList.ToChoiceText(state.choiced) ?? throw new ArgumentNullException(nameof(state));
-        public static TextMeshStationeryValue ToChoiceText(this IList<string> choiceList, int? choiced)
+        public static TextMeshKey ToChoiceText(this IList<string> choiceList, int? choiced)
         {
             var text = (choiceList?.Any() ?? false)
                 ? choiceList
@@ -87,7 +87,7 @@ namespace Assets.Src.Domain.Service
                 .Select(line => $"{line.cursor}\t{line.choice}")
                 .Aggregate((line1, line2) => $"{line1}\r\n{line2}")
                 : string.Empty;
-            var textMesh = new TextMeshStationeryValue(text);
+            var textMesh = new TextMeshKey(text);
 
             return textMesh;
         }

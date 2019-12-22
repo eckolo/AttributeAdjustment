@@ -22,9 +22,9 @@ namespace Assets.Editor.UnitTest.View.Factory
         {
             var text = nameof(SetTextTest_雛形生成_単一生成);
             var position = new Vector2(2, -4);
-            var stationery = new TextMeshStationeryValue(text, position);
+            var stationery = new TextMeshKey(text, position);
 
-            var textObj = view.SetText(stationery).Search<TextMeshStationeryValue, TextMesh>(stationery);
+            var textObj = view.SetText(stationery).Search<TextMeshKey, TextMesh>(stationery);
 
             textObj.IsNotNull();
             textObj.gameObject.name.Is(text);
@@ -38,8 +38,8 @@ namespace Assets.Editor.UnitTest.View.Factory
             var text = nameof(SetTextTest_雛形生成_複数生成);
 
             var position1 = new Vector2(2, -4);
-            var stationery1 = new TextMeshStationeryValue(text, position1);
-            var textObj1 = view.SetText(stationery1).Search<TextMeshStationeryValue, TextMesh>(stationery1);
+            var stationery1 = new TextMeshKey(text, position1);
+            var textObj1 = view.SetText(stationery1).Search<TextMeshKey, TextMesh>(stationery1);
             {
                 var textObj = textObj1;
                 textObj.IsNotNull();
@@ -50,8 +50,8 @@ namespace Assets.Editor.UnitTest.View.Factory
             }
 
             var position2 = new Vector2(-2, 4);
-            var stationery2 = new TextMeshStationeryValue(text, position2);
-            var textObj2 = view.SetText(stationery2).Search<TextMeshStationeryValue, TextMesh>(stationery2);
+            var stationery2 = new TextMeshKey(text, position2);
+            var textObj2 = view.SetText(stationery2).Search<TextMeshKey, TextMesh>(stationery2);
             {
                 var textObj = textObj2;
                 textObj.IsNotNull();

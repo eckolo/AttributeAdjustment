@@ -17,7 +17,7 @@ namespace Assets.Src.View.Service
     {
         public static TViewState UpdateText<TViewState>(
             this TViewState state,
-            TextMeshStationeryValue key,
+            TextMeshKey key,
             string text,
             Vector2? position = null)
             where TViewState : ViewState
@@ -25,7 +25,7 @@ namespace Assets.Src.View.Service
             if(state is null)
                 throw new ArgumentNullException(nameof(state));
 
-            var origin = state.Search<TextMeshStationeryValue, TextMesh>(key);
+            var origin = state.Search<TextMeshKey, TextMesh>(key);
             if(origin is null)
                 return state;
 
@@ -37,7 +37,7 @@ namespace Assets.Src.View.Service
         }
         public static TViewState UpdateText<TViewState>(
             this TViewState state,
-            TextMeshStationeryValue key,
+            TextMeshKey key,
             Vector2 position)
             where TViewState : ViewState
             => state.UpdateText(key, null, position);
@@ -62,13 +62,13 @@ namespace Assets.Src.View.Service
             return origin;
         }
 
-        public static TViewState DestroyText<TViewState>(this TViewState state, TextMeshStationeryValue key)
+        public static TViewState DestroyText<TViewState>(this TViewState state, TextMeshKey key)
             where TViewState : ViewState
         {
             if(state is null)
                 throw new ArgumentNullException(nameof(state));
 
-            var target = state.Search<TextMeshStationeryValue, TextMesh>(key);
+            var target = state.Search<TextMeshKey, TextMesh>(key);
             if(target is null)
                 return state;
 

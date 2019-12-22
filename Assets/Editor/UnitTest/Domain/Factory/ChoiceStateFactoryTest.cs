@@ -48,8 +48,8 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
-                if(resultAction.actor is TextMeshStationeryValue resultText)
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
+                if(resultAction.actor is TextMeshKey resultText)
                 {
                     resultText.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultText.position.x.Is(Vector2.zero.x);
@@ -93,8 +93,8 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
-                if(resultAction.actor is TextMeshStationeryValue resultText)
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
+                if(resultAction.actor is TextMeshKey resultText)
                 {
                     resultText.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
                     resultText.position.x.Is(Vector2.zero.x);
@@ -138,8 +138,8 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
-                if(resultAction.actor is TextMeshStationeryValue resultText)
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
+                if(resultAction.actor is TextMeshKey resultText)
                 {
                     resultText.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultText.position.x.Is(Vector2.zero.x);
@@ -183,8 +183,8 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
-                if(resultAction.actor is TextMeshStationeryValue resultText)
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
+                if(resultAction.actor is TextMeshKey resultText)
                 {
                     resultText.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
                     resultText.position.x.Is(Vector2.zero.x);
@@ -221,8 +221,8 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
                 resultAction.actor.IsNotNull();
-                resultAction.actor.IsInstanceOf<TextMeshStationeryValue>();
-                if(resultAction.actor is TextMeshStationeryValue resultText)
+                resultAction.actor.IsInstanceOf<TextMeshKey>();
+                if(resultAction.actor is TextMeshKey resultText)
                 {
                     resultText.text.Is($"");
                     resultText.position.x.Is(Vector2.zero.x);

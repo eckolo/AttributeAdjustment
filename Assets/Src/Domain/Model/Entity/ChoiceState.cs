@@ -64,7 +64,7 @@ namespace Assets.Src.Domain.Model.Entity
         }
         bool _isFinished = false;
 
-        public TextMeshStationeryValue choiceText { get; set; }
+        public TextMeshKey choiceText { get; set; }
 
         public async void Dispose() => await this.End();
     }

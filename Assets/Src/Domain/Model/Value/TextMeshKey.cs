@@ -9,9 +9,9 @@ namespace Assets.Src.Domain.Model.Value
     /// <see cref="TextSet"/>内の<see cref="TextMesh"/>クラス雛形
     /// </summary>
     [Serializable]
-    public class TextMeshStationeryValue : IViewKey
+    public class TextMeshKey : IViewKey
     {
-        public TextMeshStationeryValue(string text, Vector2? position = null)
+        public TextMeshKey(string text, Vector2? position = null)
         {
             _text = text ?? throw new ArgumentNullException(nameof(text));
             _position = position ?? _position;

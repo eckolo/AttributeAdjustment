@@ -32,10 +32,10 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 表示テキスト情報一覧
         /// </summary>
-        public IEnumerable<TextMeshStationeryValue> texts => new[]
+        public IEnumerable<TextMeshKey> texts => new[]
         {
-            new TextMeshStationeryValue(energy.GetName(), new Vector2(0, -0.2f)),
-            new TextMeshStationeryValue(energyValue.ToString(), new Vector2(0, 0.2f)),
+            new TextMeshKey(energy.GetName(), new Vector2(0, -0.2f)),
+            new TextMeshKey(energyValue.ToString(), new Vector2(0, 0.2f)),
         };
 
         /// <summary>
