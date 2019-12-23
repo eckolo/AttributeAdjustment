@@ -23,13 +23,30 @@ namespace Assets.Src.View.Service
             IViewStateRepository repository)
             where TViewStateKey : ViewStateKey
         {
-            if(state.viewActionList.Any())
-                _ = state.viewActionList
-                   .Select(action => state.IndicateViewAction(action, repository))
-                   .Aggregate((task1, task2) => task1.ContinueWith(_ => task2));
+            if(!state.viewActionList.Any())
+                return state;
+
+            _ = state.viewActionList
+                .Select(action => state.IndicateViewAction(action, repository))
+                .Aggregate((task1, task2) => task1.ContinueWith(_ => task2));
 
             state.viewActionList.Clear();
             return state;
+        }
+        public static async UniTask<TViewStateKey> IndicateAsync<TViewStateKey>(
+            this TViewStateKey state,
+            IViewStateRepository repository)
+            where TViewStateKey : ViewStateKey
+        {
+            if(!state.viewActionList.Any())
+                return state;
+
+            var tasks = state.viewActionList
+                .Select(action => state.IndicateViewAction(action, repository))
+                .Aggregate((task1, task2) => task1.ContinueWith(_ => task2));
+
+            state.viewActionList.Clear();
+            return await tasks.ContinueWith(_ => state);
         }
         public static async UniTask<TViewStateKey> IndicateViewAction<TViewStateKey>(
             this TViewStateKey stateKey,
