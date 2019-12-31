@@ -73,11 +73,25 @@ namespace Assets.Src.Domain.Factory
             IEnumerable<TViewValue> values)
             where TViewState : ViewStateKey
             where TViewValue : IViewKey
+            => state.SetViewActions(values, ViewAction.Pattern.GENERATE);
+        /// <summary>
+        /// 新たな画面表示アクションの生成と設置
+        /// </summary>
+        /// <typeparam name="TViewState">対象の画面表示状態型</typeparam>
+        /// <typeparam name="TViewValue">配置されるパーツのパラメータ型</typeparam>
+        /// <param name="state">追加対象状態オブジェクト</param>
+        /// <param name="values">追加されるパーツ群のパラメータリスト</param>
+        /// <param name="pattern">アクションのパターン</param>
+        /// <returns>アクションの設定された状態オブジェクト</returns>
+        public static TViewState SetViewActions<TViewState, TViewValue>(
+             this TViewState state,
+             IEnumerable<TViewValue> values,
+             ViewAction.Pattern pattern)
+             where TViewState : ViewStateKey
+             where TViewValue : IViewKey
         {
-            var addedActionList = values
-                .Select(value => new ViewAction(ViewAction.Pattern.GENERATE, value))
-                .ToList();
-            state.viewActionList.AddRange(addedActionList);
+            var addedActions = values.Select(value => new ViewAction(pattern, value));
+            state.viewActionList.AddRange(addedActions);
 
             return state;
         }
