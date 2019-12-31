@@ -15,7 +15,7 @@ namespace Assets.Src.Domain.Model.Abstract
         /// </summary>
         public List<ViewAction> viewActionList { get; } = new List<ViewAction>();
         /// <summary>
-        /// 生成直後フラグ
+        /// 生成後フラグ
         /// </summary>
         public bool isGenerated { get; set; } = false;
     }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Src.Domain.Model.Entity
 {
-    public class ChoiceState : ViewStateKey, IViewKey, IDisposable
+    public class ChoiceState : ViewStateKey, IDisposable
     {
         public ChoiceState(IList<string> choiceList, int? choiced)
         {
