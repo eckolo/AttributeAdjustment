@@ -14,7 +14,7 @@ namespace Assets.Src.Controller
     /// </summary>
     public static class BattleController
     {
-        readonly static ViewStateRepository viewStateRepository = new ViewStateRepository();
+        readonly static IViewStateRepository viewStateRepository = new ViewStateRepository();
 
         /// <summary>
         /// 戦闘状態の生成

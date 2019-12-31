@@ -16,7 +16,7 @@ namespace Assets.Src.Controller
 {
     public static class ChoiceController
     {
-        readonly static ViewStateRepository viewStateRepository = new ViewStateRepository();
+        readonly static IViewStateRepository viewStateRepository = new ViewStateRepository();
 
         /// <summary>
         /// 選択肢生成メソッド
