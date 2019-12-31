@@ -72,7 +72,7 @@ namespace Assets.Src.Domain.Model.Entity
                 ? new Queue<MotionTip>(deckStationery)
                 : new Queue<MotionTip>();
 
-            this.SetNewView(deckStationery);
+            this.SetNewView(deckTips);
             return this;
         }
         /// <summary>
@@ -103,6 +103,8 @@ namespace Assets.Src.Domain.Model.Entity
         public BattleState SetBoardTips(IEnumerable<MotionTip> boardStationery)
         {
             boardTips = boardStationery?.ToList() ?? Enumerable.Empty<MotionTip>();
+
+            this.SetNewView(boardTips);
             return this;
         }
         /// <summary>
@@ -130,6 +132,7 @@ namespace Assets.Src.Domain.Model.Entity
                 .ToList()
                 ?? new List<MotionTip>();
 
+            this.SetViewActions(popedTips, ViewAction.Pattern.DELETE);
             return popedTips;
         }
         /// <summary>
