@@ -15,7 +15,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
     public static class BattleStateManagerTest
     {
         [Test]
-        public static void SetupDeckTest_通常処理()
+        public static void SetupDeckTest_通常処理_既存無し()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -27,22 +27,114 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(tipMap);
 
-            var result = state.SetupDeck().deckTips;
-
+            var result = state.SetupDeck();
             result.IsNotNull();
-            result.Count.Is(value1 + value2 + value3);
-            result
-                .Where(elem => elem.energy == tip1.energy)
-                .Count(elem => elem.energyValue == tip1.energyValue)
-                .Is(value1);
-            result
-                .Where(elem => elem.energy == tip2.energy)
-                .Count(elem => elem.energyValue == tip2.energyValue)
-                .Is(value2);
-            result
-                .Where(elem => elem.energy == tip3.energy)
-                .Count(elem => elem.energyValue == tip3.energyValue)
-                .Is(value3);
+            result.IsSameReferenceAs(state);
+            {
+                var resultViewActionList = result.viewActionList;
+                resultViewActionList.IsNotNull();
+                resultViewActionList.Count.Is(value1 + value2 + value3);
+                resultViewActionList
+                    .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
+                    .Where(elem => elem.actor.Equals(tip1))
+                    .Where(elem => elem.target == default)
+                    .Where(elem => elem.easing == default)
+                    .Count().Is(value1);
+                resultViewActionList
+                    .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
+                    .Where(elem => elem.actor.Equals(tip2))
+                    .Where(elem => elem.target == default)
+                    .Where(elem => elem.easing == default)
+                    .Count().Is(value2);
+                resultViewActionList
+                    .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
+                    .Where(elem => elem.actor.Equals(tip3))
+                    .Where(elem => elem.target == default)
+                    .Where(elem => elem.easing == default)
+                    .Count().Is(value3);
+            }
+            {
+                var resultDeckTips = result.deckTips;
+                resultDeckTips.IsNotNull();
+                resultDeckTips.Count.Is(value1 + value2 + value3);
+                resultDeckTips
+                    .Where(elem => elem.energy == tip1.energy)
+                    .Where(elem => elem.energyValue == tip1.energyValue)
+                    .Count().Is(value1);
+                resultDeckTips
+                    .Where(elem => elem.energy == tip2.energy)
+                    .Where(elem => elem.energyValue == tip2.energyValue)
+                    .Count().Is(value2);
+                resultDeckTips
+                    .Where(elem => elem.energy == tip3.energy)
+                    .Where(elem => elem.energyValue == tip3.energyValue)
+                    .Count().Is(value3);
+            }
+        }
+        [Test]
+        public static void SetupDeckTest_通常処理_既存有り()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var value1 = 3;
+            var value2 = 1;
+            var value3 = 2;
+
+            var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
+            var state = BattleStateMock.Generate(tipMap);
+            state.deckTips.Enqueue(tip2);
+
+            var result = state.SetupDeck();
+            result.IsNotNull();
+            result.IsSameReferenceAs(state);
+            {
+                var resultViewActionList = result.viewActionList;
+                resultViewActionList.IsNotNull();
+                resultViewActionList.Count.Is(value1 + value2 + value3 + 1);
+                {
+                    var resultViewAction = resultViewActionList[0];
+                    resultViewAction.actionType.Is(ViewAction.Pattern.DELETE);
+                    resultViewAction.actor.Is(tip2);
+                    resultViewAction.target.Is(default);
+                    resultViewAction.easing.Is(default);
+                }
+                resultViewActionList
+                    .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
+                    .Where(elem => elem.actor.Equals(tip1))
+                    .Where(elem => elem.target == default)
+                    .Where(elem => elem.easing == default)
+                    .Count().Is(value1);
+                resultViewActionList
+                    .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
+                    .Where(elem => elem.actor.Equals(tip2))
+                    .Where(elem => elem.target == default)
+                    .Where(elem => elem.easing == default)
+                    .Count().Is(value2);
+                resultViewActionList
+                    .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
+                    .Where(elem => elem.actor.Equals(tip3))
+                    .Where(elem => elem.target == default)
+                    .Where(elem => elem.easing == default)
+                    .Count().Is(value3);
+            }
+            {
+                var resultDeckTips = result.deckTips;
+                resultDeckTips.IsNotNull();
+                resultDeckTips.Count.Is(value1 + value2 + value3);
+                resultDeckTips
+                    .Where(elem => elem.energy == tip1.energy)
+                    .Where(elem => elem.energyValue == tip1.energyValue)
+                    .Count().Is(value1);
+                resultDeckTips
+                    .Where(elem => elem.energy == tip2.energy)
+                    .Where(elem => elem.energyValue == tip2.energyValue)
+                    .Count().Is(value2);
+                resultDeckTips
+                    .Where(elem => elem.energy == tip3.energy)
+                    .Where(elem => elem.energyValue == tip3.energyValue)
+                    .Count().Is(value3);
+            }
         }
         [Test]
         public static void SetupDeckTest_元データが空()
@@ -50,20 +142,39 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tipMap = new Dictionary<MotionTip, int> { };
             var state = BattleStateMock.Generate(tipMap);
 
-            var result = state.SetupDeck().deckTips;
-
+            var result = state.SetupDeck();
             result.IsNotNull();
-            result.Count.Is(0);
+            result.IsSameReferenceAs(state);
+            {
+                var resultViewActionList = result.viewActionList;
+                resultViewActionList.IsNotNull();
+                resultViewActionList.Count.Is(0);
+            }
+            {
+                var resultDeckTips = result.deckTips;
+                resultDeckTips.IsNotNull();
+                resultDeckTips.Count.Is(0);
+            }
         }
         [Test]
         public static void SetupDeckTest_元データがNull()
         {
             var state = BattleStateMock.Generate((Dictionary<MotionTip, int>)null);
 
-            var result = state.SetupDeck().deckTips;
-
+            var result = state.SetupDeck();
             result.IsNotNull();
-            result.Count.Is(0);
+            result.IsSameReferenceAs(state);
+            {
+                var resultViewActionList = result.viewActionList;
+                resultViewActionList.IsNotNull();
+                resultViewActionList.Count.Is(0);
+            }
+            {
+                var resultDeckTips = result.deckTips;
+
+                resultDeckTips.IsNotNull();
+                resultDeckTips.Count.Is(0);
+            }
         }
 
         [Test]
@@ -73,7 +184,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
-            var state = BattleStateMock.Generate().SetDeckTips(tipList);
+            var state = BattleStateMock.Generate();
+            state.CleanupDeckTips(tipList);
             var popTipNumber = 5;
 
             var result = state.PopDeckTipsForced(popTipNumber);
@@ -98,7 +210,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip1, tip2, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
-            var state = BattleStateMock.Generate(tipMap).SetDeckTips(tipList);
+            var state = BattleStateMock.Generate(tipMap);
+            state.CleanupDeckTips(tipList);
             var popTipNumber = tipList.Count;
 
             var result = state.PopDeckTipsForced(popTipNumber);
@@ -134,7 +247,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip1, tip2, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
-            var state = BattleStateMock.Generate(tipMap).SetDeckTips(tipList);
+            var state = BattleStateMock.Generate(tipMap);
+            state.CleanupDeckTips(tipList);
             var popTipNumber = 10;
 
             var result = state.PopDeckTipsForced(popTipNumber);
@@ -154,7 +268,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
-            var state = BattleStateMock.Generate().SetDeckTips(tipList);
+            var state = BattleStateMock.Generate();
+            state.CleanupDeckTips(tipList);
             var popTipNumber = 0;
 
             var result = state.PopDeckTipsForced(popTipNumber);
@@ -173,7 +288,8 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
-            var state = BattleStateMock.Generate().SetDeckTips(tipList);
+            var state = BattleStateMock.Generate();
+            state.CleanupDeckTips(tipList);
             var popTipNumber = -5;
 
             var result = state.PopDeckTipsForced(popTipNumber);

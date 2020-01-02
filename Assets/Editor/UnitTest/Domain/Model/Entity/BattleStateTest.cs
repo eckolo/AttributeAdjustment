@@ -14,7 +14,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
     public static class BattleStateTest
     {
         [Test]
-        public static void SetDeckTipsTest_通常処理()
+        public static void CleanupDeckTipsTest_通常処理()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -25,7 +25,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             state.deckTips.IsNotNull();
             state.deckTips.Count.Is(0);
 
-            var result = state.SetDeckTips(tipList).deckTips;
+            state.CleanupDeckTips(tipList);
+            var result = state.deckTips;
 
             result.IsNotNull();
             result.Count.Is(tipList.Count);
@@ -43,7 +44,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
                 .Is(1);
         }
         [Test]
-        public static void SetDeckTipsTest_元データが空()
+        public static void CleanupDeckTipsTest_元データが空()
         {
             var tipList = new List<MotionTip>();
             var state = BattleStateMock.Generate();
@@ -51,20 +52,22 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             state.deckTips.IsNotNull();
             state.deckTips.Count.Is(0);
 
-            var result = state.SetDeckTips(tipList).deckTips;
+            state.CleanupDeckTips(tipList);
+            var result = state.deckTips;
 
             result.IsNotNull();
             result.Count.Is(0);
         }
         [Test]
-        public static void SetDeckTipsTest_元データがNull()
+        public static void CleanupDeckTipsTest_元データがNull()
         {
             var state = BattleStateMock.Generate();
 
             state.deckTips.IsNotNull();
             state.deckTips.Count.Is(0);
 
-            var result = state.SetDeckTips(null).deckTips;
+            state.CleanupDeckTips(null);
+            var result = state.deckTips;
 
             result.IsNotNull();
             result.Count.Is(0);
@@ -77,7 +80,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
-            var state = BattleStateMock.Generate().SetDeckTips(tipList);
+            var state = BattleStateMock.Generate();
+            state.CleanupDeckTips(tipList);
             var popTipNumber = 5;
 
             var result = state.PopDeckTips(popTipNumber);
@@ -102,7 +106,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
 
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip1, tip2, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
-            var state = BattleStateMock.Generate(tipMap).SetDeckTips(tipList);
+            var state = BattleStateMock.Generate(tipMap);
+            state.CleanupDeckTips(tipList);
             var popTipNumber = tipList.Count;
 
             var result = state.PopDeckTips(popTipNumber);
@@ -138,7 +143,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
 
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip1, tip2, tip2, tip3 };
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
-            var state = BattleStateMock.Generate(tipMap).SetDeckTips(tipList);
+            var state = BattleStateMock.Generate(tipMap);
+            state.CleanupDeckTips(tipList);
             var popTipNumber = 10;
 
             var result = state.PopDeckTips(popTipNumber);
@@ -169,7 +175,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
-            var state = BattleStateMock.Generate().SetDeckTips(tipList);
+            var state = BattleStateMock.Generate();
+            state.CleanupDeckTips(tipList);
             var popTipNumber = 0;
 
             var result = state.PopDeckTips(popTipNumber);
@@ -188,7 +195,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
-            var state = BattleStateMock.Generate().SetDeckTips(tipList);
+            var state = BattleStateMock.Generate();
+            state.CleanupDeckTips(tipList);
             var popTipNumber = -5;
 
             var result = state.PopDeckTips(popTipNumber);

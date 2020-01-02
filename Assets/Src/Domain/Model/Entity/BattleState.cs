@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Controller;
+using Assets.Src.Domain.Factory;
 using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Value;
 using System;
@@ -45,7 +46,18 @@ namespace Assets.Src.Domain.Model.Entity
         /// <summary>
         /// 山札
         /// </summary>
-        public Queue<MotionTip> deckTips { get; set; } = new Queue<MotionTip>();
+        public Queue<MotionTip> deckTips { get; protected set; } = new Queue<MotionTip>();
+
+        /// <summary>
+        /// 山札の初期化
+        /// </summary>
+        /// <param name="deckStationery">初期化内容</param>
+        public void CleanupDeckTips(IEnumerable<MotionTip> deckStationery)
+        {
+            deckTips = deckStationery != null
+                ? new Queue<MotionTip>(deckStationery)
+                : new Queue<MotionTip>();
+        }
 
         /// <summary>
         /// 場札

@@ -24,20 +24,10 @@ namespace Assets.Src.Domain.Service
                 .SelectMany(tip => Enumerable.Range(0, tip.Value).Select(_ => tip.Key))
                 .Shuffle();
 
-            var result = state.SetDeckTips(deckStationery);
-            return result;
-        }
-        /// <summary>
-        /// 山札の設定
-        /// </summary>
-        /// <returns>山札設定後の戦闘状態</returns>
-        public static BattleState SetDeckTips(this BattleState state, IEnumerable<MotionTip> deckStationery)
-        {
-            state.deckTips = deckStationery != null
-                ? new Queue<MotionTip>(deckStationery)
-                : new Queue<MotionTip>();
-
+            state.SetViewActions(state.deckTips, ViewAction.Pattern.DELETE);
+            state.CleanupDeckTips(deckStationery);
             state.SetNewView(state.deckTips);
+
             return state;
         }
         /// <summary>
