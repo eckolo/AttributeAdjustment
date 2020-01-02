@@ -22,7 +22,8 @@ namespace Assets.Src.Domain.Service
         public static IEnumerable<TSource> MaxKeys<TSource, TComparable>(this IEnumerable<TSource> source, System.Func<TSource, TComparable> selector)
             where TComparable : System.IComparable<TComparable>
         {
-            if(!source?.Any() ?? true) return new List<TSource>();
+            if(!source?.Any() ?? true)
+                return new List<TSource>();
             var maxValue = source.Max(selector);
             return source.Where(elem => selector(elem).CompareTo(maxValue) == 0);
         }
@@ -37,7 +38,8 @@ namespace Assets.Src.Domain.Service
         public static IEnumerable<TSource> MinKeys<TSource, TComparable>(this IEnumerable<TSource> source, System.Func<TSource, TComparable> selector)
             where TComparable : System.IComparable<TComparable>
         {
-            if(!source?.Any() ?? true) return new List<TSource>();
+            if(!source?.Any() ?? true)
+                return new List<TSource>();
             var minValue = source.Min(selector);
             return source.Where(elem => selector(elem).CompareTo(minValue) == 0);
         }
@@ -131,12 +133,14 @@ namespace Assets.Src.Domain.Service
             var actualRates = rateList?.Select(rate => Mathf.Max(rate, 0)) ?? valueList.Select(_ => 1);
             var ratevalues = actualRates.Zip(valueList, (rate, value) => new { rate, value });
             var selection = ratevalues.Sum(ratevalue => ratevalue.rate) * norm;
-            if(selection < 0) return default;
+            if(selection < 0)
+                return default;
 
             foreach(var ratevalue in ratevalues)
             {
                 selection -= ratevalue.rate;
-                if(selection < 0) return ratevalue.value;
+                if(selection < 0)
+                    return ratevalue.value;
             }
             return default;
         }
