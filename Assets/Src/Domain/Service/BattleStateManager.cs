@@ -1,8 +1,10 @@
-﻿using Assets.Src.Domain.Model.Entity;
+﻿using Assets.Src.Domain.Factory;
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Repository;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets.Src.Domain.Service
 {
@@ -24,6 +26,19 @@ namespace Assets.Src.Domain.Service
 
             var result = state.SetDeckTips(deckStationery);
             return result;
+        }
+        /// <summary>
+        /// 山札の設定
+        /// </summary>
+        /// <returns>山札設定後の戦闘状態</returns>
+        public static BattleState SetDeckTips(this BattleState state, IEnumerable<MotionTip> deckStationery)
+        {
+            state.deckTips = deckStationery != null
+                ? new Queue<MotionTip>(deckStationery)
+                : new Queue<MotionTip>();
+
+            state.SetNewView(state.deckTips);
+            return state;
         }
         /// <summary>
         /// 山札の強制取り出し
@@ -52,6 +67,66 @@ namespace Assets.Src.Domain.Service
             this BattleState state,
             int tipNumbers = Constants.Battle.DEFAULT_BOARD_TIP_NUMBERS)
             => state?.SetBoardTips(state.PopDeckTips(tipNumbers));
+        /// <summary>
+        /// 場札の設定
+        /// </summary>
+        /// <returns>場札設定後の戦闘状態</returns>
+        public static BattleState SetBoardTips(this BattleState state, IEnumerable<MotionTip> boardStationery)
+        {
+            state.boardTips = boardStationery?.ToList() ?? Enumerable.Empty<MotionTip>();
+
+            state.SetNewView(state.boardTips);
+            return state;
+        }
+        /// <summary>
+        /// 山札の取り出し
+        /// </summary>
+        /// <param name="popTipNumber">取り出し枚数</param>
+        /// <returns>山札から取り出されたモーションチップ一覧</returns>
+        public static IEnumerable<MotionTip> PopDeckTips(this BattleState state, int popTipNumber)
+        {
+            var _popTipNumber = Mathf.Max(popTipNumber, 0);
+            var popedTips = Enumerable.Range(0, _popTipNumber)
+                .Select(_ => state.deckTips.Any() ? state.deckTips.Dequeue() : null)
+                .Where(tip => tip is MotionTip)
+                .ToList();
+
+            state.SetViewActions(popedTips, ViewAction.Pattern.DELETE);
+            state.SetNewView(popedTips);
+
+            if(!state.deckTips.Any())
+                state.SetupDeck();
+
+            return popedTips;
+        }
+        /// <summary>
+        /// 場札の取り出し
+        /// </summary>
+        /// <param name="popTips">取り出すモーションチップ一覧</param>
+        /// <returns>取り出しに成功したモーションチップの一覧</returns>
+        public static IEnumerable<MotionTip> PopBoardTips(this BattleState state, IEnumerable<MotionTip> popTips)
+        {
+            var popMap = popTips?.GroupBy(tip => tip).ToDictionary(tip => tip.Key, tip => tip.Count());
+            var boardTipMap = state.boardTips?.GroupBy(tip => tip).ToDictionary(tip => tip.Key, tip => tip.Count());
+
+            state.boardTips = boardTipMap?
+                .Select(tip => (tip: tip.Key, number: tip.Value - popMap.GetOrDefault(tip.Key, 0)))
+                .Where(data => data.number > 0)
+                .SelectMany(data => Enumerable.Range(0, data.number).Select(_ => data.tip))
+                .ToList();
+
+            var popedTips = popMap?
+                .Select(tip => (
+                    tip: tip.Key,
+                    number: Mathf.Min(tip.Value, boardTipMap.GetOrDefault(tip.Key, 0))))
+                .Where(data => data.number > 0)
+                .SelectMany(data => Enumerable.Range(0, data.number).Select(_ => data.tip))
+                .ToList()
+                ?? new List<MotionTip>();
+
+            state.SetViewActions(popedTips, ViewAction.Pattern.DELETE);
+            return popedTips;
+        }
         /// <summary>
         /// 全行動主体の手札を総初期化する
         /// </summary>
@@ -97,5 +172,15 @@ namespace Assets.Src.Domain.Service
         /// <returns>行動力更新後の戦闘状態</returns>
         public static BattleState SetNextActor(this BattleState state)
             => state?.SetThisTimeActor(state.battleActors?.MaxKeys(actor => actor.energy).FirstOrDefault());
+        /// <summary>
+        /// 現在行動者の設定
+        /// </summary>
+        /// <param name="nextActor">次の行動者</param>
+        /// <returns>行動者の設定された戦闘状態</returns>
+        public static BattleState SetThisTimeActor(this BattleState state, BattleActor nextActor)
+        {
+            state.thisTimeActor = (state.battleActors?.Contains(nextActor) ?? false) ? nextActor : default;
+            return state;
+        }
     }
 }

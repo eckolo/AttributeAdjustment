@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
+using Assets.Src.Domain.Service;
 using Assets.Src.Mock;
 using NUnit.Framework;
 using System.Collections.Generic;
