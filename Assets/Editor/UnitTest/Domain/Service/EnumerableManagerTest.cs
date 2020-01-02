@@ -395,11 +395,15 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var num2 = 0;
             var num3 = 3;
             var numNegative = -2;
+            var class1 = new ClassMock() { number = index1 };
+            var class2 = new ClassMock() { number = index2 };
+            var class3 = new ClassMock() { number = index3 };
+            var class4 = new ClassMock() { number = index4 };
             var map = new Dictionary<ClassMock, int> {
-                { new ClassMock() { number = index1 }, num1 },
-                { new ClassMock() { number = index2 }, num2 },
-                { new ClassMock() { number = index3 }, num3 },
-                { new ClassMock() { number = index4 }, numNegative },
+                { class1, num1 },
+                { class2, num2 },
+                { class3, num3 },
+                { class4, numNegative },
             };
 
             var result = map.Embody()?.ToList();
@@ -409,6 +413,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.Count(elem => elem.number == index2).Is(num2);
             result.Count(elem => elem.number == index3).Is(num3);
             result.Count(elem => elem.number == index4).Is(0);
+            result.Count(elem => elem.Equals(class1)).Is(0);
+            result.Count(elem => elem.Equals(class2)).Is(0);
+            result.Count(elem => elem.Equals(class3)).Is(0);
+            result.Count(elem => elem.Equals(class4)).Is(0);
         }
         [Test]
         public static void EmbodyTest_正常系_元値が空()

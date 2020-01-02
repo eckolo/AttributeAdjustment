@@ -124,8 +124,9 @@ namespace Assets.Src.Domain.Service
         /// <param name="abstractMap">オブジェクトと個数のセット</param>
         /// <returns>具体化されたリスト</returns>
         public static IEnumerable<TValue> Embody<TValue>(this Dictionary<TValue, int> abstractMap)
+            where TValue : IDuplicatable<TValue>
             => abstractMap
-                .SelectMany(elem => Enumerable.Repeat(elem.Key, Mathf.Max(elem.Value, 0)));
+                .SelectMany(elem => Enumerable.Repeat(elem.Key.Duplicate(), Mathf.Max(elem.Value, 0)));
 
         /// <summary>
         /// リストから選択基準値に基づき1要素を抜き出す
