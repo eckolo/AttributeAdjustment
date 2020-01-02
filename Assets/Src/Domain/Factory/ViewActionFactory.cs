@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using System;
 using System.Collections.Generic;
@@ -95,5 +96,23 @@ namespace Assets.Src.Domain.Factory
 
             return state;
         }
+        /// <summary>
+        /// 新たな画面表示アクションの生成と設置
+        /// </summary>
+        /// <typeparam name="TBattleState">対象の画面表示状態型</typeparam>
+        /// <typeparam name="TViewValue">配置されるパーツのパラメータ型</typeparam>
+        /// <param name="state">追加対象状態オブジェクト</param>
+        /// <param name="values">追加されるパーツ群のパラメータリスト</param>
+        /// <param name="pattern">アクションのパターン</param>
+        /// <param name="target">アクションのパターン</param>
+        /// <returns>アクションの設定された状態オブジェクト</returns>
+        public static TBattleState SetViewActions<TBattleState, TViewValue>(
+             this TBattleState state,
+             IEnumerable<TViewValue> values,
+             ViewAction.Pattern pattern,
+             BattleState.ActionTarget target)
+             where TBattleState : BattleState
+             where TViewValue : IViewKey
+            => throw new NotImplementedException();
     }
 }

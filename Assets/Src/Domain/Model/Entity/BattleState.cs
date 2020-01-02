@@ -11,7 +11,7 @@ namespace Assets.Src.Domain.Model.Entity
     /// <summary>
     /// 戦闘の状態保持クラス
     /// </summary>
-    public class BattleState : ViewStateKey, IDisposable
+    public partial class BattleState : ViewStateKey, IDisposable
     //TODO ビューオブジェクトの移動点をビューのルートで定義する
     {
         /// <summary>
