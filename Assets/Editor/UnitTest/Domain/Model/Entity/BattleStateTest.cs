@@ -210,7 +210,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
         }
 
         [Test]
-        public static void SetBoardTipsTest_通常処理()
+        public static void CleanupBoardTipsTest_通常処理()
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
@@ -221,7 +221,8 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             state.boardTips.IsNotNull();
             state.boardTips.Count().Is(0);
 
-            var result = state.SetBoardTips(tipList).boardTips;
+            state.CleanupBoardTips(tipList);
+            var result = state.boardTips;
 
             result.IsNotNull();
             result.Count().Is(tipList.Count);
@@ -239,7 +240,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
                 .Is(1);
         }
         [Test]
-        public static void SetBoardTipsTest_元データが空()
+        public static void CleanupBoardTipsTest_元データが空()
         {
             var tipList = new List<MotionTip>();
             var state = BattleStateMock.Generate();
@@ -247,20 +248,22 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             state.boardTips.IsNotNull();
             state.boardTips.Count().Is(0);
 
-            var result = state.SetBoardTips(tipList).boardTips;
+            state.CleanupBoardTips(tipList);
+            var result = state.boardTips;
 
             result.IsNotNull();
             result.Count().Is(0);
         }
         [Test]
-        public static void SetBoardTipsTest_元データがNull()
+        public static void CleanupBoardTipsTest_元データがNull()
         {
             var state = BattleStateMock.Generate();
 
             state.boardTips.IsNotNull();
             state.boardTips.Count().Is(0);
 
-            var result = state.SetBoardTips(null).boardTips;
+            state.CleanupBoardTips(null);
+            var result = state.boardTips;
 
             result.IsNotNull();
             result.Count().Is(0);

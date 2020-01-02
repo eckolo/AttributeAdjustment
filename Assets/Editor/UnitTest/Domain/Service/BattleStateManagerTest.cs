@@ -6,6 +6,7 @@ using Assets.Src.Mock;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets.Editor.UnitTest.Domain.Service
 {
@@ -308,19 +309,90 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
-            var value1 = 3;
-            var value2 = 4;
+            var tipNew = MotionTipMock.Generate(Energy.BLOW, 30);
+            var value1 = 1;
+            var value2 = 5;
             var value3 = 2;
+            var valueNew = 1;
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
-            var state = BattleStateMock.Generate(tipMap);
+            var state = BattleStateMock.Generate(new Dictionary<MotionTip, int> { { tipNew, valueNew } });
+            state.CleanupDeckTips(tipMap.Embody());
 
-            var result = state.SetupDeck().SetupBoard().boardTips;
-
+            var result = state.SetupBoard();
             result.IsNotNull();
-            result.Count().Is(Constants.Battle.DEFAULT_BOARD_TIP_NUMBERS);
-            result.All(tip => tipList.Contains(tip)).IsTrue();
+            result.IsSameReferenceAs(state);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.Count.Is(Constants.Battle.DEFAULT_BOARD_TIP_NUMBERS);
+            {
+                var resultViewAction = result.viewActionList[0];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip1);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[1];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip2);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[2];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip2);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[3];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip2);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[4];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip2);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[5];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip2);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[6];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip3);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_BOARD_TIP_NUMBERS);
+            result.boardTips.IsNotNull();
+            result.boardTips.Count().Is(Constants.Battle.DEFAULT_BOARD_TIP_NUMBERS);
+            result.boardTips.All(tip => tip is MotionTip).IsTrue();
+            result.boardTips.ToArray()[0].Is(tip1);
+            result.boardTips.ToArray()[1].Is(tip2);
+            result.boardTips.ToArray()[2].Is(tip2);
+            result.boardTips.ToArray()[3].Is(tip2);
+            result.boardTips.ToArray()[4].Is(tip2);
+            result.boardTips.ToArray()[5].Is(tip2);
+            result.boardTips.ToArray()[6].Is(tip3);
         }
         [Test]
         public static void SetupBoardTest_通常処理_補充枚数デフォルト値_山札が補充枚数以下()
@@ -328,27 +400,103 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var tipNew = MotionTipMock.Generate(Energy.BLOW, 30);
             var value1 = 3;
             var value2 = 1;
             var value3 = 2;
+            var valueNew = 1;
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
-            var state = BattleStateMock.Generate(tipMap);
+            var state = BattleStateMock.Generate(new Dictionary<MotionTip, int> { { tipNew, valueNew } });
+            state.CleanupDeckTips(tipMap.Embody());
 
-            var result = state.SetupDeck().SetupBoard().boardTips;
-
+            var result = state.SetupBoard();
             result.IsNotNull();
-            result.Count().Is(value1 + value2 + value3);
-            result.All(tip => tipList.Contains(tip)).IsTrue();
+            result.IsSameReferenceAs(state);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.Count.Is(value1 + value2 + value3 + valueNew);
+            {
+                var resultViewAction = result.viewActionList[0];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tipNew);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[1];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip1);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[2];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip1);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[3];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip1);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[4];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip2);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[5];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip3);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[6];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip3);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(valueNew);
+            result.boardTips.IsNotNull();
+            result.boardTips.Count().Is(value1 + value2 + value3);
+            result.boardTips.All(tip => tip is MotionTip).IsTrue();
+            result.boardTips.ToArray()[0].Is(tip1);
+            result.boardTips.ToArray()[1].Is(tip1);
+            result.boardTips.ToArray()[2].Is(tip1);
+            result.boardTips.ToArray()[3].Is(tip2);
+            result.boardTips.ToArray()[4].Is(tip3);
+            result.boardTips.ToArray()[5].Is(tip3);
         }
         [Test]
         public static void SetupBoardTest_通常処理_補充枚数デフォルト値_山札が空()
         {
-            var result = BattleStateMock.Generate().SetupBoard().boardTips;
-
+            var state = BattleStateMock.Generate();
+            var result = state.SetupBoard();
             result.IsNotNull();
-            result.Any().IsFalse();
+            result.IsSameReferenceAs(state);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.Count.Is(0);
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(0);
+            result.boardTips.IsNotNull();
+            result.boardTips.Count().Is(0);
         }
         [Test]
         public static void SetupBoardTest_通常処理_補充枚数デフォルト値_戦闘状態がNull()
@@ -363,20 +511,64 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
-            var value1 = 3;
-            var value2 = 4;
-            var value3 = 2;
+            var tipNew = MotionTipMock.Generate(Energy.BLOW, 30);
+            var value1 = 2;
+            var value2 = 1;
+            var value3 = 6;
+            var valueNew = 1;
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
-            var state = BattleStateMock.Generate(tipMap);
+            var state = BattleStateMock.Generate(new Dictionary<MotionTip, int> { { tipNew, valueNew } });
+            state.CleanupDeckTips(tipMap.Embody());
             var tipNumbers = 4;
 
-            var result = state.SetupDeck().SetupBoard(tipNumbers).boardTips;
-
+            var result = state.SetupBoard(tipNumbers);
             result.IsNotNull();
-            result.Count().Is(tipNumbers);
-            result.All(tip => tipList.Contains(tip)).IsTrue();
+            result.IsSameReferenceAs(state);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.Count.Is(tipNumbers);
+            {
+                var resultViewAction = result.viewActionList[0];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip1);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[1];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip1);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[2];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip2);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[3];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip3);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(value1 + value2 + value3 - tipNumbers);
+            result.boardTips.IsNotNull();
+            result.boardTips.Count().Is(tipNumbers);
+            result.boardTips.All(tip => tip is MotionTip).IsTrue();
+            result.boardTips.ToArray()[0].Is(tip1);
+            result.boardTips.ToArray()[1].Is(tip1);
+            result.boardTips.ToArray()[2].Is(tip2);
+            result.boardTips.ToArray()[3].Is(tip3);
         }
         [Test]
         public static void SetupBoardTest_通常処理_補充枚数指定_山札が補充枚数以下()
@@ -384,30 +576,105 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var tipNew = MotionTipMock.Generate(Energy.BLOW, 30);
             var value1 = 3;
             var value2 = 1;
             var value3 = 2;
+            var valueNew = 1;
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
-            var state = BattleStateMock.Generate(tipMap);
+            var state = BattleStateMock.Generate(new Dictionary<MotionTip, int> { { tipNew, valueNew } });
+            state.CleanupDeckTips(tipMap.Embody());
             var tipNumbers = 8;
 
-            var result = state.SetupDeck().SetupBoard(tipNumbers).boardTips;
-
+            var result = state.SetupBoard(tipNumbers);
             result.IsNotNull();
-            result.Count().Is(value1 + value2 + value3);
-            result.All(tip => tipList.Contains(tip)).IsTrue();
+            result.IsSameReferenceAs(state);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.Count.Is(value1 + value2 + value3 + valueNew);
+            {
+                var resultViewAction = result.viewActionList[0];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tipNew);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[1];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip1);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[2];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip1);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[3];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip1);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[4];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip2);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[5];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip3);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            {
+                var resultViewAction = result.viewActionList[6];
+                resultViewAction.IsNotNull();
+                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actor.Is(tip3);
+                resultViewAction.target.Is(default);
+                resultViewAction.easing.Is(default);
+            }
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(valueNew);
+            result.boardTips.IsNotNull();
+            result.boardTips.Count().Is(value1 + value2 + value3);
+            result.boardTips.All(tip => tip is MotionTip).IsTrue();
+            result.boardTips.ToArray()[0].Is(tip1);
+            result.boardTips.ToArray()[1].Is(tip1);
+            result.boardTips.ToArray()[2].Is(tip1);
+            result.boardTips.ToArray()[3].Is(tip2);
+            result.boardTips.ToArray()[4].Is(tip3);
+            result.boardTips.ToArray()[5].Is(tip3);
         }
         [Test]
         public static void SetupBoardTest_通常処理_補充枚数指定_山札が空()
         {
             var tipNumbers = 8;
-
-            var result = BattleStateMock.Generate().SetupBoard(tipNumbers).boardTips;
-
+            var state = BattleStateMock.Generate();
+            var result = state.SetupBoard(tipNumbers);
             result.IsNotNull();
-            result.Any().IsFalse();
+            result.IsSameReferenceAs(state);
+            result.viewActionList.IsNotNull();
+            result.viewActionList.Count.Is(0);
+            result.deckTips.IsNotNull();
+            result.deckTips.Count.Is(0);
+            result.boardTips.IsNotNull();
+            result.boardTips.Count().Is(0);
         }
         [Test]
         public static void SetupBoardTest_通常処理_補充枚数指定_戦闘状態がNull()

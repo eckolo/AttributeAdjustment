@@ -65,6 +65,15 @@ namespace Assets.Src.Domain.Model.Entity
         public IEnumerable<MotionTip> boardTips { get; set; } = Enumerable.Empty<MotionTip>();
 
         /// <summary>
+        /// 場札の初期化
+        /// </summary>
+        /// <param name="boardStationery">初期化内容</param>
+        public void CleanupBoardTips(IEnumerable<MotionTip> boardStationery)
+        {
+            boardTips = boardStationery?.ToList() ?? Enumerable.Empty<MotionTip>();
+        }
+
+        /// <summary>
         /// 行動者毎の戦闘状態リスト情報
         /// </summary>
         public IEnumerable<BattleActor> battleActors { get; set; }

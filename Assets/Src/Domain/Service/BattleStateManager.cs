@@ -54,18 +54,17 @@ namespace Assets.Src.Domain.Service
         public static BattleState SetupBoard(
             this BattleState state,
             int tipNumbers = Constants.Battle.DEFAULT_BOARD_TIP_NUMBERS)
-            => state?.SetBoardTips(state.PopDeckTips(tipNumbers));
-        /// <summary>
-        /// 場札の設定
-        /// </summary>
-        /// <returns>場札設定後の戦闘状態</returns>
-        public static BattleState SetBoardTips(this BattleState state, IEnumerable<MotionTip> boardStationery)
         {
-            state.boardTips = boardStationery?.ToList() ?? Enumerable.Empty<MotionTip>();
+            if(state is null)
+                return state;
 
+            state.SetViewActions(state.boardTips, ViewAction.Pattern.DELETE);
+            state.CleanupBoardTips(state.PopDeckTips(tipNumbers));
             state.SetNewView(state.boardTips);
+
             return state;
         }
+
         /// <summary>
         /// 山札の取り出し
         /// </summary>
