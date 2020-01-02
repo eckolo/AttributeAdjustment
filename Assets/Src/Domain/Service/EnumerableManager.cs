@@ -118,6 +118,16 @@ namespace Assets.Src.Domain.Service
             => 0 <= index && index < origin.Count;
 
         /// <summary>
+        /// オブジェクトと個数のセットをオブジェクトのリストに具体化する
+        /// </summary>
+        /// <typeparam name="TValue">オブジェクトの型</typeparam>
+        /// <param name="abstractMap">オブジェクトと個数のセット</param>
+        /// <returns>具体化されたリスト</returns>
+        public static IEnumerable<TValue> Embody<TValue>(this Dictionary<TValue, int> abstractMap)
+            => abstractMap
+                .SelectMany(elem => Enumerable.Range(0, Mathf.Max(elem.Value, 0)).Select(_ => elem.Key));
+
+        /// <summary>
         /// リストから選択基準値に基づき1要素を抜き出す
         /// </summary>
         /// <typeparam name="TValue">リストの要素型</typeparam>

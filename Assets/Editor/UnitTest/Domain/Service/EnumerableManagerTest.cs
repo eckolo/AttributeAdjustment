@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Service;
+using Assets.Src.Mock;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -382,6 +383,50 @@ namespace Assets.Editor.UnitTest.Domain.Service
             list.ContainsIndex(3).IsTrue();
             list.ContainsIndex(4).IsFalse();
         }
+
+        [Test]
+        public static void EmbodyTest_正常系()
+        {
+            var index1 = 0;
+            var index2 = 1;
+            var index3 = 2;
+            var index4 = 3;
+            var num1 = 1;
+            var num2 = 0;
+            var num3 = 3;
+            var numNegative = -2;
+            var map = new Dictionary<ClassMock, int> {
+                { new ClassMock() { number = index1 }, num1 },
+                { new ClassMock() { number = index2 }, num2 },
+                { new ClassMock() { number = index3 }, num3 },
+                { new ClassMock() { number = index4 }, numNegative },
+            };
+
+            var result = map.Embody()?.ToList();
+            result.IsNotNull();
+            result.Count.Is(num1 + num2 + num3);
+            result.Count(elem => elem.number == index1).Is(num1);
+            result.Count(elem => elem.number == index2).Is(num2);
+            result.Count(elem => elem.number == index3).Is(num3);
+            result.Count(elem => elem.number == index4).Is(0);
+        }
+        [Test]
+        public static void EmbodyTest_正常系_元値が空()
+        {
+            var map = new Dictionary<ClassMock, int>();
+
+            var result = map.Embody()?.ToList();
+            result.IsNotNull();
+            result.Count.Is(0);
+        }
+        [Test]
+        public static void EmbodyTest_異常系_元値がNull()
+        {
+            var mapNull = (Dictionary<ClassMock, int>)null;
+
+            Assert.Throws<ArgumentNullException>(() => mapNull.Embody()?.ToList());
+        }
+
         [Test]
         public static void PickTest_正常系()
         {

@@ -20,9 +20,7 @@ namespace Assets.Src.Domain.Service
         /// <returns>山札の初期化された戦闘状態</returns>
         public static BattleState SetupDeck(this BattleState state)
         {
-            var deckStationery = state.deckStationeryMap?
-                .SelectMany(tip => Enumerable.Range(0, tip.Value).Select(_ => tip.Key))
-                .Shuffle();
+            var deckStationery = state.deckStationeryMap?.Embody().Shuffle();
 
             state.SetViewActions(state.deckTips, ViewAction.Pattern.DELETE);
             state.CleanupDeckTips(deckStationery);
