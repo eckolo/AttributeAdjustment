@@ -22,12 +22,12 @@ namespace Assets.Src.Mock
            Pattern actionType = default,
            IViewKey actor = null,
            IViewKey target = null,
-           Easing? easing = null,
+           Easing easing = null,
            ViewAction nextAction = null)
         {
             var mock = target is null && easing is null
                 ? new ViewActionMock(actionType, actor)
-                : new ViewActionMock(actionType, actor, target, easing ?? Easing.Linear);
+                : new ViewActionMock(actionType, actor, target, easing ?? new Easing(Easing.Pattern.Linear));
             return mock.AddNextAction<ViewActionMock>(nextAction);
         }
     }

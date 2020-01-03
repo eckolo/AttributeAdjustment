@@ -6,39 +6,24 @@ using System.Threading.Tasks;
 
 namespace Assets.Src.Domain.Model.Value
 {
-    public enum Easing
+    /// <summary>
+    /// イージングのパラメータ
+    /// </summary>
+    public partial class Easing
     {
+        public Easing(Pattern pattern, int? timeCoefficient = null)
+        {
+            this.pattern = pattern;
+            this.timeCoefficient = timeCoefficient ?? this.timeCoefficient;
+        }
+
         /// <summary>
-        /// 線形変動
+        /// イージング種別
         /// </summary>
-        Linear,
+        public Pattern pattern { get; }
         /// <summary>
-        /// 二乗変動
+        /// 所要時間係数
         /// </summary>
-        Quadratic,
-        /// <summary>
-        /// 三乗変動
-        /// </summary>
-        Cubic,
-        /// <summary>
-        /// 四乗変動
-        /// </summary>
-        Quartic,
-        /// <summary>
-        /// 五乗変動
-        /// </summary>
-        Quintic,
-        /// <summary>
-        /// 円形変動
-        /// </summary>
-        Sinusoidal,
-        /// <summary>
-        /// 累乗変動
-        /// </summary>
-        Exponential,
-        /// <summary>
-        /// 乗根変動
-        /// </summary>
-        Circular,
+        public int timeCoefficient { get; } = 1;
     }
 }

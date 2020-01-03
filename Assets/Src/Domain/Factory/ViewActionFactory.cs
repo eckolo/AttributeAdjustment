@@ -45,8 +45,8 @@ namespace Assets.Src.Domain.Factory
             this IViewKey view,
             ViewAction.Pattern pattern,
             IViewKey target,
-            Easing easing = Easing.Linear)
-            => new ViewAction(pattern, view, target, easing);
+            Easing easing = null)
+            => new ViewAction(pattern, view, target, easing ?? new Easing(Easing.Pattern.Linear));
         /// <summary>
         /// 新たな画面表示パーツを追加する
         /// </summary>

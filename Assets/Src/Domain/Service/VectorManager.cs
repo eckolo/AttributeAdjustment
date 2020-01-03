@@ -226,11 +226,11 @@ namespace Assets.Src.Domain.Service
             {
                 bool verticalIn = clockwise ^ (end.x * end.y > 0);
                 var right = verticalIn
-                    ? Easing.Sinusoidal.Out(time, limit, end.x)
-                    : Easing.Sinusoidal.In(time, limit, end.x);
+                    ? Easing.Pattern.Sinusoidal.Out(time, limit, end.x)
+                    : Easing.Pattern.Sinusoidal.In(time, limit, end.x);
                 var up = verticalIn
-                    ? Easing.Sinusoidal.In(time, limit, end.y)
-                    : Easing.Sinusoidal.Out(time, limit, end.y);
+                    ? Easing.Pattern.Sinusoidal.In(time, limit, end.y)
+                    : Easing.Pattern.Sinusoidal.Out(time, limit, end.y);
                 return new Vector2(right.value, up.value);
             }
             /// <summary>

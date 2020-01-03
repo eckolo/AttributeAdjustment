@@ -13,7 +13,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InTest_正常系_Linear()
         {
-            var easing = Easing.Linear;
+            var easing = Easing.Pattern.Linear;
             var limit = 1000;
             var max = 100f;
 
@@ -26,7 +26,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InTest_正常系_Quadratic()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
@@ -43,7 +43,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InTest_正常系_Cubic()
         {
-            var easing = Easing.Cubic;
+            var easing = Easing.Pattern.Cubic;
             var limit = 1000;
             var max = 100f;
 
@@ -60,7 +60,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InTest_正常系_Quartic()
         {
-            var easing = Easing.Quartic;
+            var easing = Easing.Pattern.Quartic;
             var limit = 1000;
             var max = 100f;
 
@@ -77,7 +77,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InTest_正常系_Quintic()
         {
-            var easing = Easing.Quintic;
+            var easing = Easing.Pattern.Quintic;
             var limit = 1000;
             var max = 100f;
 
@@ -94,7 +94,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InTest_正常系_Sinusoidal()
         {
-            var easing = Easing.Sinusoidal;
+            var easing = Easing.Pattern.Sinusoidal;
             var limit = 1000;
             var max = 100f;
 
@@ -111,7 +111,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InTest_正常系_Exponential()
         {
-            var easing = Easing.Exponential;
+            var easing = Easing.Pattern.Exponential;
             var limit = 1000;
             var max = 100f;
 
@@ -129,7 +129,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InTest_正常系_Circular()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
@@ -147,7 +147,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInTest_正常系_Linear()
         {
-            var easing = Easing.Linear;
+            var easing = Easing.Pattern.Linear;
             var limit = 1000;
             var max = 100f;
 
@@ -160,7 +160,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInTest_正常系_Quadratic()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
@@ -177,7 +177,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInTest_正常系_Cubic()
         {
-            var easing = Easing.Cubic;
+            var easing = Easing.Pattern.Cubic;
             var limit = 1000;
             var max = 100f;
 
@@ -194,7 +194,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInTest_正常系_Quartic()
         {
-            var easing = Easing.Quartic;
+            var easing = Easing.Pattern.Quartic;
             var limit = 1000;
             var max = 100f;
 
@@ -211,7 +211,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInTest_正常系_Quintic()
         {
-            var easing = Easing.Quintic;
+            var easing = Easing.Pattern.Quintic;
             var limit = 1000;
             var max = 100f;
 
@@ -228,7 +228,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInTest_正常系_Sinusoidal()
         {
-            var easing = Easing.Sinusoidal;
+            var easing = Easing.Pattern.Sinusoidal;
             var limit = 1000;
             var max = 100f;
 
@@ -245,7 +245,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInTest_正常系_Exponential()
         {
-            var easing = Easing.Exponential;
+            var easing = Easing.Pattern.Exponential;
             var limit = 1000;
             var max = 100f;
 
@@ -263,7 +263,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInTest_正常系_Circular()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
@@ -281,7 +281,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void OutTest_正常系_Linear()
         {
-            var easing = Easing.Linear;
+            var easing = Easing.Pattern.Linear;
             var limit = 1000;
             var max = 100f;
 
@@ -294,7 +294,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void OutTest_正常系_Quadratic()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
@@ -311,7 +311,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void OutTest_正常系_Cubic()
         {
-            var easing = Easing.Cubic;
+            var easing = Easing.Pattern.Cubic;
             var limit = 1000;
             var max = 100f;
 
@@ -328,7 +328,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void OutTest_正常系_Quartic()
         {
-            var easing = Easing.Quartic;
+            var easing = Easing.Pattern.Quartic;
             var limit = 1000;
             var max = 100f;
 
@@ -345,7 +345,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void OutTest_正常系_Quintic()
         {
-            var easing = Easing.Quintic;
+            var easing = Easing.Pattern.Quintic;
             var limit = 1000;
             var max = 100f;
 
@@ -362,7 +362,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void OutTest_正常系_Sinusoidal()
         {
-            var easing = Easing.Sinusoidal;
+            var easing = Easing.Pattern.Sinusoidal;
             var limit = 1000;
             var max = 100f;
 
@@ -379,7 +379,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void OutTest_正常系_Exponential()
         {
-            var easing = Easing.Exponential;
+            var easing = Easing.Pattern.Exponential;
             var limit = 1000;
             var max = 100f;
 
@@ -397,7 +397,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void OutTest_正常系_Circular()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
@@ -415,7 +415,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubOutTest_正常系_Linear()
         {
-            var easing = Easing.Linear;
+            var easing = Easing.Pattern.Linear;
             var limit = 1000;
             var max = 100f;
 
@@ -428,7 +428,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubOutTest_正常系_Quadratic()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
@@ -445,7 +445,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubOutTest_正常系_Cubic()
         {
-            var easing = Easing.Cubic;
+            var easing = Easing.Pattern.Cubic;
             var limit = 1000;
             var max = 100f;
 
@@ -462,7 +462,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubOutTest_正常系_Quartic()
         {
-            var easing = Easing.Quartic;
+            var easing = Easing.Pattern.Quartic;
             var limit = 1000;
             var max = 100f;
 
@@ -479,7 +479,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubOutTest_正常系_Quintic()
         {
-            var easing = Easing.Quintic;
+            var easing = Easing.Pattern.Quintic;
             var limit = 1000;
             var max = 100f;
 
@@ -496,7 +496,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubOutTest_正常系_Sinusoidal()
         {
-            var easing = Easing.Sinusoidal;
+            var easing = Easing.Pattern.Sinusoidal;
             var limit = 1000;
             var max = 100f;
 
@@ -513,7 +513,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubOutTest_正常系_Exponential()
         {
-            var easing = Easing.Exponential;
+            var easing = Easing.Pattern.Exponential;
             var limit = 1000;
             var max = 100f;
 
@@ -531,7 +531,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubOutTest_正常系_Circular()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
@@ -549,7 +549,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InOutTest_正常系_Linear()
         {
-            var easing = Easing.Linear;
+            var easing = Easing.Pattern.Linear;
             var limit = 1000;
             var max = 100f;
 
@@ -562,7 +562,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InOutTest_正常系_Quadratic()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
@@ -586,7 +586,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InOutTest_正常系_Cubic()
         {
-            var easing = Easing.Cubic;
+            var easing = Easing.Pattern.Cubic;
             var limit = 1000;
             var max = 100f;
 
@@ -610,7 +610,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InOutTest_正常系_Quartic()
         {
-            var easing = Easing.Quartic;
+            var easing = Easing.Pattern.Quartic;
             var limit = 1000;
             var max = 100f;
 
@@ -634,7 +634,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InOutTest_正常系_Quintic()
         {
-            var easing = Easing.Quintic;
+            var easing = Easing.Pattern.Quintic;
             var limit = 1000;
             var max = 100f;
 
@@ -658,7 +658,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InOutTest_正常系_Sinusoidal()
         {
-            var easing = Easing.Sinusoidal;
+            var easing = Easing.Pattern.Sinusoidal;
             var limit = 1000;
             var max = 100f;
 
@@ -682,7 +682,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InOutTest_正常系_Exponential()
         {
-            var easing = Easing.Exponential;
+            var easing = Easing.Pattern.Exponential;
             var limit = 1000;
             var max = 100f;
 
@@ -708,7 +708,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void InOutTest_正常系_Circular()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
@@ -733,7 +733,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInOutTest_正常系_Linear()
         {
-            var easing = Easing.Linear;
+            var easing = Easing.Pattern.Linear;
             var limit = 1000;
             var max = 100f;
 
@@ -746,7 +746,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInOutTest_正常系_Quadratic()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
@@ -770,7 +770,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInOutTest_正常系_Cubic()
         {
-            var easing = Easing.Cubic;
+            var easing = Easing.Pattern.Cubic;
             var limit = 1000;
             var max = 100f;
 
@@ -794,7 +794,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInOutTest_正常系_Quartic()
         {
-            var easing = Easing.Quartic;
+            var easing = Easing.Pattern.Quartic;
             var limit = 1000;
             var max = 100f;
 
@@ -818,7 +818,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInOutTest_正常系_Quintic()
         {
-            var easing = Easing.Quintic;
+            var easing = Easing.Pattern.Quintic;
             var limit = 1000;
             var max = 100f;
 
@@ -842,7 +842,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInOutTest_正常系_Sinusoidal()
         {
-            var easing = Easing.Sinusoidal;
+            var easing = Easing.Pattern.Sinusoidal;
             var limit = 1000;
             var max = 100f;
 
@@ -866,7 +866,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInOutTest_正常系_Exponential()
         {
-            var easing = Easing.Exponential;
+            var easing = Easing.Pattern.Exponential;
             var limit = 1000;
             var max = 100f;
 
@@ -892,7 +892,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void SubInOutTest_正常系_Circular()
         {
-            var easing = Easing.Quadratic;
+            var easing = Easing.Pattern.Quadratic;
             var limit = 1000;
             var max = 100f;
 
