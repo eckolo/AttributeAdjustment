@@ -32,6 +32,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -48,7 +49,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void ReloadHandTipsTest_通常処理_補充枚数指定_元の手札は空()
@@ -69,6 +70,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -85,7 +87,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(tipNumbers);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void ReloadHandTipsTest_通常処理_補充枚数デフォルト値_元の手札有り()
@@ -105,6 +107,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -121,7 +124,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void ReloadHandTipsTest_通常処理_補充枚数指定_元の手札有り()
@@ -142,6 +145,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -158,7 +162,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(tipNumbers);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void ReloadHandTipsTest_通常処理_補充枚数デフォルト値_元の手札は空_山札が補充枚数以下()
@@ -178,6 +182,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -194,7 +199,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void ReloadHandTipsTest_通常処理_補充枚数指定_元の手札は空_山札が補充枚数以下()
@@ -215,6 +220,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -231,7 +237,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(tipNumbers);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void ReloadHandTipsTest_通常処理_補充枚数デフォルト値_元の手札有り_山札が補充枚数以下()
@@ -251,6 +257,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -267,7 +274,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void ReloadHandTipsTest_通常処理_補充枚数指定_元の手札有り_山札が補充枚数以下()
@@ -288,6 +295,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -304,7 +312,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(tipNumbers);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void ReloadHandTipsTest_該当行動主体無し()
@@ -324,6 +332,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = BattleActorMock.Generate(name1);
@@ -353,6 +362,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -380,6 +390,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
 

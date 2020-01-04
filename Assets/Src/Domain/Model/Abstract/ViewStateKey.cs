@@ -18,5 +18,7 @@ namespace Assets.Src.Domain.Model.Abstract
         /// 生成後フラグ
         /// </summary>
         public bool isGenerated { get; set; } = false;
+
+        public ulong hashCode => (ulong)GetHashCode();
     }
 }

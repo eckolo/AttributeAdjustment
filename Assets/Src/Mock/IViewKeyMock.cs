@@ -10,6 +10,9 @@ namespace Assets.Src.Mock
             this.value = value;
         }
         public int value { get; }
+
+        public ulong hashCode => (ulong)GetHashCode();
+
         public static IViewKeyMock Generate(int value = 0) => new IViewKeyMock(value);
 
         public override bool Equals(object other) => other is IViewKeyMock viewValue ? Equals(viewValue) : false;

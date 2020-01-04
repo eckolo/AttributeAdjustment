@@ -36,5 +36,7 @@ namespace Assets.Src.Domain.Model.Value
         /// 相対表示位置
         /// </summary>
         public Vector2 position => _position;
+
+        public ulong hashCode => (ulong)_text.GetHashCode() ^ (ulong)_position.GetHashCode();
     }
 }

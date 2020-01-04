@@ -37,19 +37,19 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewActionList.Count.Is(value1 + value2 + value3);
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor.Equals(tip1))
+                    .Where(elem => elem.actor.hashCode.Equals(tip1.hashCode))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value1);
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor.Equals(tip2))
+                    .Where(elem => elem.actor.hashCode.Equals(tip2.hashCode))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value2);
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor.Equals(tip3))
+                    .Where(elem => elem.actor.hashCode.Equals(tip3.hashCode))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value3);
@@ -96,25 +96,25 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultViewAction = resultViewActionList[0];
                     resultViewAction.actionType.Is(ViewAction.Pattern.DELETE);
-                    resultViewAction.actor.Is(tip2);
+                    resultViewAction.actor.hashCode.Is(tip2.hashCode);
                     resultViewAction.target.Is(default);
                     resultViewAction.easing.Is(default);
                 }
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor.Equals(tip1))
+                    .Where(elem => elem.actor.hashCode.Equals(tip1.hashCode))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value1);
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor.Equals(tip2))
+                    .Where(elem => elem.actor.hashCode.Equals(tip2.hashCode))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value2);
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor.Equals(tip3))
+                    .Where(elem => elem.actor.hashCode.Equals(tip3.hashCode))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value3);
@@ -185,6 +185,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var state = BattleStateMock.Generate();
             state.CleanupDeckTips(tipList);
             var popTipNumber = 5;
@@ -193,11 +194,11 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             result.IsNotNull();
             result.Count().Is(popTipNumber);
-            result.All(elem => tipList.Contains(elem)).IsTrue();
+            result.All(elem => tipHashList.Contains(elem.hashCode)).IsTrue();
 
             state.deckTips.IsNotNull();
             state.deckTips.Count.Is(tipList.Count - popTipNumber);
-            state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
+            state.deckTips.All(elem => tipHashList.Contains(elem.hashCode)).IsTrue();
         }
         [Test]
         public static void PopDeckTipsForcedTest_通常処理_山札数が取り出し数と等しい()
@@ -210,6 +211,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var value3 = 2;
 
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip1, tip2, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(tipMap);
             state.CleanupDeckTips(tipList);
@@ -219,7 +221,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             result.IsNotNull();
             result.Count().Is(popTipNumber);
-            result.All(elem => tipList.Contains(elem)).IsTrue();
+            result.All(elem => tipHashList.Contains(elem.hashCode)).IsTrue();
 
             state.deckTips.IsNotNull();
             state.deckTips.Count.Is(value1 + value2 + value3);
@@ -247,6 +249,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var value3 = 2;
 
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip1, tip2, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(tipMap);
             state.CleanupDeckTips(tipList);
@@ -256,11 +259,11 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             result.IsNotNull();
             result.Count().Is(popTipNumber);
-            result.All(elem => tipList.Contains(elem)).IsTrue();
+            result.All(elem => tipHashList.Contains(elem.hashCode)).IsTrue();
 
             state.deckTips.IsNotNull();
             state.deckTips.Count.Is(tipList.Count + value1 + value2 + value3 - popTipNumber);
-            state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
+            state.deckTips.All(elem => tipHashList.Contains(elem.hashCode)).IsTrue();
         }
         [Test]
         public static void PopDeckTipsForcedTest_取り出し数が0()
@@ -269,6 +272,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var state = BattleStateMock.Generate();
             state.CleanupDeckTips(tipList);
             var popTipNumber = 0;
@@ -280,7 +284,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             state.deckTips.IsNotNull();
             state.deckTips.Count.Is(tipList.Count);
-            state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
+            state.deckTips.All(elem => tipHashList.Contains(elem.hashCode)).IsTrue();
         }
         [Test]
         public static void PopDeckTipsForcedTest_取り出し数が負の値()
@@ -289,6 +293,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
             var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
             var tipList = new List<MotionTip> { tip1, tip1, tip1, tip2, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var state = BattleStateMock.Generate();
             state.CleanupDeckTips(tipList);
             var popTipNumber = -5;
@@ -300,7 +305,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             state.deckTips.IsNotNull();
             state.deckTips.Count.Is(tipList.Count);
-            state.deckTips.All(elem => tipList.Contains(elem)).IsTrue();
+            state.deckTips.All(elem => tipHashList.Contains(elem.hashCode)).IsTrue();
         }
 
         [Test]
@@ -329,7 +334,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[0];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip1);
+                resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -337,7 +342,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[1];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip2);
+                resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -345,7 +350,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[2];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip2);
+                resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -353,7 +358,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[3];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip2);
+                resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -361,7 +366,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[4];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip2);
+                resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -369,7 +374,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[5];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip2);
+                resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -377,7 +382,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[6];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip3);
+                resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -386,13 +391,13 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.boardTips.IsNotNull();
             result.boardTips.Count().Is(Constants.Battle.DEFAULT_BOARD_TIP_NUMBERS);
             result.boardTips.All(tip => tip is MotionTip).IsTrue();
-            result.boardTips.ToArray()[0].Is(tip1);
-            result.boardTips.ToArray()[1].Is(tip2);
-            result.boardTips.ToArray()[2].Is(tip2);
-            result.boardTips.ToArray()[3].Is(tip2);
-            result.boardTips.ToArray()[4].Is(tip2);
-            result.boardTips.ToArray()[5].Is(tip2);
-            result.boardTips.ToArray()[6].Is(tip3);
+            result.boardTips.ToArray()[0].hashCode.Is(tip1.hashCode);
+            result.boardTips.ToArray()[1].hashCode.Is(tip2.hashCode);
+            result.boardTips.ToArray()[2].hashCode.Is(tip2.hashCode);
+            result.boardTips.ToArray()[3].hashCode.Is(tip2.hashCode);
+            result.boardTips.ToArray()[4].hashCode.Is(tip2.hashCode);
+            result.boardTips.ToArray()[5].hashCode.Is(tip2.hashCode);
+            result.boardTips.ToArray()[6].hashCode.Is(tip3.hashCode);
         }
         [Test]
         public static void SetupBoardTest_通常処理_補充枚数デフォルト値_山札が補充枚数以下()
@@ -420,7 +425,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[0];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tipNew);
+                resultViewAction.actor.hashCode.Is(tipNew.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -428,7 +433,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[1];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip1);
+                resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -436,7 +441,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[2];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip1);
+                resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -444,7 +449,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[3];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip1);
+                resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -452,7 +457,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[4];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip2);
+                resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -460,7 +465,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[5];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip3);
+                resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -468,7 +473,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[6];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip3);
+                resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -477,12 +482,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.boardTips.IsNotNull();
             result.boardTips.Count().Is(value1 + value2 + value3);
             result.boardTips.All(tip => tip is MotionTip).IsTrue();
-            result.boardTips.ToArray()[0].Is(tip1);
-            result.boardTips.ToArray()[1].Is(tip1);
-            result.boardTips.ToArray()[2].Is(tip1);
-            result.boardTips.ToArray()[3].Is(tip2);
-            result.boardTips.ToArray()[4].Is(tip3);
-            result.boardTips.ToArray()[5].Is(tip3);
+            result.boardTips.ToArray()[0].hashCode.Is(tip1.hashCode);
+            result.boardTips.ToArray()[1].hashCode.Is(tip1.hashCode);
+            result.boardTips.ToArray()[2].hashCode.Is(tip1.hashCode);
+            result.boardTips.ToArray()[3].hashCode.Is(tip2.hashCode);
+            result.boardTips.ToArray()[4].hashCode.Is(tip3.hashCode);
+            result.boardTips.ToArray()[5].hashCode.Is(tip3.hashCode);
         }
         [Test]
         public static void SetupBoardTest_通常処理_補充枚数デフォルト値_山札が空()
@@ -532,7 +537,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[0];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip1);
+                resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -540,7 +545,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[1];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip1);
+                resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -548,7 +553,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[2];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip2);
+                resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -556,7 +561,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[3];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip3);
+                resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -565,10 +570,10 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.boardTips.IsNotNull();
             result.boardTips.Count().Is(tipNumbers);
             result.boardTips.All(tip => tip is MotionTip).IsTrue();
-            result.boardTips.ToArray()[0].Is(tip1);
-            result.boardTips.ToArray()[1].Is(tip1);
-            result.boardTips.ToArray()[2].Is(tip2);
-            result.boardTips.ToArray()[3].Is(tip3);
+            result.boardTips.ToArray()[0].hashCode.Is(tip1.hashCode);
+            result.boardTips.ToArray()[1].hashCode.Is(tip1.hashCode);
+            result.boardTips.ToArray()[2].hashCode.Is(tip2.hashCode);
+            result.boardTips.ToArray()[3].hashCode.Is(tip3.hashCode);
         }
         [Test]
         public static void SetupBoardTest_通常処理_補充枚数指定_山札が補充枚数以下()
@@ -597,7 +602,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[0];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tipNew);
+                resultViewAction.actor.hashCode.Is(tipNew.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -605,7 +610,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[1];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip1);
+                resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -613,7 +618,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[2];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip1);
+                resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -621,7 +626,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[3];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip1);
+                resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -629,7 +634,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[4];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip2);
+                resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -637,7 +642,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[5];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip3);
+                resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -645,7 +650,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 var resultViewAction = result.viewActionList[6];
                 resultViewAction.IsNotNull();
                 resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
-                resultViewAction.actor.Is(tip3);
+                resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.Is(default);
                 resultViewAction.easing.Is(default);
             }
@@ -654,12 +659,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.boardTips.IsNotNull();
             result.boardTips.Count().Is(value1 + value2 + value3);
             result.boardTips.All(tip => tip is MotionTip).IsTrue();
-            result.boardTips.ToArray()[0].Is(tip1);
-            result.boardTips.ToArray()[1].Is(tip1);
-            result.boardTips.ToArray()[2].Is(tip1);
-            result.boardTips.ToArray()[3].Is(tip2);
-            result.boardTips.ToArray()[4].Is(tip3);
-            result.boardTips.ToArray()[5].Is(tip3);
+            result.boardTips.ToArray()[0].hashCode.Is(tip1.hashCode);
+            result.boardTips.ToArray()[1].hashCode.Is(tip1.hashCode);
+            result.boardTips.ToArray()[2].hashCode.Is(tip1.hashCode);
+            result.boardTips.ToArray()[3].hashCode.Is(tip2.hashCode);
+            result.boardTips.ToArray()[4].hashCode.Is(tip3.hashCode);
+            result.boardTips.ToArray()[5].hashCode.Is(tip3.hashCode);
         }
         [Test]
         public static void SetupBoardTest_通常処理_補充枚数指定_山札が空()
@@ -704,6 +709,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
 
@@ -719,21 +725,21 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 actorState.IsNotNull();
                 actorState.state.handTips.IsNotNull();
                 actorState.state.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-                actorState.state.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+                actorState.state.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
             }
             {
                 var actorState = state.battleActors.ToList()[0];
                 actorState.IsNotNull();
                 actorState.state.handTips.IsNotNull();
                 actorState.state.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-                actorState.state.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+                actorState.state.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
             }
             {
                 var actorState = state.battleActors.ToList()[0];
                 actorState.IsNotNull();
                 actorState.state.handTips.IsNotNull();
                 actorState.state.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-                actorState.state.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+                actorState.state.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
             }
         }
         [Test]
@@ -755,6 +761,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -771,7 +778,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(tipNumbers);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void SetupAllHandTipsTest_通常処理_補充枚数デフォルト値_元の手札有り()
@@ -791,6 +798,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -807,7 +815,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void SetupAllHandTipsTest_通常処理_補充枚数指定_元の手札有り()
@@ -828,6 +836,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -844,7 +853,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(tipNumbers);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void SetupAllHandTipsTest_通常処理_補充枚数デフォルト値_元の手札は空_山札が補充枚数以下()
@@ -864,6 +873,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -880,7 +890,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void SetupAllHandTipsTest_通常処理_補充枚数指定_元の手札は空_山札が補充枚数以下()
@@ -901,6 +911,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -917,7 +928,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(tipNumbers);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void SetupAllHandTipsTest_通常処理_補充枚数デフォルト値_元の手札有り_山札が補充枚数以下()
@@ -937,6 +948,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -953,7 +965,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(Constants.Battle.DEFAULT_HAND_TIP_NUMBERS);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void SetupAllHandTipsTest_通常処理_補充枚数指定_元の手札有り_山札が補充枚数以下()
@@ -974,6 +986,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
 
             var actorList = new List<BattleActorMock> { actor1, actor2, actor3 };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
+            var tipHashList = tipList.Select(tip => tip.hashCode).ToList();
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var state = BattleStateMock.Generate(actorList, tipMap).SetupDeck();
             var battleActor = state.battleActors.First();
@@ -990,7 +1003,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             actorState.IsNotNull();
             actorState.handTips.IsNotNull();
             actorState.handTips.Count().Is(tipNumbers);
-            actorState.handTips.All(tip => tipList.Contains(tip)).IsTrue();
+            actorState.handTips.All(tip => tipHashList.Contains(tip.hashCode)).IsTrue();
         }
         [Test]
         public static void SetupAllHandTipsTest_戦闘状態がNull()

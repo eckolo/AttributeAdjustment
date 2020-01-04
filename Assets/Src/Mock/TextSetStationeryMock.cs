@@ -32,5 +32,7 @@ namespace Assets.Src.Mock
         }
 
         public TextSet entity => throw new NotImplementedException();
+
+        public ulong hashCode => (ulong)GetHashCode();
     }
 }

@@ -42,6 +42,8 @@ namespace Assets.Src.Domain.Model.Entity
         /// </summary>
         public virtual bool isPlayer => false;
 
+        public ulong hashCode => (ulong)GetHashCode();
+
         public Actor MemberwiseClonePublic() => (Actor)MemberwiseClone();
     }
 }
