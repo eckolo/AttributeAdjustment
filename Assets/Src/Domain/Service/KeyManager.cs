@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Src.Domain.Model.Value;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
