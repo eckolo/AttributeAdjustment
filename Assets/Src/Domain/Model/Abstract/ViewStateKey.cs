@@ -2,6 +2,7 @@
 using Assets.Src.Domain.Model.Value;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Abstract
 {
@@ -20,5 +21,7 @@ namespace Assets.Src.Domain.Model.Abstract
         public bool isGenerated { get; set; } = false;
 
         public ulong hashCode => (ulong)GetHashCode();
+
+        public abstract Vector2 position { get; set; }
     }
 }

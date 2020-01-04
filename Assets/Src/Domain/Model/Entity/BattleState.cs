@@ -5,6 +5,7 @@ using Assets.Src.Domain.Model.Value;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Entity
 {
@@ -79,6 +80,8 @@ namespace Assets.Src.Domain.Model.Entity
         public IEnumerable<BattleActor> battleActors { get; set; }
 
         public BattleActor thisTimeActor { get; set; }
+
+        public override Vector2 position { get; set; }
 
         public async void Dispose() => await this.EndBattle();
     }

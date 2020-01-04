@@ -14,11 +14,16 @@ namespace Assets.Src.Domain.Model.Value
     /// </summary>
     public class MotionTip : Named, ITextSetStationeryValue, IDuplicatable<MotionTip>
     {
-        public MotionTip(string name, Energy energy, int energyValue) : base(name)
+        public MotionTip(string name, Energy energy, int energyValue, Vector2? position = null)
+            : base(name)
         {
             this.energy = energy;
             this.energyValue = energyValue;
+            this.position = position ?? this.position;
         }
+        public MotionTip(MotionTip origin, Vector2 position)
+            : this(origin.name, origin.energy, origin.energyValue, position)
+        { }
 
         /// <summary>
         /// 属性種別
@@ -28,6 +33,10 @@ namespace Assets.Src.Domain.Model.Value
         /// 属性値
         /// </summary>
         public int energyValue { get; }
+        /// <summary>
+        /// 表示位置
+        /// </summary>
+        public Vector2 position { get; } = Vector2.zero;
 
         /// <summary>
         /// 表示テキスト情報一覧

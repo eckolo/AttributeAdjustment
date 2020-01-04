@@ -1,6 +1,7 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Value;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Entity
 {
@@ -36,6 +37,11 @@ namespace Assets.Src.Domain.Model.Entity
         /// 現在のパラメータ
         /// </summary>
         public virtual Parameter parameter { get; set; }
+
+        /// <summary>
+        /// 表示位置
+        /// </summary>
+        public Vector2 position { get; set; }
 
         /// <summary>
         /// プレイヤー操作対象であるか否かのフラグ

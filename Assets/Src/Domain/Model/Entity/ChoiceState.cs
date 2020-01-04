@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Entity
 {
@@ -65,6 +66,8 @@ namespace Assets.Src.Domain.Model.Entity
         bool _isFinished = false;
 
         public TextMeshKey choiceText { get; set; }
+
+        public override Vector2 position { get; set; }
 
         public async void Dispose() => await this.End();
     }

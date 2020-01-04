@@ -1,8 +1,10 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets.Src.Mock
 {
@@ -15,6 +17,12 @@ namespace Assets.Src.Mock
             {
                 viewActionList.Add(action);
             }
+        }
+
+        public override Vector2 position
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
         }
 
         public static ViewStateKeyMock Generate(

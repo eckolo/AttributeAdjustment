@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using System;
+using UnityEngine;
 
 namespace Assets.Src.Mock
 {
@@ -12,6 +13,8 @@ namespace Assets.Src.Mock
         public int value { get; }
 
         public ulong hashCode => (ulong)GetHashCode();
+
+        public Vector2 position => throw new NotImplementedException();
 
         public static IViewKeyMock Generate(int value = 0) => new IViewKeyMock(value);
 
