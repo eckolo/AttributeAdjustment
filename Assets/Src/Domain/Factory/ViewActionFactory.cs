@@ -1,11 +1,13 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
+using Assets.Src.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Src.Domain.Factory
 {
@@ -97,22 +99,31 @@ namespace Assets.Src.Domain.Factory
             return state;
         }
         /// <summary>
-        /// 新たな画面表示アクションの生成と設置
+        /// <see cref="MotionTip"/>の移動アクションを追加
         /// </summary>
         /// <typeparam name="TBattleState">対象の画面表示状態型</typeparam>
-        /// <typeparam name="TViewValue">配置されるパーツのパラメータ型</typeparam>
         /// <param name="state">追加対象状態オブジェクト</param>
-        /// <param name="values">追加されるパーツ群のパラメータリスト</param>
-        /// <param name="pattern">アクションのパターン</param>
+        /// <param name="tips">追加されるパーツ群のパラメータリスト</param>
         /// <param name="target">アクションのパターン</param>
+        /// <param name="easingPattern">アクション経過のイージングパターン</param>
         /// <returns>アクションの設定された状態オブジェクト</returns>
-        public static TBattleState SetViewActions<TBattleState, TViewValue>(
+        public static TBattleState SetTipMoving<TBattleState>(
              this TBattleState state,
-             IEnumerable<TViewValue> values,
-             ViewAction.Pattern pattern,
-             BattleState.ActionTarget target)
+             IEnumerable<MotionTip> tips,
+             BattleState.ActionTarget target,
+             Easing.Pattern easingPattern = Easing.Pattern.Quadratic)
              where TBattleState : BattleState
-             where TViewValue : IViewKey
-            => throw new NotImplementedException();
+        {
+            var targetPosition = target.GetCenterPosition();
+            var actionPattern = ViewAction.Pattern.UPDATE;
+            var easing = new Easing(easingPattern);
+
+            var addedActions = tips
+                .Select(tip => (actor: tip, target: new MotionTip(tip, targetPosition)))
+                .Select(set => new ViewAction(actionPattern, set.actor, set.target, easing));
+            state.viewActionList.AddRange(addedActions);
+
+            return state;
+        }
     }
 }
