@@ -627,7 +627,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -642,7 +642,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -682,7 +682,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -697,7 +697,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -729,7 +729,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -744,7 +744,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -785,7 +785,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -800,7 +800,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -831,7 +831,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -846,7 +846,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -886,7 +886,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -901,7 +901,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -933,7 +933,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -948,7 +948,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -989,7 +989,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -1004,7 +1004,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -1036,7 +1036,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -1051,7 +1051,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -1092,7 +1092,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -1107,7 +1107,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -1140,7 +1140,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -1155,7 +1155,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -1197,7 +1197,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -1212,7 +1212,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -1244,7 +1244,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -1259,7 +1259,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -1300,7 +1300,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -1315,7 +1315,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -1348,7 +1348,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -1363,7 +1363,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
@@ -1405,7 +1405,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip1.hashCode);
+                resultAction.actor.hashCode.Is(tip1.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip1.name);
                 ((MotionTip)resultAction.target).energy.Is(tip1.energy);
@@ -1420,7 +1420,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultAction.actor.IsNotNull();
-                ((MotionTip)resultAction.actor).hashCode.Is(tip2.hashCode);
+                resultAction.actor.hashCode.Is(tip2.hashCode);
                 resultAction.target.IsNotNull();
                 ((MotionTip)resultAction.target).name.Is(tip2.name);
                 ((MotionTip)resultAction.target).energy.Is(tip2.energy);
