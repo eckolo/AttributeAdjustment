@@ -337,7 +337,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -351,7 +350,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -365,7 +363,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -379,7 +376,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -393,7 +389,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -407,7 +402,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -421,7 +415,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -479,7 +472,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -493,7 +485,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -507,7 +498,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -521,7 +511,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -535,7 +524,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -549,7 +537,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -620,7 +607,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -634,7 +620,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -648,7 +633,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -662,7 +646,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -718,7 +701,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -732,7 +714,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -746,7 +727,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -760,7 +740,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -774,7 +753,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);
@@ -788,7 +766,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
                 resultViewAction.target.IsNotNull();
-                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
                 ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
                 ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
                 ((MotionTip)resultViewAction.target).position.Is(boardPosition);

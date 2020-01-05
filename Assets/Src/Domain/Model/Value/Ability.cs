@@ -6,11 +6,14 @@ namespace Assets.Src.Domain.Model.Value
     /// <summary>
     /// 戦闘で使用する技
     /// </summary>
-    public class Ability : Named
+    public class Ability
     {
-        public Ability(string name) : base(name)
+        public Ability(string name)
         {
+            this.name = name;
         }
+
+        public string name { get; }
 
         /// <summary>
         /// 対応モーションチップ条件

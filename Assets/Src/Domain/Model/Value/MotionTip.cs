@@ -12,17 +12,16 @@ namespace Assets.Src.Domain.Model.Value
     /// <summary>
     /// 部分動作を表すモーション
     /// </summary>
-    public class MotionTip : Named, ITextSetStationeryValue, IDuplicatable<MotionTip>
+    public class MotionTip : ITextSetStationeryValue, IDuplicatable<MotionTip>
     {
-        public MotionTip(string name, Energy energy, int energyValue, Vector2? position = null)
-            : base(name)
+        public MotionTip(Energy energy, int energyValue, Vector2? position = null)
         {
             this.energy = energy;
             this.energyValue = energyValue;
             this.position = position ?? this.position;
         }
         public MotionTip(MotionTip origin, Vector2 position)
-            : this(origin.name, origin.energy, origin.energyValue, position)
+            : this(origin.energy, origin.energyValue, position)
         { }
 
         /// <summary>
@@ -63,9 +62,7 @@ namespace Assets.Src.Domain.Model.Value
         public TextAlignment alignment => TextAlignment.Center;
 
         public ulong hashCode
-            => (ulong)name.GetHashCode()
-            ^ (ulong)energy.GetHashCode()
-            ^ (ulong)energyValue.GetHashCode();
+            => (ulong)energy.GetHashCode() ^ (ulong)energyValue.GetHashCode();
 
         public MotionTip MemberwiseClonePublic() => (MotionTip)MemberwiseClone();
     }

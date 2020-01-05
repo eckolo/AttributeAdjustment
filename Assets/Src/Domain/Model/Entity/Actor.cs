@@ -8,10 +8,14 @@ namespace Assets.Src.Domain.Model.Entity
     /// <summary>
     /// 動作主体
     /// </summary>
-    public partial class Actor : Named, IViewKey, IDuplicatable<Actor>
+    public partial class Actor : IViewKey, IDuplicatable<Actor>
     {
-        public Actor(string name) : base(name)
-        { }
+        public Actor(string name)
+        {
+            this.name = name;
+        }
+
+        public string name { get; }
 
         /// <summary>
         /// 使用可能アビリティリスト
