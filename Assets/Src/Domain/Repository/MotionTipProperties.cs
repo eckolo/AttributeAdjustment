@@ -27,6 +27,8 @@ namespace Assets.Src.Domain.Repository
             {
                 { MotionTip.Destination.DECK, new Vector2(0, -2f) },
                 { MotionTip.Destination.BOARD, new Vector2(0, 0) },
+                { MotionTip.Destination.SELF, new Vector2(0, 0) },
+                { MotionTip.Destination.HAND, new Vector2(0, 5f) },
             };
     }
 }

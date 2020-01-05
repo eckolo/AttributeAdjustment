@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Assets.Src.Domain.Model.Entity
         /// <summary>
         /// 行動者毎の戦闘状態
         /// </summary>
-        public class State
+        public class State : ViewStateKey
         //TODO ビューオブジェクトの移動点をビューのルートで定義する
         {
             /// <summary>
@@ -32,6 +33,10 @@ namespace Assets.Src.Domain.Model.Entity
             /// 手札
             /// </summary>
             public List<MotionTip> handTips { get; protected set; }
+            /// <summary>
+            /// 表示位置
+            /// </summary>
+            public override Vector2 position { get; set; }
 
             /// <summary>
             /// 手札の追加

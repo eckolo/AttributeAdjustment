@@ -17,6 +17,14 @@ namespace Assets.Src.Domain.Model.Value
             /// <see cref="BattleState.boardTips"/>
             /// </summary>
             BOARD,
+            /// <summary>
+            /// <see cref="BattleActor.State.selfTips"/>
+            /// </summary>
+            SELF,
+            /// <summary>
+            /// <see cref="BattleActor.State.handTips"/>
+            /// </summary>
+            HAND,
         }
     }
 }

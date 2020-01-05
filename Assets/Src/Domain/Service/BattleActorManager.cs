@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Entity;
+﻿using Assets.Src.Domain.Factory;
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Repository;
 using System.Linq;
@@ -35,7 +36,9 @@ namespace Assets.Src.Domain.Service
             if(replenishment <= 0)
                 return state;
 
-            actor.state = actor.state.AddHandTips(state.PopDeckTipsForced(replenishment));
+            var addTips = state.PopDeckTipsForced(replenishment);
+            actor.state = actor.state.AddHandTips(addTips);
+            actor.state.SetTipMoving(addTips, MotionTip.Destination.HAND);
 
             return state;
         }
