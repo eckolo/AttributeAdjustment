@@ -61,7 +61,7 @@ namespace Assets.Src.Domain.Service
             state.SetViewActions(state.boardTips, ViewAction.Pattern.DELETE);
             var popedTips = state.PopDeckTips(tipNumbers);
             state.CleanupBoardTips(popedTips);
-            state.SetTipMoving(popedTips, BattleState.ActionTarget.BOARD);
+            state.SetTipMoving(popedTips, MotionTipDestination.BOARD);
 
             return state;
         }
