@@ -59,8 +59,9 @@ namespace Assets.Src.Domain.Service
                 return state;
 
             state.SetViewActions(state.boardTips, ViewAction.Pattern.DELETE);
-            state.CleanupBoardTips(state.PopDeckTips(tipNumbers));
-            state.SetNewView(state.boardTips);
+            var popedTips = state.PopDeckTips(tipNumbers);
+            state.CleanupBoardTips(popedTips);
+            state.SetTipMoving(popedTips, BattleState.ActionTarget.BOARD);
 
             return state;
         }
@@ -77,9 +78,6 @@ namespace Assets.Src.Domain.Service
                 .Select(_ => state.deckTips.Any() ? state.deckTips.Dequeue() : null)
                 .Where(tip => tip is MotionTip)
                 .ToList();
-
-            state.SetViewActions(popedTips, ViewAction.Pattern.DELETE);
-            state.SetNewView(popedTips);
 
             if(!state.deckTips.Any())
                 state.SetupDeck();

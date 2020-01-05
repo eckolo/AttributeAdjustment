@@ -319,6 +319,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var value2 = 5;
             var value3 = 2;
             var valueNew = 1;
+            var boardPosition = BattleState.ActionTarget.BOARD.GetCenterPosition();
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
@@ -333,58 +334,100 @@ namespace Assets.Editor.UnitTest.Domain.Service
             {
                 var resultViewAction = result.viewActionList[0];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[1];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[2];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[3];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[4];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[5];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[6];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             result.deckTips.IsNotNull();
             result.deckTips.Count.Is(value1 + value2 + value3 - Constants.Battle.DEFAULT_BOARD_TIP_NUMBERS);
@@ -410,6 +453,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var value2 = 1;
             var value3 = 2;
             var valueNew = 1;
+            var boardPosition = BattleState.ActionTarget.BOARD.GetCenterPosition();
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
@@ -432,50 +476,86 @@ namespace Assets.Editor.UnitTest.Domain.Service
             {
                 var resultViewAction = result.viewActionList[1];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[2];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[3];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[4];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[5];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[6];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             result.deckTips.IsNotNull();
             result.deckTips.Count.Is(valueNew);
@@ -521,6 +601,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var value2 = 1;
             var value3 = 6;
             var valueNew = 1;
+            var boardPosition = BattleState.ActionTarget.BOARD.GetCenterPosition();
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
@@ -536,34 +617,58 @@ namespace Assets.Editor.UnitTest.Domain.Service
             {
                 var resultViewAction = result.viewActionList[0];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[1];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[2];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[3];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             result.deckTips.IsNotNull();
             result.deckTips.Count.Is(value1 + value2 + value3 - tipNumbers);
@@ -586,6 +691,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var value2 = 1;
             var value3 = 2;
             var valueNew = 1;
+            var boardPosition = BattleState.ActionTarget.BOARD.GetCenterPosition();
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
@@ -609,50 +715,86 @@ namespace Assets.Editor.UnitTest.Domain.Service
             {
                 var resultViewAction = result.viewActionList[1];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[2];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[3];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip1.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip1.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip1.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip1.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[4];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip2.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip2.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip2.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip2.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[5];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             {
                 var resultViewAction = result.viewActionList[6];
                 resultViewAction.IsNotNull();
-                resultViewAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultViewAction.actionType.Is(ViewAction.Pattern.UPDATE);
                 resultViewAction.actor.hashCode.Is(tip3.hashCode);
-                resultViewAction.target.Is(default);
-                resultViewAction.easing.Is(default);
+                resultViewAction.target.IsNotNull();
+                ((MotionTip)resultViewAction.target).name.Is(tip3.name);
+                ((MotionTip)resultViewAction.target).energy.Is(tip3.energy);
+                ((MotionTip)resultViewAction.target).energyValue.Is(tip3.energyValue);
+                ((MotionTip)resultViewAction.target).position.Is(boardPosition);
+                resultViewAction.easing.IsNotNull();
+                resultViewAction.easing.pattern.Is(Easing.Pattern.Quadratic);
+                resultViewAction.easing.timeCoefficient.Is(1);
             }
             result.deckTips.IsNotNull();
             result.deckTips.Count.Is(valueNew);
