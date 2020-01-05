@@ -12,7 +12,7 @@ namespace Assets.Src.Domain.Model.Value
     /// <summary>
     /// 部分動作を表すモーション
     /// </summary>
-    public class MotionTip : ITextSetStationeryValue, IDuplicatable<MotionTip>
+    public partial class MotionTip : ITextSetStationeryValue, IDuplicatable<MotionTip>
     {
         public MotionTip(Energy energy, int energyValue, Vector2? position = null)
         {

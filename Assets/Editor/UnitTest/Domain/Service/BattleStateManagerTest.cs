@@ -319,7 +319,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var value2 = 5;
             var value3 = 2;
             var valueNew = 1;
-            var boardPosition = MotionTipDestination.BOARD.GetCenterPosition();
+            var boardPosition = MotionTip.Destination.BOARD.GetCenterPosition();
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
@@ -446,7 +446,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var value2 = 1;
             var value3 = 2;
             var valueNew = 1;
-            var boardPosition = MotionTipDestination.BOARD.GetCenterPosition();
+            var boardPosition = MotionTip.Destination.BOARD.GetCenterPosition();
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
@@ -588,7 +588,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var value2 = 1;
             var value3 = 6;
             var valueNew = 1;
-            var boardPosition = MotionTipDestination.BOARD.GetCenterPosition();
+            var boardPosition = MotionTip.Destination.BOARD.GetCenterPosition();
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };
@@ -674,7 +674,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var value2 = 1;
             var value3 = 2;
             var valueNew = 1;
-            var boardPosition = MotionTipDestination.BOARD.GetCenterPosition();
+            var boardPosition = MotionTip.Destination.BOARD.GetCenterPosition();
 
             var tipMap = new Dictionary<MotionTip, int> { { tip1, value1 }, { tip2, value2 }, { tip3, value3 } };
             var tipList = new List<MotionTip> { tip1, tip2, tip3 };

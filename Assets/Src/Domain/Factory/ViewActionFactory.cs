@@ -110,7 +110,7 @@ namespace Assets.Src.Domain.Factory
         public static TViewState SetTipMoving<TViewState>(
              this TViewState state,
              IEnumerable<MotionTip> tips,
-             MotionTipDestination target,
+             MotionTip.Destination target,
              Easing.Pattern easingPattern = Easing.Pattern.Quadratic)
              where TViewState : ViewStateKey
         {
