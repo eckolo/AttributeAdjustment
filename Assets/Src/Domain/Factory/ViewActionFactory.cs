@@ -101,18 +101,18 @@ namespace Assets.Src.Domain.Factory
         /// <summary>
         /// <see cref="MotionTip"/>の移動アクションを追加
         /// </summary>
-        /// <typeparam name="TBattleState">対象の画面表示状態型</typeparam>
+        /// <typeparam name="TViewState">対象の画面表示状態型</typeparam>
         /// <param name="state">追加対象状態オブジェクト</param>
         /// <param name="tips">追加されるパーツ群のパラメータリスト</param>
         /// <param name="target">アクションのパターン</param>
         /// <param name="easingPattern">アクション経過のイージングパターン</param>
         /// <returns>アクションの設定された状態オブジェクト</returns>
-        public static TBattleState SetTipMoving<TBattleState>(
-             this TBattleState state,
+        public static TViewState SetTipMoving<TViewState>(
+             this TViewState state,
              IEnumerable<MotionTip> tips,
              BattleState.ActionTarget target,
              Easing.Pattern easingPattern = Easing.Pattern.Quadratic)
-             where TBattleState : BattleState
+             where TViewState : ViewStateKey
         {
             var targetPosition = target.GetCenterPosition();
             var actionPattern = ViewAction.Pattern.UPDATE;

@@ -612,7 +612,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
-            var state = BattleStateMock.Generate();
+            var state = ViewStateKeyMock.Generate();
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.BOARD;
 
@@ -657,7 +657,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
-            var state = BattleStateMock.Generate(null, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.BOARD;
 
@@ -710,7 +710,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = BattleStateMock.Generate(new[] { viewOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.BOARD;
 
@@ -756,7 +756,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = BattleStateMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.BOARD;
 
@@ -808,7 +808,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
-            var state = BattleStateMock.Generate();
+            var state = ViewStateKeyMock.Generate();
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.DECK;
 
@@ -853,7 +853,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
-            var state = BattleStateMock.Generate(null, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.DECK;
 
@@ -906,7 +906,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = BattleStateMock.Generate(new[] { viewOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.DECK;
 
@@ -952,7 +952,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = BattleStateMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.DECK;
 
@@ -1004,7 +1004,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
-            var state = BattleStateMock.Generate();
+            var state = ViewStateKeyMock.Generate();
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.BOARD;
             var easing = Easing.Pattern.Cubic;
@@ -1050,7 +1050,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
-            var state = BattleStateMock.Generate(null, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.BOARD;
             var easing = Easing.Pattern.Cubic;
@@ -1104,7 +1104,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = BattleStateMock.Generate(new[] { viewOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.BOARD;
             var easing = Easing.Pattern.Cubic;
@@ -1151,7 +1151,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = BattleStateMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.BOARD;
             var easing = Easing.Pattern.Cubic;
@@ -1204,7 +1204,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
         {
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
-            var state = BattleStateMock.Generate();
+            var state = ViewStateKeyMock.Generate();
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.DECK;
             var easing = Easing.Pattern.Cubic;
@@ -1250,7 +1250,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
-            var state = BattleStateMock.Generate(null, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.DECK;
             var easing = Easing.Pattern.Cubic;
@@ -1304,7 +1304,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = BattleStateMock.Generate(new[] { viewOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.DECK;
             var easing = Easing.Pattern.Cubic;
@@ -1351,7 +1351,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
             var viewOrigin = IViewKeyMock.Generate(0);
-            var state = BattleStateMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
+            var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
             var actionTarget = BattleState.ActionTarget.DECK;
             var easing = Easing.Pattern.Cubic;
