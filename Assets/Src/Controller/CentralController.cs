@@ -1,7 +1,9 @@
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
 using Assets.Src.Infrastructure.Model.Entity;
 using Assets.Src.Infrastructure.Service;
 using System;
+using System.Collections.Generic;
 using UniRx.Async;
 using UnityEngine;
 
@@ -75,6 +77,15 @@ namespace Assets.Src.Controller
         {
             while(true)
             {
+                var list = new List<string> { "一富士", "二鷹", "三茄子", "四は無し" };
+                int? result;
+                using(var state = await list.Setup(1))
+                {
+                    await state.Choice(new KeyConfigs());
+                    result = state.choiced;
+                }
+
+                LogHub.DEBUG.LeaveLog($"{nameof(result)} = {result}", new FileManager());
                 LogHub.DEBUG.LeaveLog($"{gameFoundation.nowState} TurnByTurn", new FileManager());
                 await Wait.Until(120);
             }
