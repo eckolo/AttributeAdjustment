@@ -1,5 +1,5 @@
 using Assets.Src.Domain.Service;
-using Assets.Src.Mock;
+using Assets.Src.Mock.Model.Abstract;
 using NUnit.Framework;
 
 namespace Assets.Editor.UnitTest.Domain.Service

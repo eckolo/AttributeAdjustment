@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Src.Mock
+namespace Assets.Src.Mock.Model.Entity
 {
     public class ViewStateMock : ViewState
     {

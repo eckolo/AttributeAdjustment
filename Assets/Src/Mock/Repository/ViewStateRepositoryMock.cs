@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Src.Mock
+namespace Assets.Src.Mock.Repository
 {
     public class ViewStateRepositoryMock : IViewStateRepository
     {

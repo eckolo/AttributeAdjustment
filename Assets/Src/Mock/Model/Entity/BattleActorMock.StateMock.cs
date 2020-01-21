@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Src.Mock
+namespace Assets.Src.Mock.Model.Entity
 {
     public partial class BattleActorMock
     {

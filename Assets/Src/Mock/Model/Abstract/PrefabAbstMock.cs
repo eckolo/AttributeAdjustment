@@ -2,7 +2,7 @@
 using Assets.Src.View.Model.Abstract;
 using UnityEngine;
 
-namespace Assets.Src.Mock
+namespace Assets.Src.Mock.Model.Abstract
 {
     public class PrefabAbstMock : PrefabAbst
     {

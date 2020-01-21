@@ -1,6 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Value;
 
-namespace Assets.Src.Mock
+namespace Assets.Src.Mock.Model.Value
 {
     public class MotionTipMock : MotionTip
     {

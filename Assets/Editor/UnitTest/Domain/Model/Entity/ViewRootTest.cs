@@ -1,5 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Entity;
-using Assets.Src.Mock;
+using Assets.Src.Mock.Model.Entity;
 using Assets.Src.View.Factory;
 using Assets.Src.View.Model.Entity;
 using NUnit.Framework;

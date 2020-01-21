@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Src.Mock
+namespace Assets.Src.Mock.Model.Value
 {
     public class TextSetStationeryMock : ITextSetStationeryValue
     {

@@ -5,7 +5,7 @@ using Assets.Src.Domain.Model.Value;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Src.Mock
+namespace Assets.Src.Mock.Model.Entity
 {
     public class BattleStateMock : BattleState
     {

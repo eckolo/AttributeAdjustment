@@ -3,7 +3,7 @@ using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using System.Collections.Generic;
 
-namespace Assets.Src.Mock
+namespace Assets.Src.Mock.Model.Value
 {
     public class ViewActionMock : ViewAction
     {

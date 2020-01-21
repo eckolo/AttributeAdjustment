@@ -1,7 +1,7 @@
 ﻿using Assets.Src.Domain.Factory;
 using Assets.Src.Domain.Model.Entity;
 
-namespace Assets.Src.Mock
+namespace Assets.Src.Mock.Model.Entity
 {
     public partial class BattleActorMock : BattleActor
     {

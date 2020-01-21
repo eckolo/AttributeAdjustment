@@ -1,6 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Service;
-using Assets.Src.Mock;
+using Assets.Src.Mock.Model.Abstract;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
-﻿using Assets.Src.Mock;
+﻿using Assets.Src.Mock.Model.Abstract;
+using Assets.Src.Mock.Model.Entity;
 using NUnit.Framework;
 using UnityEngine;
 

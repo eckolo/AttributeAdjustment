@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Src.Mock
+namespace Assets.Src.Mock.Model.Abstract
 {
     public class IViewKeyMock : IViewKey, IEquatable<IViewKeyMock>
     {

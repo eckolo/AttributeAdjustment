@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Src.Mock
+namespace Assets.Src.Mock.Model.Entity
 {
     /// <summary>
     /// ユニットテスト用MonoBehaviour
