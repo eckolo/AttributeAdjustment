@@ -11,18 +11,18 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 装甲
         /// </summary>
-        public int armor { get; }
+        public int armor { get; protected set; }
         /// <summary>
         /// 機動力
         /// </summary>
-        public int speed { get; }
+        public int speed { get; protected set; }
         /// <summary>
         /// 武装スロット数
         /// </summary>
-        public int weaponSlot { get; }
+        public int weaponSlot { get; protected set; }
         /// <summary>
         /// 固定武装
         /// </summary>
-        public IEnumerable<Weapon> weapons { get; }
+        public IEnumerable<Weapon> weaponsFix { get; protected set; }
     }
 }

@@ -11,10 +11,10 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 火力
         /// </summary>
-        public int power { get; }
+        public int power { get; protected set; }
         /// <summary>
         /// 手札雛形
         /// </summary>
-        public Dictionary<MotionTip, int> defaultHandTipMap { get; }
+        public Dictionary<MotionTip, int> defaultHandTipMap { get; protected set; }
     }
 }

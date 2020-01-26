@@ -9,16 +9,20 @@
         { }
         public BattleActor(Actor origin) : base(origin.name)
         {
-            abilityList = origin.abilityList;
             experience = origin.experience;
             vitality = origin.vitality;
 
-            base.parameter = origin.parameter;
+            brain = origin.brain;
+            engine = origin.engine;
+            flame = origin.flame;
+
+            weaponsFree = origin.weaponsFree;
 
             _isPlayer = origin.isPlayer;
         }
 
-        public override Parameter parameter
+        public override Parameter parameter => parameterVariable;
+        public Parameter parameterVariable
         {
             get => base.parameter + _parameterAdjust;
             set => _parameterAdjust = value - base.parameter;

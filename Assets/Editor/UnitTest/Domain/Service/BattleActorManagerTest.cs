@@ -406,10 +406,9 @@ namespace Assets.Editor.UnitTest.Domain.Service
         [Test]
         public static void GetEnergyIncreaseTest()
         {
-            var actor = BattleActorMock.Generate(new Actor($"{nameof(Actor)}_{nameof(GetEnergyIncreaseTest)}")
-            {
-                parameter = new Actor.Parameter(0, 0, 0, speed: 12)
-            });
+            var actor = BattleActorMock.Generate(new Actor($"{nameof(Actor)}_{nameof(GetEnergyIncreaseTest)}"));
+            actor.parameterVariable = new Actor.Parameter(0, 0, 0, speed: 12);
+
             var tips = new[] {
                 MotionTipMock.Generate(Energy.DARKNESS, 1),
                 MotionTipMock.Generate(Energy.BLOW, 2),

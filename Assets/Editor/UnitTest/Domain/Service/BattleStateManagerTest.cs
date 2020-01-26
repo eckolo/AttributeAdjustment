@@ -1159,18 +1159,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var name1 = $"{nameof(UpdateEnergyTest_正常動作_行動力0)}_1";
             var name2 = $"{nameof(UpdateEnergyTest_正常動作_行動力0)}_2";
             var name3 = $"{nameof(UpdateEnergyTest_正常動作_行動力0)}_3";
-            var actor1 = BattleActorMock.Generate(new Actor(name1)
-            {
-                parameter = new Actor.Parameter(0, 0, 0, speed: 3)
-            });
-            var actor2 = BattleActorMock.Generate(new Actor(name2)
-            {
-                parameter = new Actor.Parameter(0, 0, 0, speed: 12)
-            });
-            var actor3 = BattleActorMock.Generate(new Actor(name3)
-            {
-                parameter = new Actor.Parameter(0, 0, 0, speed: 1)
-            });
+            var actor1 = BattleActorMock.Generate(new Actor(name1));
+            actor1.parameterVariable = new Actor.Parameter(0, 0, 0, speed: 3);
+            var actor2 = BattleActorMock.Generate(new Actor(name2));
+            actor2.parameterVariable = new Actor.Parameter(0, 0, 0, speed: 12);
+            var actor3 = BattleActorMock.Generate(new Actor(name3));
+            actor3.parameterVariable = new Actor.Parameter(0, 0, 0, speed: 1);
 
             var actorList = new[] { actor1, actor2, actor3 };
             var state = BattleStateMock.Generate(actorList);
@@ -1191,18 +1185,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var name1 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_正)}_1";
             var name2 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_正)}_2";
             var name3 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_正)}_3";
-            var actor1 = BattleActorMock.Generate(new Actor(name1)
-            {
-                parameter = new Actor.Parameter(0, 0, 0, speed: 3)
-            });
-            var actor2 = BattleActorMock.Generate(new Actor(name2)
-            {
-                parameter = new Actor.Parameter(0, 0, 0, speed: 12)
-            });
-            var actor3 = BattleActorMock.Generate(new Actor(name3)
-            {
-                parameter = new Actor.Parameter(0, 0, 0, speed: 1)
-            });
+            var actor1 = BattleActorMock.Generate(new Actor(name1));
+            actor1.parameterVariable = new Actor.Parameter(0, 0, 0, speed: 3);
+            var actor2 = BattleActorMock.Generate(new Actor(name2));
+            actor2.parameterVariable = new Actor.Parameter(0, 0, 0, speed: 12);
+            var actor3 = BattleActorMock.Generate(new Actor(name3));
+            actor3.parameterVariable = new Actor.Parameter(0, 0, 0, speed: 1);
             actor1.energy = 24;
             actor2.energy = 108;
             actor3.energy = 6;
@@ -1226,18 +1214,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var name1 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_負)}_1";
             var name2 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_負)}_2";
             var name3 = $"{nameof(UpdateEnergyTest_正常動作_行動力有_負)}_3";
-            var actor1 = BattleActorMock.Generate(new Actor(name1)
-            {
-                parameter = new Actor.Parameter(0, 0, 0, speed: 3)
-            });
-            var actor2 = BattleActorMock.Generate(new Actor(name2)
-            {
-                parameter = new Actor.Parameter(0, 0, 0, speed: 12)
-            });
-            var actor3 = BattleActorMock.Generate(new Actor(name3)
-            {
-                parameter = new Actor.Parameter(0, 0, 0, speed: 1)
-            });
+            var actor1 = BattleActorMock.Generate(new Actor(name1));
+            actor1.parameterVariable = new Actor.Parameter(0, 0, 0, speed: 3);
+            var actor2 = BattleActorMock.Generate(new Actor(name2));
+            actor2.parameterVariable = new Actor.Parameter(0, 0, 0, speed: 12);
+            var actor3 = BattleActorMock.Generate(new Actor(name3));
+            actor3.parameterVariable = new Actor.Parameter(0, 0, 0, speed: 1);
             actor1.energy = -24;
             actor2.energy = 108;
             actor3.energy = 6;
