@@ -2,6 +2,7 @@
 using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
+using Assets.Src.Mock.Model.Value;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,7 +26,7 @@ namespace Assets.Src.Mock.Model.Entity
         public static BattleStateMock Generate(IEnumerable<Actor> actiors, Dictionary<MotionTip, int> deckStationeryMap)
         {
             var battleActors = actiors?.Select(actor => actor.ToBattleActor()).ToArray();
-            var topography = new Topography(deckStationeryMap);
+            var topography = TopographyMock.Generate(deckStationeryMap);
 
             return new BattleStateMock(battleActors, topography);
         }
