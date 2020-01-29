@@ -321,18 +321,5 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
             result.IsNotNull();
             result.thisTimeActor.IsNull();
         }
-        [Test]
-        public static void SetThisTimeActorTest_行動者Null()
-        {
-            var name = $"{nameof(SetThisTimeActorTest_正常動作_行動者が状態に含まれる)}_1";
-            var actor = BattleActorMock.Generate(name);
-
-            var state = BattleStateMock.Generate((List<BattleActor>)null);
-
-            var result = state.SetThisTimeActor(actor);
-
-            result.IsNotNull();
-            result.thisTimeActor.IsNull();
-        }
     }
 }

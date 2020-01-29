@@ -23,9 +23,9 @@ namespace Assets.Src.Domain.Model.Entity
         public BattleState(IEnumerable<BattleActor> battleActors, Topography topography)
         {
             //戦闘者毎の戦闘状態初期化
-            this.battleActors = battleActors;
+            this.battleActors = battleActors ?? throw new ArgumentNullException(nameof(battleActors));
             //山札の雛形生成
-            this.topography = topography;
+            this.topography = topography ?? throw new ArgumentNullException(nameof(topography));
         }
 
         /// <summary>

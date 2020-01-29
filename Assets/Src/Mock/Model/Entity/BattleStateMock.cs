@@ -14,7 +14,7 @@ namespace Assets.Src.Mock.Model.Entity
            : base(battleActors, topography)
         { }
         BattleStateMock(IEnumerable<IViewKey> views, ViewAction[] viewActionQueue, bool? isGenerated)
-           : base(null, null)
+           : base(new List<BattleActor>(), new Topography())
         {
             this.isGenerated = isGenerated ?? this.isGenerated;
             foreach(var action in viewActionQueue ?? new ViewAction[] { })
@@ -31,7 +31,7 @@ namespace Assets.Src.Mock.Model.Entity
             return new BattleStateMock(battleActors, topography);
         }
         public static BattleStateMock Generate(IEnumerable<BattleActor> battleActors)
-            => new BattleStateMock(battleActors, null);
+            => new BattleStateMock(battleActors, new Topography());
         public static BattleStateMock Generate(Dictionary<MotionTip, int> deckStationeryMap)
             => Generate(new List<Actor>(), deckStationeryMap);
         public static BattleStateMock Generate()
