@@ -11,10 +11,10 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 山札雛形
         /// </summary>
-        public Dictionary<MotionTip, int> defaultDeckTipMap { get; protected set; }
+        public Dictionary<MotionTip, int> defaultDeckTipMap { get; protected set; } = new Dictionary<MotionTip, int>();
         /// <summary>
         /// 特性
         /// </summary>
-        public IEnumerable<Feature> features { get; protected set; }
+        public IEnumerable<Feature> features { get; protected set; } = Enumerable.Empty<Feature>();
     }
 }

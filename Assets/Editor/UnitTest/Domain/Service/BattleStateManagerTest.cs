@@ -158,26 +158,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultDeckTips.Count.Is(0);
             }
         }
-        [Test]
-        public static void SetupDeckTest_元データがNull()
-        {
-            var state = BattleStateMock.Generate((Dictionary<MotionTip, int>)null);
-
-            var result = state.SetupDeck();
-            result.IsNotNull();
-            result.IsSameReferenceAs(state);
-            {
-                var resultViewActionList = result.viewActionList;
-                resultViewActionList.IsNotNull();
-                resultViewActionList.Count.Is(0);
-            }
-            {
-                var resultDeckTips = result.deckTips;
-
-                resultDeckTips.IsNotNull();
-                resultDeckTips.Count.Is(0);
-            }
-        }
 
         [Test]
         public static void PopDeckTipsForcedTest_通常処理_山札数が取り出し数より大きい()
@@ -1249,16 +1229,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.battleActors.Count().Is(0);
         }
         [Test]
-        public static void UpdateEnergyTest_行動者Null()
-        {
-            var state = BattleStateMock.Generate((List<BattleActor>)null);
-
-            var result = state.UpdateEnergy();
-
-            result.IsNotNull();
-            result.battleActors.IsNull();
-        }
-        [Test]
         public static void UpdateEnergyTest_状態Null()
         {
             var result = BattleStateManager.UpdateEnergy(null);
@@ -1312,16 +1282,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
         public static void SetNextActorTest_行動者無し()
         {
             var state = BattleStateMock.Generate(new BattleActor[] { });
-
-            var result = state.SetNextActor();
-
-            result.IsNotNull();
-            result.thisTimeActor.IsNull();
-        }
-        [Test]
-        public static void SetNextActorTest_行動者Null()
-        {
-            var state = BattleStateMock.Generate((List<BattleActor>)null);
 
             var result = state.SetNextActor();
 

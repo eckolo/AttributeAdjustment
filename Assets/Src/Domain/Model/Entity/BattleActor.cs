@@ -1,4 +1,6 @@
-﻿namespace Assets.Src.Domain.Model.Entity
+﻿using System;
+
+namespace Assets.Src.Domain.Model.Entity
 {
     /// <summary>
     /// 戦闘処理時の行動主体
@@ -12,9 +14,9 @@
             experience = origin.experience;
             vitality = origin.vitality;
 
-            brain = origin.brain;
-            engine = origin.engine;
-            flame = origin.flame;
+            brain = origin.brain ?? throw new ArgumentNullException(nameof(origin.brain));
+            engine = origin.engine ?? throw new ArgumentNullException(nameof(origin.engine));
+            flame = origin.flame ?? throw new ArgumentNullException(nameof(origin.flame));
 
             weaponsFree = origin.weaponsFree;
 

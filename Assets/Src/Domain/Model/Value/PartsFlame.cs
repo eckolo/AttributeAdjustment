@@ -23,6 +23,6 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 固定武装
         /// </summary>
-        public IEnumerable<Weapon> weaponsFix { get; protected set; }
+        public IEnumerable<Weapon> weaponsFix { get; protected set; } = Enumerable.Empty<Weapon>();
     }
 }

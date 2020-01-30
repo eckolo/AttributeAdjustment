@@ -15,6 +15,6 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 手札雛形
         /// </summary>
-        public Dictionary<MotionTip, int> defaultHandTipMap { get; protected set; }
+        public Dictionary<MotionTip, int> defaultHandTipMap { get; protected set; } = new Dictionary<MotionTip, int>();
     }
 }
