@@ -2,6 +2,7 @@
 using Assets.Src.Domain.Factory;
 using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Value;
+using Assets.Src.Domain.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,13 @@ namespace Assets.Src.Domain.Model.Entity
         /// 山札の雛形
         /// チップの種別+枚数
         /// </summary>
-        public Dictionary<MotionTip, int> deckStationeryMap => topography.baseTipSet;
+        public Dictionary<MotionTip, int> deckStationeryMap => battleActors
+            .SelectMany(actor => actor.brain.defaultDeckTipMap)
+            .Concat(topography.baseTipSet)
+            .GroupBy(pair => pair.Key, pair => pair.Value)
+            .Select(pairs => (pairs.Key, sum: pairs.Sum()))
+            .Where(pair => pair.sum > 0)
+            .ToDictionary(pair => pair.Key, pair => pair.sum);
 
         /// <summary>
         /// 山札

@@ -16,6 +16,8 @@ namespace Assets.Src.Mock.Model.Value
             Dictionary<MotionTip, int> defaultDeckTipMap,
             IEnumerable<Feature> features)
             => new PartsBrainMock(defaultDeckTipMap, features);
+        public static PartsBrainMock Generate(Dictionary<MotionTip, int> defaultDeckTipMap)
+            => new PartsBrainMock(defaultDeckTipMap, Enumerable.Empty<Feature>());
         public static PartsBrainMock Generate()
             => new PartsBrainMock(new Dictionary<MotionTip, int>(), Enumerable.Empty<Feature>());
     }

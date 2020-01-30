@@ -4,6 +4,7 @@ using Assets.Src.Domain.Service;
 using Assets.Src.Mock.Model.Entity;
 using Assets.Src.Mock.Model.Value;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,111 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
     /// </summary>
     public static class BattleStateTest
     {
+        [Test]
+        public static void GetDeckStationeryMapTest_通常処理()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var tip4 = MotionTipMock.Generate(Energy.ICE, 10);
+            var tipMap1 = new Dictionary<MotionTip, int> { { tip1, 2 }, { tip2, 1 } };
+            var tipMap2 = new Dictionary<MotionTip, int> { { tip3, 3 } };
+            var tipMap3 = new Dictionary<MotionTip, int> { { tip2, 1 }, { tip3, 3 }, { tip4, 2 } };
+            var actor1 = BattleActorMock.Generate(tipMap1);
+            var actor2 = BattleActorMock.Generate(tipMap2);
+            var topography = TopographyMock.Generate(tipMap3);
+            var actorList = new List<BattleActorMock> { actor1, actor2 };
+
+            var result = new BattleState(actorList, topography)?.deckStationeryMap;
+
+            result.IsNotNull();
+            result.Count().Is(4);
+            result.ContainsKey(tip1).IsTrue();
+            result.ContainsKey(tip2).IsTrue();
+            result.ContainsKey(tip3).IsTrue();
+            result.ContainsKey(tip4).IsTrue();
+            result[tip1].Is(2);
+            result[tip2].Is(1 + 1);
+            result[tip3].Is(3 + 3);
+            result[tip4].Is(2);
+        }
+        [Test]
+        public static void GetDeckStationeryMapTest_行動者無し()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var tip4 = MotionTipMock.Generate(Energy.ICE, 10);
+            var tipMap1 = new Dictionary<MotionTip, int> { { tip1, 2 }, { tip2, 1 } };
+            var tipMap2 = new Dictionary<MotionTip, int> { { tip3, 3 } };
+            var tipMap3 = new Dictionary<MotionTip, int> { { tip2, 1 }, { tip3, 3 }, { tip4, 2 } };
+            var actor1 = BattleActorMock.Generate(tipMap1);
+            var actor2 = BattleActorMock.Generate(tipMap2);
+            var topography = TopographyMock.Generate(tipMap3);
+            var actorList = new List<BattleActorMock>();
+
+            var result = new BattleState(actorList, topography)?.deckStationeryMap;
+
+            result.IsNotNull();
+            result.Count().Is(3);
+            result.ContainsKey(tip2).IsTrue();
+            result.ContainsKey(tip3).IsTrue();
+            result.ContainsKey(tip4).IsTrue();
+            result[tip2].Is(1);
+            result[tip3].Is(3);
+            result[tip4].Is(2);
+        }
+        [Test]
+        public static void GetDeckStationeryMapTest_地形の要素が空()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var tip4 = MotionTipMock.Generate(Energy.ICE, 10);
+            var tipMap1 = new Dictionary<MotionTip, int> { { tip1, 2 }, { tip2, 1 } };
+            var tipMap2 = new Dictionary<MotionTip, int> { { tip3, 3 } };
+            var tipMap3 = new Dictionary<MotionTip, int> { };
+            var actor1 = BattleActorMock.Generate(tipMap1);
+            var actor2 = BattleActorMock.Generate(tipMap2);
+            var topography = TopographyMock.Generate(tipMap3);
+            var actorList = new List<BattleActorMock> { actor1, actor2 };
+
+            var result = new BattleState(actorList, topography)?.deckStationeryMap;
+
+            result.IsNotNull();
+            result.Count().Is(3);
+            result.ContainsKey(tip1).IsTrue();
+            result.ContainsKey(tip2).IsTrue();
+            result.ContainsKey(tip3).IsTrue();
+            result[tip1].Is(2);
+            result[tip2].Is(1);
+            result[tip3].Is(3);
+        }
+        [Test]
+        public static void GetDeckStationeryMapTest_通常処理_0以下の値()
+        {
+            var tip1 = MotionTipMock.Generate(Energy.DARKNESS, 10);
+            var tip2 = MotionTipMock.Generate(Energy.LIFE, 40);
+            var tip3 = MotionTipMock.Generate(Energy.WIND, 20);
+            var tip4 = MotionTipMock.Generate(Energy.ICE, 10);
+            var tipMap1 = new Dictionary<MotionTip, int> { { tip1, 2 }, { tip2, -1 } };
+            var tipMap2 = new Dictionary<MotionTip, int> { { tip3, 3 } };
+            var tipMap3 = new Dictionary<MotionTip, int> { { tip2, 1 }, { tip3, 3 }, { tip4, -2 } };
+            var actor1 = BattleActorMock.Generate(tipMap1);
+            var actor2 = BattleActorMock.Generate(tipMap2);
+            var topography = TopographyMock.Generate(tipMap3);
+            var actorList = new List<BattleActorMock> { actor1, actor2 };
+
+            var result = new BattleState(actorList, topography)?.deckStationeryMap;
+
+            result.IsNotNull();
+            result.Count().Is(2);
+            result.ContainsKey(tip1).IsTrue();
+            result.ContainsKey(tip3).IsTrue();
+            result[tip1].Is(2);
+            result[tip3].Is(3 + 3);
+        }
+
         [Test]
         public static void CleanupDeckTipsTest_通常処理()
         {
