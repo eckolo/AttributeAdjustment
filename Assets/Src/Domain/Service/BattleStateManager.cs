@@ -126,7 +126,7 @@ namespace Assets.Src.Domain.Service
                 return state;
 
             foreach(var actor in state.battleActors)
-                actor.state = actor.state.ClearHandTips().AddHandTips(state.PopDeckTipsForced(tipNumbers));
+                actor.ReloadHandTips();
 
             return state;
         }

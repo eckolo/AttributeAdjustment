@@ -2,6 +2,7 @@
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Repository;
+using System;
 using System.Linq;
 
 namespace Assets.Src.Domain.Service
@@ -12,35 +13,20 @@ namespace Assets.Src.Domain.Service
     public static class BattleActorManager
     {
         /// <summary>
-        /// 手札の補充
-        /// 所定の枚数以上になるまで補充する
+        /// 手札の初期化
         /// </summary>
-        /// <param name="state">手札補充対象の戦闘状態</param>
-        /// <param name="actor">手札補充元の動作主体</param>
-        /// <param name="tipNumbers">補充後の手札枚数</param>
-        /// <returns>所定の動作主体の手札が初期化された戦闘状態</returns>
-        public static BattleState ReloadHandTips(
-            this BattleState state,
-            BattleActor actor,
-            int tipNumbers = Constants.Battle.DEFAULT_HAND_TIP_NUMBERS)
+        /// <param name="actor">手札初期化対象の戦闘者</param>
+        /// <returns>手札の初期化された戦闘者</returns>
+        public static BattleActor ReloadHandTips(this BattleActor actor)
         {
-            if(state is null)
-                return state;
             if(actor is null)
-                return state;
+                throw new ArgumentNullException(nameof(actor));
 
-            if(!state.battleActors.Contains(actor))
-                return state;
-
-            var replenishment = tipNumbers - actor.state.handTips.Count;
-            if(replenishment <= 0)
-                return state;
-
-            var addTips = state.PopDeckTipsForced(replenishment);
-            actor.state = actor.state.AddHandTips(addTips);
+            var addTips = actor.engine.defaultHandTipMap.Embody();
+            actor.state = actor.state.ClearHandTips().AddHandTips(addTips);
             actor.state.SetTipMoving(addTips, MotionTip.Destination.HAND);
 
-            return state;
+            return actor;
         }
 
         /// <summary>

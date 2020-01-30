@@ -38,14 +38,19 @@ namespace Assets.Src.Mock.Model.Entity
                 flame = flameMock,
             };
         }
-        public static BattleActorMock Generate(Dictionary<MotionTip, int> defaultDeckTipMap)
+        public static BattleActorMock Generate(
+            Dictionary<MotionTip, int> defaultDeckTipMap = null,
+            Dictionary<MotionTip, int> defaultHandTipMap = null)
         {
-            var brainMock = PartsBrainMock.Generate(defaultDeckTipMap: defaultDeckTipMap);
+            var brainMock = PartsBrainMock
+                .Generate(defaultDeckTipMap: defaultDeckTipMap ?? new Dictionary<MotionTip, int>());
+            var engineMock = PartsEngineMock
+                .Generate(defaultHandTipMap: defaultHandTipMap ?? new Dictionary<MotionTip, int>());
 
             return new BattleActorMock(nameof(BattleActorMock))
             {
                 brain = brainMock,
-                engine = new PartsEngine(),
+                engine = engineMock,
                 flame = new PartsFlame(),
             };
         }

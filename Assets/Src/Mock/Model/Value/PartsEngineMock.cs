@@ -15,6 +15,8 @@ namespace Assets.Src.Mock.Model.Value
             => new PartsEngineMock(power, defaultHandTipMap);
         public static PartsEngineMock Generate(int power)
             => new PartsEngineMock(power, new Dictionary<MotionTip, int>());
+        public static PartsEngineMock Generate(Dictionary<MotionTip, int> defaultHandTipMap)
+            => new PartsEngineMock(default, defaultHandTipMap);
         public static PartsEngineMock Generate()
             => new PartsEngineMock(default, new Dictionary<MotionTip, int>());
     }
