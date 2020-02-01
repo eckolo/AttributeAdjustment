@@ -2,6 +2,7 @@
 using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -118,12 +119,10 @@ namespace Assets.Src.Domain.Service
         /// <param name="state">手札初期化対象の戦闘状態</param>
         /// <param name="tipNumbers">初期化手札枚数</param>
         /// <returns></returns>
-        public static BattleState SetupAllHandTips(
-            this BattleState state,
-            int tipNumbers = Constants.Battle.DEFAULT_HAND_TIP_NUMBERS)
+        public static BattleState SetupAllHandTips(this BattleState state)
         {
             if(state is null)
-                return state;
+                throw new ArgumentNullException(nameof(state));
 
             foreach(var actor in state.battleActors)
                 actor.ReloadHandTips();
