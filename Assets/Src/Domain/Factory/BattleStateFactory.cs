@@ -15,7 +15,7 @@ namespace Assets.Src.Domain.Factory
             var actiors = enemys.Concat(new[] { state.player }).Select(actor => actor.ToBattleActor()).ToArray();
 
             var battleState = new BattleState(actiors, topography);
-            state.viewActionList.Add(state.ToViewAction(ViewAction.Pattern.GENERATE));
+            battleState.viewActionList.Add(battleState.ToViewAction(ViewAction.Pattern.GENERATE));
 
             return battleState;
         }
