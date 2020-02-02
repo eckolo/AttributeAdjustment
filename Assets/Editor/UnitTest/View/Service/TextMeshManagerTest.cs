@@ -1,5 +1,7 @@
-﻿using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Mock.Model.Entity;
+using Assets.Src.Mock.Model.Value;
 using Assets.Src.View.Factory;
 using Assets.Src.View.Service;
 using NUnit.Framework;
@@ -24,13 +26,13 @@ namespace Assets.Editor.UnitTest.View.Service
             var positionOrigin = new Vector2(-1, 3);
             var textUpdated = "textUpdated";
             var positionUpdated = new Vector2(3, -12);
-            var key = new TextMeshKey(textOrigin, positionOrigin);
+            var key = TextMeshKeyMock.Generate(textOrigin, positionOrigin);
 
             var result = viewState.SetText(key).UpdateText(key, textUpdated, positionUpdated);
             result.IsNotNull();
             result.IsSameReferenceAs(viewState);
 
-            var resultTextMesh = result.Search<TextMeshKey, TextMesh>(key);
+            var resultTextMesh = result.Search<ITextMeshKey, TextMesh>(key);
             resultTextMesh.IsNotNull();
             resultTextMesh.name.Contains(textOrigin).IsTrue();
             resultTextMesh.text.Is(textUpdated);
@@ -48,13 +50,13 @@ namespace Assets.Editor.UnitTest.View.Service
             var textOrigin = "textOrigin";
             var positionOrigin = new Vector2(-1, 3);
             var textUpdated = "textUpdated";
-            var key = new TextMeshKey(textOrigin, positionOrigin);
+            var key = TextMeshKeyMock.Generate(textOrigin, positionOrigin);
 
             var result = viewState.SetText(key).UpdateText(key, textUpdated);
             result.IsNotNull();
             result.IsSameReferenceAs(viewState);
 
-            var resultTextMesh = result.Search<TextMeshKey, TextMesh>(key);
+            var resultTextMesh = result.Search<ITextMeshKey, TextMesh>(key);
             resultTextMesh.IsNotNull();
             resultTextMesh.name.Contains(textOrigin).IsTrue();
             resultTextMesh.text.Is(textUpdated);
@@ -72,13 +74,13 @@ namespace Assets.Editor.UnitTest.View.Service
             var textOrigin = "textOrigin";
             var positionOrigin = new Vector2(-1, 3);
             var positionUpdated = new Vector2(3, -12);
-            var key = new TextMeshKey(textOrigin, positionOrigin);
+            var key = TextMeshKeyMock.Generate(textOrigin, positionOrigin);
 
             var result = viewState.SetText(key).UpdateText(key, positionUpdated);
             result.IsNotNull();
             result.IsSameReferenceAs(viewState);
 
-            var resultTextMesh = result.Search<TextMeshKey, TextMesh>(key);
+            var resultTextMesh = result.Search<ITextMeshKey, TextMesh>(key);
             resultTextMesh.IsNotNull();
             resultTextMesh.name.Contains(textOrigin).IsTrue();
             resultTextMesh.text.Is(textOrigin);
@@ -97,13 +99,13 @@ namespace Assets.Editor.UnitTest.View.Service
             var positionOrigin = new Vector2(-1, 3);
             var textUpdated = "textUpdated";
             var positionUpdated = new Vector2(3, -12);
-            var key = new TextMeshKey(textOrigin, positionOrigin);
+            var key = TextMeshKeyMock.Generate(textOrigin, positionOrigin);
 
             var result = viewState.UpdateText(key, textUpdated, positionUpdated);
             result.IsNotNull();
             result.IsSameReferenceAs(viewState);
 
-            var resultTextMesh = result.Search<TextMeshKey, TextMesh>(key);
+            var resultTextMesh = result.Search<ITextMeshKey, TextMesh>(key);
             resultTextMesh.IsNull();
         }
         [Test]
@@ -114,7 +116,7 @@ namespace Assets.Editor.UnitTest.View.Service
             var positionOrigin = new Vector2(-1, 3);
             var textUpdated = "textUpdated";
             var positionUpdated = new Vector2(3, -12);
-            var key = new TextMeshKey(textOrigin, positionOrigin);
+            var key = TextMeshKeyMock.Generate(textOrigin, positionOrigin);
 
             Assert.Throws<ArgumentNullException>(() => viewState.UpdateText(key, textUpdated, positionUpdated));
         }

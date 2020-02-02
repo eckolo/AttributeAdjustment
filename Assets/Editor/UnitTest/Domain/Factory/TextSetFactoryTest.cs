@@ -193,7 +193,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
         public static void SetTextSetTest_単一生成_雛形から生成()
         {
             var texts = Enumerable.Range(1, 3)
-                .Select(index => new TextMeshKey($"{nameof(SetTextSetTest_単一生成_雛形から生成)}_{index}", new Vector2(0, index)));
+                .Select(index => TextMeshKeyMock.Generate($"{nameof(SetTextSetTest_単一生成_雛形から生成)}_{index}", new Vector2(0, index)));
             var position = new Vector2(2, -4);
             var size = 0.6f;
             var color = Color.green;
@@ -239,7 +239,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
         public static void SetTextSetTest_雛形から生成_複数生成_雛形から生成()
         {
             var texts = Enumerable.Range(1, 3)
-                .Select(index => new TextMeshKey($"{nameof(SetTextSetTest_雛形から生成_複数生成_雛形から生成)}_{index}", new Vector2(0, index)));
+                .Select(index => TextMeshKeyMock.Generate($"{nameof(SetTextSetTest_雛形から生成_複数生成_雛形から生成)}_{index}", new Vector2(0, index)));
             var textSetName = $"{nameof(SetTextSetTest_雛形から生成_複数生成_雛形から生成)}_1 {nameof(SetTextSetTest_雛形から生成_複数生成_雛形から生成)}_2 {nameof(SetTextSetTest_雛形から生成_複数生成_雛形から生成)}_3";
             var position = new Vector2(2, -4);
             var size = 0.6f;

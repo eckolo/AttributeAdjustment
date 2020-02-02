@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.View.Model.Entity;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Assets.Src.Mock.Model.Value
 {
     public class TextMeshValueMock : ITextMeshValue
     {
-        TextMeshValueMock(IEnumerable<TextMeshKey> texts, float size, Color32 color, TextAlignment alignment)
+        TextMeshValueMock(IEnumerable<ITextMeshKey> texts, float size, Color32 color, TextAlignment alignment)
         {
             this.texts = texts ?? throw new ArgumentNullException(nameof(texts));
             this.size = size;
@@ -16,7 +17,7 @@ namespace Assets.Src.Mock.Model.Value
             this.alignment = alignment;
         }
 
-        public IEnumerable<TextMeshKey> texts { get; }
+        public IEnumerable<ITextMeshKey> texts { get; }
 
         public float size { get; }
 
@@ -24,7 +25,7 @@ namespace Assets.Src.Mock.Model.Value
 
         public TextAlignment alignment { get; }
 
-        public static TextMeshValueMock Generate(IEnumerable<TextMeshKey> texts, float size, Color32 color, TextAlignment alignment) => new TextMeshValueMock(texts, size, color, alignment);
+        public static TextMeshValueMock Generate(IEnumerable<ITextMeshKey> texts, float size, Color32 color, TextAlignment alignment) => new TextMeshValueMock(texts, size, color, alignment);
 
         public TextSet InitializeEntity(Component parent, Vector2 localPosition)
         {

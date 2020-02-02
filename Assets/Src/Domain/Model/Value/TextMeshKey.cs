@@ -38,5 +38,20 @@ namespace Assets.Src.Domain.Model.Value
         public Vector2 position => _position;
 
         public ulong hashCode => (ulong)_text.GetHashCode() ^ (ulong)_position.GetHashCode();
+
+        /// <summary>
+        /// 文字サイズ
+        /// </summary>
+        public float size => Constants.Texts.CHAR_SIZE;
+
+        /// <summary>
+        /// 文字色
+        /// </summary>
+        public Color32 color => default;
+
+        /// <summary>
+        /// 文字の左右詰め
+        /// </summary>
+        public TextAlignment alignment => TextAlignment.Center;
     }
 }

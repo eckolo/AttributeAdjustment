@@ -16,5 +16,20 @@ namespace Assets.Src.Domain.Model.Abstract
         /// 表示文字列
         /// </summary>
         string text { get; }
+
+        /// <summary>
+        /// 文字サイズ
+        /// </summary>
+        float size { get; }
+
+        /// <summary>
+        /// 文字色
+        /// </summary>
+        Color32 color { get; }
+
+        /// <summary>
+        /// 文字の左右詰め
+        /// </summary>
+        TextAlignment alignment { get; }
     }
 }

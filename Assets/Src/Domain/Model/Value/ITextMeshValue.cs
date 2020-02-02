@@ -12,7 +12,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 表示テキスト情報一覧
         /// </summary>
-        IEnumerable<TextMeshKey> texts { get; }
+        IEnumerable<ITextMeshKey> texts { get; }
 
         /// <summary>
         /// 文字サイズ
