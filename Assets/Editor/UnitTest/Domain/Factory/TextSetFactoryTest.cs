@@ -198,7 +198,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var size = 0.6f;
             var color = Color.green;
             var alignment = TextAlignment.Right;
-            var stationery = TextSetStationeryMock.Generate(texts, size, color, alignment);
+            var stationery = TextMeshValueMock.Generate(texts, size, color, alignment);
 
             var textSet = view.SetTextSet(stationery, position);
 
@@ -245,7 +245,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var size = 0.6f;
             var color = Color.green;
             var alignment = TextAlignment.Right;
-            var stationery = TextSetStationeryMock.Generate(texts, size, color, alignment);
+            var stationery = TextMeshValueMock.Generate(texts, size, color, alignment);
 
             var textSet1 = view.SetTextSet(stationery, position);
             {

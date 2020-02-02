@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace Assets.Src.Mock.Model.Value
 {
-    public class TextSetStationeryMock : ITextSetStationeryValue
+    public class TextMeshValueMock : ITextMeshValue
     {
-        TextSetStationeryMock(IEnumerable<TextMeshKey> texts, float size, Color32 color, TextAlignment alignment)
+        TextMeshValueMock(IEnumerable<TextMeshKey> texts, float size, Color32 color, TextAlignment alignment)
         {
             this.texts = texts ?? throw new ArgumentNullException(nameof(texts));
             this.size = size;
@@ -24,7 +24,7 @@ namespace Assets.Src.Mock.Model.Value
 
         public TextAlignment alignment { get; }
 
-        public static TextSetStationeryMock Generate(IEnumerable<TextMeshKey> texts, float size, Color32 color, TextAlignment alignment) => new TextSetStationeryMock(texts, size, color, alignment);
+        public static TextMeshValueMock Generate(IEnumerable<TextMeshKey> texts, float size, Color32 color, TextAlignment alignment) => new TextMeshValueMock(texts, size, color, alignment);
 
         public TextSet InitializeEntity(Component parent, Vector2 localPosition)
         {
