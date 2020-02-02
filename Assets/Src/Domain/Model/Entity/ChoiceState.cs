@@ -65,7 +65,7 @@ namespace Assets.Src.Domain.Model.Entity
         }
         bool _isFinished = false;
 
-        public TextMeshKey choiceText { get; set; }
+        public ITextMeshKey choiceText { get; set; }
 
         public override Vector2 position { get; set; }
 

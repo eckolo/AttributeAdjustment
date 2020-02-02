@@ -9,7 +9,7 @@ namespace Assets.Src.Domain.Model.Value
     /// <see cref="TextSet"/>内の<see cref="TextMesh"/>クラス雛形
     /// </summary>
     [Serializable]
-    public class TextMeshKey : IViewKey
+    public class TextMeshKey : ITextMeshKey
     {
         public TextMeshKey(string text, Vector2? position = null)
         {

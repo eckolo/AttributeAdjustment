@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.View.Factory;
 using Assets.Src.View.Model.Entity;
 using System;
@@ -17,7 +18,7 @@ namespace Assets.Src.View.Service
     {
         public static TViewState UpdateText<TViewState>(
             this TViewState state,
-            TextMeshKey key,
+            ITextMeshKey key,
             string text,
             Vector2? position = null)
             where TViewState : ViewState
@@ -25,7 +26,7 @@ namespace Assets.Src.View.Service
             if(state is null)
                 throw new ArgumentNullException(nameof(state));
 
-            var origin = state.Search<TextMeshKey, TextMesh>(key);
+            var origin = state.Search<ITextMeshKey, TextMesh>(key);
             if(origin is null)
                 return state;
 
@@ -37,7 +38,7 @@ namespace Assets.Src.View.Service
         }
         public static TViewState UpdateText<TViewState>(
             this TViewState state,
-            TextMeshKey key,
+            ITextMeshKey key,
             Vector2 position)
             where TViewState : ViewState
             => state.UpdateText(key, null, position);
@@ -62,13 +63,13 @@ namespace Assets.Src.View.Service
             return origin;
         }
 
-        public static TViewState DestroyText<TViewState>(this TViewState state, TextMeshKey key)
+        public static TViewState DestroyText<TViewState>(this TViewState state, ITextMeshKey key)
             where TViewState : ViewState
         {
             if(state is null)
                 throw new ArgumentNullException(nameof(state));
 
-            var target = state.Search<TextMeshKey, TextMesh>(key);
+            var target = state.Search<ITextMeshKey, TextMesh>(key);
             if(target is null)
                 return state;
 

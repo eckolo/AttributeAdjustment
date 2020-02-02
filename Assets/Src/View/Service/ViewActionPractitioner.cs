@@ -78,7 +78,7 @@ namespace Assets.Src.View.Service
                 case TViewStateKey viewStateKey:
                     repository.GenerateViewState(viewStateKey);
                     return stateKey;
-                case TextMeshKey textMeshStationery:
+                case ITextMeshKey textMeshStationery:
                     repository.Search(stateKey).SetText(textMeshStationery);
                     return stateKey;
                 default:
@@ -94,10 +94,10 @@ namespace Assets.Src.View.Service
         {
             switch(action.actor)
             {
-                case TextMeshKey actor:
+                case ITextMeshKey actor:
                     switch(action.target)
                     {
-                        case TextMeshKey target:
+                        case ITextMeshKey target:
                             repository.Search(stateKey).UpdateText(actor, target.text, target.position);
                             return stateKey;
                         default:
@@ -119,7 +119,7 @@ namespace Assets.Src.View.Service
                 case TViewStateKey viewStateKey:
                     repository.Search(stateKey).Destroy();
                     return stateKey;
-                case TextMeshKey textMeshStationery:
+                case ITextMeshKey textMeshStationery:
                     repository.Search(stateKey).DestroyText(textMeshStationery);
                     return stateKey;
                 default:

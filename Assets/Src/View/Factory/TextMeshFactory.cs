@@ -1,4 +1,5 @@
-﻿using Assets.Src.Domain.Model.Value;
+﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.View.Model.Entity;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace Assets.Src.View.Factory
         /// <param name="state">設定先のビュールート</param>
         /// <param name="stationery">テキスト情報</param>
         /// <returns>設定されたビュールート</returns>
-        public static TViewState SetText<TViewState>(this TViewState state, TextMeshKey stationery)
+        public static TViewState SetText<TViewState>(this TViewState state, ITextMeshKey stationery)
             where TViewState : ViewState
         {
             var nameModel = stationery.text;
