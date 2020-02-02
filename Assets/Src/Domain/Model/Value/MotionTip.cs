@@ -12,13 +12,15 @@ namespace Assets.Src.Domain.Model.Value
     /// <summary>
     /// 部分動作を表すモーション
     /// </summary>
-    public partial class MotionTip : ITextMeshValue, IDuplicatable<MotionTip>
+    public partial class MotionTip : ITextMeshKey, IDuplicatable<MotionTip>
     {
         public MotionTip(Energy energy, int energyValue, Vector2? position = null)
         {
             this.energy = energy;
             this.energyValue = energyValue;
             this.position = position ?? this.position;
+
+            text = $"{energy.GetName()}\r\n{energyValue.ToString()}";
         }
         public MotionTip(MotionTip origin, Vector2 position)
             : this(origin.energy, origin.energyValue, position)
@@ -38,13 +40,9 @@ namespace Assets.Src.Domain.Model.Value
         public Vector2 position { get; } = Vector2.zero;
 
         /// <summary>
-        /// 表示テキスト情報一覧
+        /// 表示テキスト
         /// </summary>
-        public IEnumerable<TextMeshKey> texts => new[]
-        {
-            new TextMeshKey(energy.GetName(), new Vector2(0, -0.2f)),
-            new TextMeshKey(energyValue.ToString(), new Vector2(0, 0.2f)),
-        };
+        public string text { get; }
 
         /// <summary>
         /// 文字サイズ
