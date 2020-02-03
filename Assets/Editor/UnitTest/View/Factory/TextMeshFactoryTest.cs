@@ -34,8 +34,15 @@ namespace Assets.Editor.UnitTest.View.Factory
             textObj.IsNotNull();
             textObj.gameObject.name.Is(text);
             textObj.text.Is(text);
+            textObj.color.Is(color);
+            textObj.characterSize.Is(size);
+            textObj.alignment.Is(alignment);
+            textObj.anchor.Is(TextAnchor.MiddleCenter);
             textObj.transform.position.x.Is(position.x);
             textObj.transform.position.y.Is(position.y);
+            textObj.transform.localScale.x.Is(0.5f);
+            textObj.transform.localScale.y.Is(0.5f);
+            textObj.transform.localScale.z.Is(0.5f);
         }
         [Test]
         public static void SetTextTest_雛形生成_複数生成()
@@ -53,8 +60,15 @@ namespace Assets.Editor.UnitTest.View.Factory
                 textObj.IsNotNull();
                 textObj.gameObject.name.Is(text);
                 textObj.text.Is(text);
+                textObj.color.Is(color1);
+                textObj.characterSize.Is(size1);
+                textObj.alignment.Is(alignment1);
+                textObj.anchor.Is(TextAnchor.MiddleCenter);
                 textObj.transform.position.x.Is(position1.x);
                 textObj.transform.position.y.Is(position1.y);
+                textObj.transform.localScale.x.Is(0.5f);
+                textObj.transform.localScale.y.Is(0.5f);
+                textObj.transform.localScale.z.Is(0.5f);
             }
 
             var position2 = new Vector2(-2, 4);
@@ -68,8 +82,15 @@ namespace Assets.Editor.UnitTest.View.Factory
                 textObj.IsNotNull();
                 textObj.gameObject.name.Is($"{text}_0");
                 textObj.text.Is(text);
+                textObj.color.Is(color2);
+                textObj.characterSize.Is(size2);
+                textObj.alignment.Is(alignment2);
+                textObj.anchor.Is(TextAnchor.MiddleCenter);
                 textObj.transform.position.x.Is(position2.x);
                 textObj.transform.position.y.Is(position2.y);
+                textObj.transform.localScale.x.Is(0.5f);
+                textObj.transform.localScale.y.Is(0.5f);
+                textObj.transform.localScale.z.Is(0.5f);
             }
         }
 

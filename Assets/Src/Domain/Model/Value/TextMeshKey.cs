@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Repository;
 using System;
 using UnityEngine;
 
@@ -11,10 +12,9 @@ namespace Assets.Src.Domain.Model.Value
     [Serializable]
     public class TextMeshKey : ITextMeshKey
     {
-        public TextMeshKey(string text, Vector2? position = null)
+        public TextMeshKey(string text)
         {
             _text = text ?? throw new ArgumentNullException(nameof(text));
-            _position = position ?? _position;
         }
 
         /// <summary>
@@ -37,7 +37,12 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public Vector2 position => _position;
 
-        public ulong hashCode => (ulong)_text.GetHashCode() ^ (ulong)_position.GetHashCode();
+        public ulong hashCode
+            => (ulong)text.GetHashCode()
+            ^ (ulong)position.GetHashCode()
+            ^ (ulong)size.GetHashCode()
+            ^ (ulong)color.GetHashCode()
+            ^ (ulong)alignment.GetHashCode();
 
         /// <summary>
         /// 文字サイズ

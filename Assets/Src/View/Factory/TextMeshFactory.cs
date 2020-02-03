@@ -28,6 +28,9 @@ namespace Assets.Src.View.Factory
             state.Save(stationery, textObject);
 
             textObject.text = stationery.text;
+            textObject.color = stationery.color;
+            textObject.characterSize = stationery.size;
+            textObject.alignment = stationery.alignment;
             textObject.anchor = TextAnchor.MiddleCenter;
 
             var transform = textObject.GetComponent<Transform>();
