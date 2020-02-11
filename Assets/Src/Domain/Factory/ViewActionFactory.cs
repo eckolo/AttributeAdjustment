@@ -118,9 +118,7 @@ namespace Assets.Src.Domain.Factory
             var actionPattern = ViewAction.Pattern.UPDATE;
             var easing = new Easing(easingPattern);
 
-            var addedActions = tips
-                .Select(tip => (actor: tip, target: new MotionTip(tip, targetPosition)))
-                .Select(set => new ViewAction(actionPattern, set.actor, set.target, easing));
+            var addedActions = tips.Select(tip => new ViewAction(actionPattern, tip, tip, easing));
             state.viewActionList.AddRange(addedActions);
 
             return state;
