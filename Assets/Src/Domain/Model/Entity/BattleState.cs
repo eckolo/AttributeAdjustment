@@ -88,8 +88,6 @@ namespace Assets.Src.Domain.Model.Entity
 
         public BattleActor thisTimeActor { get; set; }
 
-        public override Vector2 position { get; set; }
-
         public async void Dispose() => await this.EndBattle();
     }
 }

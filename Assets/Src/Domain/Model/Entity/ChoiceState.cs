@@ -67,8 +67,6 @@ namespace Assets.Src.Domain.Model.Entity
 
         public ITextMeshKey choiceText { get; set; }
 
-        public override Vector2 position { get; set; }
-
         public async void Dispose() => await this.End();
     }
 }

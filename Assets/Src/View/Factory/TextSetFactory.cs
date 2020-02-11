@@ -51,19 +51,5 @@ namespace Assets.Src.View.Factory
 
             return textSet;
         }
-        /// <summary>
-        /// システムテキストへの文字設定
-        /// </summary>
-        /// <param name="parent">描画先</param>
-        /// <param name="stationery">テキストセットの雛形</param>
-        /// <param name="position">表示位置</param>
-        /// <returns></returns>
-        public static TextSet SetTextSet(this Component parent, ITextMeshValue stationery, Vector2 position)
-            => parent.SetTextSet(
-                setTexts: stationery.texts.Select(text => (text.text, text.position)),
-                position: position,
-                size: stationery.size,
-                color: stationery.color,
-                alignment: stationery.alignment);
     }
 }

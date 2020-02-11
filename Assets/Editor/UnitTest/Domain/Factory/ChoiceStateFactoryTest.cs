@@ -52,8 +52,6 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 if(resultAction.actor is TextMeshKey resultText)
                 {
                     resultText.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultText.position.x.Is(Vector2.zero.x);
-                    resultText.position.y.Is(Vector2.zero.y);
                 }
             }
         }
@@ -97,8 +95,6 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 if(resultAction.actor is TextMeshKey resultText)
                 {
                     resultText.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultText.position.x.Is(Vector2.zero.x);
-                    resultText.position.y.Is(Vector2.zero.y);
                 }
             }
         }
@@ -142,8 +138,6 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 if(resultAction.actor is TextMeshKey resultText)
                 {
                     resultText.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultText.position.x.Is(Vector2.zero.x);
-                    resultText.position.y.Is(Vector2.zero.y);
                 }
             }
         }
@@ -187,8 +181,6 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 if(resultAction.actor is TextMeshKey resultText)
                 {
                     resultText.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultText.position.x.Is(Vector2.zero.x);
-                    resultText.position.y.Is(Vector2.zero.y);
                 }
             }
         }
@@ -225,8 +217,6 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 if(resultAction.actor is TextMeshKey resultText)
                 {
                     resultText.text.Is($"");
-                    resultText.position.x.Is(Vector2.zero.x);
-                    resultText.position.y.Is(Vector2.zero.y);
                 }
             }
         }

@@ -33,10 +33,6 @@ namespace Assets.Src.Domain.Model.Entity
             /// 手札
             /// </summary>
             public List<MotionTip> handTips { get; protected set; }
-            /// <summary>
-            /// 表示位置
-            /// </summary>
-            public override Vector2 position { get; set; }
 
             /// <summary>
             /// 手札の追加

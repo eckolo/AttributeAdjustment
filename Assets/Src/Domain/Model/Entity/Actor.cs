@@ -9,7 +9,7 @@ namespace Assets.Src.Domain.Model.Entity
     /// <summary>
     /// 動作主体
     /// </summary>
-    public partial class Actor : IViewKey, IDuplicatable<Actor>
+    public partial class Actor : IDuplicatable<Actor>
     {
         public Actor(string name)
         {
@@ -70,16 +70,9 @@ namespace Assets.Src.Domain.Model.Entity
         public IEnumerable<Weapon> weaponsAll => flame.weaponsFix.Concat(weaponsFree);
 
         /// <summary>
-        /// 表示位置
-        /// </summary>
-        public Vector2 position { get; set; }
-
-        /// <summary>
         /// プレイヤー操作対象であるか否かのフラグ
         /// </summary>
         public virtual bool isPlayer => false;
-
-        public ulong hashCode => (ulong)GetHashCode();
 
         public Actor MemberwiseClonePublic() => (Actor)MemberwiseClone();
     }

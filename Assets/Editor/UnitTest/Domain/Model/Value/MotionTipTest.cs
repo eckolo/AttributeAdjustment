@@ -21,35 +21,35 @@ namespace Assets.Editor.UnitTest.Domain.Model.Value
         [Test]
         public static void GetHashCodeTest_通常値_同変数比較()
         {
-            motionTipOrigin.hashCode.Is(motionTipOrigin.hashCode);
-            motionTipDiffEnergy.hashCode.Is(motionTipDiffEnergy.hashCode);
-            motionTipDiffValue.hashCode.Is(motionTipDiffValue.hashCode);
-            motionTipEqual.hashCode.Is(motionTipEqual.hashCode);
+            motionTipOrigin.Is(motionTipOrigin);
+            motionTipDiffEnergy.Is(motionTipDiffEnergy);
+            motionTipDiffValue.Is(motionTipDiffValue);
+            motionTipEqual.Is(motionTipEqual);
         }
 
         [Test]
         public static void GetHashCodeTest_通常値_同値別変数比較()
         {
-            motionTipOrigin.hashCode.Is(motionTipEqual.hashCode);
-            motionTipEqual.hashCode.Is(motionTipOrigin.hashCode);
+            motionTipOrigin.Is(motionTipEqual);
+            motionTipEqual.Is(motionTipOrigin);
         }
 
         [Test]
         public static void GetHashCodeTest_通常値_異値別変数比較()
         {
-            motionTipOrigin.hashCode.IsNot(motionTipDiffEnergy.hashCode);
-            motionTipOrigin.hashCode.IsNot(motionTipDiffValue.hashCode);
+            motionTipOrigin.IsNot(motionTipDiffEnergy);
+            motionTipOrigin.IsNot(motionTipDiffValue);
 
-            motionTipDiffEnergy.hashCode.IsNot(motionTipOrigin.hashCode);
-            motionTipDiffEnergy.hashCode.IsNot(motionTipDiffValue.hashCode);
-            motionTipDiffEnergy.hashCode.IsNot(motionTipEqual.hashCode);
+            motionTipDiffEnergy.IsNot(motionTipOrigin);
+            motionTipDiffEnergy.IsNot(motionTipDiffValue);
+            motionTipDiffEnergy.IsNot(motionTipEqual);
 
-            motionTipDiffValue.hashCode.IsNot(motionTipOrigin.hashCode);
-            motionTipDiffValue.hashCode.IsNot(motionTipDiffEnergy.hashCode);
-            motionTipDiffValue.hashCode.IsNot(motionTipEqual.hashCode);
+            motionTipDiffValue.IsNot(motionTipOrigin);
+            motionTipDiffValue.IsNot(motionTipDiffEnergy);
+            motionTipDiffValue.IsNot(motionTipEqual);
 
-            motionTipEqual.hashCode.IsNot(motionTipDiffEnergy.hashCode);
-            motionTipEqual.hashCode.IsNot(motionTipDiffValue.hashCode);
+            motionTipEqual.IsNot(motionTipDiffEnergy);
+            motionTipEqual.IsNot(motionTipDiffValue);
         }
     }
 }

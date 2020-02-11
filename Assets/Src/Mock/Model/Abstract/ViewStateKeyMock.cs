@@ -19,12 +19,6 @@ namespace Assets.Src.Mock.Model.Abstract
             }
         }
 
-        public override Vector2 position
-        {
-            get => throw new NotImplementedException();
-            set => throw new NotImplementedException();
-        }
-
         public static ViewStateKeyMock Generate(
             IEnumerable<IViewKey> views = null,
             ViewAction[] viewActionQueue = null)

@@ -60,11 +60,6 @@ namespace Assets.Src.Domain.Model.Entity
         public IFileManager fileManager { get; }
 
         /// <summary>
-        /// 表示位置情報は常に中央
-        /// </summary>
-        public override Vector2 position { get => Vector2.zero; set => _ = value; }
-
-        /// <summary>
         /// 乱数の種
         /// </summary>
         [SerializeField]

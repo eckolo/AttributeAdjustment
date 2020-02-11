@@ -38,9 +38,9 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.state.IsSameReferenceAs(battleActor.state);
             result.state.handTips.IsNotNull();
             result.state.handTips.Count().Is(value1 + value2 + value3);
-            result.state.handTips.Count(tip => tip.hashCode == tip1.hashCode).Is(value1);
-            result.state.handTips.Count(tip => tip.hashCode == tip2.hashCode).Is(value2);
-            result.state.handTips.Count(tip => tip.hashCode == tip3.hashCode).Is(value3);
+            result.state.handTips.Count(tip => tip == tip1).Is(value1);
+            result.state.handTips.Count(tip => tip == tip2).Is(value2);
+            result.state.handTips.Count(tip => tip == tip3).Is(value3);
         }
         [Test]
         public static void ReloadHandTipsTest_通常処理_元の手札有り()
@@ -68,9 +68,9 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.state.IsSameReferenceAs(battleActor.state);
             result.state.handTips.IsNotNull();
             result.state.handTips.Count().Is(value1 + value2 + value3);
-            result.state.handTips.Count(tip => tip.hashCode == tip1.hashCode).Is(value1);
-            result.state.handTips.Count(tip => tip.hashCode == tip2.hashCode).Is(value2);
-            result.state.handTips.Count(tip => tip.hashCode == tip3.hashCode).Is(value3);
+            result.state.handTips.Count(tip => tip == tip1).Is(value1);
+            result.state.handTips.Count(tip => tip == tip2).Is(value2);
+            result.state.handTips.Count(tip => tip == tip3).Is(value3);
         }
         [Test]
         public static void ReloadHandTipsTest_行動主体がNull()

@@ -28,23 +28,6 @@ namespace Assets.Src.Domain.Model.Value
         public string text => _text;
 
         /// <summary>
-        /// 相対表示位置
-        /// </summary>
-        [SerializeField]
-        Vector2 _position = Vector2.zero;
-        /// <summary>
-        /// 相対表示位置
-        /// </summary>
-        public Vector2 position => _position;
-
-        public ulong hashCode
-            => (ulong)text.GetHashCode()
-            ^ (ulong)position.GetHashCode()
-            ^ (ulong)size.GetHashCode()
-            ^ (ulong)color.GetHashCode()
-            ^ (ulong)alignment.GetHashCode();
-
-        /// <summary>
         /// 文字サイズ
         /// </summary>
         public float size => Constants.Texts.CHAR_SIZE;

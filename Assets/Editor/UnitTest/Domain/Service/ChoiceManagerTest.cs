@@ -51,16 +51,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -100,16 +96,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -149,16 +141,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -200,16 +188,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -251,16 +235,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -302,16 +282,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -351,16 +327,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -402,16 +374,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -453,16 +421,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -504,16 +468,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -556,16 +516,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -606,16 +562,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -655,16 +607,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -704,16 +652,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -755,16 +699,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -806,16 +746,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -857,16 +793,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n>\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -906,16 +838,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -957,16 +885,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -1008,16 +932,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -1059,16 +979,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -1111,16 +1027,12 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 {
                     var resultActor = (TextMeshKey)resultAction.actor;
                     resultActor.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-                    resultActor.position.x.Is(0);
-                    resultActor.position.y.Is(0);
                 }
                 resultAction.target.IsNotNull();
                 resultAction.target.IsInstanceOf<TextMeshKey>();
                 {
                     var resultTarget = (TextMeshKey)resultAction.target;
                     resultTarget.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
-                    resultTarget.position.x.Is(0);
-                    resultTarget.position.y.Is(0);
                 }
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
             }
@@ -1136,8 +1048,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is($">\t{text1}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_単数_選択肢が負の値()
@@ -1149,8 +1059,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is($"\t{text1}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_単数_選択肢が上限超過()
@@ -1162,8 +1070,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is($"\t{text1}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_単数_選択肢がNull()
@@ -1175,8 +1081,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is($"\t{text1}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_複数_選択肢が0()
@@ -1190,8 +1094,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_複数_選択肢が上限()
@@ -1205,8 +1107,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_複数_選択肢が負の値()
@@ -1220,8 +1120,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_複数_選択肢が上限超過()
@@ -1235,8 +1133,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_複数_選択肢がNull()
@@ -1250,8 +1146,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_複数Null含み_選択肢が0()
@@ -1265,8 +1159,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is($">\t{textNull}\r\n\t{text1}\r\n\t{text2}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_空リスト()
@@ -1277,8 +1169,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is(string.Empty);
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_Nullリスト()
@@ -1289,8 +1179,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is(string.Empty);
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
 
         [Test]
@@ -1303,8 +1191,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = choiceList.ToChoiceText(choiced);
             result.IsNotNull();
             result.text.Is($">\t{text1}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクト_単数_選択肢が負の値()
@@ -1317,8 +1203,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.ToChoiceText();
             result.IsNotNull();
             result.text.Is($">\t{text1}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクト_単数_選択肢が上限超過()
@@ -1331,8 +1215,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.ToChoiceText();
             result.IsNotNull();
             result.text.Is($">\t{text1}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクト_単数_選択肢がNull()
@@ -1345,8 +1227,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.ToChoiceText();
             result.IsNotNull();
             result.text.Is($"\t{text1}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクト_複数_選択肢が0()
@@ -1361,8 +1241,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.ToChoiceText();
             result.IsNotNull();
             result.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクト_複数_選択肢が上限()
@@ -1377,8 +1255,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.ToChoiceText();
             result.IsNotNull();
             result.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクト_複数_選択肢が負の値()
@@ -1393,8 +1269,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.ToChoiceText();
             result.IsNotNull();
             result.text.Is($"\t{text1}\r\n\t{text2}\r\n>\t{text3}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクト_複数_選択肢が上限超過()
@@ -1409,8 +1283,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.ToChoiceText();
             result.IsNotNull();
             result.text.Is($">\t{text1}\r\n\t{text2}\r\n\t{text3}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクト_複数_選択肢がNull()
@@ -1425,8 +1297,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.ToChoiceText();
             result.IsNotNull();
             result.text.Is($"\t{text1}\r\n\t{text2}\r\n\t{text3}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクト_複数Null含み_選択肢が0()
@@ -1441,8 +1311,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.ToChoiceText();
             result.IsNotNull();
             result.text.Is($">\t{textNull}\r\n\t{text1}\r\n\t{text2}");
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクト_空リスト()
@@ -1454,8 +1322,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.ToChoiceText();
             result.IsNotNull();
             result.text.Is(string.Empty);
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクト_Nullリスト()
@@ -1467,8 +1333,6 @@ namespace Assets.Editor.UnitTest.Domain.Service
             var result = state.ToChoiceText();
             result.IsNotNull();
             result.text.Is(string.Empty);
-            result.position.x.Is(0);
-            result.position.y.Is(0);
         }
         [Test]
         public static void ToChoiceTextTest_状態オブジェクトがNull()

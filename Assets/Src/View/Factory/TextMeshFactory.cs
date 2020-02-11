@@ -34,7 +34,6 @@ namespace Assets.Src.View.Factory
             textObject.anchor = TextAnchor.MiddleCenter;
 
             var transform = textObject.GetComponent<Transform>();
-            transform.localPosition = stationery.position;
             transform.localScale = Vector3.one * 0.5f;
 
             return state;

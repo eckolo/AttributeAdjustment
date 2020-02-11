@@ -98,7 +98,7 @@ namespace Assets.Src.View.Service
                     switch(action.target)
                     {
                         case ITextMeshKey target:
-                            repository.Search(stateKey).UpdateText(actor, target.text, target.position);
+                            repository.Search(stateKey).UpdateText(actor, target.text, Vector2.zero);
                             return stateKey;
                         default:
                             throw new ArgumentOutOfRangeException(action.target.GetType().ToString());

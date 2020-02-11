@@ -18,7 +18,6 @@ namespace Assets.Src.Domain.Model.Value
         {
             this.energy = energy;
             this.energyValue = energyValue;
-            this.position = position ?? this.position;
 
             text = $"{energy.GetName()}\r\n{energyValue.ToString()}";
         }
@@ -34,10 +33,6 @@ namespace Assets.Src.Domain.Model.Value
         /// 属性値
         /// </summary>
         public int energyValue { get; }
-        /// <summary>
-        /// 表示位置
-        /// </summary>
-        public Vector2 position { get; } = Vector2.zero;
 
         /// <summary>
         /// 表示テキスト
@@ -59,8 +54,6 @@ namespace Assets.Src.Domain.Model.Value
         /// </summary>
         public TextAlignment alignment => TextAlignment.Center;
 
-        public ulong hashCode
-            => (ulong)energy.GetHashCode() ^ (ulong)energyValue.GetHashCode();
 
         public MotionTip MemberwiseClonePublic() => (MotionTip)MemberwiseClone();
     }
