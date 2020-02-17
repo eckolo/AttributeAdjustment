@@ -24,7 +24,7 @@ namespace Assets.Src.Domain.Service
 
             var addTips = actor.engine.defaultHandTipMap.Embody();
             actor.state = actor.state.ClearHandTips().AddHandTips(addTips);
-            actor.state.SetTipMoving(addTips, MotionTip.Destination.HAND);
+            actor.state.SetNewView(MotionTip.Destination.HAND.GetCenterPosition(), addTips);
 
             return actor;
         }

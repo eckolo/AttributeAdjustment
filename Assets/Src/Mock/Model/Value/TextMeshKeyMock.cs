@@ -10,30 +10,23 @@ namespace Assets.Src.Mock.Model.Value
 {
     public class TextMeshKeyMock : ITextMeshKey
     {
-        TextMeshKeyMock(string text, Vector2 position, float size, Color32 color, TextAlignment alignment)
+        TextMeshKeyMock(string text, float size, Color32 color, TextAlignment alignment)
         {
             this.text = text ?? throw new ArgumentNullException(nameof(text));
-            this.position = position;
             this.size = size;
             this.color = color;
             this.alignment = alignment;
         }
 
-        public static TextMeshKeyMock Generate(string text, Vector2 position, float size, Color32 color, TextAlignment alignment)
-            => new TextMeshKeyMock(text, position, size, color, alignment);
-        public static TextMeshKeyMock Generate(string text, Vector2 position)
-            => new TextMeshKeyMock(text, position, default, default, default);
+        public static TextMeshKeyMock Generate(string text, float size, Color32 color, TextAlignment alignment)
+            => new TextMeshKeyMock(text, size, color, alignment);
         public static TextMeshKeyMock Generate(string text)
-            => new TextMeshKeyMock(text, default, default, default, default);
+            => new TextMeshKeyMock(text, default, default, default);
 
         /// <summary>
         /// 表示文字列
         /// </summary>
         public string text { get; }
-        /// <summary>
-        /// 相対表示位置
-        /// </summary>
-        public Vector2 position { get; }
         /// <summary>
         /// 文字サイズ
         /// </summary>
@@ -46,11 +39,5 @@ namespace Assets.Src.Mock.Model.Value
         /// 文字の左右詰め
         /// </summary>
         public TextAlignment alignment { get; }
-        public ulong hashCode
-            => (ulong)text.GetHashCode()
-            ^ (ulong)position.GetHashCode()
-            ^ (ulong)size.GetHashCode()
-            ^ (ulong)color.GetHashCode()
-            ^ (ulong)alignment.GetHashCode();
     }
 }

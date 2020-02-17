@@ -39,19 +39,19 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 resultViewActionList.Count.Is(value1 + value2 + value3);
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor == tip1)
+                    .Where(elem => elem.actor.Equals(tip1))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value1);
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor == tip2)
+                    .Where(elem => elem.actor.Equals(tip2))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value2);
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor == tip3)
+                    .Where(elem => elem.actor.Equals(tip3))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value3);
@@ -104,19 +104,19 @@ namespace Assets.Editor.UnitTest.Domain.Service
                 }
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor == tip1)
+                    .Where(elem => elem.actor.Equals(tip1))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value1);
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor == tip2)
+                    .Where(elem => elem.actor.Equals(tip2))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value2);
                 resultViewActionList
                     .Where(elem => elem.actionType == ViewAction.Pattern.GENERATE)
-                    .Where(elem => elem.actor == tip3)
+                    .Where(elem => elem.actor.Equals(tip3))
                     .Where(elem => elem.target == default)
                     .Where(elem => elem.easing == default)
                     .Count().Is(value3);

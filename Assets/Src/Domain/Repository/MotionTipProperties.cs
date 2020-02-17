@@ -19,16 +19,16 @@ namespace Assets.Src.Domain.Repository
         /// </summary>
         /// <param name="target">表示対象</param>
         /// <returns>表示位置</returns>
-        public static Vector2 GetCenterPosition(this MotionTip.Destination target)
+        public static ViewDeployment GetCenterPosition(this MotionTip.Destination target)
             => centerPosition[target];
 
-        static readonly Dictionary<MotionTip.Destination, Vector2> centerPosition
-            = new Dictionary<MotionTip.Destination, Vector2>
+        static readonly Dictionary<MotionTip.Destination, ViewDeployment> centerPosition
+            = new Dictionary<MotionTip.Destination, ViewDeployment>
             {
-                { MotionTip.Destination.DECK, new Vector2(0, -2f) },
-                { MotionTip.Destination.BOARD, new Vector2(0, 0) },
-                { MotionTip.Destination.SELF, new Vector2(0, 0) },
-                { MotionTip.Destination.HAND, new Vector2(0, 5f) },
+                { MotionTip.Destination.DECK, new ViewDeployment(SpriteAlignment.Center, new Vector2(0, -2f)) },
+                { MotionTip.Destination.BOARD, new ViewDeployment(SpriteAlignment.Center, new Vector2(-5f, 0)) },
+                { MotionTip.Destination.SELF, new ViewDeployment(SpriteAlignment.Center, new Vector2(5f, 0)) },
+                { MotionTip.Destination.HAND, new ViewDeployment(SpriteAlignment.Center, new Vector2(0, 5f)) },
             };
     }
 }

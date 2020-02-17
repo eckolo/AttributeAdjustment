@@ -22,18 +22,24 @@ namespace Assets.Src.Domain.Factory
         /// <param name="view">アクション対象のビューオブジェクト</param>
         /// <param name="pattern">アクション種別</param>
         /// <returns>生成されたビューアクション</returns>
-        public static ViewAction ToViewAction(this IViewKey view, ViewAction.Pattern pattern)
-            => new ViewAction(pattern, view);
+        public static ViewAction ToViewAction(
+            this IViewKey view,
+            ViewDeployment deployment,
+            ViewAction.Pattern pattern)
+            => new ViewAction(pattern, deployment, view);
         /// <summary>
         /// 複数ビューオブジェクトに対するアクションの作成
         /// </summary>
         /// <param name="views">アクション対象のビューオブジェクト群</param>
         /// <param name="pattern">アクション種別</param>
         /// <returns>生成されたビューアクション</returns>
-        public static ViewAction ToViewAction<TViewKey>(this IEnumerable<TViewKey> views, ViewAction.Pattern pattern)
+        public static ViewAction ToViewAction<TViewKey>(
+            this IEnumerable<TViewKey> views,
+            ViewDeployment deployment,
+            ViewAction.Pattern pattern)
             where TViewKey : IViewKey
             => views
-                .Select(view => view.ToViewAction(pattern))
+                .Select(view => view.ToViewAction(deployment, pattern))
                 .Aggregate((action1, action2) => action1.AddNextAction<ViewAction>(action2));
         /// <summary>
         /// 単一ビューオブジェクトに対する対象有りアクションの作成
@@ -45,10 +51,11 @@ namespace Assets.Src.Domain.Factory
         /// <returns>生成されたビューアクション</returns>
         public static ViewAction ToViewAction(
             this IViewKey view,
+            ViewDeployment deployment,
             ViewAction.Pattern pattern,
             IViewKey target,
             Easing easing = null)
-            => new ViewAction(pattern, view, target, easing ?? new Easing(Easing.Pattern.Linear));
+            => new ViewAction(pattern, deployment, view, target, easing ?? new Easing(Easing.Pattern.Linear));
         /// <summary>
         /// 新たな画面表示パーツを追加する
         /// </summary>
@@ -59,10 +66,11 @@ namespace Assets.Src.Domain.Factory
         /// <returns>追加された後の状態オブジェクト</returns>
         public static TViewState SetNewView<TViewState, TViewValue>(
             this TViewState state,
+            ViewDeployment deployment,
             TViewValue value)
             where TViewState : ViewStateKey
             where TViewValue : IViewKey
-            => state.SetNewView(new[] { value });
+            => state.SetNewView(deployment, new[] { value });
         /// <summary>
         /// 新たな画面表示パーツ群を追加する
         /// </summary>
@@ -73,10 +81,11 @@ namespace Assets.Src.Domain.Factory
         /// <returns>追加された後の状態オブジェクト</returns>
         public static TViewState SetNewView<TViewState, TViewValue>(
             this TViewState state,
+            ViewDeployment deployment,
             IEnumerable<TViewValue> values)
             where TViewState : ViewStateKey
             where TViewValue : IViewKey
-            => state.SetViewActions(values, ViewAction.Pattern.GENERATE);
+            => state.SetViewActions(deployment, values, ViewAction.Pattern.GENERATE);
         /// <summary>
         /// 新たな画面表示アクションの生成と設置
         /// </summary>
@@ -88,12 +97,13 @@ namespace Assets.Src.Domain.Factory
         /// <returns>アクションの設定された状態オブジェクト</returns>
         public static TViewState SetViewActions<TViewState, TViewValue>(
              this TViewState state,
+             ViewDeployment deployment,
              IEnumerable<TViewValue> values,
              ViewAction.Pattern pattern)
              where TViewState : ViewStateKey
              where TViewValue : IViewKey
         {
-            var addedActions = values.Select(value => new ViewAction(pattern, value));
+            var addedActions = values.Select(value => new ViewAction(pattern, deployment, value));
             state.viewActionList.AddRange(addedActions);
 
             return state;
@@ -104,21 +114,25 @@ namespace Assets.Src.Domain.Factory
         /// <typeparam name="TViewState">対象の画面表示状態型</typeparam>
         /// <param name="state">追加対象状態オブジェクト</param>
         /// <param name="tips">追加されるパーツ群のパラメータリスト</param>
-        /// <param name="target">アクションのパターン</param>
+        /// <param name="from">アクションの起点位置</param>
+        /// <param name="to">アクションの目標位置</param>
         /// <param name="easingPattern">アクション経過のイージングパターン</param>
         /// <returns>アクションの設定された状態オブジェクト</returns>
         public static TViewState SetTipMoving<TViewState>(
              this TViewState state,
              IEnumerable<MotionTip> tips,
-             MotionTip.Destination target,
+             MotionTip.Destination from,
+             MotionTip.Destination to,
              Easing.Pattern easingPattern = Easing.Pattern.Quadratic)
              where TViewState : ViewStateKey
         {
-            var targetPosition = target.GetCenterPosition();
+            var deploymentFrom = from.GetCenterPosition();
+            var deploymentTo = to.GetCenterPosition();
             var actionPattern = ViewAction.Pattern.UPDATE;
             var easing = new Easing(easingPattern);
 
-            var addedActions = tips.Select(tip => new ViewAction(actionPattern, tip, tip, easing));
+            var addedActions = tips
+                .Select(tip => new ViewAction(actionPattern, deploymentFrom, tip, deploymentTo, tip, easing));
             state.viewActionList.AddRange(addedActions);
 
             return state;

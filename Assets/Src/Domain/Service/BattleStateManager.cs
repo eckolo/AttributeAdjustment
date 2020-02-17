@@ -22,10 +22,11 @@ namespace Assets.Src.Domain.Service
         public static BattleState SetupDeck(this BattleState state)
         {
             var deckStationery = state.deckStationeryMap?.Embody().Shuffle();
+            var deckPosition = MotionTip.Destination.DECK.GetCenterPosition();
 
-            state.SetViewActions(state.deckTips, ViewAction.Pattern.DELETE);
+            state.SetViewActions(deckPosition, state.deckTips, ViewAction.Pattern.DELETE);
             state.CleanupDeckTips(deckStationery);
-            state.SetNewView(state.deckTips);
+            state.SetNewView(deckPosition, state.deckTips);
 
             return state;
         }
@@ -59,10 +60,12 @@ namespace Assets.Src.Domain.Service
             if(state is null)
                 return state;
 
-            state.SetViewActions(state.boardTips, ViewAction.Pattern.DELETE);
+            var deckPosition = MotionTip.Destination.DECK.GetCenterPosition();
+
+            state.SetViewActions(deckPosition, state.boardTips, ViewAction.Pattern.DELETE);
             var popedTips = state.PopDeckTips(tipNumbers);
             state.CleanupBoardTips(popedTips);
-            state.SetTipMoving(popedTips, MotionTip.Destination.BOARD);
+            state.SetTipMoving(popedTips, MotionTip.Destination.DECK, MotionTip.Destination.BOARD);
 
             return state;
         }
@@ -110,7 +113,8 @@ namespace Assets.Src.Domain.Service
                 .ToList()
                 ?? new List<MotionTip>();
 
-            state.SetViewActions(popedTips, ViewAction.Pattern.DELETE);
+            var deckPosition = MotionTip.Destination.DECK.GetCenterPosition();
+            state.SetViewActions(deckPosition, popedTips, ViewAction.Pattern.DELETE);
             return popedTips;
         }
         /// <summary>

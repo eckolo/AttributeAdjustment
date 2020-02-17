@@ -14,29 +14,57 @@ namespace Assets.Src.Domain.Model.Value
     /// </summary>
     public partial class ViewAction
     {
-        public ViewAction(Pattern actionType, IViewKey actor)
+        public ViewAction(Pattern actionType, ViewDeployment actorDeployment, IViewKey actor)
         {
             this.actionType = actionType;
-            this.actor = actor ?? this.actor;
+            this.actorDeployment = actorDeployment ?? throw new ArgumentNullException(nameof(actorDeployment));
+            this.actor = actor;
         }
         public ViewAction(
             Pattern actionType,
+            ViewDeployment actorDeployment,
             IViewKey actor,
+            ViewDeployment targetDeployment,
             IViewKey target,
             Easing easing)
-            : this(actionType, actor)
+            : this(actionType, actorDeployment, actor)
         {
+            this.targetDeployment = targetDeployment;
             this.target = target;
             this.easing = easing;
         }
+        public ViewAction(
+            Pattern actionType,
+            ViewDeployment actorDeployment,
+            IViewKey actor,
+            IViewKey target,
+            Easing easing)
+            : this(actionType, actorDeployment, actor, actorDeployment, target, easing)
+        { }
+        public ViewAction(
+            Pattern actionType,
+            ViewDeployment actorDeployment,
+            IViewKey actor,
+            ViewDeployment targetDeployment,
+            Easing easing)
+            : this(actionType, actorDeployment, actor, actorDeployment, actor, easing)
+        { }
         /// <summary>
         /// 動作種別
         /// </summary>
         public Pattern actionType { get; }
         /// <summary>
+        /// 動作対象場所
+        /// </summary>
+        public ViewDeployment actorDeployment { get; }
+        /// <summary>
         /// 動作対象オブジェクト
         /// </summary>
         public IViewKey actor { get; }
+        /// <summary>
+        /// 動作結果場所
+        /// </summary>
+        public ViewDeployment targetDeployment { get; }
         /// <summary>
         /// 動作結果オブジェクト状態
         /// </summary>

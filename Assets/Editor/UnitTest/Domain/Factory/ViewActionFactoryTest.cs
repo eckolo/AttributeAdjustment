@@ -6,6 +6,7 @@ using Assets.Src.Mock.Model.Abstract;
 using NUnit.Framework;
 using System.Linq;
 using Assets.Src.Domain.Repository;
+using UnityEngine;
 
 namespace Assets.Editor.UnitTest.Domain.Factory
 {
@@ -14,13 +15,15 @@ namespace Assets.Editor.UnitTest.Domain.Factory
     /// </summary>
     public static class ViewActionFactoryTest
     {
+        static readonly ViewDeployment deployment = new ViewDeployment(SpriteAlignment.Center);
+
         [Test]
         public static void SetNewViewTest_正常系_単数追加_既存の表示部品無し_既存の表示処理無し()
         {
             var state = ViewStateKeyMock.Generate();
             var value = IViewKeyMock.Generate(1);
 
-            var resultState = state.SetNewView(value);
+            var resultState = state.SetNewView(deployment, value);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -30,6 +33,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(value.value);
             }
@@ -41,7 +45,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var value = IViewKeyMock.Generate(1);
 
-            var resultState = state.SetNewView(value);
+            var resultState = state.SetNewView(deployment, value);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -51,12 +55,14 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNull();
             }
             {
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(value.value);
             }
@@ -68,7 +74,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var value = IViewKeyMock.Generate(1);
 
-            var resultState = state.SetNewView(value);
+            var resultState = state.SetNewView(deployment, value);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -78,6 +84,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(value.value);
             }
@@ -90,7 +97,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var value = IViewKeyMock.Generate(1);
 
-            var resultState = state.SetNewView(value);
+            var resultState = state.SetNewView(deployment, value);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -100,12 +107,14 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNull();
             }
             {
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(value.value);
             }
@@ -116,7 +125,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate();
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetNewView(values);
+            var resultState = state.SetNewView(deployment, values);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -126,6 +135,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -133,6 +143,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -144,7 +155,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetNewView(values);
+            var resultState = state.SetNewView(deployment, values);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -154,12 +165,14 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNull();
             }
             {
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -167,6 +180,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -178,7 +192,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetNewView(values);
+            var resultState = state.SetNewView(deployment, values);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -188,6 +202,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -195,6 +210,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -207,7 +223,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetNewView(values);
+            var resultState = state.SetNewView(deployment, values);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -217,12 +233,14 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNull();
             }
             {
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -230,6 +248,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -241,7 +260,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate();
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.GENERATE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.GENERATE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -251,6 +270,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -258,6 +278,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -269,7 +290,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.GENERATE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.GENERATE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -279,12 +300,14 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNull();
             }
             {
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -292,6 +315,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -303,7 +327,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.GENERATE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.GENERATE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -313,6 +337,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -320,6 +345,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -332,7 +358,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.GENERATE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.GENERATE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -342,12 +368,14 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNull();
             }
             {
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -355,6 +383,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.GENERATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -365,7 +394,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate();
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.UPDATE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.UPDATE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -375,6 +404,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -382,6 +412,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -393,7 +424,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.UPDATE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.UPDATE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -403,12 +434,14 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNull();
             }
             {
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -416,6 +449,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -427,7 +461,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.UPDATE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.UPDATE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -437,6 +471,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -444,6 +479,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -456,7 +492,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.UPDATE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.UPDATE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -466,12 +502,14 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNull();
             }
             {
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -479,6 +517,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -489,7 +528,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate();
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.DELETE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.DELETE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -499,6 +538,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.DELETE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -506,6 +546,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.DELETE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -517,7 +558,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.DELETE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.DELETE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -527,12 +568,14 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNull();
             }
             {
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.DELETE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -540,6 +583,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.DELETE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -551,7 +595,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.DELETE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.DELETE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -561,6 +605,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.DELETE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -568,6 +613,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.DELETE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -580,7 +626,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { IViewKeyMock.Generate(1), IViewKeyMock.Generate(2) };
 
-            var resultState = state.SetViewActions(values, ViewAction.Pattern.DELETE);
+            var resultState = state.SetViewActions(deployment, values, ViewAction.Pattern.DELETE);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -590,12 +636,14 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNull();
             }
             {
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.DELETE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[0].value);
             }
@@ -603,6 +651,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.DELETE);
+                resultAction.actorDeployment.Is(deployment);
                 resultAction.actor.IsNotNull();
                 ((IViewKeyMock)resultAction.actor).value.Is(values[1].value);
             }
@@ -615,9 +664,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var state = ViewStateKeyMock.Generate();
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.BOARD;
 
-            var resultState = state.SetTipMoving(values, actionTarget);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -627,11 +677,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -640,11 +689,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -658,9 +706,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
             var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.BOARD;
 
-            var resultState = state.SetTipMoving(values, actionTarget);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -670,7 +719,9 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(actionOrigin.actorDeployment);
                 resultAction.actor.IsNull();
+                resultAction.targetDeployment.IsNull();
                 resultAction.target.IsNull();
                 resultAction.easing.IsNull();
             }
@@ -678,11 +729,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -691,11 +741,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -709,9 +758,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var viewOrigin = IViewKeyMock.Generate(0);
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.BOARD;
 
-            var resultState = state.SetTipMoving(values, actionTarget);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -721,11 +771,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -734,11 +783,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -753,9 +801,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var viewOrigin = IViewKeyMock.Generate(0);
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.BOARD;
 
-            var resultState = state.SetTipMoving(values, actionTarget);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -765,7 +814,9 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(actionOrigin.actorDeployment);
                 resultAction.actor.IsNull();
+                resultAction.targetDeployment.IsNull();
                 resultAction.target.IsNull();
                 resultAction.easing.IsNull();
             }
@@ -773,11 +824,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -786,11 +836,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -803,9 +852,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var state = ViewStateKeyMock.Generate();
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.DECK;
 
-            var resultState = state.SetTipMoving(values, actionTarget);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -815,11 +865,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -828,11 +877,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -846,9 +894,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
             var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.DECK;
 
-            var resultState = state.SetTipMoving(values, actionTarget);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -858,7 +907,9 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(actionOrigin.actorDeployment);
                 resultAction.actor.IsNull();
+                resultAction.targetDeployment.IsNull();
                 resultAction.target.IsNull();
                 resultAction.easing.IsNull();
             }
@@ -866,11 +917,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -879,11 +929,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -897,9 +946,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var viewOrigin = IViewKeyMock.Generate(0);
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.DECK;
 
-            var resultState = state.SetTipMoving(values, actionTarget);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -909,11 +959,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -922,11 +971,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -941,9 +989,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var viewOrigin = IViewKeyMock.Generate(0);
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.DECK;
 
-            var resultState = state.SetTipMoving(values, actionTarget);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -953,7 +1002,9 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(actionOrigin.actorDeployment);
                 resultAction.actor.IsNull();
+                resultAction.targetDeployment.IsNull();
                 resultAction.target.IsNull();
                 resultAction.easing.IsNull();
             }
@@ -961,11 +1012,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -974,11 +1024,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(Easing.Pattern.Quadratic);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -991,10 +1040,11 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var state = ViewStateKeyMock.Generate();
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.BOARD;
             var easing = Easing.Pattern.Cubic;
 
-            var resultState = state.SetTipMoving(values, actionTarget, easing);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget, easing);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -1004,11 +1054,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1017,11 +1066,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1035,10 +1083,11 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
             var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.BOARD;
             var easing = Easing.Pattern.Cubic;
 
-            var resultState = state.SetTipMoving(values, actionTarget, easing);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget, easing);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -1048,7 +1097,9 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(actionOrigin.actorDeployment);
                 resultAction.actor.IsNull();
+                resultAction.targetDeployment.IsNull();
                 resultAction.target.IsNull();
                 resultAction.easing.IsNull();
             }
@@ -1056,11 +1107,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1069,11 +1119,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1087,10 +1136,11 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var viewOrigin = IViewKeyMock.Generate(0);
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.BOARD;
             var easing = Easing.Pattern.Cubic;
 
-            var resultState = state.SetTipMoving(values, actionTarget, easing);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget, easing);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -1100,11 +1150,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1113,11 +1162,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1132,10 +1180,11 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var viewOrigin = IViewKeyMock.Generate(0);
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.BOARD;
             var easing = Easing.Pattern.Cubic;
 
-            var resultState = state.SetTipMoving(values, actionTarget, easing);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget, easing);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -1145,7 +1194,9 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(actionOrigin.actorDeployment);
                 resultAction.actor.IsNull();
+                resultAction.targetDeployment.IsNull();
                 resultAction.target.IsNull();
                 resultAction.easing.IsNull();
             }
@@ -1153,11 +1204,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1166,11 +1216,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1183,10 +1232,11 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var tip2 = MotionTipMock.Generate(Energy.PIERCING, 357);
             var state = ViewStateKeyMock.Generate();
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.DECK;
             var easing = Easing.Pattern.Cubic;
 
-            var resultState = state.SetTipMoving(values, actionTarget, easing);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget, easing);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -1196,11 +1246,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1209,11 +1258,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1227,10 +1275,11 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var actionOrigin = ViewActionMock.GenerateMock(ViewAction.Pattern.UPDATE);
             var state = ViewStateKeyMock.Generate(null, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.DECK;
             var easing = Easing.Pattern.Cubic;
 
-            var resultState = state.SetTipMoving(values, actionTarget, easing);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget, easing);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -1240,7 +1289,9 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(actionOrigin.actorDeployment);
                 resultAction.actor.IsNull();
+                resultAction.targetDeployment.IsNull();
                 resultAction.target.IsNull();
                 resultAction.easing.IsNull();
             }
@@ -1248,11 +1299,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1261,11 +1311,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1279,10 +1328,11 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var viewOrigin = IViewKeyMock.Generate(0);
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.DECK;
             var easing = Easing.Pattern.Cubic;
 
-            var resultState = state.SetTipMoving(values, actionTarget, easing);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget, easing);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -1292,11 +1342,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1305,11 +1354,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1324,10 +1372,11 @@ namespace Assets.Editor.UnitTest.Domain.Factory
             var viewOrigin = IViewKeyMock.Generate(0);
             var state = ViewStateKeyMock.Generate(new[] { viewOrigin }, new[] { actionOrigin });
             var values = new[] { tip1, tip2 };
+            var originDestination = MotionTip.Destination.DECK;
             var actionTarget = MotionTip.Destination.DECK;
             var easing = Easing.Pattern.Cubic;
 
-            var resultState = state.SetTipMoving(values, actionTarget, easing);
+            var resultState = state.SetTipMoving(values, originDestination, actionTarget, easing);
 
             resultState.IsNotNull();
             resultState.IsSameReferenceAs(state);
@@ -1337,7 +1386,9 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[0];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
+                resultAction.actorDeployment.Is(actionOrigin.actorDeployment);
                 resultAction.actor.IsNull();
+                resultAction.targetDeployment.IsNull();
                 resultAction.target.IsNull();
                 resultAction.easing.IsNull();
             }
@@ -1345,11 +1396,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[1];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip1);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip1.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip1.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip1);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);
@@ -1358,11 +1408,10 @@ namespace Assets.Editor.UnitTest.Domain.Factory
                 var resultAction = resultState.viewActionList.ToArray()[2];
                 resultAction.IsNotNull();
                 resultAction.actionType.Is(ViewAction.Pattern.UPDATE);
-                resultAction.actor.IsNotNull();
+                resultAction.actorDeployment.Is(originDestination.GetCenterPosition());
                 resultAction.actor.Is(tip2);
-                resultAction.target.IsNotNull();
-                ((MotionTip)resultAction.target).energy.Is(tip2.energy);
-                ((MotionTip)resultAction.target).energyValue.Is(tip2.energyValue);
+                resultAction.targetDeployment.Is(actionTarget.GetCenterPosition());
+                resultAction.target.Is(tip2);
                 resultAction.easing.IsNotNull();
                 resultAction.easing.pattern.Is(easing);
                 resultAction.easing.timeCoefficient.Is(1);

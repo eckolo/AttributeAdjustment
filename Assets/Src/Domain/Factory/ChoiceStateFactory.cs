@@ -21,8 +21,8 @@ namespace Assets.Src.Domain.Factory
 
             var state = new ChoiceState(choiceList, initialChoiced);
 
-            state.viewActionList.Add(state.ToViewAction(ViewAction.Pattern.GENERATE));
-            state.SetNewView(state.choiceText);
+            state.viewActionList.Add(state.ToViewAction(state.mainDeployment, ViewAction.Pattern.GENERATE));
+            state.SetNewView(state.mainDeployment, state.choiceText);
 
             return state;
         }

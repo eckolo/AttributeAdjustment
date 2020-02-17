@@ -67,6 +67,11 @@ namespace Assets.Src.Domain.Model.Entity
 
         public ITextMeshKey choiceText { get; set; }
 
+        /// <summary>
+        /// 主要表示位置
+        /// </summary>
+        public ViewDeployment mainDeployment { get; } = new ViewDeployment(SpriteAlignment.Center);
+
         public async void Dispose() => await this.End();
     }
 }
