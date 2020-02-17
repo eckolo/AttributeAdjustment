@@ -24,7 +24,7 @@ namespace Assets.Src.Controller
         /// <param name="choiceList">選択肢</param>
         /// <param name="initialChoiced">デフォルトの選択位置</param>
         /// <returns>生成された選択肢情報</returns>
-        public static async UniTask<ChoiceState> Setup(
+        public static async UniTask<ChoiceState> SetupChoice(
             this List<string> choiceList,
             int initialChoiced = 0)
         {
@@ -39,7 +39,7 @@ namespace Assets.Src.Controller
         /// <param name="state">操作対象の選択肢状態オブジェクト</param>
         /// <param name="keyConfigs">現在のボタン設定</param>
         /// <returns>操作完了後の選択肢状態オブジェクト</returns>
-        public static async UniTask<ChoiceState> Choice(
+        public static async UniTask<ChoiceState> SelectChoice(
             this ChoiceState state,
             KeyConfigs keyConfigs)
         {
@@ -61,7 +61,7 @@ namespace Assets.Src.Controller
         /// </summary>
         /// <param name="state">終了処理対象の選択肢状態オブジェクト</param>
         /// <returns>終了処理完了後の選択肢状態オブジェクト</returns>
-        public static async UniTask<ChoiceState> End(this ChoiceState state)
+        public static async UniTask<ChoiceState> EndChoice(this ChoiceState state)
         {
             state = state.Finalize();
             await Wait.Until(1);

@@ -72,6 +72,6 @@ namespace Assets.Src.Domain.Model.Entity
         /// </summary>
         public ViewDeployment mainDeployment { get; } = new ViewDeployment(SpriteAlignment.Center);
 
-        public async void Dispose() => await this.End();
+        public async void Dispose() => await this.EndChoice();
     }
 }
