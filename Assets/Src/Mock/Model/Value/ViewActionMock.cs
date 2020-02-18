@@ -28,7 +28,7 @@ namespace Assets.Src.Mock.Model.Value
            Easing easing = null,
            ViewAction nextAction = null)
         {
-            actorDeployment = actorDeployment ?? new ViewDeployment(SpriteAlignment.Center);
+            actorDeployment = actorDeployment ?? new ViewDeployment();
 
             var mock = target is null && easing is null
                 ? new ViewActionMock(actionType, actorDeployment, actor)

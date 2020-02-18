@@ -70,7 +70,7 @@ namespace Assets.Src.Domain.Model.Entity
         /// <summary>
         /// 主要表示位置
         /// </summary>
-        public ViewDeployment mainDeployment { get; } = new ViewDeployment(SpriteAlignment.Center);
+        public ViewDeployment mainDeployment { get; } = new ViewDeployment();
 
         public async void Dispose() => await this.EndChoice();
     }

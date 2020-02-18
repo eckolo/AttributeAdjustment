@@ -15,7 +15,7 @@ namespace Assets.Editor.UnitTest.Domain.Factory
     /// </summary>
     public static class ViewActionFactoryTest
     {
-        static readonly ViewDeployment deployment = new ViewDeployment(SpriteAlignment.Center);
+        static readonly ViewDeployment deployment = new ViewDeployment();
 
         [Test]
         public static void SetNewViewTest_正常系_単数追加_既存の表示部品無し_既存の表示処理無し()
