@@ -26,9 +26,10 @@ namespace Assets.Src.Controller
         /// <returns>生成された選択肢情報</returns>
         public static async UniTask<ChoiceState> SetupChoice(
             this List<string> choiceList,
-            int initialChoiced = 0)
+            int initialChoiced = 0,
+            ViewDeployment deployment = null)
         {
-            var state = choiceList.ToChoiceState(initialChoiced);
+            var state = choiceList.ToChoiceState(initialChoiced, deployment);
             await Wait.Until(1);
 
             return state.Indicate(viewStateRepository);
