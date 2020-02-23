@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Value;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,8 @@ using UnityEngine;
 
 namespace Assets.Src.View.Repository
 {
-    public interface IComponentRepository : IViewRepository<IViewKey, Component>
+    public interface IComponentRepository : IViewRepository<(ViewDeployment deploy, IViewKey view), Component>
     {
-        TComponent Search<TKey, TComponent>(TKey key)
-            where TKey : IViewKey
-            where TComponent : Component;
+        Component Pop((ViewDeployment deploy, IViewKey view) key);
     }
 }

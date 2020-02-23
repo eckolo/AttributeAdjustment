@@ -12,7 +12,7 @@ namespace Assets.Src.Domain.Repository
             /// <summary>
             /// システムテキストのデフォルト文字サイズ
             /// </summary>
-            public const int CHAR_SIZE = 13;
+            public const int CHAR_SIZE = 1;
             /// <summary>
             /// システムテキストのデフォルト行間幅
             /// </summary>

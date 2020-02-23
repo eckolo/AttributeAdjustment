@@ -16,7 +16,10 @@ namespace Assets.Src.View.Factory
         /// <param name="state">設定先のビュールート</param>
         /// <param name="stationery">テキスト情報</param>
         /// <returns>設定されたビュールート</returns>
-        public static TViewState SetText<TViewState>(this TViewState state, ITextMeshKey stationery)
+        public static TViewState SetText<TViewState>(
+            this TViewState state,
+            ViewDeployment deployment,
+            ITextMeshKey stationery)
             where TViewState : ViewState
         {
             var nameModel = stationery.text;
@@ -25,7 +28,7 @@ namespace Assets.Src.View.Factory
                 _textName = $"{nameModel}_{index}";
 
             var textObject = state.SetPrefab<TextMesh>(_textName);
-            state.Save(stationery, textObject);
+            state.Save(deployment, stationery, textObject);
 
             textObject.text = stationery.text;
             textObject.color = stationery.color;
@@ -35,6 +38,7 @@ namespace Assets.Src.View.Factory
 
             var transform = textObject.GetComponent<Transform>();
             transform.localScale = Vector3.one * 0.5f;
+            transform.localPosition = deployment.pivotGap;
 
             return state;
         }

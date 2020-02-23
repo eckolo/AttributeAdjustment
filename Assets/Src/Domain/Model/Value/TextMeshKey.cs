@@ -35,7 +35,7 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 文字色
         /// </summary>
-        public Color32 color => default;
+        public Color32 color => Color.black;
 
         /// <summary>
         /// 文字の左右詰め

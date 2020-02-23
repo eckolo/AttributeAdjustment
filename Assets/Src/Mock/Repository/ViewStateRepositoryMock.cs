@@ -20,16 +20,15 @@ namespace Assets.Src.Mock.Repository
 
         readonly Dictionary<ViewStateKey, ViewState> viewStateMap = new Dictionary<ViewStateKey, ViewState>();
 
-        public ViewState Search<TKey>(TKey key) where TKey : ViewStateKey
-            => key is TKey
+        public ViewState Search(ViewStateKey key)
+            => key is ViewStateKey
                 ? viewStateMap.GetOrDefault(key)
                 : default;
 
-        public ViewState SearchOrGenerate<TKey>(TKey key) where TKey : ViewStateKey
+        public ViewState SearchOrGenerate(ViewStateKey key)
             => Search(key) ?? this.GenerateViewState(key);
 
-        public ViewState Save<TKey, TViewState>(TKey key, TViewState state)
-            where TKey : ViewStateKey
+        public TViewState Save<TViewState>(ViewStateKey key, TViewState state)
             where TViewState : ViewState
         {
             if(viewStateMap.ContainsKey(key))

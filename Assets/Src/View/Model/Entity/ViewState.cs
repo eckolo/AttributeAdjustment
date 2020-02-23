@@ -1,9 +1,11 @@
 using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
 using Assets.Src.View.Model.Abstract;
 using Assets.Src.View.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Src.View.Model.Entity
@@ -14,26 +16,48 @@ namespace Assets.Src.View.Model.Entity
     /// </summary>
     public class ViewState : PrefabAbst, IComponentRepository
     {
-        Dictionary<IViewKey, Component> _viewMap = new Dictionary<IViewKey, Component>();
+        Dictionary<ViewDeployment, Dictionary<IViewKey, Queue<Component>>> _viewMap
+            = new Dictionary<ViewDeployment, Dictionary<IViewKey, Queue<Component>>>();
 
-        public Component Search<TKey>(TKey key) where TKey : IViewKey
-            => key is TKey
-                ? _viewMap.GetOrDefault(key)
-                : default;
-        public TComponent Search<TKey, TComponent>(TKey key)
-            where TKey : IViewKey
+        public Component Search((ViewDeployment deploy, IViewKey view) key)
+            => GetQueue(key)?.Peek();
+        public Component Search(ViewDeployment deploy, IViewKey viewKey) => Search((deploy, viewKey));
+
+        public TComponent Search<TComponent>(ViewDeployment deploy, IViewKey viewKey)
             where TComponent : Component
-            => Search(key)?.GetComponent<TComponent>();
-        public Component Save<TKey, TComponent>(TKey key, TComponent component)
-            where TKey : IViewKey
+            => Search(deploy, viewKey)?.GetComponent<TComponent>();
+
+        public Component Pop((ViewDeployment deploy, IViewKey view) key)
+            => GetQueue(key)?.Dequeue();
+        public Component Pop(ViewDeployment deploy, IViewKey viewKey)
+            => Pop((deploy, viewKey));
+
+        public TComponent Pop<TComponent>(ViewDeployment deploy, IViewKey viewKey)
+            where TComponent : Component
+            => Pop(deploy, viewKey)?.GetComponent<TComponent>();
+
+        Queue<Component> GetQueue((ViewDeployment deploy, IViewKey view) key)
+            => key.deploy is ViewDeployment && key.view is IViewKey
+                ? _viewMap.GetOrDefault(key.deploy)?.GetOrDefault(key.view)
+                : default;
+
+        public TComponent Save<TComponent>((ViewDeployment deploy, IViewKey view) key, TComponent component)
             where TComponent : Component
         {
-            if(_viewMap.ContainsKey(key) && _viewMap[key] != component)
-                _viewMap[key].Destroy();
+            if(!_viewMap.ContainsKey(key.deploy))
+                _viewMap.Add(key.deploy, new Dictionary<IViewKey, Queue<Component>>());
 
-            _viewMap = _viewMap.UpdateOrInsert(key, component);
-            return _viewMap[key];
+            var targetDployMap = _viewMap[key.deploy];
+            if(!targetDployMap.ContainsKey(key.view))
+                targetDployMap.Add(key.view, new Queue<Component>());
+
+            GetQueue(key).Enqueue(component);
+
+            return component;
         }
+        public TComponent Save<TComponent>(ViewDeployment deploy, IViewKey viewKey, TComponent component)
+            where TComponent : Component
+            => Save((deploy, viewKey), component);
 
         public bool isDestroied { get; private set; } = false;
         public ViewState Destroy()

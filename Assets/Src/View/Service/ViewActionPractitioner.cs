@@ -54,6 +54,19 @@ namespace Assets.Src.View.Service
             IViewStateRepository repository)
             where TViewStateKey : ViewStateKey
         {
+            stateKey = await stateKey.IndicateViewMap(action, repository);
+
+            stateKey = await stateKey.IndicateActually(action, repository);
+
+            return stateKey;
+        }
+
+        public static async UniTask<TViewStateKey> IndicateViewMap<TViewStateKey>(
+            this TViewStateKey stateKey,
+            ViewAction action,
+            IViewStateRepository repository)
+            where TViewStateKey : ViewStateKey
+        {
             switch(action.actionType)
             {
                 case ViewAction.Pattern.GENERATE:
@@ -65,6 +78,18 @@ namespace Assets.Src.View.Service
                 default:
                     throw new ArgumentOutOfRangeException(nameof(action.actionType));
             }
+        }
+        static async UniTask<TViewStateKey> IndicateActually<TViewStateKey>(
+            this TViewStateKey stateKey,
+            ViewAction action,
+            IViewStateRepository repository)
+            where TViewStateKey : ViewStateKey
+        {
+            var state = repository.Search(stateKey);
+            if(state?.isDestroied ?? false)
+                UnityEngine.Object.Destroy(state.gameObject);
+
+            return stateKey;
         }
 
         static async UniTask<TViewStateKey> Generate<TViewStateKey>(
@@ -79,7 +104,7 @@ namespace Assets.Src.View.Service
                     repository.GenerateViewState(viewStateKey);
                     return stateKey;
                 case ITextMeshKey textMeshStationery:
-                    repository.Search(stateKey).SetText(textMeshStationery);
+                    repository.Search(stateKey).SetText(action.actorDeployment, textMeshStationery);
                     return stateKey;
                 default:
                     throw new ArgumentOutOfRangeException(action.actor.GetType().ToString());
@@ -98,7 +123,7 @@ namespace Assets.Src.View.Service
                     switch(action.target)
                     {
                         case ITextMeshKey target:
-                            repository.Search(stateKey).UpdateText(actor, target.text, Vector2.zero);
+                            repository.Search(stateKey).UpdateText(action.actorDeployment, actor, target.text, Vector2.zero);
                             return stateKey;
                         default:
                             throw new ArgumentOutOfRangeException(action.target.GetType().ToString());
@@ -120,7 +145,7 @@ namespace Assets.Src.View.Service
                     repository.Search(stateKey).Destroy();
                     return stateKey;
                 case ITextMeshKey textMeshStationery:
-                    repository.Search(stateKey).DestroyText(textMeshStationery);
+                    repository.Search(stateKey).DestroyText(action.actorDeployment, textMeshStationery);
                     return stateKey;
                 default:
                     throw new ArgumentOutOfRangeException(action.actor.GetType().ToString());

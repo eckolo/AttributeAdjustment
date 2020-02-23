@@ -9,12 +9,12 @@ namespace Assets.Src.View.Service
         /// <summary>
         /// システムテキストの削除
         /// </summary>
-        /// <param name="textObject">対象テキストオブジェクト</param>
+        /// <param name="textMesh">対象テキストオブジェクト</param>
         /// <returns>削除した文字列の内容</returns>
-        public static TextMesh Destroy(this TextMesh textObject)
+        public static TextMesh Destroy(this TextMesh textMesh)
         {
-            UnityEngine.Object.Destroy(textObject);
-            return textObject;
+            UnityEngine.Object.Destroy(textMesh.gameObject);
+            return textMesh;
         }
 
         /// <summary>

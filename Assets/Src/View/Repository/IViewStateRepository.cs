@@ -10,6 +10,6 @@ namespace Assets.Src.View.Repository
 {
     public interface IViewStateRepository : IViewRepository<ViewStateKey, ViewState>
     {
-        ViewState SearchOrGenerate<TKey>(TKey key) where TKey : ViewStateKey;
+        ViewState SearchOrGenerate(ViewStateKey key);
     }
 }

@@ -27,9 +27,10 @@ namespace Assets.Editor.UnitTest.View.Factory
             var size = 0.6f;
             var color = Color.green;
             var alignment = TextAlignment.Right;
+            var development = new ViewDeployment(SpriteAlignment.Center, position);
             var stationery = TextMeshKeyMock.Generate(text, size, color, alignment);
 
-            var textObj = view.SetText(stationery).Search<ITextMeshKey, TextMesh>(stationery);
+            var textObj = view.SetText(development, stationery).Search<TextMesh>(development, stationery);
 
             textObj.IsNotNull();
             textObj.gameObject.name.Is(text);
@@ -41,17 +42,21 @@ namespace Assets.Editor.UnitTest.View.Factory
             textObj.transform.localScale.x.Is(0.5f);
             textObj.transform.localScale.y.Is(0.5f);
             textObj.transform.localScale.z.Is(0.5f);
+            textObj.transform.localPosition.x.Is(position.x);
+            textObj.transform.localPosition.y.Is(position.y);
         }
         [Test]
         public static void SetTextTest_雛形生成_複数生成()
         {
             var text = nameof(SetTextTest_雛形生成_複数生成);
 
+            var position1 = new Vector2(2, -4);
             var size1 = 0.6f;
             var color1 = Color.green;
             var alignment1 = TextAlignment.Right;
+            var development1 = new ViewDeployment(SpriteAlignment.Center, position1);
             var stationery1 = TextMeshKeyMock.Generate(text, size1, color1, alignment1);
-            var textObj1 = view.SetText(stationery1).Search<ITextMeshKey, TextMesh>(stationery1);
+            var textObj1 = view.SetText(development1, stationery1).Search<TextMesh>(development1, stationery1);
             {
                 var textObj = textObj1;
                 textObj.IsNotNull();
@@ -64,13 +69,17 @@ namespace Assets.Editor.UnitTest.View.Factory
                 textObj.transform.localScale.x.Is(0.5f);
                 textObj.transform.localScale.y.Is(0.5f);
                 textObj.transform.localScale.z.Is(0.5f);
+                textObj.transform.localPosition.x.Is(position1.x);
+                textObj.transform.localPosition.y.Is(position1.y);
             }
 
+            var position2 = new Vector2(-5, 4);
             var size2 = 0.9f;
             var color2 = Color.yellow;
             var alignment2 = TextAlignment.Left;
+            var development2 = new ViewDeployment(SpriteAlignment.Center, position2);
             var stationery2 = TextMeshKeyMock.Generate(text, size2, color2, alignment2);
-            var textObj2 = view.SetText(stationery2).Search<ITextMeshKey, TextMesh>(stationery2);
+            var textObj2 = view.SetText(development2, stationery2).Search<TextMesh>(development2, stationery2);
             {
                 var textObj = textObj2;
                 textObj.IsNotNull();
@@ -83,6 +92,8 @@ namespace Assets.Editor.UnitTest.View.Factory
                 textObj.transform.localScale.x.Is(0.5f);
                 textObj.transform.localScale.y.Is(0.5f);
                 textObj.transform.localScale.z.Is(0.5f);
+                textObj.transform.localPosition.x.Is(position2.x);
+                textObj.transform.localPosition.y.Is(position2.y);
             }
         }
 

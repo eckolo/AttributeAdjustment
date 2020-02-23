@@ -23,19 +23,17 @@ namespace Assets.Src.View.Repository
         /// <summary>
         /// <see cref="ViewState"/>の検索
         /// </summary>
-        /// <typeparam name="TKey">検索キーの型</typeparam>
         /// <param name="key">検索キー</param>
         /// <returns>検索結果</returns>
-        public ViewState Search<TKey>(TKey key) where TKey : ViewStateKey
-            => key is TKey
+        public ViewState Search(ViewStateKey key)
+            => key is ViewStateKey
                 ? _viewStateMap.GetOrDefault(key)
                 : default;
 
-        public ViewState SearchOrGenerate<TKey>(TKey key) where TKey : ViewStateKey
+        public ViewState SearchOrGenerate(ViewStateKey key)
             => Search(key) ?? this.GenerateViewState(key);
 
-        public ViewState Save<TKey, TViewState>(TKey key, TViewState state)
-            where TKey : ViewStateKey
+        public TViewState Save<TViewState>(ViewStateKey key, TViewState state)
             where TViewState : ViewState
         {
             if(key is null)
@@ -45,7 +43,7 @@ namespace Assets.Src.View.Repository
                 _viewStateMap[key].Destroy();
 
             _viewStateMap = _viewStateMap.UpdateOrInsert(key, state);
-            return _viewStateMap[key];
+            return state;
         }
     }
 }
