@@ -66,8 +66,10 @@ namespace Assets.Editor.UnitTest.View.Service
             resultTextMesh.IsNotNull();
             resultTextMesh.name.Contains(textOrigin).IsTrue();
             resultTextMesh.text.Is(textUpdated);
-            resultTextMesh.transform.position.x.Is(0);
-            resultTextMesh.transform.position.y.Is(0);
+            resultTextMesh.transform.position.x.Is((positionView + positionOrigin).x);
+            resultTextMesh.transform.position.y.Is((positionView + positionOrigin).y);
+            resultTextMesh.transform.localPosition.x.Is(positionOrigin.x);
+            resultTextMesh.transform.localPosition.y.Is(positionOrigin.y);
         }
         [Test]
         public static void UpdateText_正常系_対象有_文字更新無_位置更新有()
