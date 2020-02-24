@@ -86,7 +86,7 @@ namespace Assets.Src.View.Service
             where TViewStateKey : ViewStateKey
         {
             var state = repository.Search(stateKey);
-            if(state?.isDestroied ?? false)
+            if(state is ViewState && state.isDestroied)
                 UnityEngine.Object.Destroy(state.gameObject);
 
             return stateKey;

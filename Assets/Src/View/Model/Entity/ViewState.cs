@@ -24,7 +24,9 @@ namespace Assets.Src.View.Model.Entity
 
         public TComponent Search<TComponent>(ViewDeployment deploy, IViewKey viewKey)
             where TComponent : Component
-            => Search(deploy, viewKey)?.GetComponent<TComponent>();
+            => (Search(deploy, viewKey) is Component component)
+                ? component.GetComponent<TComponent>()
+                : default;
 
         public Component Pop((ViewDeployment deploy, IViewKey view) key)
             => GetQueue(key)?.Dequeue();
@@ -33,7 +35,9 @@ namespace Assets.Src.View.Model.Entity
 
         public TComponent Pop<TComponent>(ViewDeployment deploy, IViewKey viewKey)
             where TComponent : Component
-            => Pop(deploy, viewKey)?.GetComponent<TComponent>();
+            => (Pop(deploy, viewKey) is Component component)
+                ? component.GetComponent<TComponent>()
+                : default;
 
         Queue<Component> GetQueue((ViewDeployment deploy, IViewKey view) key)
             => key.deploy is ViewDeployment && key.view is IViewKey
