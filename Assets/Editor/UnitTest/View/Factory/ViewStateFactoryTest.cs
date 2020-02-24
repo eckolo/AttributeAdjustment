@@ -1,5 +1,5 @@
-﻿using Assets.Src.Domain.Model.Abstract;
-using Assets.Src.Mock.Model.Abstract;
+﻿using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Mock.Model.Value;
 using Assets.Src.Mock.Model.Entity;
 using Assets.Src.Mock.Repository;
 using Assets.Src.View.Factory;

@@ -1,6 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Service;
-using Assets.Src.View.Model.Abstract;
+using Assets.Src.View.Model.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

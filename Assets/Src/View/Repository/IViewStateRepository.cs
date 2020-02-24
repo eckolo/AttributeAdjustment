@@ -1,4 +1,4 @@
-﻿using Assets.Src.Domain.Model.Abstract;
+﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.View.Model.Entity;
 using System;
 using System.Collections.Generic;

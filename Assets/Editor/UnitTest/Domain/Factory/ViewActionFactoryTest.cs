@@ -2,7 +2,7 @@
 using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Factory;
 using Assets.Src.Mock.Model.Value;
-using Assets.Src.Mock.Model.Abstract;
+using Assets.Src.Mock.Model.Entity;
 using NUnit.Framework;
 using System.Linq;
 using Assets.Src.Domain.Repository;

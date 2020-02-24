@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Src.Domain.Model.Abstract
+namespace Assets.Src.Domain.Model.Value
 {
     /// <summary>
     /// <see cref="TextMesh"/>クラスの雛形インターフェース

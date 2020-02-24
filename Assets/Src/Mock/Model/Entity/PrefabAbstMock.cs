@@ -1,8 +1,8 @@
 ﻿using Assets.Src.Domain.Service;
-using Assets.Src.View.Model.Abstract;
+using Assets.Src.View.Model.Entity;
 using UnityEngine;
 
-namespace Assets.Src.Mock.Model.Abstract
+namespace Assets.Src.Mock.Model.Entity
 {
     public class PrefabAbstMock : PrefabAbst
     {

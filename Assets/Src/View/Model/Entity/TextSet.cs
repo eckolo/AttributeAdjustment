@@ -1,5 +1,4 @@
-﻿using Assets.Src.View.Model.Abstract;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Src.View.Model.Entity

@@ -1,8 +1,8 @@
-﻿using Assets.Src.Domain.Model.Abstract;
+﻿using Assets.Src.Domain.Model.Value;
 using System;
 using UnityEngine;
 
-namespace Assets.Src.Mock.Model.Abstract
+namespace Assets.Src.Mock.Model.Value
 {
     public class IViewKeyMock : IViewKey, IEquatable<IViewKeyMock>
     {

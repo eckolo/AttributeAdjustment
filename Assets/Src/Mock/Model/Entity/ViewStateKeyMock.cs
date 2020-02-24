@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Src.Mock.Model.Abstract
+namespace Assets.Src.Mock.Model.Entity
 {
     public class ViewStateKeyMock : ViewStateKey
     {

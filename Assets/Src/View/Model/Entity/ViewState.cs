@@ -1,7 +1,6 @@
 using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
-using Assets.Src.View.Model.Abstract;
 using Assets.Src.View.Repository;
 using System;
 using System.Collections.Generic;

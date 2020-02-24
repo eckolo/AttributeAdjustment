@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Src.View.Model.Abstract
+namespace Assets.Src.View.Model.Entity
 {
     /// <summary>
     /// Prefabの大元クラス

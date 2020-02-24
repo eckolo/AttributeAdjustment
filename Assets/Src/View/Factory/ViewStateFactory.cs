@@ -1,4 +1,4 @@
-﻿using Assets.Src.Domain.Model.Abstract;
+﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Service;
 using Assets.Src.View.Model.Entity;
 using Assets.Src.View.Repository;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Src.Domain.Model.Abstract
+namespace Assets.Src.Domain.Model.Entity
 {
     /// <summary>
     /// Viewに渡されることで画面描画処理の起点となる状態オブジェクト
