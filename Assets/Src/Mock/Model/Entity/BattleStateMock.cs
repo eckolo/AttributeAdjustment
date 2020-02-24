@@ -13,10 +13,9 @@ namespace Assets.Src.Mock.Model.Entity
         BattleStateMock(IEnumerable<BattleActor> battleActors, Topography topography)
            : base(battleActors, topography)
         { }
-        BattleStateMock(IEnumerable<IViewKey> views, ViewAction[] viewActionQueue, bool? isGenerated)
+        BattleStateMock(IEnumerable<IViewKey> views, ViewAction[] viewActionQueue)
            : base(new List<BattleActor>(), new Topography())
         {
-            this.isGenerated = isGenerated ?? this.isGenerated;
             foreach(var action in viewActionQueue ?? new ViewAction[] { })
             {
                 viewActionList.Add(action);
@@ -39,6 +38,6 @@ namespace Assets.Src.Mock.Model.Entity
         public static BattleStateMock Generate(
             IEnumerable<IViewKey> views = null,
             ViewAction[] viewActionQueue = null)
-            => new BattleStateMock(views, viewActionQueue, null);
+            => new BattleStateMock(views, viewActionQueue);
     }
 }

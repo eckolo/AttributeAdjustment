@@ -31,15 +31,11 @@ namespace Assets.Src.View.Factory
             var name = $"{nameof(ViewState)}_{key.GetType().FullName}";
             var stateExisting = repository.Search(key);
 
-            if(key.isGenerated)
-                return stateExisting;
-
             if(!(stateExisting is null))
                 return stateExisting;
 
             var stateNew = name.SetPrefab<ViewState>();
             repository.Save(key, stateNew);
-            key.isGenerated = true;
 
             return stateNew;
         }

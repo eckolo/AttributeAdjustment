@@ -15,9 +15,5 @@ namespace Assets.Src.Domain.Model.Abstract
         /// ビューの更新内容キュー
         /// </summary>
         public List<ViewAction> viewActionList { get; } = new List<ViewAction>();
-        /// <summary>
-        /// 生成後フラグ
-        /// </summary>
-        public bool isGenerated { get; set; } = false;
     }
 }

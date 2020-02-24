@@ -10,9 +10,8 @@ namespace Assets.Src.Mock.Model.Abstract
 {
     public class ViewStateKeyMock : ViewStateKey
     {
-        ViewStateKeyMock(IEnumerable<IViewKey> views, ViewAction[] viewActionQueue, bool? isGenerated)
+        ViewStateKeyMock(IEnumerable<IViewKey> views, ViewAction[] viewActionQueue)
         {
-            this.isGenerated = isGenerated ?? this.isGenerated;
             foreach(var action in viewActionQueue ?? new ViewAction[] { })
             {
                 viewActionList.Add(action);
@@ -22,10 +21,9 @@ namespace Assets.Src.Mock.Model.Abstract
         public static ViewStateKeyMock Generate(
             IEnumerable<IViewKey> views = null,
             ViewAction[] viewActionQueue = null)
-            => new ViewStateKeyMock(views, viewActionQueue, null);
+            => new ViewStateKeyMock(views, viewActionQueue);
         public static ViewStateKeyMock Generate(
-            IEnumerable<IViewKey> views,
-            bool isGenerated)
-            => new ViewStateKeyMock(views, new ViewAction[] { }, isGenerated);
+            IEnumerable<IViewKey> views)
+            => new ViewStateKeyMock(views, new ViewAction[] { });
     }
 }
