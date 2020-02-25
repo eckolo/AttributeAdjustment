@@ -17,25 +17,26 @@ namespace Assets.Src.View.Factory
         /// <see cref="ViewState"/>の新規生成処理
         /// 既に存在していた場合は取得
         /// </summary>
-        /// <typeparam name="TKey">生成元のキーの型</typeparam>
-        /// <param name="key">生成元のキー</param>
+        /// <typeparam name="TStateKey">生成元のキーの型</typeparam>
+        /// <param name="stateKey">生成元のキー</param>
         /// <returns>生成された<see cref="ViewState"/></returns>
-        public static ViewState GenerateViewState<TKey>(this IViewStateRepository repository, TKey key)
-            where TKey : ViewStateKey
+        public static ViewState GenerateViewState<TStateKey>(this IViewStateRepository repository, TStateKey stateKey)
+            where TStateKey : ViewStateKey
         {
             if(repository is null)
                 throw new ArgumentNullException(nameof(repository));
-            if(key is null)
-                throw new ArgumentNullException(nameof(key));
+            if(stateKey is null)
+                throw new ArgumentNullException(nameof(stateKey));
 
-            var name = $"{nameof(ViewState)}_{key.GetType().FullName}";
-            var stateExisting = repository.Search(key);
+            var name = $"{nameof(ViewState)}_{stateKey.GetType().FullName}";
+            var stateExisting = repository.Search(stateKey);
 
             if(!(stateExisting is null))
                 return stateExisting;
 
             var stateNew = name.SetPrefab<ViewState>();
-            repository.Save(key, stateNew);
+            stateNew.stateKey = stateKey;
+            repository.Save(stateKey, stateNew);
 
             return stateNew;
         }

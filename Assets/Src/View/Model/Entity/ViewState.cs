@@ -1,4 +1,5 @@
 using Assets.Src.Domain.Model.Abstract;
+using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
 using Assets.Src.View.Repository;
@@ -17,6 +18,8 @@ namespace Assets.Src.View.Model.Entity
     {
         Dictionary<ViewDeployment, Dictionary<IViewKey, Queue<Component>>> _viewMap
             = new Dictionary<ViewDeployment, Dictionary<IViewKey, Queue<Component>>>();
+
+        public ViewStateKey stateKey { get; set; }
 
         public Component Search((ViewDeployment deploy, IViewKey view) key)
             => GetQueue(key)?.Peek();
