@@ -60,6 +60,20 @@ namespace Assets.Src.Domain.Service
         /// <typeparam name="TKey">キ－型</typeparam>
         /// <typeparam name="TValue">内容型</typeparam>
         /// <param name="origin">取得対象の辞書型オブジェクト</param>
+        /// <param name="index">指定のキー</param>
+        /// <param name="defaultValue">デフォルト値</param>
+        /// <returns>所定のキーに紐づく値もしくはデフォルト値</returns>
+        public static TValue GetOrDefault< TValue>(
+            this IList<TValue> origin,
+            int index,
+            TValue defaultValue = default)
+            => (origin?.ContainsIndex(index) ?? false) ? origin[index] : defaultValue;
+        /// <summary>
+        /// 辞書型オブジェクトが所定のキーを含んでいればキーに紐づく値、含んでいなければデフォルト値を取得する
+        /// </summary>
+        /// <typeparam name="TKey">キ－型</typeparam>
+        /// <typeparam name="TValue">内容型</typeparam>
+        /// <param name="origin">取得対象の辞書型オブジェクト</param>
         /// <param name="key">指定のキー</param>
         /// <param name="defaultValue">デフォルト値</param>
         /// <returns>所定のキーに紐づく値もしくはデフォルト値</returns>
@@ -108,13 +122,13 @@ namespace Assets.Src.Domain.Service
         }
 
         /// <summary>
-        /// ある数値が<see cref="List{T}">のインデックスとして正当か否か判定する
+        /// ある数値が<see cref="IList{T}">のインデックスとして正当か否か判定する
         /// </summary>
         /// <typeparam name="TValue">内容型</typeparam>
         /// <param name="origin">判定対象のリスト</param>
         /// <param name="index">判定対象のインデックス</param>
         /// <returns>指定した数値がリストのインデックスに含まれているか否か</returns>
-        public static bool ContainsIndex<TValue>(this List<TValue> origin, int index)
+        public static bool ContainsIndex<TValue>(this IList<TValue> origin, int index)
             => 0 <= index && index < origin.Count;
 
         /// <summary>

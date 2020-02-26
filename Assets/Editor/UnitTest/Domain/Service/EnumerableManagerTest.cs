@@ -96,7 +96,82 @@ namespace Assets.Editor.UnitTest.Domain.Service
             Assert.Throws<ArgumentException>(() => list2.ToDictionary());
         }
         [Test]
-        public static void GetOrDefaultTest_通常動作_デフォルト値未指定()
+        public static void GetOrDefaultTest_リスト型_通常動作_デフォルト値未指定()
+        {
+            var value1 = 0.3f;
+            var value2 = 1.2f;
+            var value3 = 5;
+            var list = new[] { value1, value2, value3 };
+
+            list.GetOrDefault(-1).Is(default);
+            list.GetOrDefault(0).Is(value1);
+            list.GetOrDefault(1).Is(value2);
+            list.GetOrDefault(2).Is(value3);
+            list.GetOrDefault(3).Is(default);
+        }
+        [Test]
+        public static void GetOrDefaultTest_リスト型_通常動作_デフォルト値指定()
+        {
+            var value1 = 0.3f;
+            var value2 = 1.2f;
+            var value3 = 5;
+            var valueDefault = 7.4f;
+            var list = new[] { value1, value2, value3 };
+
+            list.GetOrDefault(-1, valueDefault).Is(valueDefault);
+            list.GetOrDefault(0, valueDefault).Is(value1);
+            list.GetOrDefault(1, valueDefault).Is(value2);
+            list.GetOrDefault(2, valueDefault).Is(value3);
+            list.GetOrDefault(3, valueDefault).Is(valueDefault);
+        }
+        [Test]
+        public static void GetOrDefaultTest_リスト型_元の辞書型が空_デフォルト値未指定()
+        {
+            var list = new List<float>();
+
+            list.GetOrDefault(-1).Is(default);
+            list.GetOrDefault(0).Is(default);
+            list.GetOrDefault(1).Is(default);
+            list.GetOrDefault(2).Is(default);
+            list.GetOrDefault(3).Is(default);
+        }
+        [Test]
+        public static void GetOrDefaultTest_リスト型_元の辞書型が空_デフォルト値指定()
+        {
+            var valueDefault = 7.4f;
+            var list = new List<float>();
+
+            list.GetOrDefault(-1, valueDefault).Is(valueDefault);
+            list.GetOrDefault(0, valueDefault).Is(valueDefault);
+            list.GetOrDefault(1, valueDefault).Is(valueDefault);
+            list.GetOrDefault(2, valueDefault).Is(valueDefault);
+            list.GetOrDefault(3, valueDefault).Is(valueDefault);
+        }
+        [Test]
+        public static void GetOrDefaultTest_リスト型_元の辞書型がNull_デフォルト値未指定()
+        {
+            var list = (List<float>)null;
+
+            list.GetOrDefault(-1).Is(default);
+            list.GetOrDefault(0).Is(default);
+            list.GetOrDefault(1).Is(default);
+            list.GetOrDefault(2).Is(default);
+            list.GetOrDefault(3).Is(default);
+        }
+        [Test]
+        public static void GetOrDefaultTest_リスト型_元の辞書型がNull_デフォルト値指定()
+        {
+            var valueDefault = 7.4f;
+            var list = (List<float>)null;
+
+            list.GetOrDefault(-1, valueDefault).Is(valueDefault);
+            list.GetOrDefault(0, valueDefault).Is(valueDefault);
+            list.GetOrDefault(1, valueDefault).Is(valueDefault);
+            list.GetOrDefault(2, valueDefault).Is(valueDefault);
+            list.GetOrDefault(3, valueDefault).Is(valueDefault);
+        }
+        [Test]
+        public static void GetOrDefaultTest_辞書型_通常動作_デフォルト値未指定()
         {
             var key1 = "test1";
             var key2 = "test2";
@@ -118,7 +193,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             dictionary.GetOrDefault(key4).Is(default);
         }
         [Test]
-        public static void GetOrDefaultTest_通常動作_デフォルト値指定()
+        public static void GetOrDefaultTest_辞書型_通常動作_デフォルト値指定()
         {
             var key1 = "test1";
             var key2 = "test2";
@@ -141,7 +216,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             dictionary.GetOrDefault(key4, valueDefault).Is(valueDefault);
         }
         [Test]
-        public static void GetOrDefaultTest_元の辞書型が空_デフォルト値未指定()
+        public static void GetOrDefaultTest_辞書型_元の辞書型が空_デフォルト値未指定()
         {
             var key1 = "test1";
             var key2 = "test2";
@@ -155,7 +230,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             dictionary.GetOrDefault(key4).Is(default);
         }
         [Test]
-        public static void GetOrDefaultTest_元の辞書型が空_デフォルト値指定()
+        public static void GetOrDefaultTest_辞書型_元の辞書型が空_デフォルト値指定()
         {
             var key1 = "test1";
             var key2 = "test2";
@@ -170,7 +245,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             dictionary.GetOrDefault(key4, valueDefault).Is(valueDefault);
         }
         [Test]
-        public static void GetOrDefaultTest_元の辞書型がNull_デフォルト値未指定()
+        public static void GetOrDefaultTest_辞書型_元の辞書型がNull_デフォルト値未指定()
         {
             var key1 = "test1";
             var key2 = "test2";
@@ -184,7 +259,7 @@ namespace Assets.Editor.UnitTest.Domain.Service
             dictionary.GetOrDefault(key4).Is(default);
         }
         [Test]
-        public static void GetOrDefaultTest_元の辞書型がNull_デフォルト値指定()
+        public static void GetOrDefaultTest_辞書型_元の辞書型がNull_デフォルト値指定()
         {
             var key1 = "test1";
             var key2 = "test2";
