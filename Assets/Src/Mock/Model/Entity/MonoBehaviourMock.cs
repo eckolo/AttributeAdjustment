@@ -7,6 +7,8 @@ namespace Assets.Src.Mock.Model.Entity
     /// </summary>
     public class MonoBehaviourMock : MonoBehaviour
     {
-
+        public static MonoBehaviourMock Generate(string name)
+            => new GameObject($"{nameof(MonoBehaviourMock)}_{name}", typeof(MonoBehaviourMock))
+                .GetComponent<MonoBehaviourMock>();
     }
 }

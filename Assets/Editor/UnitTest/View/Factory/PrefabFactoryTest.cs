@@ -59,8 +59,8 @@ namespace Assets.Editor.UnitTest.View.Factory
         {
             var name1 = nameof(SetParentTest_親指定);
             var name2 = $"{nameof(SetParentTest_親指定)}_parent";
-            var object1 = new GameObject(name1, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
-            var object2 = new GameObject(name2, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
+            var object1 = MonoBehaviourMock.Generate(name1);
+            var object2 = MonoBehaviourMock.Generate(name2);
             var object3 = object1.SetParent(object2);
 
             object1.IsSameReferenceAs(object3);
@@ -72,8 +72,8 @@ namespace Assets.Editor.UnitTest.View.Factory
         {
             var name1 = nameof(SetParentTest_引数がnull);
             var name2 = $"{nameof(SetParentTest_引数がnull)}_parent";
-            var object1 = new GameObject(name1, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
-            var object2 = new GameObject(name2, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
+            var object1 = MonoBehaviourMock.Generate(name1);
+            var object2 = MonoBehaviourMock.Generate(name2);
             var object3 = object1.SetParent((MonoBehaviourMock)null);
 
             Assert.Throws<ArgumentNullException>(() => ((MonoBehaviourMock)null).SetParent(object2));

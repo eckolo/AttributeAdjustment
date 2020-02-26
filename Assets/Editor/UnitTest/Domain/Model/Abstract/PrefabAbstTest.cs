@@ -13,8 +13,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Abstract
         [Test]
         public static void GetterTest_position_正常系()
         {
-            var parent = new GameObject($"{nameof(MonoBehaviourMock)}_{nameof(GetterTest_position_正常系)}", typeof(MonoBehaviourMock))
-                .GetComponent<MonoBehaviourMock>();
+            var parent = MonoBehaviourMock.Generate($"{nameof(MonoBehaviourMock)}_{nameof(GetterTest_position_正常系)}");
             parent.transform.position = Vector2.one;
 
             var vector = new Vector2(23, -555);
@@ -28,8 +27,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Abstract
         [Test]
         public static void SetterTest_position_正常系()
         {
-            var parent = new GameObject($"{nameof(MonoBehaviourMock)}_{nameof(SetterTest_position_正常系)}", typeof(MonoBehaviourMock))
-                .GetComponent<MonoBehaviourMock>();
+            var parent = MonoBehaviourMock.Generate($"{nameof(MonoBehaviourMock)}_{nameof(SetterTest_position_正常系)}");
             parent.transform.position = Vector2.one;
 
             var vector = new Vector2(23, -555);

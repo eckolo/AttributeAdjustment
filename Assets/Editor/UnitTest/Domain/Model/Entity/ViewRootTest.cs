@@ -14,7 +14,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
         {
             var name1 = nameof(CleateNewTest_正常系_親有);
             var name2 = $"{nameof(CleateNewTest_正常系_親有)}_parent";
-            var parent = new GameObject(name2, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
+            var parent = MonoBehaviourMock.Generate(name2);
             var view = ViewStateMock.Generate(name1, parent);
 
             view.IsNotNull();
@@ -36,7 +36,7 @@ namespace Assets.Editor.UnitTest.Domain.Model.Entity
         {
             var name1 = (string)null;
             var name2 = $"{nameof(CleateNewTest_正常系_親有)}_parent";
-            var parent = new GameObject(name2, typeof(MonoBehaviourMock)).GetComponent<MonoBehaviourMock>();
+            var parent = MonoBehaviourMock.Generate(name2);
             var view = ViewStateMock.Generate(name1, parent);
 
             view.IsNotNull();
