@@ -20,11 +20,11 @@ namespace Assets.Editor.UnitTest.View.Repository
     {
         static readonly ViewStateKey[] keys = new[]
         {
-            ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) }),
-            ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(1) }),
-            ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(2) }),
-            ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(3) }),
-            ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(4) }),
+            ViewStateKeyMock.Generate(new[] { ViewKeyMock.Generate(0) }),
+            ViewStateKeyMock.Generate(new[] { ViewKeyMock.Generate(1) }),
+            ViewStateKeyMock.Generate(new[] { ViewKeyMock.Generate(2) }),
+            ViewStateKeyMock.Generate(new[] { ViewKeyMock.Generate(3) }),
+            ViewStateKeyMock.Generate(new[] { ViewKeyMock.Generate(4) }),
         };
         static readonly ViewState[] states = new[]
         {

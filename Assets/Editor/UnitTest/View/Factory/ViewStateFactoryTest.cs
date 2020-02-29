@@ -22,7 +22,7 @@ namespace Assets.Editor.UnitTest.View.Factory
         [Test]
         public static void GenerateViewStateTest_正常系_新規生成_既存無()
         {
-            var key = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) });
+            var key = ViewStateKeyMock.Generate(new[] { ViewKeyMock.Generate(0) });
             var viewStateMap = new Dictionary<ViewStateKey, ViewState>();
             var repository = new ViewStateRepositoryMock(viewStateMap);
 
@@ -36,8 +36,8 @@ namespace Assets.Editor.UnitTest.View.Factory
         [Test]
         public static void GenerateViewStateTest_正常系_新規生成_既存有()
         {
-            var key = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) });
-            var keyOrigin = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(1) });
+            var key = ViewStateKeyMock.Generate(new[] { ViewKeyMock.Generate(0) });
+            var keyOrigin = ViewStateKeyMock.Generate(new[] { ViewKeyMock.Generate(1) });
             var stateOrigin = ViewStateMock.Generate(nameof(GenerateViewStateTest_正常系_新規生成_既存有));
             var viewStateMap = new Dictionary<ViewStateKey, ViewState>
                 {
@@ -57,7 +57,7 @@ namespace Assets.Editor.UnitTest.View.Factory
         [Test]
         public static void GenerateViewStateTest_正常系_既存取得()
         {
-            var keyOrigin = ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(1) });
+            var keyOrigin = ViewStateKeyMock.Generate(new[] { ViewKeyMock.Generate(1) });
             var stateOrigin = ViewStateMock.Generate(nameof(GenerateViewStateTest_正常系_既存取得));
             var viewStateMap = new Dictionary<ViewStateKey, ViewState>
                 {
@@ -78,7 +78,7 @@ namespace Assets.Editor.UnitTest.View.Factory
         {
             var repository = (ViewStateRepository)null;
 
-            Assert.Throws<ArgumentNullException>(() => repository.GenerateViewState(ViewStateKeyMock.Generate(new[] { IViewKeyMock.Generate(0) })));
+            Assert.Throws<ArgumentNullException>(() => repository.GenerateViewState(ViewStateKeyMock.Generate(new[] { ViewKeyMock.Generate(0) })));
         }
         [Test]
         public static void GenerateViewStateTest_異常系_検索キーがNull()
