@@ -36,12 +36,4 @@ namespace Assets.Src.Domain.Model.Value
         public static bool operator ==(ViewDeployment x, ViewDeployment y) => x?.Equals(y) ?? y is null;
         public static bool operator !=(ViewDeployment x, ViewDeployment y) => !(x == y);
     }
-
-    /// <summary>
-    /// 基準点内での配置パターン
-    /// </summary>
-    public interface IViewLayout
-    {
-        Vector2 GetPosition(int index, int total);
-    }
 }
