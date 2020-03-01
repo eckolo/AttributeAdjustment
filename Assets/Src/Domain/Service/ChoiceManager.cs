@@ -88,7 +88,7 @@ namespace Assets.Src.Domain.Service
                 .Select(line => $"{line.cursor}\t{line.choice}")
                 .Aggregate((line1, line2) => $"{line1}\r\n{line2}")
                 : string.Empty;
-            var textMesh = new TextMeshKey(text);
+            var textMesh = new TextMeshKey(text, TextAlignment.Left);
 
             return textMesh;
         }

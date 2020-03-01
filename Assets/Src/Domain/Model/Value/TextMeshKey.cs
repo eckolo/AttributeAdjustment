@@ -12,9 +12,10 @@ namespace Assets.Src.Domain.Model.Value
     [Serializable]
     public class TextMeshKey : ITextMeshKey
     {
-        public TextMeshKey(string text)
+        public TextMeshKey(string text, TextAlignment? alignment = null)
         {
             _text = text ?? throw new ArgumentNullException(nameof(text));
+            this.alignment = alignment ?? this.alignment;
         }
 
         /// <summary>
@@ -40,6 +41,6 @@ namespace Assets.Src.Domain.Model.Value
         /// <summary>
         /// 文字の左右詰め
         /// </summary>
-        public TextAlignment alignment => TextAlignment.Center;
+        public TextAlignment alignment { get; } = TextAlignment.Center;
     }
 }
