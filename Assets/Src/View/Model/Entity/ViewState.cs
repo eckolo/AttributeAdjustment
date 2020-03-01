@@ -21,6 +21,8 @@ namespace Assets.Src.View.Model.Entity
 
         public ViewStateKey stateKey { get; set; }
 
+        public Dictionary<ViewDeployment, Dictionary<IViewKey, Queue<Component>>> GetAllMap() => _viewMap;
+
         public Component Search((ViewDeployment deploy, IViewKey view) key)
             => GetQueue(key)?.Peek();
         public Component Search(ViewDeployment deploy, IViewKey viewKey) => Search((deploy, viewKey));

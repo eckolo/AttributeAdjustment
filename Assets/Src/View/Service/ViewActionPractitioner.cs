@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
+using Assets.Src.Domain.Service;
 using Assets.Src.View.Factory;
 using Assets.Src.View.Model.Entity;
 using Assets.Src.View.Repository;
@@ -86,6 +87,23 @@ namespace Assets.Src.View.Service
             where TViewStateKey : ViewStateKey
         {
             var state = repository.Search(stateKey);
+            if(state is null)
+                return stateKey;
+
+            var viewMap = state.GetAllMap();
+            var layoutMap = stateKey.viewLayoutMap;
+
+            var viewPositions = new[] { action.actorDeployment, action.targetDeployment }
+                .Where(dep => dep is ViewDeployment)
+                .SelectMany(dep => viewMap
+                    .GetOrDefault(dep)
+                    .GetPositions(layoutMap.GetOrDefault(dep))
+                    .Select(pair => (dep, pair.component, pair.position)));
+            foreach(var (deployment, component, position) in viewPositions)
+            {
+                component.transform.localPosition = deployment.ToPosition() + position;
+            }
+
             if(state is ViewState && state.isDestroied)
                 UnityEngine.Object.Destroy(state.gameObject);
 

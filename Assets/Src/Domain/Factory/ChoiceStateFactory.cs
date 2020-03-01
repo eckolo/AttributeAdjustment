@@ -23,10 +23,10 @@ namespace Assets.Src.Domain.Factory
                 initialChoiced = 0;
 
             var state = new ChoiceState(choiceList, initialChoiced);
-            var stateDeploy = deployment ?? state.mainDeployment;
+            state.textDeployment = deployment ?? state.textDeployment;
 
-            state.viewActionList.Add(state.ToViewAction(stateDeploy, ViewAction.Pattern.GENERATE));
-            state.SetNewView(state.mainDeployment, state.choiceText);
+            state.viewActionList.Add(state.ToViewAction(new ViewDeployment(), ViewAction.Pattern.GENERATE));
+            state.SetNewView(state.textDeployment, state.choiceText);
 
             return state;
         }

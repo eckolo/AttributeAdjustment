@@ -20,7 +20,7 @@ namespace Assets.Src.View.Service
         /// <param name="componentMap"></param>
         /// <param name="layout"></param>
         /// <returns></returns>
-        public static IEnumerable<(Component, Vector2)> GetPositions(
+        public static IEnumerable<(Component component, Vector2 position)> GetPositions(
              this Dictionary<IViewKey, Queue<Component>> componentMap,
              IViewLayout layout)
         {

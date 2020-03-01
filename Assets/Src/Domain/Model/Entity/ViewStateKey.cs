@@ -15,5 +15,7 @@ namespace Assets.Src.Domain.Model.Entity
         /// ビューの更新内容キュー
         /// </summary>
         public List<ViewAction> viewActionList { get; } = new List<ViewAction>();
+
+        public Dictionary<ViewDeployment, IViewLayout> viewLayoutMap { get; }
     }
 }

@@ -60,7 +60,7 @@ namespace Assets.Src.Domain.Service
 
             state.isFinished = inputDecisionKey || inputCancelKey;
 
-            var updateAction = state.choiceText.ToViewAction(state.mainDeployment, ViewAction.Pattern.UPDATE, state.ToChoiceText());
+            var updateAction = state.choiceText.ToViewAction(state.textDeployment, ViewAction.Pattern.UPDATE, state.ToChoiceText());
             state.viewActionList.Add(updateAction);
 
             return state;
@@ -72,9 +72,9 @@ namespace Assets.Src.Domain.Service
         /// <returns>終了処理のなされた選択肢状態オブジェクト</returns>
         public static ChoiceState Finalize(this ChoiceState state)
         {
-            var deleteAction = state.choiceText.ToViewAction(state.mainDeployment, ViewAction.Pattern.DELETE);
+            var deleteAction = state.choiceText.ToViewAction(state.textDeployment, ViewAction.Pattern.DELETE);
             state.viewActionList.Add(deleteAction);
-            state.viewActionList.Add(state.ToViewAction(state.mainDeployment, ViewAction.Pattern.DELETE));
+            state.viewActionList.Add(state.ToViewAction(state.textDeployment, ViewAction.Pattern.DELETE));
             return state;
         }
 

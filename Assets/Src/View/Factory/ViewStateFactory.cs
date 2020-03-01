@@ -1,4 +1,5 @@
 ﻿using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Service;
 using Assets.Src.View.Model.Entity;
 using Assets.Src.View.Repository;
@@ -37,6 +38,7 @@ namespace Assets.Src.View.Factory
             var stateNew = name.SetPrefab<ViewState>();
             stateNew.stateKey = stateKey;
             repository.Save(stateKey, stateNew);
+            stateNew.Save(new ViewDeployment(), stateKey, stateNew);
 
             return stateNew;
         }
