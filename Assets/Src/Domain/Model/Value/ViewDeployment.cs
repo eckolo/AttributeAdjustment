@@ -12,16 +12,19 @@ namespace Assets.Src.Domain.Model.Value
     /// </summary>
     public class ViewDeployment : IEquatable<ViewDeployment>
     {
-        public ViewDeployment(SpriteAlignment pivot = SpriteAlignment.Center, Vector2? pivotGap = null)
+        public ViewDeployment(SpriteAlignment? pivot = null, Vector2? pivotGap = null)
         {
-            this.pivot = pivot;
+            this.pivot = pivot ?? this.pivot;
             this.pivotGap = pivotGap ?? this.pivotGap;
         }
+        public ViewDeployment(Vector2 pivotGap)
+            : this(null, pivotGap)
+        { }
 
         /// <summary>
         /// 基準点
         /// </summary>
-        public SpriteAlignment pivot { get; }
+        public SpriteAlignment pivot { get; } = SpriteAlignment.Center;
         /// <summary>
         /// 基準点からのズレ
         /// </summary>

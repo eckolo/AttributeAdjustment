@@ -24,7 +24,7 @@ namespace Assets.Editor.UnitTest.View.Service
             var textUpdated = "textUpdated";
             var positionOrigin = new Vector2(-5, 6);
             var positionUpdated = new Vector2(3, -12);
-            var development = new ViewDeployment(SpriteAlignment.Center, positionOrigin);
+            var development = new ViewDeployment(positionOrigin);
             var key = TextMeshKeyMock.Generate(textOrigin);
 
             var result = viewState
@@ -51,7 +51,7 @@ namespace Assets.Editor.UnitTest.View.Service
             var textOrigin = "textOrigin";
             var textUpdated = "textUpdated";
             var positionOrigin = new Vector2(-5, 6);
-            var development = new ViewDeployment(SpriteAlignment.Center, positionOrigin);
+            var development = new ViewDeployment(positionOrigin);
             var key = TextMeshKeyMock.Generate(textOrigin);
 
             var result = viewState
@@ -78,7 +78,7 @@ namespace Assets.Editor.UnitTest.View.Service
             var textOrigin = "textOrigin";
             var positionOrigin = new Vector2(-5, 6);
             var positionUpdated = new Vector2(3, -12);
-            var development = new ViewDeployment(SpriteAlignment.Center, positionOrigin);
+            var development = new ViewDeployment(positionOrigin);
             var key = TextMeshKeyMock.Generate(textOrigin);
 
             var result = viewState
@@ -106,7 +106,7 @@ namespace Assets.Editor.UnitTest.View.Service
             var textUpdated = "textUpdated";
             var positionOrigin = new Vector2(-5, 6);
             var positionUpdated = new Vector2(3, -12);
-            var development = new ViewDeployment(SpriteAlignment.Center, positionOrigin);
+            var development = new ViewDeployment(positionOrigin);
             var key = TextMeshKeyMock.Generate(textOrigin);
 
             var result = viewState.UpdateText(development, key, textUpdated, positionUpdated);
@@ -124,7 +124,7 @@ namespace Assets.Editor.UnitTest.View.Service
             var textUpdated = "textUpdated";
             var positionOrigin = new Vector2(-5, 6);
             var positionUpdated = new Vector2(3, -12);
-            var development = new ViewDeployment(SpriteAlignment.Center, positionOrigin);
+            var development = new ViewDeployment(positionOrigin);
             var key = TextMeshKeyMock.Generate(textOrigin);
 
             Assert.Throws<ArgumentNullException>(() => viewState.UpdateText(development, key, textUpdated, positionUpdated));

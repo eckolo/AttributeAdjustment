@@ -25,10 +25,10 @@ namespace Assets.Src.Domain.Repository
         static readonly Dictionary<MotionTip.Destination, ViewDeployment> centerPosition
             = new Dictionary<MotionTip.Destination, ViewDeployment>
             {
-                { MotionTip.Destination.DECK, new ViewDeployment(SpriteAlignment.Center, new Vector2(0, -2f)) },
-                { MotionTip.Destination.BOARD, new ViewDeployment(SpriteAlignment.Center, new Vector2(-5f, 0)) },
-                { MotionTip.Destination.SELF, new ViewDeployment(SpriteAlignment.Center, new Vector2(5f, 0)) },
-                { MotionTip.Destination.HAND, new ViewDeployment(SpriteAlignment.Center, new Vector2(0, 5f)) },
+                { MotionTip.Destination.DECK, new ViewDeployment(new Vector2(0, -2f)) },
+                { MotionTip.Destination.BOARD, new ViewDeployment(new Vector2(-5f, 0)) },
+                { MotionTip.Destination.SELF, new ViewDeployment(new Vector2(5f, 0)) },
+                { MotionTip.Destination.HAND, new ViewDeployment(new Vector2(0, 5f)) },
             };
     }
 }

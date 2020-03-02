@@ -27,7 +27,7 @@ namespace Assets.Editor.UnitTest.View.Factory
             var size = 0.6f;
             var color = Color.green;
             var alignment = TextAlignment.Right;
-            var development = new ViewDeployment(SpriteAlignment.Center, position);
+            var development = new ViewDeployment(position);
             var stationery = TextMeshKeyMock.Generate(text, size, color, alignment);
 
             var textObj = view.SetText(development, stationery).Search<TextMesh>(development, stationery);
@@ -54,7 +54,7 @@ namespace Assets.Editor.UnitTest.View.Factory
             var size1 = 0.6f;
             var color1 = Color.green;
             var alignment1 = TextAlignment.Right;
-            var development1 = new ViewDeployment(SpriteAlignment.Center, position1);
+            var development1 = new ViewDeployment(position1);
             var stationery1 = TextMeshKeyMock.Generate(text, size1, color1, alignment1);
             var textObj1 = view.SetText(development1, stationery1).Search<TextMesh>(development1, stationery1);
             {
@@ -77,7 +77,7 @@ namespace Assets.Editor.UnitTest.View.Factory
             var size2 = 0.9f;
             var color2 = Color.yellow;
             var alignment2 = TextAlignment.Left;
-            var development2 = new ViewDeployment(SpriteAlignment.Center, position2);
+            var development2 = new ViewDeployment(position2);
             var stationery2 = TextMeshKeyMock.Generate(text, size2, color2, alignment2);
             var textObj2 = view.SetText(development2, stationery2).Search<TextMesh>(development2, stationery2);
             {
