@@ -88,6 +88,9 @@ namespace Assets.Src.Domain.Model.Entity
 
         public BattleActor thisTimeActor { get; set; }
 
+        public override Dictionary<ViewDeployment, IViewLayout> viewLayoutMap
+            => new Dictionary<ViewDeployment, IViewLayout>();
+
         public async void Dispose() => await this.EndBattle();
     }
 }

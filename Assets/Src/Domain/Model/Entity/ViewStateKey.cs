@@ -16,6 +16,6 @@ namespace Assets.Src.Domain.Model.Entity
         /// </summary>
         public List<ViewAction> viewActionList { get; } = new List<ViewAction>();
 
-        public Dictionary<ViewDeployment, IViewLayout> viewLayoutMap { get; }
+        public abstract Dictionary<ViewDeployment, IViewLayout> viewLayoutMap { get; }
     }
 }

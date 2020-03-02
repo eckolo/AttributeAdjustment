@@ -72,6 +72,9 @@ namespace Assets.Src.Domain.Model.Entity
         /// </summary>
         public ViewDeployment textDeployment { get; set; } = new ViewDeployment();
 
+        public override Dictionary<ViewDeployment, IViewLayout> viewLayoutMap
+            => new Dictionary<ViewDeployment, IViewLayout>();
+
         public async void Dispose() => await this.EndChoice();
     }
 }

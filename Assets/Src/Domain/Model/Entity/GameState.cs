@@ -1,8 +1,10 @@
 using Assets.Src.Domain.Model.Abstract;
 using Assets.Src.Domain.Model.Entity;
+using Assets.Src.Domain.Model.Value;
 using Assets.Src.Domain.Repository;
 using Assets.Src.Domain.Service;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Src.Domain.Model.Entity
@@ -58,6 +60,9 @@ namespace Assets.Src.Domain.Model.Entity
         /// ファイル操作サービス
         /// </summary>
         public IFileManager fileManager { get; }
+
+        public override Dictionary<ViewDeployment, IViewLayout> viewLayoutMap
+            => new Dictionary<ViewDeployment, IViewLayout>();
 
         /// <summary>
         /// 乱数の種

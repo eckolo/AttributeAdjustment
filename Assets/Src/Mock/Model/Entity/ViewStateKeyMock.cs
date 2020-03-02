@@ -18,6 +18,8 @@ namespace Assets.Src.Mock.Model.Entity
             }
         }
 
+        public override Dictionary<ViewDeployment, IViewLayout> viewLayoutMap => throw new NotImplementedException();
+
         public static ViewStateKeyMock Generate(
             IEnumerable<IViewKey> views = null,
             ViewAction[] viewActionQueue = null)

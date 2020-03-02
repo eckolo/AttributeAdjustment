@@ -34,6 +34,9 @@ namespace Assets.Src.Domain.Model.Entity
             /// </summary>
             public List<MotionTip> handTips { get; protected set; }
 
+            public override Dictionary<ViewDeployment, IViewLayout> viewLayoutMap
+                => new Dictionary<ViewDeployment, IViewLayout>();
+
             /// <summary>
             /// 手札の追加
             /// </summary>
