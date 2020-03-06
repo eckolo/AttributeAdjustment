@@ -17,6 +17,7 @@ namespace Assets.Src.Domain.Factory
 
             var battleState = new BattleState(actiors, topography);
             battleState.viewActionList.Add(battleState.ToViewAction(new ViewDeployment(), ViewAction.Pattern.GENERATE));
+            battleState.SetNewView(new ViewDeployment(), battleState.battleActors.Select(actor => actor.state));
 
             return battleState;
         }

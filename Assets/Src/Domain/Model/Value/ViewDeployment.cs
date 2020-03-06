@@ -17,9 +17,11 @@ namespace Assets.Src.Domain.Model.Value
             this.pivot = pivot ?? this.pivot;
             this.pivotGap = pivotGap ?? this.pivotGap;
         }
-        public ViewDeployment(Vector2 pivotGap)
+        public ViewDeployment(Vector2 pivotGap, int? layer = null)
             : this(null, pivotGap)
-        { }
+        {
+            this.layer = layer ?? this.layer;
+        }
 
         /// <summary>
         /// 基準点
@@ -29,11 +31,18 @@ namespace Assets.Src.Domain.Model.Value
         /// 基準点からのズレ
         /// </summary>
         public Vector2 pivotGap { get; } = Vector2.zero;
+        /// <summary>
+        /// 見かけ上の同一点における層番号
+        /// </summary>
+        public int layer { get; } = 0;
 
-        public override int GetHashCode() => pivot.GetHashCode() ^ pivotGap.GetHashCode();
+        public override int GetHashCode() => pivot.GetHashCode() ^ pivotGap.GetHashCode() ^ layer.GetHashCode();
 
         public bool Equals(ViewDeployment other)
-            => other is ViewDeployment dep && pivot == dep.pivot && pivotGap == dep.pivotGap;
+            => other is ViewDeployment dep
+            && pivot == dep.pivot
+            && pivotGap == dep.pivotGap
+            && layer == dep.layer;
         public override bool Equals(object other) => other is ViewDeployment dep && Equals(dep);
 
         public static bool operator ==(ViewDeployment x, ViewDeployment y) => x?.Equals(y) ?? y is null;

@@ -119,8 +119,20 @@ namespace Assets.Src.View.Service
             switch(action.actor)
             {
                 case TViewStateKey viewStateKey:
-                    repository.GenerateViewState(viewStateKey);
-                    return stateKey;
+                    {
+                        var stateNew = repository.GenerateViewState(viewStateKey);
+                        stateNew.Save(new ViewDeployment(Vector2.zero, -1), stateKey, stateNew);
+                        return stateKey;
+                    }
+                case ViewStateKey viewStateKey:
+                    {
+                        var parentState = repository.Search(stateKey);
+                        var actorState = repository.GenerateViewState(viewStateKey);
+
+                        parentState.Save((action.actorDeployment, viewStateKey), actorState);
+                        actorState.SetParent(parentState);
+                        return stateKey;
+                    }
                 case ITextMeshKey textMeshStationery:
                     repository.Search(stateKey).SetText(action.actorDeployment, textMeshStationery);
                     return stateKey;

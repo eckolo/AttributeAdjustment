@@ -21,7 +21,9 @@ namespace Assets.Src.View.Factory
         /// <typeparam name="TStateKey">生成元のキーの型</typeparam>
         /// <param name="stateKey">生成元のキー</param>
         /// <returns>生成された<see cref="ViewState"/></returns>
-        public static ViewState GenerateViewState<TStateKey>(this IViewStateRepository repository, TStateKey stateKey)
+        public static ViewState GenerateViewState<TStateKey>(
+            this IViewStateRepository repository,
+            TStateKey stateKey)
             where TStateKey : ViewStateKey
         {
             if(repository is null)
@@ -38,7 +40,6 @@ namespace Assets.Src.View.Factory
             var stateNew = name.SetPrefab<ViewState>();
             stateNew.stateKey = stateKey;
             repository.Save(stateKey, stateNew);
-            stateNew.Save(new ViewDeployment(), stateKey, stateNew);
 
             return stateNew;
         }

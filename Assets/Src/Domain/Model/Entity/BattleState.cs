@@ -89,7 +89,10 @@ namespace Assets.Src.Domain.Model.Entity
         public BattleActor thisTimeActor { get; set; }
 
         public override Dictionary<ViewDeployment, IViewLayout> viewLayoutMap
-            => new Dictionary<ViewDeployment, IViewLayout>();
+            => new Dictionary<ViewDeployment, IViewLayout>
+            {
+                { new ViewDeployment(), new OblongLayout(new Vector2(5, 3), -90) },
+            };
 
         public async void Dispose() => await this.EndBattle();
     }
