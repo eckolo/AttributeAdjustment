@@ -25,7 +25,7 @@ namespace Assets.Src.Controller
         /// <param name="initialChoiced">デフォルトの選択位置</param>
         /// <returns>生成された選択肢情報</returns>
         public static async UniTask<ChoiceState> SetupChoice(
-            this List<string> choiceList,
+            this IList<string> choiceList,
             int initialChoiced = 0,
             ViewDeployment deployment = null)
         {

@@ -12,7 +12,7 @@ namespace Assets.Src.Domain.Factory
     public static class ChoiceStateFactory
     {
         public static ChoiceState ToChoiceState(
-            this List<string> choiceList,
+            this IList<string> choiceList,
             int initialChoiced = 0,
             ViewDeployment deployment = null)
         {
