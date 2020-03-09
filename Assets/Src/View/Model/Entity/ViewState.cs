@@ -16,15 +16,19 @@ namespace Assets.Src.View.Model.Entity
     /// </summary>
     public class ViewState : PrefabAbst, IComponentRepository
     {
-        Dictionary<ViewDeployment, Dictionary<IViewKey, Queue<Component>>> _viewMap
-            = new Dictionary<ViewDeployment, Dictionary<IViewKey, Queue<Component>>>();
+        protected Dictionary<ViewDeployment, Dictionary<IViewKey, Queue<Component>>> _viewMap
+              = new Dictionary<ViewDeployment, Dictionary<IViewKey, Queue<Component>>>();
 
         public ViewStateKey stateKey { get; set; }
 
         public Dictionary<ViewDeployment, Dictionary<IViewKey, Queue<Component>>> GetAllMap() => _viewMap;
 
         public Component Search((ViewDeployment deploy, IViewKey view) key)
-            => GetQueue(key)?.Peek();
+        {
+            var queue = GetQueue(key);
+            return queue.AnyNotNull() ? queue.Peek() : default;
+        }
+
         public Component Search(ViewDeployment deploy, IViewKey viewKey) => Search((deploy, viewKey));
 
         public TComponent Search<TComponent>(ViewDeployment deploy, IViewKey viewKey)
@@ -34,7 +38,11 @@ namespace Assets.Src.View.Model.Entity
                 : default;
 
         public Component Pop((ViewDeployment deploy, IViewKey view) key)
-            => GetQueue(key)?.Dequeue();
+        {
+            var queue = GetQueue(key);
+            return queue.AnyNotNull() ? queue.Dequeue() : default;
+        }
+
         public Component Pop(ViewDeployment deploy, IViewKey viewKey)
             => Pop((deploy, viewKey));
 
