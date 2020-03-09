@@ -34,7 +34,7 @@ namespace Assets.Src.Domain.Model.Entity
         {
             get => _choiced;
             set {
-                if(value is int valueInt && (choiceList?.Any() ?? false))
+                if(value is int valueInt && choiceList.AnyNotNull())
                 {
                     while(valueInt < 0)
                         valueInt += choiceList.Count;

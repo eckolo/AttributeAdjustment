@@ -82,7 +82,7 @@ namespace Assets.Src.Domain.Service
             => state?.choiceList.ToChoiceText(state.choiced) ?? throw new ArgumentNullException(nameof(state));
         public static ITextMeshKey ToChoiceText(this IList<string> choiceList, int? choiced)
         {
-            var text = (choiceList?.Any() ?? false)
+            var text = choiceList.AnyNotNull()
                 ? choiceList
                 .Select((choice, index) => (cursor: index == choiced ? ">" : "", choice))
                 .Select(line => $"{line.cursor}\t{line.choice}")

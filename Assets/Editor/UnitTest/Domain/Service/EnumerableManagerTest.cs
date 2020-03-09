@@ -602,5 +602,38 @@ namespace Assets.Editor.UnitTest.Domain.Service
             result.All(elem => list.Any(_elem => _elem == elem)).IsTrue();
             list.All(elem => result.Any(_elem => _elem == elem)).IsTrue();
         }
+
+        [Test]
+        public static void AnyNotNullTest_要素複数()
+        {
+            var value1 = 0.3f;
+            var value2 = 1.2f;
+            var value3 = 5;
+            var list = new[] { value1, value2, value3 };
+
+            list.AnyNotNull().IsTrue();
+        }
+        [Test]
+        public static void AnyNotNullTest_要素単数()
+        {
+            var value1 = 0.3f;
+            var list = new[] { value1 };
+
+            list.AnyNotNull().IsTrue();
+        }
+        [Test]
+        public static void AnyNotNullTest_要素無し()
+        {
+            var list = new float[] { };
+
+            list.AnyNotNull().IsFalse();
+        }
+        [Test]
+        public static void AnyNotNullTest_Null()
+        {
+            var list = (IEnumerable<float>)null;
+
+            list.AnyNotNull().IsFalse();
+        }
     }
 }

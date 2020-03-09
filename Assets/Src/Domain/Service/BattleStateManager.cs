@@ -37,7 +37,7 @@ namespace Assets.Src.Domain.Service
         /// <param name="popTipNumber">取り出し枚数</param>
         /// <returns>山札から取り出されたモーションチップ一覧</returns>
         public static IEnumerable<MotionTip> PopDeckTipsForced(this BattleState state, int popTipNumber)
-            => state.deckTips.Count >= popTipNumber || (state.deckStationeryMap?.Any() ?? false)
+            => state.deckTips.Count >= popTipNumber || state.deckStationeryMap.AnyNotNull()
                 ? Enumerable.Empty<MotionTip>().JoinDeckTips(state, popTipNumber)
                 : Enumerable.Empty<MotionTip>();
         static IEnumerable<MotionTip> JoinDeckTips(
@@ -143,7 +143,7 @@ namespace Assets.Src.Domain.Service
             if(state is null)
                 return state;
             var actors = state.battleActors;
-            if(!(actors?.Any() ?? false))
+            if(!actors.AnyNotNull())
                 return state;
 
             var baseEnergy = actors.Min(actor => actor.energy);

@@ -22,7 +22,7 @@ namespace Assets.Src.Domain.Service
         public static IEnumerable<TSource> MaxKeys<TSource, TComparable>(this IEnumerable<TSource> source, System.Func<TSource, TComparable> selector)
             where TComparable : System.IComparable<TComparable>
         {
-            if(!source?.Any() ?? true)
+            if(!source.AnyNotNull())
                 return new List<TSource>();
             var maxValue = source.Max(selector);
             return source.Where(elem => selector(elem).CompareTo(maxValue) == 0);
@@ -38,7 +38,7 @@ namespace Assets.Src.Domain.Service
         public static IEnumerable<TSource> MinKeys<TSource, TComparable>(this IEnumerable<TSource> source, System.Func<TSource, TComparable> selector)
             where TComparable : System.IComparable<TComparable>
         {
-            if(!source?.Any() ?? true)
+            if(!source.AnyNotNull())
                 return new List<TSource>();
             var minValue = source.Min(selector);
             return source.Where(elem => selector(elem).CompareTo(minValue) == 0);
@@ -63,7 +63,7 @@ namespace Assets.Src.Domain.Service
         /// <param name="index">指定のキー</param>
         /// <param name="defaultValue">デフォルト値</param>
         /// <returns>所定のキーに紐づく値もしくはデフォルト値</returns>
-        public static TValue GetOrDefault< TValue>(
+        public static TValue GetOrDefault<TValue>(
             this IList<TValue> origin,
             int index,
             TValue defaultValue = default)
@@ -186,5 +186,14 @@ namespace Assets.Src.Domain.Service
         /// <returns>シャッフルされた後のリスト</returns>
         public static IOrderedEnumerable<TValue> Shuffle<TValue>(this IEnumerable<TValue> origin)
             => origin.OrderBy(_ => Random.Range(int.MinValue, int.MaxValue));
+
+        /// <summary>
+        /// 要素の存在判定にNullを加味
+        /// </summary>
+        /// <typeparam name="TValue">リストの要素型</typeparam>
+        /// <param name="origin">元のリスト</param>
+        /// <returns>Nullでなく要素があるか否か</returns>
+        public static bool AnyNotNull<TValue>(this IEnumerable<TValue> origin)
+            => origin?.Any() ?? false;
     }
 }
