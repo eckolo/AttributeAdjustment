@@ -19,50 +19,22 @@ namespace Assets.Src.View.Service
         public static TViewState UpdateText<TViewState>(
             this TViewState state,
             ViewDeployment deployment,
-            ITextMeshKey key,
-            string text,
-            Vector2? position = null)
+            ITextMeshKey textKey,
+            ViewDeployment targetDeploy,
+            string updateText)
             where TViewState : ViewState
         {
             if(state is null)
                 throw new ArgumentNullException(nameof(state));
 
-            var origin = state.Search<TextMesh>(deployment, key);
-            if(origin is null)
+            var textValue = state.Pop<TextMesh>(deployment, textKey);
+            if(textValue is null)
                 return state;
 
-            if(text is string textNonNull)
-                origin.SetText(textNonNull);
-            if(position is Vector2 positionNonNull)
-                origin.SetPosition(positionNonNull);
+            textValue.text = updateText;
+            state.Save(targetDeploy, textKey, textValue);
+
             return state;
-        }
-        public static TViewState UpdateText<TViewState>(
-            this TViewState state,
-            ViewDeployment deployment,
-            ITextMeshKey key,
-            Vector2 position)
-            where TViewState : ViewState
-            => state.UpdateText(deployment, key, null, position);
-        static TextMesh SetPosition(
-           this TextMesh origin,
-           Vector2 position)
-        {
-            if(origin is null)
-                return origin;
-
-            origin.transform.localPosition = position;
-            return origin;
-        }
-        static TextMesh SetText(
-           this TextMesh origin,
-           string text)
-        {
-            if(origin is null)
-                return origin;
-
-            origin.text = text;
-            return origin;
         }
 
         public static TViewState DestroyText<TViewState>(
