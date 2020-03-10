@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Domain.Model.Entity;
 using Assets.Src.Domain.Model.Value;
+using Assets.Src.Domain.Repository;
 using Assets.Src.Domain.Service;
 using Assets.Src.View.Factory;
 using Assets.Src.View.Model.Entity;
@@ -121,7 +122,7 @@ namespace Assets.Src.View.Service
                 case TViewStateKey viewStateKey:
                     {
                         var stateNew = repository.GenerateViewState(viewStateKey);
-                        stateNew.Save(new ViewDeployment(Vector2.zero, -1), stateKey, stateNew);
+                        stateNew.Save(ViewDeploymentProperties.stateMyself, stateKey, stateNew);
                         return stateKey;
                     }
                 case ViewStateKey viewStateKey:
